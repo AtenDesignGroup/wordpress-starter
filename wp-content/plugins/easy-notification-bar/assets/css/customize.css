@@ -1,0 +1,10 @@
+.customize-partial-edit-shortcuts-shown .easy-notification-bar-customize-selector .customize-partial-edit-shortcut,
+.customize-partial-edit-shortcuts-shown .easy-notification-bar-customize-selector .widget .customize-partial-edit-shortcut {
+	position: relative;
+	z-index: 999;
+}
+
+.customize-partial-edit-shortcuts-shown .easy-notification-bar-customize-selector .customize-partial-edit-shortcut-button {
+	left: 1em;
+	top: 0.5em;
+}

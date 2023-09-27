@@ -1,0 +1,19 @@
+<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg">
+    <g id="Plugin-Settings---Settings" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Plugin-Settings-(fpdf-brand)" transform="translate(-929 -523)">
+            <g id="Section" transform="translate(288 109)">
+                <g id="Extension-Cards" transform="translate(16 362)">
+                    <g id="Card-(upgrade)" transform="translate(440 38)">
+                        <g id="Icon" transform="translate(185 14)">
+                            <path d="M29 2.3094l13.6506 7.8812a8 8 0 014 6.9282v15.7624a8 8 0 01-4 6.9282L29 47.6906a8 8 0 01-8 0L7.3494 39.8094a8 8 0 01-4-6.9282V17.1188a8 8 0 014-6.9282L21 2.3094a8 8 0 018 0z" id="Polygon" fill="#D05C5D"/>
+                            <g id="icon" transform="translate(16 16)" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                <path id="Rectangle" d="M-1-1h20v20H-1z"/>
+                                <path id="Rectangle" d="M3.1429 3.1429h4v4h-4zM10.8571 3h4v12h-4zM3.1429 10.8571h4v4h-4z"/>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,307 @@
+/* ---------------------------------------------------
+	Feed Settings: Tabs
+--------------------------------------------------- */
+.gaddon-section.fillablepdfs-feed-section {
+  display: none;
+  padding-top: 0;
+}
+.gaddon-section.fillablepdfs-feed-section.gaddon-first-section {
+  display: block;
+}
+
+.fillablepdfs-feed-section table.gforms_form_settings td {
+  padding-bottom: 20px;
+}
+.fillablepdfs-feed-section table.gforms_form_settings td > .chosen-container {
+  width: 50% !important;
+}
+.fillablepdfs-feed-section table.gforms_form_settings th {
+  font-weight: 500;
+  line-height: 25px;
+}
+
+/* ---------------------------------------------------
+	Template Mapper
+--------------------------------------------------- */
+.fillablepdfs__template-controls {
+  display: flex;
+  max-width: 50%;
+}
+.fillablepdfs__template-controls .chosen-container {
+  flex-grow: 1;
+}
+.fillablepdfs__template-controls .chosen-container .chosen-single {
+  height: 28px;
+  line-height: 27px;
+}
+.fillablepdfs__template-controls .chosen-container .chosen-single div {
+  box-sizing: border-box;
+  padding-top: 2px;
+}
+.fillablepdfs__template-controls .button {
+  margin-left: 5px;
+}
+
+#fillablepdfs__mapper {
+  position: fixed;
+  top: 3%;
+  left: 3%;
+  right: 3%;
+  bottom: 3%;
+  background: #fff;
+  box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.1);
+  z-index: 100001;
+  box-sizing: border-box;
+}
+#fillablepdfs__mapper:before {
+  background: rgba(0, 0, 0, 0.65);
+  height: 200%;
+  left: -25%;
+  position: absolute;
+  top: -25%;
+  width: 200%;
+  z-index: 100000;
+  content: "";
+}
+
+.fillablepdfs__mapper-container {
+  display: flex;
+  height: calc(100% - 48px);
+  position: relative;
+  z-index: 100002;
+}
+
+.fillablepdfs__mapper-toolbar {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  height: 48px;
+  width: 100%;
+  position: relative;
+  z-index: 100002;
+}
+.fillablepdfs__mapper-toolbar .dashicons {
+  background: transparent;
+  border: none;
+  color: #72777c;
+  cursor: pointer;
+  font-size: 22px;
+  height: 48px;
+  line-height: 50px;
+  outline: none;
+  text-align: center;
+  transition: color 0.1s ease-in-out, background 0.1s ease-in-out;
+  width: 50px;
+}
+.fillablepdfs__mapper-toolbar .dashicons:not(.close) {
+  border-right: 1px solid #ddd;
+}
+.fillablepdfs__mapper-toolbar .dashicons.close {
+  border-left: 1px solid #ddd;
+}
+.fillablepdfs__mapper-toolbar .dashicons:hover {
+  background: #ddd;
+  border-left-color: #ccc;
+  color: #000;
+}
+.fillablepdfs__mapper-toolbar .fillablepdfs__mapper-toolbar-left,
+.fillablepdfs__mapper-toolbar .fillablepdfs__mapper-toolbar-right {
+  flex-grow: 0;
+}
+.fillablepdfs__mapper-toolbar .fillablepdfs__mapper-toolbar-middle {
+  flex-grow: 1;
+  line-height: 48px;
+  text-align: center;
+}
+
+.fillablepdfs__mapper-sidebar {
+  background: #fff;
+  border-right: 1px solid #ddd;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  overflow-y: auto;
+  padding: 20px;
+  width: 250px;
+}
+.fillablepdfs__mapper-sidebar span {
+  line-height: 3;
+}
+.fillablepdfs__mapper-sidebar a {
+  color: inherit;
+  cursor: pointer;
+  display: block;
+  margin: 1em 0;
+  text-align: center;
+  text-decoration: none;
+}
+.fillablepdfs__mapper-sidebar a:first-child {
+  margin-top: 0;
+}
+.fillablepdfs__mapper-sidebar a.active {
+  font-weight: 700;
+}
+.fillablepdfs__mapper-sidebar a.active img {
+  box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.1);
+}
+.fillablepdfs__mapper-sidebar img {
+  border: 1px solid #ddd;
+  display: block;
+  max-width: 100%;
+}
+
+#fillablepdfs__mapper-pages {
+  background: #efefef;
+  flex-grow: 1;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 2em 3em;
+  text-align: center;
+}
+
+.fillablepdfs__mapper-page {
+  background-size: 100%;
+  box-shadow: 0 1px 20px 5px rgba(0, 0, 0, 0.1);
+  margin: 1em auto;
+  position: relative;
+}
+
+.fillablepdfs__mapper-page-image {
+  left: 0;
+  position: absolute;
+  top: 0;
+  user-focus: none;
+}
+
+.fillablepdfs__mapper-fields {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.fillablepdfs__mapper-field {
+  background: rgba(0, 0, 255, 0.1);
+  cursor: pointer;
+  position: absolute;
+  transition: background 0.25s ease;
+}
+.fillablepdfs__mapper-field:hover {
+  background: rgba(0, 0, 255, 0.2);
+}
+.fillablepdfs__mapper-field.mapped {
+  background: rgba(187, 230, 253, 0.7);
+}
+.fillablepdfs__mapper-field span {
+  box-sizing: border-box;
+  display: block;
+  font-size: 0.8em;
+  height: 100%;
+  overflow: hidden;
+  padding: 0 5px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  z-index: 100004;
+}
+
+.Popover {
+  margin-top: 10px;
+  z-index: 100005;
+}
+.Popover .Popover-tip {
+  display: none;
+}
+
+.fillablepdfs__mapper-field-popover {
+  box-shadow: 0px 3px 20px rgba(25, 30, 35, 0.1), 0px 1px 3px rgba(25, 30, 35, 0.1);
+  box-sizing: border-box;
+  border: 1px solid #e2e4e7;
+  background: #fff;
+  padding: 10px;
+}
+.fillablepdfs__mapper-field-popover:before {
+  border: 8px solid #e2e4e7;
+  top: -8px;
+}
+.fillablepdfs__mapper-field-popover:after {
+  border: 8px solid #fff;
+  top: -6px;
+}
+.fillablepdfs__mapper-field-popover:before, .fillablepdfs__mapper-field-popover:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  margin-left: -10px;
+  height: 0;
+  width: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  line-height: 0;
+}
+.fillablepdfs__mapper-field-popover:before, .fillablepdfs__mapper-field-popover:after {
+  border-bottom-style: solid;
+  border-top: none;
+}
+.fillablepdfs__mapper-field-popover select {
+  font-size: 1em;
+  height: 2.5em;
+  width: 220px;
+}
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapper-field-modifier {
+  display: block;
+  margin-top: 0.5em;
+  text-align: center;
+}
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapper-integration {
+  margin-top: 0.5em;
+}
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapper-list {
+  margin-top: 0.5em;
+  width: 220px;
+}
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapper-list .fillablepdfs__mapper-list-column {
+  margin-right: 8px;
+  width: 160px;
+}
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapper-list .fillablepdfs__mapper-list-column + .fillablepdfs__mapper-list-row {
+  width: 52px;
+}
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapper-list .fillablepdfs__mapper-list-row {
+  box-sizing: border-box;
+  font-size: 1em;
+  height: 2.461538462em;
+  padding: 0 5px;
+  width: 100%;
+}
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapping-field-custom {
+  position: relative;
+}
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapping-field-custom input[type=text],
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapping-field-custom textarea {
+  font-size: 1em;
+  width: 300px;
+}
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapping-field-custom input[type=text] {
+  line-height: 2.5;
+  padding: 0 30px 0 10px;
+}
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapping-field-custom textarea {
+  padding: 10px 30px 10px 10px;
+}
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapping-field-custom .dashicons-no {
+  color: #ddd;
+  cursor: pointer;
+  height: 1.625em;
+  line-height: 1.625;
+  margin-top: 1px;
+  position: absolute;
+  right: 0;
+  transition: color 0.25s ease;
+  width: 30px;
+}
+.fillablepdfs__mapper-field-popover .fillablepdfs__mapping-field-custom .dashicons-no:hover {
+  color: #777;
+}

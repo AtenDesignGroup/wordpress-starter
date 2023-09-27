@@ -1,0 +1,8 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 38 38" xml:space="preserve">
+    <style>.st1{fill:none;stroke:#528aaf;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}</style>
+    <path d="M4.5.5h29c2.2 0 4 1.8 4 4v29c0 2.2-1.8 4-4 4h-29c-2.2 0-4-1.8-4-4v-29c0-2.2 1.8-4 4-4z" fill-rule="evenodd" clip-rule="evenodd" fill="#fff" stroke="#9091b1"/>
+    <g transform="translate(14 14)">
+        <path class="st1" d="M5 0v10"/>
+        <path class="st1" d="M10 5H0"/>
+    </g>
+</svg>

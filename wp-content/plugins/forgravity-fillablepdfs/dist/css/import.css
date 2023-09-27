@@ -1,0 +1,190 @@
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./src/scss/import.scss ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/* ---------------------------------------------------
+	Definitions
+--------------------------------------------------- */
+/* ---------------------------------------------------
+	Colors
+--------------------------------------------------- */
+/* ---------------------------------------------------
+	Components
+--------------------------------------------------- */
+.fillablepdfs-import-fields {
+  background: #FAFBFF !important;
+  border: 1px solid #E6E6EE;
+  border-radius: 0.1875rem;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 1rem 0.75rem 0.4375rem;
+  width: auto !important;
+}
+.fillablepdfs-import-fields th,
+.fillablepdfs-import-fields td {
+  padding-bottom: 1rem;
+}
+.fillablepdfs-import-fields__label,
+.fillablepdfs-import-fields input[type=text],
+.fillablepdfs-import-fields select:not([multiple]) {
+  width: 18.75rem;
+}
+.fillablepdfs-import-fields__type {
+  width: 21.5rem;
+}
+.fillablepdfs-import-fields__type span {
+  align-items: center;
+  display: flex;
+}
+.fillablepdfs-import-fields__exclude, .fillablepdfs-import-fields__required {
+  text-align: center;
+  width: 5.125rem;
+}
+.fillablepdfs-import-fields__arrow {
+  background: url("../images/import/arrow.svg") no-repeat center 1rem/1.25rem 0.875rem;
+  height: 0.875rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 1.25rem;
+}
+.fillablepdfs-import-fields thead th {
+  color: #2A2A52;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.125rem;
+  text-align: left;
+}
+.fillablepdfs-import-fields input[type=checkbox] {
+  margin: 0 !important;
+}
+.fillablepdfs-import-fields__choices-button {
+  background: transparent;
+  border: none;
+  box-sizing: content-box;
+  height: 0.9375rem;
+  margin-left: 0.3125rem;
+  padding: 0.5rem;
+  width: 1.125rem;
+}
+.fillablepdfs-import-fields__choices-button:not([disabled]) {
+  cursor: pointer;
+}
+.fillablepdfs-import-fields__choices-button:disabled img {
+  opacity: 0.2;
+}
+
+.fillablepdfs-import-fields__choices-modal {
+  background: #FFF;
+  border: 1px solid #E6E6EE;
+  border-radius: 0.1875rem;
+  box-shadow: 0 0.375rem 0.625rem 0 #EEF1F5;
+  margin: -3.25rem 0 0 2.5rem;
+  position: absolute;
+  width: 16.25rem;
+  z-index: 10;
+}
+.fillablepdfs-import-fields__choices-modal:before, .fillablepdfs-import-fields__choices-modal:after {
+  content: "";
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+.fillablepdfs-import-fields__choices-modal:before {
+  border-top: 0.3125rem solid transparent;
+  border-bottom: 0.3125rem solid transparent;
+  border-left: 0.3125rem solid #FFF;
+  right: -0.3125rem;
+  top: 2.75rem;
+  z-index: 11;
+}
+.fillablepdfs-import-fields__choices-modal:after {
+  border-top: 0.375rem solid transparent;
+  border-bottom: 0.375rem solid transparent;
+  border-left: 0.375rem solid #E6E6EE;
+  right: -0.375rem;
+  top: 2.6875rem;
+}
+.fillablepdfs-import-fields__choices-modal .fillablepdfs-import-fields__choices-title {
+  border-bottom: 1px solid #E6E6EE;
+  color: #2A2A52;
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.75rem;
+  padding: 0 1.25rem;
+}
+.fillablepdfs-import-fields__choices-modal #fillablepdfs-import-fields__choices-input {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: #2A2A52;
+  display: block;
+  font-size: 0.875rem;
+  height: 8.375rem;
+  padding: 0.8125rem 1.25rem;
+  resize: none;
+}
+.fillablepdfs-import-fields__choices-modal .fillablepdfs-import-fields__choices-buttons {
+  border-top: 1px solid #E6E6EE;
+  padding: 0.625rem;
+  text-align: right;
+}
+.fillablepdfs-import-fields__choices-modal .fillablepdfs-import-fields__choices-buttons button {
+  background: transparent;
+  border: none;
+  border-radius: 0.25rem;
+  color: #2B2955;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  height: 1.875rem;
+  margin-left: 0.25rem;
+  padding: 0 0.875rem;
+}
+.fillablepdfs-import-fields__choices-modal .fillablepdfs-import-fields__choices-buttons button:last-of-type {
+  background: #528AAF;
+  color: #FFFFFF;
+}
+
+.fillablepdfs-import__upgrade {
+  background: #FFF;
+  border: 1px solid #E3E6EF;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(18, 25, 97, 0.0779552);
+  display: flex;
+  padding: 3.375rem 4.5rem 3.375rem 2.375rem;
+}
+.fillablepdfs-import__upgrade img, .fillablepdfs-import__upgrade-message {
+  align-self: center;
+}
+.fillablepdfs-import__upgrade img {
+  flex-shrink: 0;
+  margin-right: 2.5rem;
+}
+.fillablepdfs-import__upgrade-message {
+  color: #2A2A52;
+}
+.fillablepdfs-import__upgrade-message h3 {
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
+  margin: 0 0 0.8125rem;
+}
+.fillablepdfs-import__upgrade-message p {
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
+  margin: 0;
+}
+.fillablepdfs-import__upgrade-message .fillablepdfs-license-feature-upgrade {
+  margin-top: 2rem;
+}
+
+/* ---------------------------------------------------
+	Upload Dropzone
+--------------------------------------------------- */
+.fillablepdfs-import-dropzone {
+  margin: 1rem;
+}
+.fillablepdfs-import-dropzone .fillablepdfs-dropzone {
+  background-position: center 4.125rem;
+  padding: 7.75rem 0 4.125rem;
+}

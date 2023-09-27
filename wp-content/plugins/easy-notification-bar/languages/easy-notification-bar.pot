@@ -1,0 +1,176 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Notification Bar Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-08 20:46-0700\n"
+"PO-Revision-Date: 2016-08-09 12:06-0800\n"
+"Last-Translator: AJ Clarke <wpexplorer@gmail.com>\n"
+"Language-Team: WPExplorer.com\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;"
+"_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;_nx_noop:4c,1,2;"
+"_nx;_esc_attr__;esc_attr_x;esc_attr_e;esc_html__;esc_html_e;esc_html_x;__;_e;"
+"esc_attr__\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: easy-notification-bar.php:130
+msgid "Settings"
+msgstr ""
+
+#: easy-notification-bar.php:328
+msgid "Close notification"
+msgstr ""
+
+#: easy-notification-bar.php:608
+msgid "Easy Notification Bar"
+msgstr ""
+
+#: easy-notification-bar.php:620
+msgid "Enable Notification Bar"
+msgstr ""
+
+#: easy-notification-bar.php:624
+msgid ""
+"Note: If you do not see the bar on your site your theme has not been updated "
+"to include the \"wp_body_open\" action hook required since WordPress 5.2.0."
+msgstr ""
+
+#: easy-notification-bar.php:635
+msgid "Show close icon?"
+msgstr ""
+
+#: easy-notification-bar.php:639
+msgid ""
+"Makes use of localStorage (not cookies) so when a user clicks to hide the "
+"notifcation bar they will not see it again until they clear their browser "
+"cache."
+msgstr ""
+
+#: easy-notification-bar.php:650
+msgid "Close Icon"
+msgstr ""
+
+#: easy-notification-bar.php:655
+msgid "Plain"
+msgstr ""
+
+#: easy-notification-bar.php:656
+msgid "Outline"
+msgstr ""
+
+#: easy-notification-bar.php:668
+msgid "Enable Sticky?"
+msgstr ""
+
+#: easy-notification-bar.php:672
+msgid ""
+"This option uses the modern \"sticky\" CSS position so it will only work in "
+"modern browsers and could cause conflicts with your theme's build in sticky "
+"functions so be sure to test accordingly and include the proper offsets."
+msgstr ""
+
+#: easy-notification-bar.php:683
+msgid "Display on Front Page Only?"
+msgstr ""
+
+#: easy-notification-bar.php:697
+msgid "Message"
+msgstr ""
+
+#: easy-notification-bar.php:701
+msgid ""
+"Note: Whenever you alter your message anyone that had previously closed the "
+"notice bar will see it again."
+msgstr ""
+
+#: easy-notification-bar.php:712
+msgid "Background"
+msgstr ""
+
+#: easy-notification-bar.php:726
+msgid "Text Color"
+msgstr ""
+
+#: easy-notification-bar.php:740
+msgid "Text Align"
+msgstr ""
+
+#: easy-notification-bar.php:745
+msgid "Center"
+msgstr ""
+
+#: easy-notification-bar.php:746
+msgid "Left"
+msgstr ""
+
+#: easy-notification-bar.php:747
+msgid "Right"
+msgstr ""
+
+#: easy-notification-bar.php:759
+msgid "Apply System Font Family?"
+msgstr ""
+
+#: easy-notification-bar.php:763
+msgid ""
+"Use the common system UI font stack font family for your notification bar. "
+"If disabled it will inherit the font family from your theme."
+msgstr ""
+
+#: easy-notification-bar.php:774
+msgid "Font Size"
+msgstr ""
+
+#: easy-notification-bar.php:778
+msgid "If a unit is not specified \"px\" will be used."
+msgstr ""
+
+#: easy-notification-bar.php:789
+msgid "Button Text"
+msgstr ""
+
+#: easy-notification-bar.php:803
+msgid "Button Link"
+msgstr ""
+
+#: easy-notification-bar.php:807
+msgid "Leave Empty to disable."
+msgstr ""
+
+#: easy-notification-bar.php:818
+msgid "Add rel=\"nofollow\" to button?"
+msgstr ""
+
+#: easy-notification-bar.php:832
+msgid "Add rel=\"sponsored\" to button?"
+msgstr ""
+
+#: easy-notification-bar.php:846
+msgid "Open button link in new tab?"
+msgstr ""
+
+#: easy-notification-bar.php:860
+msgid "Button Background"
+msgstr ""
+
+#: easy-notification-bar.php:874
+msgid "Button Text Color"
+msgstr ""
+
+#: easy-notification-bar.php:888
+msgid "Button Padding"
+msgstr ""
+
+#: easy-notification-bar.php:889
+msgid ""
+"Enter a custom padding for your button. Example: 10px. You can use the CSS "
+"shorthand format as well such as 10px 20px."
+msgstr ""

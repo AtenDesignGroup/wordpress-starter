@@ -1,0 +1,90 @@
+/* ---------------------------------------------------
+	Import Tab: Container
+--------------------------------------------------- */
+
+	#tab_import_pdf {
+
+		min-height: 370px;
+
+	}
+
+	#tab_import_pdf .chosen-drop {
+
+		text-align: left;
+
+	}
+
+/* ---------------------------------------------------
+	Import Tab: Settings
+--------------------------------------------------- */
+
+	#fillablepdfs_form_name {
+
+		width: 300px;
+
+	}
+
+	.fillablepdfs-choices-editor textarea {
+
+		height: 200px;
+		margin: 13px 0;
+		width: 100%;
+
+	}
+
+	.fillablepdfs-import-pdf > tbody > tr > th {
+
+		width: 135px;
+
+	}
+
+/* ---------------------------------------------------
+	Import Tab: Mapping Table
+--------------------------------------------------- */
+
+	.fillablepdfs-import-pdf-mapping {
+
+		width: 100%;
+
+	}
+
+	.fillablepdfs-import-pdf-mapping th {
+
+		padding: 5px 0 10px;
+
+	}
+
+	.fillablepdfs-import-pdf-mapping td {
+
+		padding: 10px 0;
+		vertical-align: top;
+
+	}
+
+	.fillablepdfs-import-pdf-mapping td:nth-child( 2 ) {
+
+		min-width: 240px;
+
+	}
+
+	.fillablepdfs-import-pdf-mapping input,
+	.fillablepdfs-import-pdf-mapping textarea,
+	.fillablepdfs-import-pdf-mapping .chosen-container {
+
+		margin-right: 5px;
+
+	}
+
+	.fillablepdfs-import-pdf-mapping input[type="text"] {
+
+		width: 90%;
+
+	}
+
+	.fillablepdfs-import-pdf-mapping .button {
+
+		font-size: 12px;
+		height: 25px;
+		line-height: 24px;
+
+	}
