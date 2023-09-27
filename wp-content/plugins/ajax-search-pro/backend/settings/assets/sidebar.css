@@ -1,0 +1,144 @@
+#asp-side-container {
+    overflow: hidden;
+    background: #FEFEFE;
+    border: solid 1px #DDDDDD;
+    outline: 0;
+    box-shadow: rgba(0,0,0,0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0,0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0,0.1) 0px 0px 8px;
+    padding: 14px;
+    margin: 10px;
+    width: auto;
+    max-width: 340px;
+    float: left;
+}
+
+#asp-side-container:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+#asp-side-container input {
+    width: 100%;
+    margin: 5px 0 0;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    line-height: 24px;
+}
+
+#asp-side-container label {
+    margin: 0;
+    font-size: 14px;
+}
+
+#wpdreams div.item.asp-os-highlighted {
+    background: rgba(255, 0, 0, 0.05) !important;
+    box-shadow: 3px 0 0 rgba(255, 0, 0, 0.74) inset;
+    transition: all 0.5s linear;
+}
+
+#asp-os-results label {
+    margin: 17px 0 5px;
+    display: inline-block;
+}
+#asp-os-results a {
+    padding: 2px 0;
+    display: inline-block;
+}
+
+#asp-side-container .asp-back-social,
+#asp-side-container .asp-back-help {
+    margin: 5px auto 0;
+    padding-top: 0;
+    line-height: 32px;
+}
+
+#asp-side-container .asp-back-help > *,
+#asp-side-container .asp-back-social > * {
+    vertical-align: bottom;
+    display: inline-block;
+}
+
+/************************************************\
+ Sidebar form
+\************************************************/
+
+#asp-side-container h2,
+#asp-side-container p {
+    color: #4c4c4c;
+    display: inline-block;
+    margin: 8px 0;
+}
+
+#asp-side-container h2 {
+    font-size: 16px;
+    color: #444;
+    font-weight: 700;
+    margin: 14px 0 6px 0;
+}
+
+#asp-side-container form {
+    display: flex;
+    width: auto;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 0;
+    border: 1px solid #ffffff;
+    margin: 0;
+    border-radius: 3px;
+    background: #efefef;
+    align-items: center;
+}
+
+#asp-side-container input[type=email],
+#asp-side-container input[type=submit] {
+    height: 38px;
+    padding: 0 14px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+#asp-side-container input[type=email] {
+    border-radius: 4px 0 0 4px;
+    vertical-align: top;
+    width: 100%;
+    background: transparent;
+    color: black;
+    margin: 0;
+}
+
+#asp-side-container input[type=submit] {
+    border-radius: 0 4px 4px 0;
+    background: #cb2550;
+    color: #fff;
+    width: auto;
+    flex: 1 1 auto;
+    margin: 0;
+}
+
+#asp-side-container .socials a {
+    color: white;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-right: 12px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+#asp-side-container .socials svg {
+    fill: white;
+    vertical-align: middle;
+    margin: -3px 4px 0 0;
+}
+
+#asp-side-container .socials a.facebook {
+    background: #3A589E;
+}
+
+#asp-side-container .socials a.twitter {
+    background: #55ACEE;
+}

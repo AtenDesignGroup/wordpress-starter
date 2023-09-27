@@ -1,0 +1,26 @@
+.wd_MSLicenseActivator button i.fa {
+    margin-left: -5px;
+    margin-right: 8px;
+}
+
+#wpdreams .wd_MSLicenseActivator input[name=ms_license_key] {
+    width: 265px;
+}
+
+.ms_license_usage,
+.ms_license_active {
+    color: #6F6F6F;
+}
+
+.ms_license_active span {
+    font-weight: 600;
+    padding: 4px;
+}
+
+div.ms_license_usage {
+    margin-top: 12px;
+}
+
+span.ms_license_usage_counter {
+    font-weight: 600;
+}

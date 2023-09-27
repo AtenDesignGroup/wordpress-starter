@@ -1,0 +1,204 @@
+.hiddend {
+    display: none !important;
+}
+
+/* RULES LIST */
+#pg_no_pg,
+#pg_information {
+    margin: 1.5em 12px;
+    color: grey;
+}
+
+.pg_rule_group {
+    line-height: 48px;
+    vertical-align: middle;
+    border-bottom: 1px dashed #cccccc;
+    margin: 0 12px;
+    position: relative;
+    font-size: 13px;
+}
+
+.pg_rule_group:last-child {
+    border-bottom: none;
+}
+
+.pg_rule_group >img {
+    cursor: pointer;
+}
+
+.pg_rule_group >* {
+    vertical-align: middle;
+    margin-right: 6px
+}
+
+.pg_rule_group >span.pg_name {
+    margin: 0 0 0 12px;
+}
+
+.pg_rule_group >span.pg_info {
+    color: #ababab;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -9px;
+}
+
+/* ------------------- Modal Window style ----------------------*/
+#wpd_modal {
+    top: 20px !important;
+    margin-top: 0 !important;
+}
+
+#wpd_modal .pg_line {
+    margin: 12px 0;
+}
+#wpd_modal .pg_line:first-child {
+    padding: 0 0 12px;
+    border-bottom: 1px dashed #d0d0d0;
+}
+
+#pg_rule_editor .re_line {
+    margin: 8px 0;
+}
+
+#wpd_modal .pg_line label,
+#pg_rule_editor .re_line label {
+    display: inline-block;
+    width: 180px;
+    max-width: 200px;
+    font-weight: 600;
+    margin: 0 12px 0 0;
+    vertical-align: middle;
+}
+
+#wpd_modal .pg_line select,
+#wpd_modal .pg_line input,
+#pg_rule_editor .re_line select,
+#pg_rule_editor .re_line input{
+    display: inline-block;
+    width: 160px;
+    max-width: 160px;
+    vertical-align: middle;
+}
+
+#wpd_modal .pg_line label[for=pg_phrase] {
+    width: auto;
+    max-width: 30px;
+    margin: 0 3px;
+}
+
+#wpd_modal .pg_rules {
+    margin: 0 0 12px 0;
+}
+
+#wpd_modal .pg_rule {
+    line-height: 24px;
+    vertical-align: middle;
+    border: none;
+    margin: 12px 0 0 2px;
+    position: relative;
+    font-size: 13px;
+}
+
+#wpd_modal .pg_rule >* {
+    vertical-align: middle;
+    margin-right: 6px
+}
+
+#wpd_modal .pg_rule:last-child {
+    border-bottom: none;
+}
+
+#wpd_modal .pg_rule >img {
+    cursor: pointer;
+}
+
+#wpd_modal .wd_button:first-child {
+    margin-left: 0 !important;
+}
+
+label[for=pg_phrase][disabled],
+#pg_phrase[disabled] {
+    opacity: 0.5 !important;
+    cursor: initial !important;
+}
+
+
+
+/* ------------------- Modal Window Rule editor ----------------------*/
+#pg_rule_editor .wd_cf_search {
+    display: inline;
+}
+
+#pg_rule_editor {
+    border: 1px dashed #d0d0d0;
+    padding: 12px;
+    margin: 24px 0 18px;
+    position: relative;
+}
+
+#pg_rule_editor span.re_label {
+    /* margin: -22px 0 0 9px; */
+    background: #ffffff;
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    top: -10px;
+    padding: 0 4px;
+}
+
+ul#pg_selected_tax_terms li {
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 4px 8px 4px 0;
+    border: 1px solid grey;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+}
+
+ul#pg_selected_tax_terms li:hover {
+    color: #58585847;
+}
+
+ul#pg_selected_tax_terms li:hover:before {
+    content: "";
+    position: absolute;
+    display: block;
+    margin: auto;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+    margin-left: -7px;
+    height: 0;
+    border-top: 3px solid #F44336;
+    transform: rotate(45deg);
+    transform-origin: center;
+}
+
+ul#pg_selected_tax_terms li:hover:after {
+    content: "";
+    position: absolute;
+    display: block;
+    margin: auto;
+    left: 50%;
+    margin-left: -7px;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+    height: 0;
+    border-top: 3px solid #F44336;
+    transform: rotate(-45deg);
+    transform-origin: center;
+}
+
+#wpd_modal .wd_taxterm_search_res li.wtsr_selected {
+    opacity: 0.5;
+}
+
+#wpd_modal .wd_taxterm_search_res li.wtsr_selected:hover {
+    background: transparent !important;
+}

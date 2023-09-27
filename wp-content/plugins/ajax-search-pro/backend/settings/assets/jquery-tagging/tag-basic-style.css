@@ -1,0 +1,57 @@
+/* Tagging Basic Style */
+.wpd-tagging {
+	border: 1px solid #CCCCCC;
+	font-size: 1em;
+	height: auto;
+	padding: 10px 10px 15px;
+}
+
+.wpd-tagging.wpd-editable {
+	cursor: text;
+}
+
+.wpd-tag {
+	background: none repeat scroll 0 0 #EE7407;
+	border-radius: 2px;
+	color: white;
+	cursor: default;
+	display: inline-block;
+	position: relative;
+	white-space: nowrap;
+	padding: 6px 26px 6px 12px;
+	margin: 5px 10px 0 0;
+}
+
+.wpd-tag span {
+	display: none;
+}
+
+.wpd-tag .wpd-tag-i {
+	color: white;
+	cursor: pointer;
+	font-size: 26px;
+	height: 0;
+	line-height: 26px;
+	position: absolute;
+	right: 9px;
+	top: 2px;
+	text-align: center;
+	width: 10px;
+}
+
+.wpd-wpd-tag .wpd-tag-i:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+.wpd-type-zone {
+	border: 0 none;
+	height: auto;
+	width: auto;
+	min-width: 20px;
+	display: inline-block;
+}
+
+.wpd-type-zone:focus {
+	outline: none;
+}

@@ -1,0 +1,399 @@
+#wpdreams a.wd-accessible-switch {
+    color: white;
+    padding: 12px 16px;
+    padding-left: 42px;
+    border: none;
+    text-decoration: none;
+    background: #2d2d2d;
+    font-weight: bold;
+    font-size: 16px;
+    display: inline-block;
+    margin-bottom: 12px;
+    position: relative;
+    line-height: 18px !important;
+}
+
+#wpdreams a.wd-accessible-switch::before {
+    display: block;
+    content: '';
+    top: 5px;
+    left: 6px;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: url('icons/accessibility.png') no-repeat scroll 0px 0px transparent;
+}
+
+#wpcontent.wd-accessible {
+    background: #000000 !important;
+    box-shadow: none !important;
+}
+
+#wpd_shortcode_modal.wd-accessible,
+#wpd_shortcode_modal.wd-accessible fieldset,
+#wpd_shortcode_modal.wd-accessible p,
+#wpdreams.wd-accessible,
+#wpdreams.wd-accessible fieldset,
+#wpdreams.wd-accessible .wpdreams-box,
+#wpdreams.wd-accessible div.item,
+#wpdreams.wd-accessible div.tabscontent,
+#wpdreams.wd-accessible #asp-side-container,
+#wpdreams.wd-accessible #asp-side-container p,
+#wpdreams.wd-accessible #asp-side-container h2,
+#wpdreams.wd-accessible .wd_tts_disp_m_popup {
+    background: #000000 !important;
+    color: white !important;
+    box-shadow: none !important;
+}
+
+#wpd_shortcode_modal.wd-accessible h3 {
+    color: white;
+}
+
+#wpd_shortcode_modal.wd-accessible {
+    border: 1px solid #FFFFFF;
+}
+
+#wpdreams.wd-accessible #gear_icon {
+    fill: white;
+}
+
+#wpd_shortcode_modal.wd-accessible,
+#wpdreams.wd-accessible #asp-side-container p,
+#wpdreams.wd-accessible #asp-side-container span,
+#wpdreams.wd-accessible #asp-side-container a,
+#wpdreams.wd-accessible #asp-side-container label,
+#wpdreams.wd-accessible .wd_tts_disp_m_popup fieldset,
+#wpdreams.wd-accessible .wd_tts_disp_m_popup fieldset b {
+    font-size: 16px !important;
+    line-height: 24px;
+}
+
+#wpdreams.wd-accessible #asp-side-container label {
+    font-weight: bold !important;
+}
+
+#wpdreams.wd-accessible #asp-side-container .asp-back-social {
+    display: none;
+}
+
+#wpd_shortcode_modal.wd-accessible input,
+#wpd_shortcode_modal.wd-accessible select,
+#wpd_shortcode_modal.wd-accessible .ui-sortable input,
+#wpdreams.wd-accessible textarea,
+#wpdreams.wd-accessible select,
+#wpdreams.wd-accessible option,
+#wpdreams.wd-accessible input[type=text],
+#wpdreams.wd-accessible input[type=search],
+#wpdreams.wd-accessible input.hasDatepicker {
+    min-height: 32px;
+    font-size: 16px;
+    font-weight: bold;
+}
+#wpd_shortcode_modal.wd-accessible .ui-sortable input {
+    width: 70px;
+}
+#wpd_shortcode_modal.wd-accessible textarea {
+    font-size: 14px;
+}
+
+#wpdreams.wd-accessible input.hasDatepicker,
+#wpdreams.wd-accessible textarea {
+    color: white;
+}
+
+#wpdreams.wd-accessible legend {
+    color: white !important;
+    font-size: 18px !important;
+}
+
+#wpdreams.wd-accessible fieldset fieldset legend {
+    font-size: 16px !important;
+}
+
+#wpd_shortcode_modal.wd-accessible .ui-sortable,
+#wpdreams.wd-accessible .draggablecontainer ul,
+#wpdreams.wd-accessible .sortablecontainer ul {
+    background: #171717 !important;
+    font-size: 16px;
+}
+#wpd_shortcode_modal.wd-accessible .ui-sortable li,
+#wpdreams.wd-accessible .draggablecontainer ul li,
+#wpdreams.wd-accessible .sortablecontainer ul li,
+#wpdreams.wd-accessible .sortablecontainer ul li.ui-left {
+    background: #000000 !important;
+    font-size: 16px;
+    color: white;
+}
+#wpdreams.wd-accessible .sortablecontainer ul li.ui-left {
+    border: 1px solid #9e9e9e !important;
+}
+#wpdreams.wd-accessible .sortablecontainer p,
+#wpdreams.wd-accessible .draggablecontainer p,
+#wpdreams.wd-accessible .draggablecontainer span {
+    font-size: 16px !important;
+}
+
+#wpdreams.wd-accessible .sortablecontainer label:not(.wd_plain),
+#wpdreams.wd-accessible .draggablecontainer label:not(.wd_plain) {
+    background: black !important;
+    font-size: 14px !important;
+    font-weight: normal;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #868686 !important;
+}
+
+#wpd_shortcode_modal.wd-accessible .ui-sortable label {
+    font-size: 14px !important;
+}
+
+#wpdreams.wd-accessible .sortablecontainer input[type="text"]:not(.wd_tts_all_text),
+#wpdreams.wd-accessible .draggablecontainer input[type="text"] {
+    background: #191919 !important;
+    text-shadow: none !important;
+    font-weight: normal;
+    color: white;
+    margin-top: -1px;
+    width: 226px;
+    border: 1px solid #868686 !important;
+}
+
+#wpdreams.wd-accessible a {
+    color: yellow !important;
+    font-size: 14px;
+}
+
+#wpdreams.wd-accessible ul.tabs li a {
+    font-size: 16px !important;
+    background: black !important;
+    padding: 8px 16px !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(238, 255, 0, 0.5) !important;
+    color: white !important;
+    opacity: 0.9 !important;
+}
+
+#wpdreams.wd-accessible ul.tabs li a.current {
+    box-shadow: 0px 0px 0px 3px #eeff00 inset !important;
+    border: 1px solid rgba(238, 255, 0, 1) !important;
+    opacity: 1 !important;
+}
+
+#wpdreams.wd-accessible fieldset ul.tabs li a {
+    padding: 4px 16px !important;
+    border: 1px solid rgba(0, 195, 255, 0.5) !important;
+}
+#wpdreams.wd-accessible fieldset ul.tabs li a.current {
+    box-shadow: 0px 0px 0px 3px #00c3ff inset !important;
+    border: 1px solid rgba(0, 195, 255, 1) !important;
+    opacity: 1 !important;
+}
+
+#wpdreams.wd-accessible label {
+    color: white !important;
+    font-size: 16px;
+}
+
+#wpdreams.wd-accessible .descMsg,
+#wpdreams.wd-accessible .biggerDescMsg{
+    color: #cecece !important;
+}
+#wpdreams.wd-accessible .descMsg,
+#wpdreams.wd-accessible .errorMsg,
+#wpdreams.wd-accessible .infoMsg {
+    background: transparent;
+    font-size: 14px !important;
+}
+
+#wpdreams.wd-accessible .infoMsg,
+#wpdreams.wd-accessible .errorMsg {
+    border-top: 1px solid #3c3c3c;
+    border-bottom: 1px solid #3c3c3c;
+    border-right: 1px solid #3c3c3c;
+}
+
+#wpdreams.wd-accessible input[type=submit],
+#wpdreams.wd-accessible .asp_submit {
+    height: 40px !important;
+    text-shadow: none !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: black !important;
+    box-shadow: none !important;
+}
+
+#wpdreams.wd-accessible input[type=submit] {
+    background: #fd2929 !important;
+}
+
+
+#wpdreams.wd-accessible .bs-overlay {
+    background: rgba(0, 0, 0, 0.81) !important;
+}
+
+#wpdreams.wd-accessible input[type='button'],
+#wpdreams.wd-accessible .one-item button[name='reset'],
+#wpdreams.wd-accessible .one-item button[name='back'],
+#wpdreams.wd-accessible .one-item button[name='add'] {
+    font-size: 18px !important;
+    font-weight: bold;
+    padding: 12px 20px;
+}
+
+#wpd_shortcode_modal.wd-accessible input[type='button'],
+#wpd_shortcode_modal.wd-accessible button {
+    font-weight: bold;
+    padding: 12px 20px;
+}
+
+#wpd_shortcode_modal.wd-accessible.wpd-modal .wpd-modal-close:before {
+    color: white;
+}
+#wpd_shortcode_modal.wd-accessible.wpd-modal .wpd-modal-close:hover:before {
+    color: #FFFF00;
+}
+
+#wpdreams.wd-accessible #shortcode_generator {
+    font-size: 16px !important;
+    padding: 6px 20px;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+#wpdreams.wd-accessible .wd_cf_search_res li {
+    color: black;
+    font-size: 16px !important;
+}
+
+#wpdreams.wd-accessible .wd_cf_search_res li:hover {
+    color: white;
+    background: black !important;
+}
+
+#wpdreams.wd-accessible .wd_tagSearchResults,
+#wpdreams.wd-accessible .wd_tagSearchResults p {
+    font-size: 16px;
+    color: white;
+}
+#wpdreams.wd-accessible .wd_tagSelectContent span {
+    font-size: 18px;
+    color: white;
+}
+
+#wpdreams.wd-accessible .wpdreamsYesNoSt.active .wpdreamsYesNoInner {
+    background-position: -1px 0;
+    background-color: #bfd6e4;
+}
+
+#wpdreams.wd-accessible .wpdreamsYesNoSt .wpdreamsYesNoInner,
+#wpdreams.wd-accessible .wpdreamsYesNo .wpdreamsYesNoInner {
+    background: url(icons/on-off-new-hc.png) no-repeat scroll -31px 0px transparent;
+    background-color: #ff0000;
+}
+
+#wpdreams.wd-accessible .wpdreamsYesNoSt.active .wpdreamsYesNoInner,
+#wpdreams.wd-accessible .wpdreamsYesNo.active .wpdreamsYesNoInner {
+    background-color: #26ff00;
+    background-position: 2px 0;
+}
+
+#wpdreams.wd-accessible .wpdreamsTextSmall .wpd-txt-small-icon {
+    margin-top: 4px;
+}
+
+#wpdreams.wd-accessible .wpd-txt-small-icon.wpd-txt-small-icon-desktop {
+    background: url(icons/icon-desktop-white.png) no-repeat center;
+}
+#wpdreams.wd-accessible .wpd-txt-small-icon.wpd-txt-small-icon-tablet {
+   background: url(icons/icon-tablet-white.png) no-repeat center;
+}
+#wpdreams.wd-accessible .wpd-txt-small-icon.wpd-txt-small-icon-phone {
+    background: url(icons/icon-phone-white.png) no-repeat center;
+}
+
+#wpdreams.wd-accessible .wpdreams-box {
+    width: 860px;
+}
+
+#wpdreams.wd-accessible .wpdreams-box.wpdreams-box-wide {
+    width: 960px;
+}
+
+#wpdreams.wd-accessible .item-rlayout p,
+#wpdreams.wd-accessible .item-rlayout p a {
+    font-size: 16px;
+}
+#wpdreams.wd-accessible .item-rlayout p {
+    color: white;
+}
+
+#wpdreams.wd-accessible div.item.asp-os-highlighted {
+    background: rgba(255, 255, 255, 0.24) !important;
+}
+
+#wpdreams.wd-accessible .asp-setting-search-all-cf {
+    right: 280px !important;
+}
+
+/* PRE-INSTANCE MENU (MAIN) */
+#wpdreams.wd-accessible .wpd_instance_name {
+    font-size: 16px;
+}
+
+#wpdreams.wd-accessible .wpd_instance_edit_icon,
+#wpdreams.wd-accessible .wpd_owner_edit_icon {
+    filter: invert(100%);
+    -webkit-filter: invert(100%);
+}
+
+/* INDEX TABLE SUBMENU */
+#wpdreams.wd-accessible form #asp_indextable_options #asp_it_disable {
+    background: rgba(0, 0, 0, 0.77);
+}
+
+#wpdreams.wd-accessible .asp-last-execution-info li,
+#wpdreams.wd-accessible .asp-last-execution-info li b {
+    font-size: 16px !important;
+    line-height: 22px;
+}
+
+/* PRIORITY SUBMENU */
+#wpdreams.wd-accessible #p_asp_results,
+#wpdreams.wd-accessible #p_asp_results p {
+    font-size: 16px;
+}
+
+/* PERFORMANCE SUBMENU */
+#wpdreams.wd-accessible .asp_performance_settings_clear ul li {
+    font-size: 16px !important;
+    line-height: 22px;
+}
+#wpdreams.wd-accessible.asp_performance strong,
+#wpdreams.wd-accessible.asp_performance dl dd,
+#wpdreams.wd-accessible.asp_performance dl dt {
+    font-size: 16px;
+    line-height: 22px;
+}
+
+/* MAINTENANCE SUBMENU */
+#wpdreams.wd-accessible .asp_maintenance p,
+#wpdreams.wd-accessible .asp_maintenance strong,
+#wpdreams.wd-accessible .asp_maintenance b,
+#wpdreams.wd-accessible .asp_maintenance ul li {
+    font-size: 16px;
+    line-height: 22px;
+}
+
+/* UPDATES HELP */
+#wpdreams.wd-accessible.asp_updates_help .wpdreams-box {
+    width: 1024px;
+}
+#wpdreams.wd-accessible.asp_updates_help h3 {
+    color: #FFFFFF;
+}
+#wpdreams.wd-accessible.asp_updates_help p,
+#wpdreams.wd-accessible.asp_updates_help div.item {
+    font-size: 14px;
+    line-height: 20px;
+}
