@@ -1,0 +1,43 @@
+.pdfembed-iframe {
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	overscroll-behavior: auto;
+}
+#wp-pdf-embbed > * {
+	padding: 0;
+	margin: 0;
+}
+#wp-pdf-embbed,
+#wppdf-iframe-body {
+	height: 100%;
+	width: 100%;
+	.scrollbar-vertical {
+		overflow-x: hidden; /* Hide vertical scrollbar */
+	}
+	.scrollbar-horizontal {
+		overflow-y: hidden; /* Hide vertical scrollbar */
+	}
+	.scrollbar-none {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+	.scrollbar-none::-webkit-scrollbar {
+		width: 0;
+		background: transparent;
+	}
+	.numPageStart {
+		color: var(--wppdf-emb-main-color);
+		padding-left: 5px;
+		font-size: 14px;
+		line-height: 32px;
+	}
+	.numbPagesDivider {
+		color: var(--wppdf-emb-main-color);
+		padding: 0;
+		font-size: 14px;
+		line-height: 32px;
+	}
+
+
+}

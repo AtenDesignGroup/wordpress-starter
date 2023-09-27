@@ -1,0 +1,158 @@
+:root {
+	--wppdf-emb-dir-factor: 1;
+
+	/*#if MOZCENTRAL*/
+	--wppdf-emb-inline-start: inline-start;
+	--wppdf-emb-inline-end: inline-end;
+	/*#else*/
+	--wppdf-emb-inline-start: left;
+	--wppdf-emb-inline-end: right;
+	/*#endif*/
+
+	--wppdf-emb-sidebar-width: 200px;
+	--wppdf-emb-sidebar-transition-duration: 200ms;
+	--wppdf-emb-sidebar-transition-timing-function: ease;
+	--wppdf-emb-scale-select-container-width: 140px;
+	--wppdf-emb-scale-select-overflow: 22px;
+
+	--wppdf-emb-toolbar-icon-opacity: 0.7;
+	--wppdf-emb-doorhanger-icon-opacity: 0.9;
+
+	--wppdf-emb-main-color: rgba(249, 249, 250, 1);
+	--wppdf-emb-body-bg-color: rgba(42, 42, 46, 1);
+	--wppdf-emb-errorWrapper-bg-color: rgba(169, 14, 14, 1);
+	--wppdf-emb-progressBar-color: rgba(0, 96, 223, 1);
+	--wppdf-emb-progressBar-indeterminate-bg-color: rgba(40, 40, 43, 1);
+	--wppdf-emb-progressBar-indeterminate-blend-color: rgba(20, 68, 133, 1);
+	--wppdf-emb-scrollbar-color: rgba(121, 121, 123, 1);
+	--wppdf-emb-scrollbar-bg-color: rgba(35, 35, 39, 1);
+	--wppdf-emb-toolbar-icon-bg-color: rgba(255, 255, 255, 1);
+	--wppdf-emb-toolbar-icon-hover-bg-color: rgba(255, 255, 255, 1);
+
+	--wppdf-emb-sidebar-narrow-bg-color: rgba(42, 42, 46, 0.9);
+	--wppdf-emb-sidebar-toolbar-bg-color: rgba(50, 50, 52, 1);
+	--wppdf-emb-toolbar-bg-color: rgba(128, 128, 128, 1);
+	--wppdf-emb-toolbar-border-color: rgba(128, 128, 128, 1);
+	--wppdf-emb-button-hover-color: rgba(102, 102, 103, 1);
+	--wppdf-emb-toggled-btn-color: rgba(255, 255, 255, 1);
+	--wppdf-emb-toggled-btn-bg-color: rgba(0, 0, 0, 0.3);
+	--wppdf-emb-toggled-hover-active-btn-color: rgba(0, 0, 0, 0.4);
+	--wppdf-emb-dropdown-btn-bg-color: rgba(135, 135, 135, 1);
+	--wppdf-emb-separator-color: rgba(0, 0, 0, 0.3);
+	--wppdf-emb-field-color: rgba(250, 250, 250, 1);
+	--wppdf-emb-field-bg-color: rgba(135, 135, 135, 1);
+	--wppdf-emb-field-border-color: rgba(115, 115, 115, 1);
+	--wppdf-emb-treeitem-color: rgba(255, 255, 255, 0.8);
+	--wppdf-emb-treeitem-hover-color: rgba(255, 255, 255, 0.9);
+	--wppdf-emb-treeitem-selected-color: rgba(255, 255, 255, 0.9);
+	--wppdf-emb-treeitem-selected-bg-color: rgba(255, 255, 255, 0.25);
+	--wppdf-emb-sidebaritem-bg-color: rgba(255, 255, 255, 0.15);
+	--wppdf-emb-doorhanger-bg-color: rgba(74, 74, 79, 1);
+	--wppdf-emb-doorhanger-border-color: rgba(39, 39, 43, 1);
+	--wppdf-emb-doorhanger-hover-color: rgba(249, 249, 250, 1);
+	--wppdf-emb-doorhanger-hover-bg-color: rgba(93, 94, 98, 1);
+	--wppdf-emb-doorhanger-separator-color: rgba(92, 92, 97, 1);
+	--wppdf-emb-dialog-button-bg-color: rgba(92, 92, 97, 1);
+	--wppdf-emb-dialog-button-hover-bg-color: rgba(115, 115, 115, 1);
+
+	--wppdf-emb-loading-icon: url('../img/pdf/loading-dark.svg');
+	--wppdf-emb-treeitem-expanded-icon: url('../img/pdf/treeitem-expanded.svg');
+	--wppdf-emb-treeitem-collapsed-icon: url('../img/pdf/treeitem-collapsed.svg');
+	--wppdf-emb-toolbarButton-editorNone-icon: url('../img/pdf/toolbarButton-editorNone.svg');
+	--wppdf-emb-toolbarButton-editorFreeText-icon: url('../img/pdf/toolbarButton-editorFreeText.svg');
+	--wppdf-emb-toolbarButton-editorInk-icon: url('../img/pdf/toolbarButton-editorInk.svg');
+	--wppdf-emb-toolbarButton-menuArrow-icon: url('../img/pdf/toolbarButton-menuArrow.svg');
+	--wppdf-emb-toolbarButton-sidebarToggle-icon: url('../img/pdf/toolbarButton-sidebarToggle.svg');
+	--wppdf-emb-toolbarButton-secondaryToolbarToggle-icon: url('../img/pdf/toolbarButton-secondaryToolbarToggle.svg');
+	--wppdf-emb-toolbarButton-pageUp-icon: url('../img/pdf/toolbarButton-pageUp.svg');
+	--wppdf-emb-toolbarButton-pageDown-icon: url('../img/pdf/toolbarButton-pageDown.svg');
+	--wppdf-emb-toolbarButton-zoomOut-icon: url('../img/pdf/toolbarButton-zoomOut.svg');
+	--wppdf-emb-toolbarButton-zoomIn-icon: url('../img/pdf/toolbarButton-zoomIn.svg');
+	--wppdf-emb-toolbarButton-presentationMode-icon: url('../img/pdf/toolbarButton-presentationMode.svg');
+	--wppdf-emb-toolbarButton-print-icon: url('../img/pdf/toolbarButton-print.svg');
+	--wppdf-emb-toolbarButton-openFile-icon: url('../img/pdf/toolbarButton-openFile.svg');
+	--wppdf-emb-toolbarButton-download-icon: url('../img/pdf/toolbarButton-download.svg');
+	--wppdf-emb-toolbarButton-fullscreen-icon: url('../img/pdf/toolbarButton-fullscreen.svg');
+	--wppdf-emb-toolbarButton-bookmark-icon: url('../img/pdf/toolbarButton-bookmark.svg');
+	--wppdf-emb-toolbarButton-viewThumbnail-icon: url('../img/pdf/toolbarButton-viewThumbnail.svg');
+	--wppdf-emb-toolbarButton-viewOutline-icon: url('../img/pdf/toolbarButton-viewOutline.svg');
+	--wppdf-emb-toolbarButton-viewAttachments-icon: url('../img/pdf/toolbarButton-viewAttachments.svg');
+	--wppdf-emb-toolbarButton-viewLayers-icon: url('../img/pdf/toolbarButton-viewLayers.svg');
+	--wppdf-emb-toolbarButton-currentOutlineItem-icon: url('../img/pdf/toolbarButton-currentOutlineItem.svg');
+
+	--wppdf-emb-toolbarButton-search-icon: url('../img/pdf/toolbarButton-search.svg');
+	--wppdf-emb-findbarButton-previous-icon: url('../img/pdf/findbarButton-previous.svg');
+	--wppdf-emb-findbarButton-next-icon: url('../img/pdf/findbarButton-next.svg');
+	--wppdf-emb-secondaryToolbarButton-firstPage-icon: url('../img/pdf/secondaryToolbarButton-firstPage.svg');
+	--wppdf-emb-secondaryToolbarButton-lastPage-icon: url('../img/pdf/secondaryToolbarButton-lastPage.svg');
+	--wppdf-emb-secondaryToolbarButton-rotateCcw-icon: url('../img/pdf/secondaryToolbarButton-rotateCcw.svg');
+	--wppdf-emb-secondaryToolbarButton-rotateCw-icon: url('../img/pdf/secondaryToolbarButton-rotateCw.svg');
+	--wppdf-emb-secondaryToolbarButton-selectTool-icon: url('../img/pdf/secondaryToolbarButton-selectTool.svg');
+	--wppdf-emb-secondaryToolbarButton-handTool-icon: url('../img/pdf/secondaryToolbarButton-handTool.svg');
+	--wppdf-emb-secondaryToolbarButton-scrollPage-icon: url('../img/pdf/secondaryToolbarButton-scrollPage.svg');
+	--wppdf-emb-secondaryToolbarButton-scrollVertical-icon: url('../img/pdf/secondaryToolbarButton-scrollVertical.svg');
+	--wppdf-emb-secondaryToolbarButton-scrollHorizontal-icon: url('../img/pdf/secondaryToolbarButton-scrollHorizontal.svg');
+	--wppdf-emb-secondaryToolbarButton-scrollWrapped-icon: url('../img/pdf/secondaryToolbarButton-scrollWrapped.svg');
+	--wppdf-emb-secondaryToolbarButton-spreadNone-icon: url('../img/pdf/secondaryToolbarButton-spreadNone.svg');
+	--wppdf-emb-secondaryToolbarButton-spreadOdd-icon: url('../img/pdf/secondaryToolbarButton-spreadOdd.svg');
+	--wppdf-emb-secondaryToolbarButton-spreadEven-icon: url('../img/pdf/secondaryToolbarButton-spreadEven.svg');
+	--wppdf-emb-secondaryToolbarButton-documentProperties-icon: url('../img/pdf/secondaryToolbarButton-documentProperties.svg');
+
+	--wppdf-emb-annotation-unfocused-field-background: url("data:image/svg+xml;charset=UTF-8,<svg width='1px' height='1px' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' style='fill:rgba(0, 54, 255, 0.13);'/></svg>");
+	--wppdf-emb-xfa-unfocused-field-background: url("data:image/svg+xml;charset=UTF-8,<svg width='1px' height='1px' xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' style='fill:rgba(0, 54, 255, 0.13);'/></svg>");
+	--wppdf-emb-focus-outline: solid 2px red;
+	--wppdf-emb-hover-outline: dashed 2px blue;
+	--wppdf-emb-freetext-line-height: 1.35;
+	--wppdf-emb-freetext-padding: 2px;
+	--wppdf-emb-editorInk-editing-cursor: url('../img/pdf/toolbarButton-editorInk.svg')
+		0 16;
+
+	--wppdf-emb-viewer-container-height: 0;
+	--wppdf-emb-pdfViewer-padding-bottom: 0;
+	--wppdf-emb-page-margin: 1px auto -8px;
+	--wppdf-emb-page-border: 9px solid transparent;
+	--wppdf-emb-spreadHorizontalWrapped-margin-LR: -3.5px;
+	--wppdf-emb-scale-factor: 1;
+}
+@media (forced-colors: active) {
+	:root {
+		--wppdf-emb-focus-outline: solid 3px ButtonText;
+		--wppdf-emb-hover-outline: dashed 3px ButtonText;
+	}
+}
+
+@media screen and (forced-colors: active) {
+	:root {
+		--wppdf-emb-button-hover-color: Highlight;
+		--wppdf-emb-doorhanger-hover-bg-color: Highlight;
+		--wppdf-emb-toolbar-icon-opacity: 1;
+		--wppdf-emb-toolbar-icon-bg-color: ButtonText;
+		--wppdf-emb-toolbar-icon-hover-bg-color: ButtonFace;
+		--wppdf-emb-toggled-btn-color: HighlightText;
+		--wppdf-emb-toggled-btn-bg-color: LinkText;
+		--wppdf-emb-doorhanger-hover-color: ButtonFace;
+		--wppdf-emb-doorhanger-border-color-whcm: 1px solid ButtonText;
+		--wppdf-emb-doorhanger-triangle-opacity-whcm: 0;
+		--wppdf-emb-dialog-button-border: 1px solid Highlight;
+		--wppdf-emb-dialog-button-hover-bg-color: Highlight;
+		--wppdf-emb-dialog-button-hover-color: ButtonFace;
+		--wppdf-emb-field-border-color: ButtonText;
+	}
+}
+
+@media (forced-colors: active) {
+	:root {
+		--wppdf-emb-focus-outline: solid 3px ButtonText;
+		--wppdf-emb-hover-outline: dashed 3px ButtonText;
+	}
+}
+
+@media screen and (forced-colors: active) {
+	:root {
+		--wppdf-emb-pdfViewer-padding-bottom: 9px;
+		--wppdf-emb-page-margin: 8px auto -1px;
+		--wppdf-emb-page-border: 1px solid CanvasText;
+		--wppdf-emb-page-border-image: none;
+		--wppdf-emb-spreadHorizontalWrapped-margin-LR: 3.5px;
+	}
+}

@@ -1,0 +1,1639 @@
+#wppdf-iframe-body {
+	[dir='rtl']:root {
+		--wppdf-emb-dir-factor: -1;
+	}
+
+	[dir='ltr'] .loadingBar {
+		left: 0;
+		right: var(--wppdf-emb-progressBar-end-offset);
+	}
+
+	[dir='rtl'] .loadingBar {
+		right: 0;
+		left: var(--wppdf-emb-progressBar-end-offset);
+	}
+
+	[dir='ltr'] .loadingBar {
+		transition-property: left;
+	}
+
+	[dir='rtl'] .loadingBar {
+		transition-property: right;
+	}
+	[dir='ltr'] #outerContainer.sidebarOpen .loadingBar {
+		left: var(--wppdf-emb-sidebar-width);
+	}
+
+	[dir='rtl'] #outerContainer.sidebarOpen .loadingBar {
+		right: var(--wppdf-emb-sidebar-width);
+	}
+	.loadingBar {
+		position: absolute;
+		inset-inline: 0 var(--wppdf-emb-progressBar-end-offset);
+		height: 4px;
+		background-color: var(--wppdf-emb-body-bg-color);
+		border-bottom: 1px solid var(--wppdf-emb-toolbar-border-color);
+		transition-property: inset-inline-start;
+		transition-duration: var(--wppdf-emb-sidebar-transition-duration);
+		transition-timing-function: var(
+			--wppdf-emb-sidebar-transition-timing-function
+		);
+		.progress {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			transform: scaleX(var(--wppdf-emb-progressBar-percent));
+			transform-origin: 0 0;
+			height: 100%;
+			background-color: var(--wppdf-emb-progressBar-color);
+			overflow: hidden;
+			transition: transform 200ms;
+		}
+		&.indeterminate .progress {
+			transform: none;
+			background-color: var(
+				--wppdf-emb-progressBar-indeterminate-bg-color
+			);
+			transition: none;
+			.glimmer {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: calc(100% + 150px);
+				background: repeating-linear-gradient(
+					135deg,
+					var(--wppdf-emb-progressBar-indeterminate-blend-color) 0,
+					var(--wppdf-emb-progressBar-indeterminate-bg-color) 5px,
+					var(--wppdf-emb-progressBar-indeterminate-bg-color) 45px,
+					var(--wppdf-emb-progressBar-color) 55px,
+					var(--wppdf-emb-progressBar-color) 95px,
+					var(--wppdf-emb-progressBar-indeterminate-blend-color) 100px
+				);
+				-webkit-animation: progressIndeterminate 1s linear infinite;
+				animation: progressIndeterminate 1s linear infinite;
+			}
+		}
+	}
+	#outerContainer.sidebarOpen .loadingBar {
+		inset-inline-start: var(--wppdf-emb-sidebar-width);
+	}
+	#outerContainer.sidebarResizing #sidebarContainer,
+	#outerContainer.sidebarResizing #viewerContainer,
+	#outerContainer.sidebarResizing .loadingBar {
+		/* Improve responsiveness and avoid visual glitches when the sidebar is resized. */
+		transition-duration: 0s;
+	}
+	@-webkit-keyframes progressIndeterminate {
+		0% {
+			transform: translateX(-142px);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes progressIndeterminate {
+		0% {
+			transform: translateX(-142px);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+
+	.secondaryToolbar,
+	.editorParamsToolbar {
+		top: 32px;
+		position: absolute;
+		z-index: 10000;
+		height: auto;
+		padding: 0 4px;
+		margin: 4px 2px;
+		font-size: 12px;
+		line-height: 14px;
+		text-align: left;
+		cursor: default;
+
+	}
+	.findbar {
+		position: absolute;
+		z-index: 10000;
+		height: auto;
+		padding: 0 4px;
+		margin: 4px 2px;
+		font-size: 12px;
+		line-height: 14px;
+		text-align: left;
+		cursor: default;
+		&.findbar-both,
+		&.findbar-top {
+			top: 32px;
+		}
+		&.findbar-bottom {
+			bottom: 64px;
+			&.doorHanger::before{
+				bottom: -18px;
+				transform: rotate(180deg);
+			}
+			&.doorHanger::after{
+				bottom: -16px;
+				transform: rotate(180deg);
+			}
+		}
+	}
+	[dir='ltr'] .findbar {
+		left: 64px;
+	}
+
+	[dir='rtl'] .findbar {
+		right: 64px;
+	}
+	.findbar {
+		min-width: 300px;
+		background-color: var(--wppdf-emb-toolbar-bg-color);
+		> div {
+			height: 32px;
+		}
+		> div.findbarInputContainer {
+			-webkit-margin-end: 4px;
+			margin-inline-end: 4px;
+		}
+		input[type='checkbox'] {
+			pointer-events: none;
+		}
+		label {
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+		}
+		label:hover,
+		input:focus-visible + label {
+			color: var(--wppdf-emb-toggled-btn-color);
+			background-color: var(--wppdf-emb-button-hover-color);
+		}
+		.toolbarField[type='checkbox']:checked + .toolbarLabel {
+			background-color: var(--wppdf-emb-toggled-btn-bg-color) !important;
+			color: var(--wppdf-emb-toggled-btn-color);
+		}
+	}
+
+	.findbar.wrapContainers > div,
+	.findbar.wrapContainers > div#findbarMessageContainer > * {
+		clear: both;
+	}
+	.findbar.wrapContainers > div#findbarMessageContainer {
+		height: auto;
+	}
+
+	[dir='ltr'] .findbar > div.findbarInputContainer {
+		margin-right: 4px;
+	}
+	[dir='rtl'] .findbar > div.findbarInputContainer {
+		margin-left: 4px;
+	}
+	.findInput {
+		width: 200px;
+		&::-moz-placeholder {
+			font-style: normal;
+		}
+		&::placeholder {
+			font-style: normal;
+		}
+		&[data-status='pending'] {
+			background-image: var(--wppdf-emb-loading-icon);
+			background-repeat: no-repeat;
+			background-position: calc(50% + 48% * var(--wppdf-emb-dir-factor));
+		}
+		&[data-status='notFound'] {
+			background-color: rgba(255, 102, 102, 1);
+		}
+	}
+
+	[dir='ltr'] .secondaryToolbar,
+	[dir='ltr'] .editorParamsToolbar {
+		right: 4px;
+	}
+
+	[dir='rtl'] .secondaryToolbar,
+	[dir='rtl'] .editorParamsToolbar {
+		left: 4px;
+	}
+	.secondaryToolbar,
+	.editorParamsToolbar {
+		padding: 6px 0 10px;
+		inset-inline-end: 4px;
+		height: auto;
+		z-index: 30000;
+		background-color: var(--wppdf-emb-doorhanger-bg-color);
+	}
+
+	.editorParamsToolbarContainer {
+		width: 220px;
+		margin-bottom: -4px;
+		> .editorParamsSetter {
+			min-height: 26px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding-left: 10px;
+			padding-right: 10px;
+			padding-inline: 10px;
+		}
+		.editorParamsLabel {
+			-webkit-padding-end: 10px;
+			padding-inline-end: 10px;
+			flex: none;
+			color: var(--wppdf-emb-main-color);
+		}
+		.editorParamsColor {
+			width: 32px;
+			height: 32px;
+			flex: none;
+		}
+		.editorParamsSlider {
+			background-color: transparent;
+			width: 90px;
+			flex: 0 1 0;
+		}
+		.editorParamsSlider::-moz-range-progress {
+			background-color: black;
+		}
+	}
+	[dir='ltr'] .editorParamsToolbarContainer .editorParamsLabel {
+		padding-right: 10px;
+	}
+
+	[dir='rtl'] .editorParamsToolbarContainer .editorParamsLabel {
+		padding-left: 10px;
+	}
+
+	.editorParamsSlider::-webkit-slider-runnable-track,
+	.editorParamsToolbarContainer .editorParamsSlider::-moz-range-track {
+		background-color: black;
+	}
+
+	.editorParamsToolbarContainer .editorParamsSlider::-webkit-slider-thumb,
+	.editorParamsToolbarContainer .editorParamsSlider::-moz-range-thumb {
+		background-color: white;
+	}
+
+	#secondaryToolbarButtonContainer {
+		max-width: 220px;
+		min-height: 26px;
+		max-height: calc(var(--wppdf-emb-viewer-container-height) - 40px);
+		overflow-y: auto;
+		margin-bottom: -4px;
+	}
+
+	[dir='ltr'] #editorInkParamsToolbar {
+		right: 40px;
+	}
+
+	[dir='rtl'] #editorInkParamsToolbar {
+		left: 40px;
+	}
+
+	#editorInkParamsToolbar {
+		inset-inline-end: 40px;
+		background-color: var(--wppdf-emb-toolbar-bg-color);
+	}
+
+	[dir='ltr'] #editorFreeTextParamsToolbar {
+		right: 68px;
+	}
+
+	[dir='rtl'] #editorFreeTextParamsToolbar {
+		left: 68px;
+	}
+
+	#editorFreeTextParamsToolbar {
+		inset-inline-end: 68px;
+		background-color: var(--wppdf-emb-toolbar-bg-color);
+	}
+
+	.doorHanger,
+	.doorHangerRight {
+		border-radius: 2px;
+		box-shadow: 0 1px 5px var(--wppdf-emb-doorhanger-border-color),
+			0 0 0 1px var(--wppdf-emb-doorhanger-border-color);
+		border: var(--wppdf-emb-doorhanger-border-color-whcm);
+	}
+	.doorHanger:after,
+	.doorHanger:before,
+	.doorHangerRight:after,
+	.doorHangerRight:before {
+		bottom: 100%;
+		border: 8px solid rgba(0, 0, 0, 0);
+		content: ' ';
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		opacity: var(--wppdf-emb-doorhanger-triangle-opacity-whcm);
+	}
+	[dir='ltr'] .doorHanger:after {
+		left: 10px;
+	}
+	[dir='rtl'] .doorHanger:after {
+		right: 10px;
+	}
+	[dir='ltr'] .doorHanger:after {
+		margin-left: -8px;
+	}
+	[dir='rtl'] .doorHanger:after {
+		margin-right: -8px;
+	}
+	.doorHanger:after {
+		inset-inline-start: 10px;
+		-webkit-margin-start: -8px;
+		margin-inline-start: -8px;
+		border-bottom-color: var(--wppdf-emb-toolbar-bg-color);
+	}
+	[dir='ltr'] .doorHangerRight:after {
+		right: 10px;
+	}
+	[dir='rtl'] .doorHangerRight:after {
+		left: 10px;
+	}
+	[dir='ltr'] .doorHangerRight:after {
+		margin-right: -8px;
+	}
+	[dir='rtl'] .doorHangerRight:after {
+		margin-left: -8px;
+	}
+	.doorHangerRight:after {
+		inset-inline-end: 10px;
+		-webkit-margin-end: -8px;
+		margin-inline-end: -8px;
+		border-bottom-color: var(--wppdf-emb-doorhanger-bg-color);
+	}
+	.doorHanger:before,
+	.doorHangerRight:before {
+		border-bottom-color: var(--wppdf-emb-doorhanger-border-color);
+		border-width: 9px;
+	}
+	[dir='ltr'] .doorHanger:before {
+		left: 10px;
+	}
+	[dir='rtl'] .doorHanger:before {
+		right: 10px;
+	}
+	[dir='ltr'] .doorHanger:before {
+		margin-left: -9px;
+	}
+	[dir='rtl'] .doorHanger:before {
+		margin-right: -9px;
+	}
+	.doorHanger:before {
+		inset-inline-start: 10px;
+		-webkit-margin-start: -9px;
+		margin-inline-start: -9px;
+	}
+	[dir='ltr'] .doorHangerRight:before {
+		right: 10px;
+	}
+	[dir='rtl'] .doorHangerRight:before {
+		left: 10px;
+	}
+	[dir='ltr'] .doorHangerRight:before {
+		margin-right: -9px;
+	}
+	[dir='rtl'] .doorHangerRight:before {
+		margin-left: -9px;
+	}
+	.doorHangerRight:before {
+		inset-inline-end: 10px;
+		-webkit-margin-end: -9px;
+		margin-inline-end: -9px;
+	}
+
+	#findResultsCount {
+		background-color: rgba(217, 217, 217, 1);
+		color: rgba(82, 82, 82, 1);
+		text-align: center;
+		padding: 4px 5px;
+		margin: 5px;
+	}
+
+	#findMsg {
+		color: rgba(251, 0, 0, 1);
+	}
+
+	#findResultsCount:empty,
+	#findMsg:empty {
+		display: none;
+	}
+
+	.toolbarViewerMiddle {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	[dir='ltr'] .toolbarViewerLeft,
+	[dir='ltr'] #toolbarSidebarLeft {
+		float: left;
+	}
+
+	[dir='rtl'] .toolbarViewerLeft,
+	[dir='rtl'] #toolbarSidebarLeft {
+		float: right;
+	}
+
+	.toolbarViewerLeft,
+	#toolbarSidebarLeft {
+		float: var(--wppdf-emb-inline-start);
+	}
+	[dir='ltr'] .toolbarViewerRight,
+	[dir='ltr'] .toolbarSidebarRight {
+		float: right;
+	}
+	[dir='rtl'] .toolbarViewerRight,
+	[dir='rtl'] .toolbarSidebarRight {
+		float: left;
+	}
+	.toolbarViewerRight,
+	.toolbarSidebarRight {
+		float: var(--wppdf-emb-inline-end);
+	}
+
+	[dir='ltr'] .toolbarViewerLeft > *,
+	[dir='ltr'] .toolbarViewerMiddle > *,
+	[dir='ltr'] .toolbarViewerRight > *,
+	[dir='ltr'] #toolbarSidebarLeft *,
+	[dir='ltr'] .toolbarSidebarRight *,
+	[dir='ltr'] .findbar * {
+		float: left;
+	}
+
+	[dir='rtl'] .toolbarViewerLeft > *,
+	[dir='rtl'] .toolbarViewerMiddle > *,
+	[dir='rtl'] .toolbarViewerRight > *,
+	[dir='rtl'] #toolbarSidebarLeft *,
+	[dir='rtl'] .toolbarSidebarRight *,
+	[dir='rtl'] .findbar * {
+		float: right;
+	}
+
+	.toolbarViewerLeft > *,
+	.toolbarViewerMiddle > *,
+	.toolbarViewerRight > *,
+	#toolbarSidebarLeft *,
+	.toolbarSidebarRight *,
+	.findbar * {
+		position: relative;
+		float: var(--wppdf-emb-inline-start);
+	}
+
+	[dir='ltr'] .toolbarViewerLeft {
+		padding-left: 1px;
+	}
+
+	[dir='rtl'] .toolbarViewerLeft {
+		padding-right: 1px;
+	}
+
+	.toolbarViewerLeft {
+		-webkit-padding-start: 3px;
+		padding-inline-start: 3px;
+	}
+	[dir='ltr'] .toolbarViewerRight {
+		padding-right: 1px;
+	}
+	[dir='rtl'] .toolbarViewerRight {
+		padding-left: 1px;
+	}
+	.toolbarViewerRight {
+		-webkit-padding-end: 1px;
+		padding-inline-end: 1px;
+	}
+	[dir='ltr'] .toolbarSidebarRight {
+		padding-right: 2px;
+	}
+	[dir='rtl'] .toolbarSidebarRight {
+		padding-left: 2px;
+	}
+	.toolbarSidebarRight {
+		-webkit-padding-end: 2px;
+		padding-inline-end: 2px;
+	}
+
+	.splitToolbarButton {
+		margin: 2px;
+		display: inline-block;
+	}
+	[dir='ltr'] .splitToolbarButton > .toolbarButton {
+		float: left;
+	}
+	[dir='rtl'] .splitToolbarButton > .toolbarButton {
+		float: right;
+	}
+	.splitToolbarButton > .toolbarButton {
+		float: var(--wppdf-emb-inline-start);
+	}
+
+	.toolbarButton,
+	.secondaryToolbarButton,
+	.dialogButton {
+		border: 0 none;
+		background: none;
+		width: 28px;
+		height: 28px;
+	}
+
+	.dialogButton:hover,
+	.dialogButton:focus-visible {
+		background-color: var(--wppdf-emb-dialog-button-hover-bg-color);
+	}
+
+	.dialogButton:hover > span,
+	.dialogButton:focus-visible > span {
+		color: var(--wppdf-emb-dialog-button-hover-color);
+	}
+
+	.toolbarButton > span {
+		display: inline-block;
+		width: 0;
+		height: 0;
+		overflow: hidden;
+	}
+
+	.toolbarButton[disabled],
+	.secondaryToolbarButton[disabled],
+	.dialogButton[disabled] {
+		opacity: 0.5;
+	}
+
+	.splitToolbarButton > .toolbarButton:hover,
+	.splitToolbarButton > .toolbarButton:focus-visible,
+	.dropdownToolbarButton:hover {
+		background-color: var(--wppdf-emb-button-hover-color);
+	}
+	.splitToolbarButton > .toolbarButton {
+		position: relative;
+		margin: 0;
+	}
+	[dir='ltr'] #toolbarSidebar .splitToolbarButton > .toolbarButton {
+		margin-right: 2px;
+	}
+	[dir='rtl'] #toolbarSidebar .splitToolbarButton > .toolbarButton {
+		margin-left: 2px;
+	}
+	#toolbarSidebar .splitToolbarButton > .toolbarButton {
+		-webkit-margin-end: 2px;
+		margin-inline-end: 2px;
+	}
+
+	[dir='ltr'] .splitToolbarButtonSeparator {
+		float: left;
+	}
+
+	[dir='rtl'] .splitToolbarButtonSeparator {
+		float: right;
+	}
+
+	.splitToolbarButtonSeparator {
+		float: var(--wppdf-emb-inline-start);
+		margin: 4px 0;
+		width: 1px;
+		height: 20px;
+		background-color: var(--wppdf-emb-separator-color);
+	}
+
+	.toolbarButton,
+	.dropdownToolbarButton,
+	.secondaryToolbarButton,
+	.dialogButton {
+		min-width: 16px;
+		margin: 2px 1px;
+		padding: 2px 6px 0;
+		border: none;
+		border-radius: 2px;
+		color: var(--wppdf-emb-main-color);
+		font-size: 12px;
+		line-height: 14px;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		user-select: none;
+		cursor: default;
+		box-sizing: border-box;
+	}
+	.toolbarButton {
+		background-color: hsla(0,0%,0%,.12);
+		background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+		background-clip: padding-box;
+		border: 1px solid hsla(0,0%,0%,.35);
+		  border-top-color: rgba(0, 0, 0, 0.35);
+		  border-right-color: rgba(0, 0, 0, 0.35);
+		  border-bottom-color: rgba(0, 0, 0, 0.35);
+		  border-left-color: rgba(0, 0, 0, 0.35);
+		border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42);
+		box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset, 0 0 1px hsla(0,0%,100%,.15) inset, 0 1px 0 hsla(0,0%,100%,.05);
+		-webkit-transition-property: background-color, border-color, box-shadow;
+		-webkit-transition-duration: 150ms;
+		-webkit-transition-timing-function: ease;
+		transition-property: background-color, border-color, box-shadow;
+		transition-duration: 150ms;
+		transition-timing-function: ease;
+		min-width: 16px;
+		padding: 2px 6px 0;
+		border-radius: 2px;
+		color: hsla(0,0%,100%,.8);
+		font-size: 12px;
+		line-height: 14px;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		cursor: pointer;
+		margin-left: 0px;
+		float: left;
+	}
+	.toolbarViewerMiddle,
+	.toolbarViewerLeft {
+		.splitToolbarButton {
+			.toolbarButton {
+				margin-right: 3px;
+			}
+		}
+		.toolbarButton {
+			margin-right: 3px;
+		}
+	}
+	.toolbarViewerRight {
+		.toolbarButton {
+			margin-right: 3px;
+		}
+	}
+
+	.toolbarButton:hover,
+	.toolbarButton:focus-visible {
+		background-color: var(--wppdf-emb-button-hover-color);
+	}
+	.secondaryToolbarButton:hover,
+	.secondaryToolbarButton:focus-visible {
+		background-color: var(--wppdf-emb-doorhanger-hover-bg-color);
+		color: var(--wppdf-emb-doorhanger-hover-color);
+	}
+
+	.toolbarButton.toggled,
+	.splitToolbarButton.toggled > .toolbarButton.toggled,
+	.secondaryToolbarButton.toggled {
+		background-color: var(--wppdf-emb-toggled-btn-bg-color);
+		color: var(--wppdf-emb-toggled-btn-color);
+	}
+
+	.toolbarButton.toggled::before,
+	.secondaryToolbarButton.toggled::before {
+		background-color: var(--wppdf-emb-toggled-btn-color);
+	}
+
+	.toolbarButton.toggled:hover:active,
+	.splitToolbarButton.toggled > .toolbarButton.toggled:hover:active,
+	.secondaryToolbarButton.toggled:hover:active {
+		background-color: var(--wppdf-emb-toggled-hover-active-btn-color);
+	}
+
+	.dropdownToolbarButton {
+		width: var(--wppdf-emb-scale-select-container-width);
+		padding: 0;
+		overflow: hidden;
+		background-color: var(--wppdf-emb-dropdown-btn-bg-color);
+	}
+	[dir='ltr'] .dropdownToolbarButton::after {
+		right: 7px;
+	}
+	[dir='rtl'] .dropdownToolbarButton::after {
+		left: 7px;
+	}
+	.dropdownToolbarButton::after {
+		top: 6px;
+		inset-inline-end: 7px;
+		pointer-events: none;
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-menuArrow-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-menuArrow-icon);
+	}
+
+	[dir='ltr'] .dropdownToolbarButton > select {
+		padding-left: 4px;
+	}
+
+	[dir='rtl'] .dropdownToolbarButton > select {
+		padding-right: 4px;
+	}
+
+	.dropdownToolbarButton > select {
+		width: calc(
+			var(--wppdf-emb-scale-select-container-width) +
+				var(--wppdf-emb-scale-select-overflow)
+		);
+		height: 28px;
+		font-size: 12px;
+		color: var(--wppdf-emb-main-color);
+		margin: 0;
+		padding: 1px 0 2px;
+		margin-left: 5px;
+		-webkit-padding-start: 4px;
+		padding-inline-start: 4px;
+		border: none;
+		background-color: var(--wppdf-emb-dropdown-btn-bg-color);
+		&.scaleSelect{
+		}
+	}
+	.dropdownToolbarButton > select:hover,
+	.dropdownToolbarButton > select:focus-visible {
+		background-color: var(--wppdf-emb-button-hover-color);
+		color: var(--wppdf-emb-toggled-btn-color);
+	}
+	.dropdownToolbarButton > select > option {
+		background: var(--wppdf-emb-doorhanger-bg-color);
+		color: var(--wppdf-emb-main-color);
+	}
+
+	.toolbarButtonSpacer {
+		width: 30px;
+		display: inline-block;
+		height: 1px;
+	}
+
+	.toolbarButton::before,
+	.secondaryToolbarButton::before,
+	.dropdownToolbarButton::after,
+	.treeItemToggler::before {
+		/* All matching images have a size of 16x16
+	 * All relevant containers have a size of 28x28 */
+		position: absolute;
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+
+		content: '';
+		background-color: var(--wppdf-emb-toolbar-icon-bg-color);
+		-webkit-mask-size: cover;
+		mask-size: cover;
+	}
+
+	.dropdownToolbarButton:hover::after,
+	.dropdownToolbarButton:focus-visible::after,
+	.dropdownToolbarButton:active::after {
+		background-color: var(--wppdf-emb-toolbar-icon-hover-bg-color);
+	}
+
+	.toolbarButton::before {
+		opacity: var(--wppdf-emb-toolbar-icon-opacity);
+		top: 6px;
+		left: 6px;
+	}
+
+	.toolbarButton:hover::before,
+	.toolbarButton:focus-visible::before,
+	.secondaryToolbarButton:hover::before,
+	.secondaryToolbarButton:focus-visible::before {
+		background-color: var(--wppdf-emb-toolbar-icon-hover-bg-color);
+	}
+
+	[dir='ltr'] .secondaryToolbarButton::before {
+		left: 12px;
+	}
+
+	[dir='rtl'] .secondaryToolbarButton::before {
+		right: 12px;
+	}
+
+	.secondaryToolbarButton::before {
+		opacity: var(--wppdf-emb-doorhanger-icon-opacity);
+		top: 5px;
+		inset-inline-start: 12px;
+	}
+
+	#sidebarToggle::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-sidebarToggle-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-sidebarToggle-icon);
+		transform: scaleX(var(--wppdf-emb-dir-factor));
+	}
+
+	#secondaryToolbarToggle::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-toolbarButton-secondaryToolbarToggle-icon
+		);
+		mask-image: var(--wppdf-emb-toolbarButton-secondaryToolbarToggle-icon);
+		transform: scaleX(var(--wppdf-emb-dir-factor));
+	}
+
+	#findPrevious::before {
+		-webkit-mask-image: var(--wppdf-emb-findbarButton-previous-icon);
+		mask-image: var(--wppdf-emb-findbarButton-previous-icon);
+	}
+
+	#findNext::before {
+		-webkit-mask-image: var(--wppdf-emb-findbarButton-next-icon);
+		mask-image: var(--wppdf-emb-findbarButton-next-icon);
+	}
+	#previous-bottom::before,
+	#previous::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-pageUp-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-pageUp-icon);
+	}
+	#next-bottom::before,
+	#next::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-pageDown-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-pageDown-icon);
+	}
+	#zoomOut-bottom::before,
+	#zoomOut::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-zoomOut-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-zoomOut-icon);
+	}
+	#zoomIn-bottom::before,
+	#zoomIn::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-zoomIn-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-zoomIn-icon);
+	}
+
+	#presentationMode::before,
+	#secondaryPresentationMode::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-toolbarButton-presentationMode-icon
+		);
+		mask-image: var(--wppdf-emb-toolbarButton-presentationMode-icon);
+	}
+
+	#editorNone::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-editorNone-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-editorNone-icon);
+	}
+
+	#editorFreeText::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-editorFreeText-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-editorFreeText-icon);
+	}
+
+	#editorInk::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-editorInk-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-editorInk-icon);
+	}
+
+	#print::before,
+	#secondaryPrint::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-print-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-print-icon);
+	}
+
+	#openFile::before,
+	#secondaryOpenFile::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-openFile-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-openFile-icon);
+	}
+	#fullscreen-bottom::before,
+	#fullscreen::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-fullscreen-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-fullscreen-icon);
+	}
+	#download-bottom::before,
+	#download::before,
+	#secondaryDownload::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-download-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-download-icon);
+	}
+
+	a.secondaryToolbarButton {
+		padding-top: 6px;
+		text-decoration: none;
+	}
+	a.toolbarButton[href='#'],
+	a.secondaryToolbarButton[href='#'] {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
+	#viewBookmark::before,
+	#secondaryViewBookmark::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-bookmark-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-bookmark-icon);
+	}
+
+	#viewThumbnail::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-viewThumbnail-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-viewThumbnail-icon);
+	}
+
+	#viewOutline::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-viewOutline-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-viewOutline-icon);
+		transform: scaleX(var(--wppdf-emb-dir-factor));
+	}
+
+	#viewAttachments::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-viewAttachments-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-viewAttachments-icon);
+	}
+
+	#viewLayers::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-viewLayers-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-viewLayers-icon);
+	}
+
+	#currentOutlineItem::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-toolbarButton-currentOutlineItem-icon
+		);
+		mask-image: var(--wppdf-emb-toolbarButton-currentOutlineItem-icon);
+		transform: scaleX(var(--wppdf-emb-dir-factor));
+	}
+
+	#viewFind-bottom::before,
+	#viewFind::before {
+		-webkit-mask-image: var(--wppdf-emb-toolbarButton-search-icon);
+		mask-image: var(--wppdf-emb-toolbarButton-search-icon);
+	}
+
+	[dir='ltr'] .pdfSidebarNotification::after {
+		left: 17px;
+	}
+
+	[dir='rtl'] .pdfSidebarNotification::after {
+		right: 17px;
+	}
+
+	.pdfSidebarNotification::after {
+		position: absolute;
+		display: inline-block;
+		top: 1px;
+		inset-inline-start: 17px;
+		/* Create a filled circle, with a diameter of 9 pixels, using only CSS: */
+		content: '';
+		background-color: rgba(112, 219, 85, 1);
+		height: 9px;
+		width: 9px;
+		border-radius: 50%;
+	}
+
+	[dir='ltr'] .secondaryToolbarButton {
+		padding-left: 36px;
+	}
+
+	[dir='rtl'] .secondaryToolbarButton {
+		padding-right: 36px;
+	}
+
+	[dir='ltr'] .secondaryToolbarButton {
+		text-align: left;
+	}
+
+	[dir='rtl'] .secondaryToolbarButton {
+		text-align: right;
+	}
+
+	.secondaryToolbarButton {
+		position: relative;
+		margin: 0;
+		padding: 0 0 1px;
+		-webkit-padding-start: 36px;
+		padding-inline-start: 36px;
+		height: auto;
+		min-height: 26px;
+		width: auto;
+		min-width: 100%;
+		text-align: start;
+		white-space: normal;
+		border-radius: 0;
+		box-sizing: border-box;
+	}
+	[dir='ltr'] .secondaryToolbarButton > span {
+		padding-right: 4px;
+	}
+	[dir='rtl'] .secondaryToolbarButton > span {
+		padding-left: 4px;
+	}
+	.secondaryToolbarButton > span {
+		-webkit-padding-end: 4px;
+		padding-inline-end: 4px;
+	}
+
+	#firstPage::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-firstPage-icon
+		);
+		mask-image: var(--wppdf-emb-secondaryToolbarButton-firstPage-icon);
+	}
+
+	#lastPage::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-lastPage-icon
+		);
+		mask-image: var(--wppdf-emb-secondaryToolbarButton-lastPage-icon);
+	}
+
+	#pageRotateCcw::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-rotateCcw-icon
+		);
+		mask-image: var(--wppdf-emb-secondaryToolbarButton-rotateCcw-icon);
+	}
+
+	#pageRotateCw::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-rotateCw-icon
+		);
+		mask-image: var(--wppdf-emb-secondaryToolbarButton-rotateCw-icon);
+	}
+
+	#cursorSelectTool::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-selectTool-icon
+		);
+		mask-image: var(--wppdf-emb-secondaryToolbarButton-selectTool-icon);
+	}
+
+	#cursorHandTool::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-handTool-icon
+		);
+		mask-image: var(--wppdf-emb-secondaryToolbarButton-handTool-icon);
+	}
+
+	#scrollPage::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-scrollPage-icon
+		);
+		mask-image: var(--wppdf-emb-secondaryToolbarButton-scrollPage-icon);
+	}
+
+	#scrollVertical::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-scrollVertical-icon
+		);
+		mask-image: var(--wppdf-emb-secondaryToolbarButton-scrollVertical-icon);
+	}
+
+	#scrollHorizontal::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-scrollHorizontal-icon
+		);
+		mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-scrollHorizontal-icon
+		);
+	}
+
+	#scrollWrapped::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-scrollWrapped-icon
+		);
+		mask-image: var(--wppdf-emb-secondaryToolbarButton-scrollWrapped-icon);
+	}
+
+	#spreadNone::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-spreadNone-icon
+		);
+		mask-image: var(--wppdf-emb-secondaryToolbarButton-spreadNone-icon);
+	}
+
+	#spreadOdd::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-spreadOdd-icon
+		);
+		mask-image: var(--wppdf-emb-secondaryToolbarButton-spreadOdd-icon);
+	}
+
+	#spreadEven::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-spreadEven-icon
+		);
+		mask-image: var(--wppdf-emb-secondaryToolbarButton-spreadEven-icon);
+	}
+
+	#documentProperties::before {
+		-webkit-mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-documentProperties-icon
+		);
+		mask-image: var(
+			--wppdf-emb-secondaryToolbarButton-documentProperties-icon
+		);
+	}
+
+	.verticalToolbarSeparator {
+		display: block;
+		margin: 5px 2px;
+		width: 1px;
+		height: 22px;
+		background-color: var(--wppdf-emb-separator-color);
+	}
+	.horizontalToolbarSeparator {
+		display: block;
+		margin: 6px 0;
+		height: 1px;
+		width: 100%;
+		background-color: var(--wppdf-emb-doorhanger-separator-color);
+	}
+
+	.toolbarField {
+		padding: 4px 7px;
+		margin: 3px 0;
+		border-radius: 2px;
+		background-color: var(--wppdf-emb-field-bg-color);
+		background-clip: padding-box;
+		border: 1px solid var(--wppdf-emb-field-border-color);
+		box-shadow: none;
+		color: var(--wppdf-emb-field-color);
+		font-size: 12px;
+		line-height: 16px;
+		outline-style: none;
+	}
+
+	[dir='ltr'] .toolbarField[type='checkbox'] {
+		margin-left: 7px;
+	}
+
+	[dir='rtl'] .toolbarField[type='checkbox'] {
+		margin-right: 7px;
+	}
+
+	.toolbarField[type='checkbox'] {
+		opacity: 0;
+		position: absolute !important;
+		left: 0;
+		margin: 10px 0 3px;
+		-webkit-margin-start: 7px;
+		margin-inline-start: 7px;
+	}
+
+	#pageNumber-bottom,
+	#pageNumber {
+		-moz-appearance: textfield; /* hides the spinner in moz */
+		text-align: right;
+		width: 10px;
+		border: none;
+		font-size: 12px;
+		line-height: 17px;
+		background-color: inherit;
+		&:focus {
+			background-color: white;
+		}
+	}
+	#pageNumber-bottom.visiblePageIsLoading,
+	#pageNumber.visiblePageIsLoading {
+		background-image: var(--wppdf-emb-loading-icon);
+		background-repeat: no-repeat;
+		background-position: 3px;
+	}
+	#pageNumber-bottom::-webkit-inner-spin-button,
+	#pageNumber::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+	}
+
+	.toolbarField:focus {
+		border-color: #0a84ff;
+	}
+
+	.toolbarLabel {
+		min-width: 16px;
+		padding: 7px;
+		margin: 2px;
+		border-radius: 2px;
+		color: var(--wppdf-emb-main-color);
+		font-size: 12px;
+		line-height: 14px;
+		text-align: left;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		user-select: none;
+		cursor: default;
+	}
+
+	[dir='ltr'] #numPages.toolbarLabel {
+		padding-left: 3px;
+	}
+
+	[dir='rtl'] #numPages.toolbarLabel {
+		padding-right: 3px;
+	}
+
+	#numPages.toolbarLabel {
+		-webkit-padding-start: 3px;
+		padding-inline-start: 3px;
+	}
+
+	#thumbnailView,
+	#outlineView,
+	#attachmentsView,
+	#layersView {
+		position: absolute;
+		width: calc(100% - 8px);
+		top: 0;
+		bottom: 0;
+		padding: 4px 4px 0;
+		overflow: auto;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		user-select: none;
+	}
+	#thumbnailView {
+		width: calc(100% - 60px);
+		padding: 10px 30px 0;
+	}
+
+	#thumbnailView > a:active,
+	#thumbnailView > a:focus {
+		outline: 0;
+	}
+
+	[dir='ltr'] .thumbnail {
+		float: left;
+	}
+
+	[dir='rtl'] .thumbnail {
+		float: right;
+	}
+
+	.thumbnail {
+		float: var(--wppdf-emb-inline-start);
+		margin: 0 10px 5px;
+	}
+
+	#thumbnailView > a:last-of-type > .thumbnail {
+		margin-bottom: 10px;
+	}
+	#thumbnailView > a:last-of-type > .thumbnail:not([data-loaded]) {
+		margin-bottom: 9px;
+	}
+
+	.thumbnail:not([data-loaded]) {
+		border: 1px dashed rgba(132, 132, 132, 1);
+		margin: -1px 9px 4px;
+	}
+
+	.thumbnailImage {
+		border: 1px solid rgba(0, 0, 0, 0);
+		box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+		opacity: 0.8;
+		z-index: 99;
+		background-color: rgba(255, 255, 255, 1);
+		background-clip: content-box;
+	}
+
+	.thumbnailSelectionRing {
+		border-radius: 2px;
+		padding: 7px;
+	}
+
+	a:focus > .thumbnail > .thumbnailSelectionRing > .thumbnailImage,
+	.thumbnail:hover > .thumbnailSelectionRing > .thumbnailImage {
+		opacity: 0.9;
+	}
+
+	a:focus > .thumbnail > .thumbnailSelectionRing,
+	.thumbnail:hover > .thumbnailSelectionRing {
+		background-color: var(--wppdf-emb-sidebaritem-bg-color);
+		background-clip: padding-box;
+		color: rgba(255, 255, 255, 0.9);
+	}
+
+	.thumbnail.selected > .thumbnailSelectionRing > .thumbnailImage {
+		opacity: 1;
+	}
+
+	.thumbnail.selected > .thumbnailSelectionRing {
+		background-color: var(--wppdf-emb-sidebaritem-bg-color);
+		background-clip: padding-box;
+		color: rgba(255, 255, 255, 1);
+	}
+
+	[dir='ltr'] .treeWithDeepNesting > .treeItem,
+	[dir='ltr'] .treeItem > .treeItems {
+		margin-left: 20px;
+	}
+
+	[dir='rtl'] .treeWithDeepNesting > .treeItem,
+	[dir='rtl'] .treeItem > .treeItems {
+		margin-right: 20px;
+	}
+
+	.treeWithDeepNesting > .treeItem,
+	.treeItem > .treeItems {
+		-webkit-margin-start: 20px;
+		margin-inline-start: 20px;
+	}
+
+	[dir='ltr'] .treeItem > a {
+		padding-left: 4px;
+	}
+
+	[dir='rtl'] .treeItem > a {
+		padding-right: 4px;
+	}
+
+	.treeItem > a {
+		text-decoration: none;
+		display: inline-block;
+		/* Subtract the right padding (left, in RTL mode) of the container: */
+		min-width: calc(100% - 4px);
+		height: auto;
+		margin-bottom: 1px;
+		padding: 2px 0 5px;
+		-webkit-padding-start: 4px;
+		padding-inline-start: 4px;
+		border-radius: 2px;
+		color: var(--wppdf-emb-treeitem-color);
+		font-size: 13px;
+		line-height: 15px;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		user-select: none;
+		white-space: normal;
+		cursor: pointer;
+	}
+
+	#layersView .treeItem > a * {
+		cursor: pointer;
+	}
+	[dir='ltr'] #layersView .treeItem > a > label {
+		padding-left: 4px;
+	}
+	[dir='rtl'] #layersView .treeItem > a > label {
+		padding-right: 4px;
+	}
+	#layersView .treeItem > a > label {
+		-webkit-padding-start: 4px;
+		padding-inline-start: 4px;
+	}
+	[dir='ltr'] #layersView .treeItem > a > label > input {
+		float: left;
+	}
+	[dir='rtl'] #layersView .treeItem > a > label > input {
+		float: right;
+	}
+	#layersView .treeItem > a > label > input {
+		float: var(--wppdf-emb-inline-start);
+		margin-top: 1px;
+	}
+
+	[dir='ltr'] .treeItemToggler {
+		float: left;
+	}
+
+	[dir='rtl'] .treeItemToggler {
+		float: right;
+	}
+
+	.treeItemToggler {
+		position: relative;
+		float: var(--wppdf-emb-inline-start);
+		height: 0;
+		width: 0;
+		color: rgba(255, 255, 255, 0.5);
+	}
+	[dir='ltr'] .treeItemToggler::before {
+		right: 4px;
+	}
+	[dir='rtl'] .treeItemToggler::before {
+		left: 4px;
+	}
+	.treeItemToggler::before {
+		inset-inline-end: 4px;
+		-webkit-mask-image: var(--wppdf-emb-treeitem-expanded-icon);
+		mask-image: var(--wppdf-emb-treeitem-expanded-icon);
+	}
+	.treeItemToggler.treeItemsHidden::before {
+		-webkit-mask-image: var(--wppdf-emb-treeitem-collapsed-icon);
+		mask-image: var(--wppdf-emb-treeitem-collapsed-icon);
+		transform: scaleX(var(--wppdf-emb-dir-factor));
+	}
+	.treeItemToggler.treeItemsHidden ~ .treeItems {
+		display: none;
+	}
+
+	.treeItem.selected > a {
+		background-color: var(--wppdf-emb-treeitem-selected-bg-color);
+		color: var(--wppdf-emb-treeitem-selected-color);
+	}
+
+	.treeItemToggler:hover,
+	.treeItemToggler:hover + a,
+	.treeItemToggler:hover ~ .treeItems,
+	.treeItem > a:hover {
+		background-color: var(--wppdf-emb-sidebaritem-bg-color);
+		background-clip: padding-box;
+		border-radius: 2px;
+		color: var(--wppdf-emb-treeitem-hover-color);
+	}
+
+	/* TODO: file FF bug to support ::-moz-selection:window-inactive
+		 so we can override the opaque grey background when the window is inactive;
+		 see https://bugzilla.mozilla.org/show_bug.cgi?id=706209 */
+	::-moz-selection {
+		background: rgba(0, 0, 255, 0.3);
+	}
+	::selection {
+		background: rgba(0, 0, 255, 0.3);
+	}
+
+	#errorWrapper {
+		background-color: var(--wppdf-emb-errorWrapper-bg-color);
+		color: var(--wppdf-emb-main-color);
+		left: 0;
+		position: absolute;
+		right: 0;
+		z-index: 1000;
+		padding: 3px 6px;
+	}
+
+	#errorMessageLeft {
+		float: left;
+	}
+	#errorMessageRight {
+		float: right;
+	}
+
+	#errorSpacer {
+		clear: both;
+	}
+	#errorMoreInfo {
+		background-color: var(--wppdf-emb-field-bg-color);
+		color: var(--wppdf-emb-field-color);
+		border: 1px solid var(--wppdf-emb-field-border-color);
+		padding: 3px;
+		margin: 3px;
+		width: 98%;
+	}
+
+	.dialogButton {
+		width: auto;
+		margin: 3px 4px 2px !important;
+		padding: 2px 11px;
+		color: var(--wppdf-emb-main-color);
+		background-color: var(--wppdf-emb-dialog-button-bg-color);
+		border: var(--wppdf-emb-dialog-button-border) !important;
+	}
+
+	dialog {
+		margin: auto;
+		padding: 15px;
+		border-spacing: 4px;
+		color: var(--wppdf-emb-main-color);
+		font-size: 12px;
+		line-height: 14px;
+		background-color: var(--wppdf-emb-doorhanger-bg-color);
+		border: 1px solid rgba(0, 0, 0, 0.5);
+		border-radius: 4px;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+	}
+	dialog::-webkit-backdrop {
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+	dialog::backdrop {
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+
+	dialog > .row {
+		display: table-row;
+	}
+
+	dialog > .row > * {
+		display: table-cell;
+	}
+
+	dialog .toolbarField {
+		margin: 5px 0;
+	}
+
+	dialog .separator {
+		display: block;
+		margin: 4px 0;
+		height: 1px;
+		width: 100%;
+		background-color: var(--wppdf-emb-separator-color);
+	}
+
+	dialog .buttonRow {
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	dialog :link {
+		color: rgba(255, 255, 255, 1);
+	}
+
+	#passwordDialog {
+		text-align: center;
+	}
+	#passwordDialog .toolbarField {
+		width: 200px;
+	}
+
+	#documentPropertiesDialog {
+		text-align: left;
+	}
+	[dir='ltr'] #documentPropertiesDialog .row > * {
+		text-align: left;
+	}
+	[dir='rtl'] #documentPropertiesDialog .row > * {
+		text-align: right;
+	}
+	#documentPropertiesDialog .row > * {
+		min-width: 100px;
+		text-align: start;
+	}
+	#documentPropertiesDialog .row > span {
+		width: 125px;
+		word-wrap: break-word;
+	}
+	#documentPropertiesDialog .row > p {
+		max-width: 225px;
+		word-wrap: break-word;
+	}
+	#documentPropertiesDialog .buttonRow {
+		margin-top: 10px;
+	}
+
+	.grab-to-pan-grab {
+		cursor: grab !important;
+	   }
+	   .grab-to-pan-grab
+		*:not(input):not(textarea):not(button):not(select):not(:link) {
+		cursor: inherit !important;
+	   }
+	   .grab-to-pan-grab:active,
+	   .grab-to-pan-grabbing {
+		cursor: grabbing !important;
+		position: fixed;
+		background: rgba(0, 0, 0, 0);
+		display: block;
+		overflow: hidden;
+		z-index: 50000; /* should be higher than anything else in PDF.js! */
+	   }
+
+	@page {
+		margin: 0;
+	}
+
+	#printContainer {
+		display: none;
+	}
+
+	.visibleLargeView,
+	.visibleMediumView,
+	.visibleSmallView {
+		display: none;
+	}
+}
+@media only screen and (max-width: 600px) {
+	#wppdf-iframe-body {
+		.toolbarViewerMiddle {
+			left: 60%;
+			transform: translateX(-60%);
+		}
+	}
+}
+@media print {
+	body {
+		background: rgba(0, 0, 0, 0) none;
+	}
+	body[data-pdfjsprinting] #outerContainer {
+		display: none;
+	}
+	body[data-pdfjsprinting] #printContainer {
+		display: block;
+	}
+	#printContainer {
+		height: 100%;
+	}
+	/* wrapper around (scaled) print canvas elements */
+	#printContainer > .printedPage {
+		page-break-after: always;
+		page-break-inside: avoid;
+
+		/* The wrapper always cover the whole page. */
+		height: 100%;
+		width: 100%;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#printContainer > .xfaPrintedPage .xfaPage {
+		position: absolute;
+	}
+
+	#printContainer > .xfaPrintedPage {
+		page-break-after: always;
+		page-break-inside: avoid;
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+
+	#printContainer > .printedPage canvas,
+	#printContainer > .printedPage img {
+		/* The intrinsic canvas / image size will make sure that we fit the page. */
+		max-width: 100%;
+		max-height: 100%;
+
+		direction: ltr;
+		display: block;
+	}
+}

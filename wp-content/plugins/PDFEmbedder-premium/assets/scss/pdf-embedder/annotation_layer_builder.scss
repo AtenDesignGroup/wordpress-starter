@@ -1,0 +1,337 @@
+#wppdf-iframe-body {
+	.annotationLayer {
+		position: absolute;
+		top: 0;
+		left: 0;
+		pointer-events: none;
+		transform-origin: 0 0;
+		section {
+			position: absolute;
+			text-align: initial;
+			pointer-events: auto;
+			box-sizing: border-box;
+			transform-origin: 0 0;
+		}
+		.linkAnnotation > a,
+		.buttonWidgetAnnotation.pushButton > a {
+			position: absolute;
+			font-size: 1em;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.buttonWidgetAnnotation.pushButton > canvas {
+			width: 100%;
+			height: 100%;
+		}
+		.textAnnotation img {
+			position: absolute;
+			cursor: pointer;
+			width: 100%;
+			height: 100%;
+		}
+		.textWidgetAnnotation input,
+		.textWidgetAnnotation textarea,
+		.choiceWidgetAnnotation select,
+		.buttonWidgetAnnotation.checkBox input,
+		.buttonWidgetAnnotation.radioButton input {
+			background-image: var(
+				--wppdf-emb-annotation-unfocused-field-background
+			);
+			border: 1px solid transparent;
+			box-sizing: border-box;
+			font: calc(9px * var(--wppdf-emb-scale-factor)) sans-serif;
+			height: 100%;
+			margin: 0;
+			vertical-align: top;
+			width: 100%;
+		}
+		.textWidgetAnnotation input:required,
+		.textWidgetAnnotation textarea:required,
+		.choiceWidgetAnnotation select:required,
+		.buttonWidgetAnnotation.checkBox input:required,
+		.buttonWidgetAnnotation.radioButton input:required {
+			outline: 1.5px solid red;
+		}
+		.choiceWidgetAnnotation select option {
+			padding: 0;
+		}
+		.buttonWidgetAnnotation.radioButton input {
+			border-radius: 50%;
+		}
+		.textWidgetAnnotation textarea {
+			resize: none;
+		}
+		.textWidgetAnnotation input[disabled],
+		.textWidgetAnnotation textarea[disabled],
+		.choiceWidgetAnnotation select[disabled],
+		.buttonWidgetAnnotation.checkBox input[disabled],
+		.buttonWidgetAnnotation.radioButton input[disabled] {
+			background: none;
+			border: 1px solid transparent;
+			cursor: not-allowed;
+		}
+		.textWidgetAnnotation textarea:hover,
+		.choiceWidgetAnnotation select:hover,
+		.buttonWidgetAnnotation.checkBox input:hover,
+		.buttonWidgetAnnotation.radioButton input:hover {
+			border: 1px solid rgba(0, 0, 0, 1);
+		}
+		.textWidgetAnnotation input:focus,
+		.textWidgetAnnotation textarea:focus,
+		.choiceWidgetAnnotation select:focus {
+			background: none;
+			border: 1px solid transparent;
+		}
+		.textWidgetAnnotation input :focus,
+		.textWidgetAnnotation textarea :focus,
+		.choiceWidgetAnnotation select :focus,
+		.buttonWidgetAnnotation.checkBox :focus,
+		.buttonWidgetAnnotation.radioButton :focus {
+			background-image: none;
+			background-color: transparent;
+			outline: auto;
+		}
+		.buttonWidgetAnnotation.checkBox input:checked:before,
+		.buttonWidgetAnnotation.checkBox input:checked:after,
+		.buttonWidgetAnnotation.radioButton input:checked:before {
+			background-color: CanvasText;
+			content: '';
+			display: block;
+			position: absolute;
+		}
+
+		.buttonWidgetAnnotation.checkBox input:checked:before,
+		.buttonWidgetAnnotation.checkBox input:checked:after {
+			height: 80%;
+			left: 45%;
+			width: 1px;
+		}
+		.buttonWidgetAnnotation.checkBox input:checked:before {
+			transform: rotate(45deg);
+		}
+		.buttonWidgetAnnotation.checkBox input:checked:after {
+			transform: rotate(-45deg);
+		}
+		.buttonWidgetAnnotation.radioButton input:checked:before {
+			border-radius: 50%;
+			height: 50%;
+			left: 30%;
+			top: 20%;
+			width: 50%;
+		}
+		.textWidgetAnnotation input.comb {
+			font-family: monospace;
+			padding-left: 2px;
+			padding-right: 0;
+		}
+		.textWidgetAnnotation input.comb:focus {
+			/*
+			 * Letter spacing is placed on the right side of each character. Hence, the
+			 * letter spacing of the last character may be placed outside the visible
+			 * area, causing horizontal scrolling. We avoid this by extending the width
+			 * when the element has focus and revert this when it loses focus.
+			 */
+			width: 103%;
+		}
+		.buttonWidgetAnnotation.checkBox input,
+		.buttonWidgetAnnotation.radioButton input {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+		}
+		.popupTriggerArea {
+			height: 100%;
+			width: 100%;
+		}
+		.popupWrapper {
+			position: absolute;
+			font-size: calc(9px * var(--wppdf-emb-scale-factor));
+			width: 100%;
+			min-width: calc(180px * var(--wppdf-emb-scale-factor));
+			pointer-events: none;
+		}
+		.popup {
+			position: absolute;
+			z-index: 200;
+			max-width: calc(180px * var(--wppdf-emb-scale-factor));
+			background-color: rgba(255, 255, 153, 1);
+			box-shadow: 0 calc(2px * var(--wppdf-emb-scale-factor))
+				calc(5px * var(--wppdf-emb-scale-factor)) rgba(136, 136, 136, 1);
+			border-radius: calc(2px * var(--wppdf-emb-scale-factor));
+			padding: calc(6px * var(--wppdf-emb-scale-factor));
+			margin-left: calc(5px * var(--wppdf-emb-scale-factor));
+			cursor: pointer;
+			font: message-box;
+			white-space: normal;
+			word-wrap: break-word;
+			pointer-events: auto;
+			& > * {
+				font-size: calc(9px * var(--wppdf-emb-scale-factor));
+			}
+			h1 {
+				display: inline-block;
+			}
+		}
+		.popupDate {
+			display: inline-block;
+			margin-left: calc(5px * var(--wppdf-emb-scale-factor));
+		}
+		.popupContent {
+			border-top: 1px solid rgba(51, 51, 51, 1);
+			margin-top: calc(2px * var(--wppdf-emb-scale-factor));
+			padding-top: calc(2px * var(--wppdf-emb-scale-factor));
+		}
+		.richText > * {
+			white-space: pre-wrap;
+			font-size: calc(9px * var(--wppdf-emb-scale-factor));
+		}
+		.highlightAnnotation,
+		.underlineAnnotation,
+		.squigglyAnnotation,
+		.strikeoutAnnotation,
+		.freeTextAnnotation,
+		.lineAnnotation svg line,
+		.squareAnnotation svg rect,
+		.circleAnnotation svg ellipse,
+		.polylineAnnotation svg polyline,
+		.polygonAnnotation svg polygon,
+		.caretAnnotation,
+		.inkAnnotation svg polyline,
+		.stampAnnotation,
+		.fileAttachmentAnnotation {
+			cursor: pointer;
+		}
+		section svg {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	[data-editor-rotation='90'] {
+		transform: rotate(90deg);
+	}
+	[data-editor-rotation='180'] {
+		transform: rotate(180deg);
+	}
+	[data-editor-rotation='270'] {
+		transform: rotate(270deg);
+	}
+
+	.annotationEditorLayer {
+		background: transparent;
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size: calc(100px * var(--wppdf-emb-scale-factor));
+		transform-origin: 0 0;
+	}
+
+	.annotationEditorLayer .selectedEditor {
+		outline: var(--wppdf-emb-focus-outline);
+		resize: none;
+	}
+
+	.annotationEditorLayer .freeTextEditor {
+		position: absolute;
+		background: transparent;
+		border-radius: 3px;
+		padding: calc(
+			var(--wppdf-emb-freetext-padding) * var(--wppdf-emb-scale-factor)
+		);
+		resize: none;
+		width: auto;
+		height: auto;
+		z-index: 1;
+		transform-origin: 0 0;
+		touch-action: none;
+	}
+
+	.annotationEditorLayer .freeTextEditor .internal {
+		background: transparent;
+		border: none;
+		top: 0;
+		left: 0;
+		overflow: visible;
+		white-space: nowrap;
+		resize: none;
+		font: 10px sans-serif;
+		line-height: var(--wppdf-emb-freetext-line-height);
+	}
+
+	.annotationEditorLayer .freeTextEditor .overlay {
+		position: absolute;
+		display: none;
+		background: transparent;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.annotationEditorLayer .freeTextEditor .overlay.enabled {
+		display: block;
+	}
+
+	.annotationEditorLayer .freeTextEditor .internal:empty::before {
+		content: attr(default-content);
+		color: gray;
+	}
+
+	.annotationEditorLayer .freeTextEditor .internal:focus {
+		outline: none;
+	}
+
+	.annotationEditorLayer .inkEditor.disabled {
+		resize: none;
+	}
+
+	.annotationEditorLayer .inkEditor.disabled.selectedEditor {
+		resize: horizontal;
+	}
+
+	.annotationEditorLayer .freeTextEditor:hover:not(.selectedEditor),
+	.annotationEditorLayer .inkEditor:hover:not(.selectedEditor) {
+		outline: var(--wppdf-emb-hover-outline);
+	}
+
+	.annotationEditorLayer .inkEditor {
+		position: absolute;
+		background: transparent;
+		border-radius: 3px;
+		overflow: auto;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		transform-origin: 0 0;
+		cursor: auto;
+	}
+
+	.annotationEditorLayer .inkEditor.editing {
+		resize: none;
+		cursor: var(--wppdf-emb-editorInk-editing-cursor), pointer;
+	}
+
+	.annotationEditorLayer .inkEditor .inkEditorCanvas {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		touch-action: none;
+	}
+}
+
+@media (forced-colors: active) {
+	#wppdf-iframe-body {
+		.annotationLayer .textWidgetAnnotation input:required,
+		.annotationLayer .textWidgetAnnotation textarea:required,
+		.annotationLayer .choiceWidgetAnnotation select:required,
+		.annotationLayer .buttonWidgetAnnotation.checkBox input:required,
+		.annotationLayer .buttonWidgetAnnotation.radioButton input:required {
+			outline: 1.5px solid selectedItem;
+		}
+	}
+}

@@ -1,0 +1,104 @@
+#wppdf-iframe-body {
+
+	.textLayer {
+		position: absolute;
+		text-align: initial;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		overflow: hidden;
+		opacity: 0.2;
+		line-height: 1;
+		-webkit-text-size-adjust: none;
+		-moz-text-size-adjust: none;
+		text-size-adjust: none;
+		forced-color-adjust: none;
+		.highlight {
+			margin: -1px;
+			padding: 1px;
+			background-color: rgba(180, 0, 170, 1);
+			border-radius: 4px;
+
+			&.appended {
+				position: initial;
+			}
+			&.begin {
+				border-radius: 4px 0 0 4px;
+			}
+			&.end {
+				border-radius: 0 4px 4px 0;
+			}
+			&.middle {
+				border-radius: 0;
+			}
+			&.selected {
+				background-color: rgba(0, 100, 0, 1);
+			}
+			& ::-moz-selection {
+				background: rgba(0, 0, 255, 1);
+			}
+			& ::selection {
+				background: rgba(0, 0, 255, 1);
+			}
+
+		}
+		span,
+		br {
+			color: transparent;
+			position: absolute;
+			white-space: pre;
+			cursor: text;
+			transform-origin: 0% 0%;
+			&::-moz-selection {
+				background: transparent;
+			}
+			&::selection {
+				background: transparent;
+			}
+		}
+		span.markedContent {
+			top: 0;
+			height: 0;
+		}
+		.endOfContent {
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 100%;
+			right: 0;
+			bottom: 0;
+			z-index: -1;
+			cursor: default;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+			&.active {
+				top: 0;
+			}
+		}
+	}
+	.xfaLayer {
+		.highlight {
+			margin: -1px;
+			padding: 1px;
+			background-color: rgba(239, 203, 237, 1);
+			border-radius: 4px;
+			&.appended {
+				position: initial;
+			}
+			&.begin {
+				border-radius: 4px 0 0 4px;
+			}
+			&.end {
+				border-radius: 0 4px 4px 0;
+			}
+			&.middle {
+				border-radius: 0;
+			}
+			&.selected {
+				background-color: rgba(203, 223, 203, 1);
+			}
+		}
+	}
+}
