@@ -1,0 +1,27 @@
+{
+  "name": "aten/wordpress-starter",
+  "description": "Aten Wordpress Starter composer controlled plugin packages",
+  "type": "project",
+  "license": "MIT",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type":"composer",
+      "url":"https://connect.advancedcustomfields.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "wpackagist-plugin/custom-post-type-ui": "^1.13",
+    "wpengine/advanced-custom-fields-pro": "^6.1"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  }
+}

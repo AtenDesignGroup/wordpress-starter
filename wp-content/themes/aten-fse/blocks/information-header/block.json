@@ -1,0 +1,42 @@
+{
+  "name": "acf/information-header",
+  "title": "Information Header",
+  "active": true,
+  "description": "Custom Information header block for the Aten FSE theme: usage for Locations and Event post types",
+  "category": "common",
+  "icon": "feedback",
+  "keywords": [
+    "information",
+    "contact information",
+    "contact"
+  ],
+  "post_types": [
+    "post"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "information-header.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "inserter": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten-fse/assets/img/block-previews/information_header.svg"
+      }
+    }
+  }
+}

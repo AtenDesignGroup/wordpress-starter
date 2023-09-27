@@ -1,0 +1,112 @@
+// Search widget for utiity and main nav
+header {
+    .wp-block-search {
+        .wp-block-search__inside-wrapper {
+            border: rem(2px) solid var(--default-border-ci);
+            border-radius: rem(120px);
+            padding: rem(8px) rem(16px);
+    
+            @include bp-between(tablet, lgdesk) {
+                padding: rem(8px);
+            }
+        
+            input {
+                border: 0px!important;
+                @include font-body-14;
+                height: rem(24px);
+        
+                &::placeholder {
+                    color: var(--black);
+                    @include font-body-14;
+                    font-style: italic;
+                }
+    
+                &:focus,
+                &:active,
+                &:focus-within {
+                    outline: -webkit-focus-ring-color auto 1px;
+                }
+            }
+
+            input::-webkit-input-placeholder {
+                /* Chrome/Opera/Safari */
+                color: var(--wcag-placeholder)!important;
+              }
+            
+              input::-moz-placeholder { 
+                /* Firefox 19+ */
+                color: var(--wcag-placeholder)!important;
+              }
+            
+              input:-ms-input-placeholder {
+                /* IE 10+ */
+                color: var(--wcag-placeholder)!important;
+              }
+            
+              input:-moz-placeholder {
+                /* Firefox 18- */
+                color: var(--wcag-placeholder)!important;
+              }
+    
+            // Disabling Chrome iOS from populating its own icon set
+            input[type="search"]::-webkit-search-decoration,
+            input[type="search"]::-webkit-search-cancel-button,
+            input[type="search"]::-webkit-search-results-button,
+            input[type="search"]::-webkit-search-results-decoration {
+                display: none;
+            }
+        
+            button {
+                @include font-material-icons;
+                padding: 0;
+                background-color: var(--transparent);
+                color: var(--aten-green-dark);
+    
+                @include bp-min(smdesk) {
+                    margin-left: 0;
+                    font-size: rem(18px);
+                }
+            }
+        }
+    
+        @include bp-max(tablet) {
+            padding-bottom: rem(28px);
+            margin-bottom: rem(28px);
+            border-bottom: rem(2px) solid var(--cloud-grey);
+    
+            .wp-block-search__inside-wrapper {
+                padding: rem(6px) rem(24px);
+                align-items: center;
+    
+                input {
+                    font-size: rem(14px);
+    
+                    &::placeholder {
+                        font-size: rem(14px);
+                    }
+                }
+    
+                button {
+                    @include font-material-icons;
+                    color: var(--aten-green-dark);
+                    font-size: rem(20px);
+                    line-height: 1;
+                }
+            }
+        }
+    
+        @include bp-min(tablet) {
+            margin: 0 rem(48px);
+            flex-grow: 1;
+        }
+    
+        @include bp-min(smdesk) {
+            flex: 1 0 rem(190px);
+            margin: 0;
+        }
+    
+        @include bp-min(lgdesk) {
+            flex: 1 0 rem(260px);
+        }
+    }
+}
