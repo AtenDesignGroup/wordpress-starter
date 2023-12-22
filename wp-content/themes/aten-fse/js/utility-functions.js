@@ -1,0 +1,1 @@
+jQuery(document).ready(function(n){n.fn.convertElement=function(t){var e;n(this[0])&&null!=n(this[0])&&n(this[0]).length&&(e={},n.each(this[0].attributes,function(t,n){e[n.nodeName]=n.nodeValue}),this.replaceWith(function(){return n("<"+t+"/>",e).append(n(this).contents())}))}});

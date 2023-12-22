@@ -1,0 +1,177 @@
+.taxonomy_filter_loader {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 auto !important;
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0.7) url("../../icons/loading-big.gif") no-repeat center center;
+}
+
+.taxonomy_filter_container {
+    position: relative;
+    max-width: 624px;
+}
+
+.taxonomy_filter_container>div {
+    margin: 18px 0 0 0;
+}
+
+.taxonomy_filter_container fieldset {
+    line-height: initial !important;
+    padding-bottom: 12px !important;
+}
+
+.taxonomy_filter_container .taxonomy_filter_attributes {
+    display: grid;
+    grid-gap: 12px 24px;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: right;
+}
+
+.taxonomy_filter_container .taxonomy_filter_attributes label {
+    margin: 0 !important;
+}
+
+.taxonomy_filter_container .taxonomy_filter_attributes>fieldset {
+    grid-column: 1/-1;
+    text-align: left;
+}
+
+.taxonomy_filter_fields .connectedSortable span.taxonomy_filter_mode_label_included,
+.taxonomy_filter_fields .connectedSortable span.taxonomy_filter_mode_label_excluded {
+    color: #626262;
+    font-size: 14px;
+    line-height: 24px;
+    display: block;
+    border-bottom: 1px solid #d3d3d3;
+    margin-bottom: 12px;
+}
+
+.taxonomy_filter_container .taxonomy_filter_fields {
+    display: grid;
+    grid-gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+.taxonomy_filter_container .taxonomy_filter_fields .connectedSortable {
+    float: none !important;
+}
+.taxonomy_filter_container li.ui-draggable {
+    position: relative;
+}
+.taxonomy_filter_container li.ui-draggable .taxonomy_filter_remove {
+    position: absolute;
+    opacity: 0;
+    color: #ff3f3f;
+    top: 4px;
+    right: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.taxonomy_filter_container li.ui-draggable:hover .taxonomy_filter_remove {
+    opacity: 1;
+}
+
+.taxonomy_filter_container li.ui-draggable[term_level="1"] {
+    margin-left: 12px !important;
+}
+
+.taxonomy_filter_container li.ui-draggable[term_level="2"] {
+    margin-left: 24px !important;
+}
+
+.taxonomy_filter_container li.ui-draggable[term_level="3"] {
+    margin-left: 36px !important;
+}
+
+.taxonomy_filter_container li.ui-draggable[term_level="4"],
+.taxonomy_filter_container li.ui-draggable[term_level="5"],
+.taxonomy_filter_container li.ui-draggable[term_level="6"] {
+    margin-left: 36px !important;
+}
+
+.draggablecontainer ul#taxonomy_draggable label.taxonomy_draggable_search {
+    margin: 0 0 7px 0;
+    background: none;
+    border: none;
+    padding: 0;
+    width: 100%;
+    height: 32px;
+    position: relative;
+}
+
+.draggablecontainer ul#taxonomy_draggable label.taxonomy_draggable_search input {
+    width: 100%;
+    max-width: initial !important;
+    margin: 0;
+    padding: 0 12px 0 28px;
+    line-height: inherit;
+    height: 32px;
+    background: white;
+}
+
+.draggablecontainer ul#taxonomy_draggable label.taxonomy_draggable_search .fa {
+   position: absolute;
+   font-size: 14px;
+   top: 9px;
+   left: 9px;
+}
+
+.sortablecontainer ul#taxonomy_sortable.taxonomy_filter_exclude .wd_plain,
+.sortablecontainer ul#taxonomy_sortable[noncheckbox] .wd_plain {
+    display: none !important;
+}
+
+.sortablecontainer ul#taxonomy_sortable .wd_sort_visible .wd_plain {
+    line-height: initial;
+    margin: 0 8px 0 0;
+}
+
+#wd_frontfilters_modules div#taxonomy_filter_container.taxonomy_filter_container fieldset label {
+    display: inline-block;
+    margin: 12px 0 0 12px;
+}
+
+.taxonomy_filter_search_res li {
+    display: inline-block !important;
+    margin: 12px 12px 0 12px;
+    color: #2492ff;
+    cursor: pointer;
+}
+
+.taxonomy_filter_search_res li:hover {
+    color: #ff2323;
+}
+
+.taxonomy_filter_dm {
+    position: relative;
+    margin-top: 6px;
+}
+
+.taxonomy_filter_dm::before {
+    content: ' ';
+    position: absolute;
+    top: 2px;
+    left: 0;
+    display: block;
+    width: 100%;
+    background: #e5e5e5;
+    height: 1px;
+}
+
+.taxonomy_filter_selected {
+    color: red;
+}
+
+.taxonomy_filter_selected .fa {
+    margin: 0 6px;
+    cursor: pointer;
+}

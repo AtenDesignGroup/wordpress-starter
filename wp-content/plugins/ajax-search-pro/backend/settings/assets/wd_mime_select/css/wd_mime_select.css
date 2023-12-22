@@ -1,0 +1,18 @@
+.wd_MimeTypeSelect span.mime_input_hide,
+.wd_MimeTypeSelect span.mime_list_hide {
+    color: #2d84b9;
+    cursor: pointer;
+    vertical-align: top;
+    padding: 6px 0;
+    display: inline-block;
+}
+
+.wd_MimeTypeSelect .file_mime_types_list .select2.select2-container {
+    width: auto !important;
+    max-width: 380px;
+    min-width: 200px;
+}
+
+.wd_MimeTypeSelect  .select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: 1px solid #aaa;
+}

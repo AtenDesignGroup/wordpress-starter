@@ -1,0 +1,22 @@
+{
+  "name": "acf/contact-info",
+  "title": "Location Contact Information",
+  "description": "A custom contact information block.",
+  "style": [ "file:./contact-info.css" ],
+  "category": "formatting",
+  "icon": "admin-comments",
+  "keywords": ["contact information", "contact"],
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "contact-info.php"
+  },
+  "align": "full",
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten-fse/assets/img/block-previews/contact_info.svg"
+      }
+    }
+  }
+}

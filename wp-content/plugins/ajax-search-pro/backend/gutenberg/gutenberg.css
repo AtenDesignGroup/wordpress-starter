@@ -1,0 +1,26 @@
+.wp-block-ajax-search-pro-block-asp-main,
+.wp-block-ajax-search-pro-block-asp-main form select {
+    font-size: 13px;
+}
+
+.wp-block-ajax-search-pro-block-asp-main {
+    padding: 14px;
+    background-color: #f8f9f9;
+}
+
+.wp-block-ajax-search-pro-block-asp-main label {
+    margin-right: 16px;
+    white-space: nowrap;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.wp-block-ajax-search-pro-block-asp-main select {
+    margin-left: 12px;
+    max-width: 170px;
+}
+
+.wp-block-ajax-search-pro-block-asp-main form {
+    vertical-align: middle;
+    line-height: 36px;
+}

@@ -1,0 +1,137 @@
+#wpdreams .greenMsg {
+    color: #1a772c;
+    padding: 5px 7px;
+    margin: 5px;
+    border: 1px solid #eee;
+    font-size: 12px !important;
+    background: #f1fff1;
+    border-radius: 2px;
+}
+
+#wpd_white_fixed_bg {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.85);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+}
+
+.highlight_over_bg {
+    z-index: 9999999;
+    position: relative;
+    border-width: 1px !important;
+    border-style: solid dashed !important;
+    border-color: grey !important;
+}
+
+/* SEARCH button and RESET button back-end */
+#fe_search_button,
+#fe_reset_button {
+    position: relative;
+}
+
+#fe_search_button fieldset legend:first-child,
+#fe_reset_button fieldset legend:first-child {
+    padding: 0 0 0 12px;
+}
+
+#fe_search_button .wd_an_inputs,
+#fe_reset_button .wd_an_inputs {
+    width: 50%;
+}
+
+#fe_search_button .wd_an_inputs:first-child,
+#fe_reset_button .wd_an_inputs:first-child {
+    margin: 0 6px 0 0;
+}
+
+#fe_search_button .wd_an_inputs:last-child,
+#fe_reset_button .wd_an_inputs:last-child {
+    margin: 0 0 0 6px;
+}
+
+#fe_sb_preview,
+#fe_rb_preview {
+    position: absolute;
+    top: 48px;
+    left: 48px;
+    width: 240px;
+    background: white;
+    height: 100px;
+    border: 1px dashed #e7e7e7;
+    line-height: 100px;
+}
+
+#wpdreams .wd_TaxonomyTermSelect .wd_tts_disp_m_popup:after {
+    left: -21px;
+    border-right-color: #2F97D6;
+    border-left-color: transparent;
+    top: 62px;
+}
+
+#fe_sb_preview button.asp_search_btn.asp_s_btn,
+#fe_rb_preview button.asp_reset_btn.asp_r_btn {
+    display: inline-block;
+    vertical-align: center;
+    outline: 0;
+}
+
+#fe_sb_popup,
+#fe_rb_popup {
+    position: absolute;
+    background: #ffffff;
+    border: 1px solid rgb(219, 219, 219);
+    width: 368px;
+    max-height: 320px;
+    left: 300px;
+    z-index: 999999;
+    padding: 16px 0 16px 16px;
+    box-sizing: border-box;
+    box-shadow: -2px 2px 22px -2px rgba(0, 0, 0, 0.22);
+    text-align: left;
+}
+
+#fe_sb_popup:after,
+#fe_rb_popup:after {
+    border: solid rgba(221, 221, 221, 0);
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-width: 10px;
+    margin-top: -10px;
+    left: -21px;
+    border-right-color: #2F97D6;
+    border-left-color: transparent;
+    top: 62px;
+}
+
+#fe_sb_trigger,
+#fe_rb_trigger {
+    position: absolute;
+    top: 90px;
+    left: 304px;
+}
+
+#fe_sb_popup>div,
+#fe_rb_popup>div {
+    float: left;
+    padding: 5px;
+    text-align: center;
+    transition: transform 0.05s linear;
+}
+
+#fe_sb_popup>div button,
+#fe_rb_popup>div button {
+    cursor: pointer;
+}
+
+#fe_sb_popup>div:hover,
+#fe_rb_popup>div:hover {
+    transform: scale(1.05);
+}

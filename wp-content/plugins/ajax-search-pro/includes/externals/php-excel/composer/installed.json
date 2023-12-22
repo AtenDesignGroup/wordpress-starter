@@ -1,0 +1,50 @@
+{
+    "packages": [
+        {
+            "name": "asan/phpexcel",
+            "version": "v2.0.1",
+            "version_normalized": "2.0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Janson-Leung/PHPExcel.git",
+                "reference": "07ddc15b44c1f3ee967ded35cffeab5fec49a215"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Janson-Leung/PHPExcel/zipball/07ddc15b44c1f3ee967ded35cffeab5fec49a215",
+                "reference": "07ddc15b44c1f3ee967ded35cffeab5fec49a215",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "time": "2018-07-23T01:42:26+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Asan\\PHPExcel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Janson Leung",
+                    "homepage": "https://github.com/Janson-Leung"
+                }
+            ],
+            "description": "A lightweight PHP library for reading spreadsheet files",
+            "homepage": "https://github.com/Janson-Leung/PHPExcel",
+            "support": {
+                "issues": "https://github.com/Janson-Leung/PHPExcel/issues",
+                "source": "https://github.com/Janson-Leung/PHPExcel/tree/master"
+            },
+            "install-path": "../asan/phpexcel"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

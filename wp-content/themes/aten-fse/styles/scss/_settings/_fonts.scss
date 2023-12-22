@@ -1,0 +1,188 @@
+// The following custom property naming conventions are inspired by
+// "Naming Tokens in Design Systems" by Nathan Curtis
+// https://medium.com/eightshapes-llc/naming-tokens-in-design-systems-9e86c7444676
+// These default values are intended to be mofified and extended to suite the needs
+// of an individual project.
+
+:root {
+  //Font: Families
+  --font-family-mono: monospace;
+  --font-family-sans: "IBM Plex Sans", "Helvetica", sans-serif;
+  --font-family-serif: serif;
+  --font-family-icons: "Material Symbols Outlined";
+  --font-family-default: var(--font-family-sans);
+
+  // Font Line Height
+  // Styles that stop changing line height are not included in next breakpoint
+
+  // Breakpoints min 0<=768px (mobile)
+  @include bp-min(mobile) {
+    --font-line-height-h1: 136%;
+    --font-line-height-h2: 145%;
+    --font-line-height-h3: 156%;
+    --font-line-height-h4: 175%;
+    --font-line-height-h5: 170%;
+    --font-line-height-h6: 170%;
+
+    --font-line-height-body-20: 150%;
+    --font-line-height-body-18: 157%;
+    --font-line-height-body-16: 157%;
+    --font-line-height-body-14: 142%;
+
+    --font-line-height-label-20: 162%;
+    --font-line-height-label-18: 171%;
+    --font-line-height-label-16: 171%;
+    --font-line-height-label-14: 183%;
+    --font-line-height-label-12: 183%;
+  }
+  // Breakpoints between 769px<=1023px (tablet)
+  @include bp-min(tablet) {
+    --font-size-h1: 129%;
+    --font-size-h2: 128%;
+    --font-size-h3: 133%;
+    --font-size-h4: 150%;
+    --font-size-h5: 160%;
+    --font-size-h6: 160%;
+
+    --font-letter-spacing-h2-stylized: #{rem(6px)};
+
+    --font-size-body-20: 156%;
+    --font-size-body-18: 150%;
+    --font-size-body-16: 150%;
+    --font-size-body-14: 157%;
+
+    --font-size-label-20: 144%;
+    --font-size-label-18: 162%;
+    --font-size-label-16: 171%;
+    --font-size-label-14: 171%;
+
+    --font-size-small: var(--font-size-body-14);
+    --font-size-medium: var(--font-size-body-16);
+    --font-size-large: var(--font-size-body-18);
+    --font-size-xlarge: var(--font-size-body-20);
+  }
+  // Breakpoints between 1024px<=1199px (small desktop)
+  @include bp-min(smdesk) {
+    --font-size-h1: 112%;
+    --font-size-h2: 125%;
+    --font-size-h4: 145%;
+    --font-size-h5: 150%;
+    --font-size-h6: 150%;
+
+    --font-size-body-20: 18px;
+    --font-size-body-18: 156%;
+
+    --font-size-label-20: 144%;
+    --font-size-label-18: 162%;
+    --font-size-label-16: 162%;
+
+    --font-size-large: var(--font-size-body-18);
+    --font-size-xlarge: var(--font-size-body-20);
+  }
+  // Breakpoints 1200px+ (medium & large desktop)
+  @include bp-min(mddesk) {
+    --font-size-h1: 115%;
+    --font-size-h3: 150%;
+
+    --font-size-body-20: 150%;
+
+    --font-size-label-20: 140%;
+    --font-size-label-18: 144%;
+
+    --font-size-xlarge: var(--font-size-body-20);
+  }
+
+  // Font: Sizes
+  // Styles that stop changing size are not included in next breakpoint
+
+  // Breakpoints min 0<=768px (mobile)
+  @include bp-min(mobile) {
+    --font-size-h1: #{rem(28px)};
+    --font-size-h2: #{rem(22px)};
+    --font-size-h3: #{rem(18px)};
+    --font-size-h4: #{rem(16px)};
+    --font-size-h5: #{rem(14px)};
+    --font-size-h6: #{rem(14px)};
+
+    --font-size-body-20: #{rem(16px)};
+    --font-size-body-18: #{rem(14px)};
+    --font-size-body-16: #{rem(14px)};
+    --font-size-body-14: #{rem(12px)};
+
+    --font-size-label-20: #{rem(16px)};
+    --font-size-label-18: #{rem(14px)};
+    --font-size-label-16: #{rem(14px)};
+    --font-size-label-14: #{rem(12px)};
+    --font-size-label-12: #{rem(12px)};
+
+    --font-size-small: var(--font-size-body-14);
+    --font-size-medium: var(--font-size-body-16);
+    --font-size-large: var(--font-size-body-18);
+    --font-size-xlarge: var(--font-size-body-20);
+  }
+  // Breakpoints between 769px<=1023px (tablet)
+  @include bp-min(tablet) {
+    --font-size-h1: #{rem(48px)};
+    --font-size-h2: #{rem(36px)};
+    --font-size-h3: #{rem(24px)};
+    --font-size-h4: #{rem(20px)};
+    --font-size-h5: #{rem(18px)};
+    --font-size-h6: #{rem(16px)};
+
+    --font-size-body-20: #{rem(18px)};
+    --font-size-body-18: #{rem(16px)};
+    --font-size-body-16: #{rem(16px)};
+    --font-size-body-14: #{rem(14px)};
+
+    --font-size-label-20: #{rem(18px)};
+    --font-size-label-18: #{rem(16px)};
+    --font-size-label-16: #{rem(16px)};
+    --font-size-label-14: #{rem(14px)};
+    --font-size-label-12: #{rem(12px)};
+
+    --font-size-small: var(--font-size-body-14);
+    --font-size-medium: var(--font-size-body-16);
+    --font-size-large: var(--font-size-body-18);
+    --font-size-xlarge: var(--font-size-body-20);
+  }
+  // Breakpoints between 1024px<=1199px (small desktop)
+  @include bp-min(smdesk) {
+    --font-size-h1: #{rem(64px)};
+    --font-size-h2: #{rem(36px)};
+    --font-size-h3: #{rem(24px)};
+    --font-size-h4: #{rem(22px)};
+    --font-size-h5: #{rem(20px)};
+
+    --font-size-body-20: #{rem(18px)};
+    --font-size-body-18: #{rem(18px)};
+
+    --font-size-label-20: #{rem(18px)};
+    --font-size-label-18: #{rem(16px)};
+    --font-size-label-16: #{rem(16px)};
+
+    --font-size-large: var(--font-size-body-18);
+    --font-size-xlarge: var(--font-size-body-20);
+  }
+  // Breakpoints 1200px+ (medium & large desktop)
+  @include bp-min(mddesk) {
+    --font-size-h1: #{rem(80px)};
+    --font-size-h2: #{rem(40px)};
+    --font-size-h3: #{rem(28px)};
+
+    --font-size-body-20: #{rem(20px)};
+
+    --font-size-label-20: #{rem(20px)};
+    --font-size-label-18: #{rem(18px)};
+
+    --font-size-xlarge: var(--font-size-body-20);
+  }
+
+  //Font: Weight
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+}

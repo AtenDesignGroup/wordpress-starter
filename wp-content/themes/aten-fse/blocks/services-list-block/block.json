@@ -1,0 +1,43 @@
+{
+  "name": "services-list-block",
+  "title": "Services List Block",
+  "active": true,
+  "description": "a block to display up to 10 services in a grid\/list format",
+  "category": "common",
+  "icon": "feedback",
+  "keywords": [
+    "Popular Services",
+    "services",
+    "popular"
+  ],
+  "post_types": [
+    "page"
+  ],
+  "mode": "edit",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "services-list-block.php"
+  },
+  "enqueue_style": "",
+  "enqueue_script": "",
+  "enqueue_assets": "",
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten-fse/assets/img/block-previews/services_list_block.svg"
+      }
+    }
+  }
+}

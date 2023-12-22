@@ -1,0 +1,11 @@
+.components-button[aria-label="Heading 1"],
+.components-button[aria-label="Add text over image"] {
+    display: none;
+}
+
+.components-button[aria-label="Inline - White"],
+.components-button[aria-label="Inline - Blue"],
+.components-button[aria-label="Inline Large - White"],
+.components-button[aria-label="Inline Large - Blue"] {
+    width: 100%;
+}

@@ -1,0 +1,48 @@
+{
+  "name": "accent-text-block",
+  "title": "Accent Text Block",
+  "active": true,
+  "description": "A block to allow colored backgrounds for text fields",
+  "category": "common",
+  "icon": "megaphone",
+  "keywords": [
+    "accent",
+    "colored block",
+    "background color",
+    "colored"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "news",
+    "location",
+    "tribe_events"
+  ],
+  "mode": "edit",
+  "align": "",
+  "align_text": "",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "accent-text-block.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten-fse/assets/img/block-previews/accent_text_block.svg"
+      }
+    }
+  }
+}

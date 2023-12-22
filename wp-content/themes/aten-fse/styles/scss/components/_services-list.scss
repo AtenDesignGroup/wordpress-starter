@@ -1,0 +1,163 @@
+// Services List Block styles
+.services-list-block {
+
+    .services-list-block-component.l-full {
+        padding: rem(24px) rem(6px);
+
+        &:before {
+            background-color: var(--aten-blue-light);
+            width: calc(100vw + rem(15px));
+
+            @include bp-min(tablet) {
+                width: calc(100vw + rem(40px));
+            }
+        
+            @include bp-min(smdesk) {
+                width: calc(100vw + rem(60px));
+            }
+        
+            @include bp-min(lgdesk) {
+                width: 100vw;
+                left: 0;
+            }
+        }
+
+        @include bp-min(tablet) {
+            padding: rem(113px) 0 rem(63px);
+        
+            &:before {
+                background-color: var(--aten-blue-light);
+                background-image: url('../aten-fse/assets/img/services_swishies.svg');
+                background-size: 100% auto;
+                background-repeat: no-repeat;
+                background-position: center center;
+                opacity: 0.5;
+            }
+            
+        }
+
+        @include bp-min(tablet) {
+            padding: rem(129px) 0 rem(80px);
+        }
+
+        @include bp-min(tablet) {
+            padding: rem(120px) 0 rem(104px);
+        }
+    }
+
+    h2 {
+        @include font-h2;
+        font-weight: var(--font-weight-bold);
+        margin-bottom: rem(16px);
+
+        @include bp-min(tablet) {
+            margin-bottom: rem(32px);
+        }
+
+        @include bp-min(mddesk) {
+            margin-bottom: rem(60px);
+        }
+    }
+
+    h3 {
+        @include font-h4;
+        font-weight: var(--font-weight-bold);
+        line-height: 1.45;
+    }
+
+    .link-icon {
+        @include font-material-icons;
+        font-size: rem(18px);
+        height: rem(28px);
+        width: rem(28px);
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--aten-yellow);
+        color: var(--black);
+        text-indent: 0;
+        transition: all 0.3s ease;
+
+        @include bp-min(tablet) {
+            height: rem(48px);
+            width: rem(48px);
+            font-size: rem(24px);
+        }
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: rem(16px);
+
+        @include bp-min(tablet) {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: rem(32px) rem(30px);
+            justify-content: center;
+        }
+
+        @include bp-min(mddesk) {
+            gap: rem(60px) rem(30px);
+        }
+
+        li {
+            @include bp-min(tablet) {
+                width: calc(33.3% - rem(20px));
+                text-align: center;
+            }
+
+            @include bp-min(smdesk) {
+                width: calc(25% - rem(24px));
+            }
+
+            @include bp-min(lgdesk) {
+                width: calc(20% - rem(24px));
+            }
+
+            & > a {
+                display: inline-flex;
+                align-items: center;
+                text-decoration: none;
+                gap: 12px;
+        
+                &:hover,
+                &:focus {
+                    .link-icon {
+                        background-color: var(--aten-yellow-light);
+                    }
+
+                    h3 {
+                        text-decoration: underline;
+                    }
+                }
+        
+                @include bp-min(tablet) {
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+
+    &.flush-with-header {
+        position: relative;
+        z-index: 1;
+        margin-top: rem(-40px);
+
+        @include bp-min(tablet) {
+            margin-top: rem(-100px);
+        }
+
+        @include bp-min(smdesk) {
+            margin-top: rem(-120px);
+        }
+
+        @include bp-min(mddesk) {
+            margin-top: rem(-160px);
+        }
+    }
+}

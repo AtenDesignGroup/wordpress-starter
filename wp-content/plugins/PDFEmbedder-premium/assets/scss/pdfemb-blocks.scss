@@ -1,0 +1,39 @@
+.wp-block-pdfemb-pdf-embedder-viewer {
+	max-width: none;
+}
+.pdf-print-button-gb {
+	label {
+		background: url('../img/pdf/toolbarButton-print.svg') no-repeat right;
+		padding-right: 20px;
+	}
+}
+.pdf-external-button-gb {
+	label {
+		padding-right: 20px;
+	}
+}
+.pdf-search-button-gb {
+	label {
+		background: url('../img/pdf/toolbarButton-search.svg') no-repeat right;
+		padding-right: 20px;
+	}
+}
+.pdf-download-button-gb {
+	label {
+		background: url('../img/pdf/toolbarButton-download.svg') no-repeat right;
+		padding-right: 20px;
+	}
+}
+.pdf-bookmark-button-gb {
+	label {
+		background: url('../img/pdf/toolbarButton-bookmark.svg') no-repeat right;
+		padding-right: 20px;
+	}
+}
+.pdf-presentation-button-gb {
+	label {
+		background: url('../img/pdf/toolbarButton-presentationMode.svg')
+			no-repeat right;
+		padding-right: 20px;
+	}
+}

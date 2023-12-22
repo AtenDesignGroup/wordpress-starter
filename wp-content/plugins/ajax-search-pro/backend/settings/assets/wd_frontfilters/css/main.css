@@ -1,0 +1,288 @@
+#wd_frontfilters .wd_frontfilters_2_column {
+    display: grid;
+    grid-gap: 0 24px;
+    grid-template-columns: auto auto;
+    align-items: start;
+    width: auto;
+    margin: 18px 0 0 0;
+}
+
+#wd_frontfilters .wd_ff_invalid {
+    box-shadow: 0 0 3px 1px #ff2c2c !important;
+}
+
+#wd_frontfilters .wd_ff_desc_left,
+#wd_frontfilters .wd_ff_desc_right {
+    text-align: left;
+    padding: 6px 0 0 12px;
+    border-radius: 3px;
+    color: #979797;
+    font-size: 12px !important;
+}
+
+#wd_frontfilters .wd_ff_desc_right {
+    text-align: right;
+}
+
+#wd_frontfilters .wd_frontfilters_2_column>div {
+      /* flex-grow: 1; */
+      /* flex-shrink: 1; */
+      /* flex-basis: 40%; */
+      margin: initial;
+      max-width: 320px;
+}
+
+#wd_frontfilters_more_options {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    background: white;
+    z-index: 999999999999999999999999;
+    box-shadow: 0px 10px 5px #7b7b7b;
+}
+
+#wd_frontfilters .wd_frontfilters_btn,
+#wd_frontfilters input.wd_frontfilters_btn {
+    display: inline-block;
+    background: #f7f7f7;
+    color: #555555;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    text-shadow: none;
+    padding: 0px 14px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s;
+    line-height: 25px;
+    margin: 0 0 0 12px;
+}
+
+#wd_frontfilters .wd_frontfilters_btn.wd_frontfilters_btn_blue {
+    background: #2492ff;
+    color: #FFF;
+    border: 1px solid #0e7ae4;
+}
+
+#wd_frontfilters .wd_frontfilters_btn.wd_frontfilters_btn_red {
+    background: #ff3f3f;
+    color: #FFF;
+    border: 1px solid #fe1e1e;
+}
+
+#wd_frontfilters #wd_frontfilter_columns {
+    display: flex;
+    flex-wrap: nowrap;
+    /* justify-content: stretch; */
+    margin: 12px 0 0;
+    column-gap: 12px;
+    width: 100%;
+}
+
+#wd_frontfilters #wd_frontfilter_columns .wd_frontfilters_column {
+    min-height: 220px;
+    overflow: auto;
+    padding: 10px;
+    border: 1px solid #DBDBDB;
+    background-color: #efefef;
+    flex: 1 1 0px;
+}
+
+#wd_frontfilter_columns .wd_frontfilters_add_filter::before {
+    content: '+ ';
+}
+#wd_frontfilter_columns .wd_frontfilters_add_filter {
+    cursor: pointer;
+    font-size: 13px;
+    color: #2492ff;
+    padding: 6px;
+    text-align: center;
+    transition: color 0.3s;
+}
+#wd_frontfilter_columns .wd_frontfilters_add_filter:hover {
+    color: #ff2497;
+}
+
+#wd_frontfilter_columns .wd_frontfilters_filter {
+    position: relative;
+    cursor: move;
+    text-align: center;
+    border: 1px solid #dbdbdb;
+    background: white;
+    padding: 6px;
+    transition: border,color 0.2s;
+    margin-bottom: 4px;
+}
+
+#wd_frontfilter_columns .wd_frontfilters_filter span.fa {
+    opacity: 0;
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    margin-top: -6px;
+    color: #2492ff;
+    transition: opacity 0.2s;
+}
+
+#wd_frontfilter_columns .wd_frontfilters_filter .wd_ff_filter_title {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 14em;
+}
+
+#wd_frontfilter_columns .wd_frontfilters_filter:hover span.fa {
+    opacity: 1;
+    cursor: pointer;
+}
+
+#wd_frontfilter_columns .wd_frontfilters_filter:hover {
+    border: 1px solid #68b4ff;
+    color: #e6e6e6;
+}
+
+#wd_frontfilters_new_filter_container,
+#wd_frontfilters_modules_container {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: none;
+    justify-content: center;
+    align-items: start;
+    position: fixed;
+    z-index: 99999999999;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.6);
+    transition: opacity 0.15s linear;
+}
+
+#wd_frontfilters h1,
+#wd_frontfilters_modules_container h1 {
+    padding: 0;
+    margin: 0;
+    font-size: 24px;
+}
+
+#wd_frontfilters_modules_container #wd_frontfilters_modules fieldset {
+    margin: 5px 0 20px;
+}
+
+#wd_frontfilters_modules_container #wd_frontfilters_modules div>label:first-of-type {
+    margin-left: 0;
+}
+
+#wd_frontfilters_modules_container #wd_frontfilters_modules div>label:last-of-type {
+    margin-right: 0;
+}
+
+#wd_frontfilters_modules_container #wd_frontfilters_modules select:last-of-type,
+#wd_frontfilters_modules_container #wd_frontfilters_modules input:last-of-type {
+    margin-right: 0;
+}
+
+/* Elementor and other garbage messages injected after h1 */
+#wd_frontfilters_new_filter h1 + div:not(.wd_frontfilters_new_filter) {
+    display: none !important;
+}
+
+#wd_frontfilters_new_filter,
+#wd_frontfilters_modules {
+    background: white;
+    transition: opacity 0.15s linear;
+    border-radius: 2px;
+    box-shadow: 0 2px 44px rgba(0, 0, 0, 0.46);
+    max-height: 77vh;
+    overflow: auto;
+    padding: 24px;
+    margin: initial;
+    margin-top: 10vh;
+}
+
+#wd_frontfilters_modules .wd_frontfilters_modules_buttons {
+    margin: 18px 0 0 0;
+}
+
+#wd_frontfilters_new_filter .wd_frontfilters_new_filter {
+    cursor: pointer;
+    display: flex;
+    line-height: 24px;
+    padding: 8px;
+    align-items: flex-start;
+    border: 1px solid transparent;
+    transition: border 0.2s;
+}
+
+#wd_frontfilters_new_filter .wd_frontfilters_new_filter:not([disabled]):hover {
+    border: 1px solid #68b4ff;
+}
+
+#wd_frontfilters_new_filter .wd_frontfilters_new_filter img {
+    width: 24px;
+    flex-grow: 0;
+    margin: initial;
+}
+
+#wd_frontfilters_new_filter .wd_frontfilters_new_filter span {
+    line-height: 24px;
+    flex-grow: 0;
+    margin: initial;
+    text-indent: 12px;
+}
+
+#wd_frontfilters_new_filter .wd_frontfilters_new_filter[disabled] {
+    opacity: 0.5;
+}
+
+#wd_frontfilters_modules_container label.wd_ff_title_label input[type=text] {
+    max-width: 160px;
+}
+
+/***********************************************************************************************************************
+ Sortable/draggable styles
+***********************************************************************************************************************/
+#wd_frontfilters_modules .draggablecontainer label:not(.wd_plain) {
+    background: none repeat scroll 0 0 #EAEAEA;
+    border-radius: 3px 3px 0 0;
+    border-top: 1px solid #EAEAEA;
+    box-shadow: 0 1px 0 #F4F4F4 inset;
+    color: #666666;
+    display: inline-block;
+    font-size: 12px;
+    height: 20px;
+    line-height: 21px;
+    margin-bottom: 0;
+    margin-left: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    text-shadow: 1px 1px 0 #FFFFFF;
+}
+
+#wd_frontfilters_modules .sortablecontainer label.wd_plain {
+    line-height: 24px;
+}
+
+#wd_frontfilters_modules .sortablecontainer li .wd_drag_visible{
+    display: none;
+}
+
+#wd_frontfilters_modules .draggablecontainer li .wd_sort_visible {
+    display: none;
+}
+
+#wd_frontfilters .draggablecontainer,
+#wd_frontfilters .sortablecontainer {
+    width: 300px;
+    margin: 0;
+    float: none;
+}
+
+#wd_frontfilters .sortablecontainer input[type="text"] {
+    width: 95% !important;
+}

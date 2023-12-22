@@ -1,0 +1,93 @@
+#wpdreams .ac-container{
+    width: 720px;
+    margin: 10px auto 30px auto;
+    text-align: left;
+}
+#wpdreams .ac-container>div>label{
+    padding: 5px 20px;
+    position: relative;
+    z-index: 20;
+    display: block;
+    height: 30px;
+    cursor: pointer;
+    color: #777;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+    line-height: 33px;
+    font-size: 14px;
+    background: #fcfcfc; /* Old browsers */
+    background: -moz-linear-gradient(top,  #fcfcfc 0%, #fcfcfc 50%, #f9f9f9 54%, #fafafa 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcfcfc), color-stop(50%,#fcfcfc), color-stop(54%,#f9f9f9), color-stop(100%,#fafafa)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #fcfcfc 0%,#fcfcfc 50%,#f9f9f9 54%,#fafafa 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #fcfcfc 0%,#fcfcfc 50%,#f9f9f9 54%,#fafafa 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #fcfcfc 0%,#fcfcfc 50%,#f9f9f9 54%,#fafafa 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #fcfcfc 0%,#fcfcfc 50%,#f9f9f9 54%,#fafafa 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#fafafa',GradientType=0 ); /* IE6-9 */
+
+    box-shadow:
+        0px 0px 0px 1px rgba(155,155,155,0.3),
+        1px 0px 0px 0px rgba(255,255,255,0.9) inset,
+        0px 2px 2px rgba(0,0,0,0.1);
+}
+#wpdreams .ac-container>label:hover{
+    background: #fff;
+}
+#wpdreams .ac-container>div>input:checked + label,
+#wpdreams .ac-container>div>input:checked + label:hover{
+    background: #c6e1ec;
+    color: #3d7489;
+    text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
+    box-shadow:
+        0px 0px 0px 1px rgba(155,155,155,0.3),
+        0px 2px 2px rgba(0,0,0,0.1);
+}
+#wpdreams .ac-container>div>label:hover:after,
+#wpdreams .ac-container>div>input:checked + label:hover:after{
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 13px;
+    top: 7px;
+    background: transparent url(../images/arrow_down.png) no-repeat center center;
+}
+#wpdreams .ac-container>div>input:checked + label:hover:after{
+    background-image: url(../images/arrow_up.png);
+}
+#wpdreams .ac-container>div>input{
+    display: none;
+}
+#wpdreams .ac-container>div article{
+    background: rgba(255, 255, 255, 0.5);
+    margin-top: -1px;
+    overflow: hidden;
+    height: 0px;
+    position: relative;
+    z-index: 10;
+    -webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    -moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    -o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    -ms-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+    transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+}
+
+#wpdreams .ac-container input:checked ~ article{
+    -webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    -moz-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    -o-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    -ms-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
+    width: 690px;
+}
+#wpdreams .ac-container div>input:checked ~ article.ac-auto {
+    height: auto;
+}
+#wpdreams .ac-container div>input:checked ~ article.ac-small{
+    height: 140px;
+}
+#wpdreams .ac-container div>input:checked ~ article.ac-medium{
+    height: 180px;
+}
+#wpdreams .ac-container div>input:checked ~ article.ac-large{
+    height: 230px;
+}

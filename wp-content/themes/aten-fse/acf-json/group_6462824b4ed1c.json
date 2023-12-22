@@ -1,0 +1,62 @@
+{
+    "key": "group_6462824b4ed1c",
+    "title": "Divider Block",
+    "fields": [
+        {
+            "key": "field_6462824fb5ae6",
+            "label": "Separator Style",
+            "name": "separator_style",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Select a style of separator. If no style is selected, the separator will default to a grey line.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "acfe_save_meta": 0,
+            "choices": {
+                "gold_line": "Gold Line",
+                "gold_wave": "Gold Wave",
+                "grey_line": "Grey Line"
+            },
+            "default_value": "grey_line",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/divider"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": "",
+    "modified": 1688671208
+}

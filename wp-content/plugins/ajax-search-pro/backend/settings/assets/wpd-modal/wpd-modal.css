@@ -1,0 +1,124 @@
+#wpd_modal_bg {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999998;
+    opacity: 0;
+    transition: opacity 0.15s linear;
+}
+
+#wpd_modal {
+    display: none;
+    min-width: 350px;
+    min-height: 100px;
+    max-width: 540px;
+    background: white;
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    direction: ltr;
+    z-index: 99999999;
+    opacity: 0;
+    transition: opacity 0.15s linear;
+    border-radius: 2px;
+    box-shadow: 0 2px 44px rgba(0, 0, 0, 0.46);
+    font-size: 15px;
+}
+
+#wpd_modal, #wpd_modal>div {
+    box-sizing: border-box;
+}
+#wpd_modal.wpd-md-opacity-one,
+#wpd_modal_bg.wpd-md-opacity-one {
+    opacity: 1;
+}
+
+#wpd_modal_head {
+    width: 100%;
+    display: inline-block;
+    background: #d02c18;
+    border-radius: 2px 2px 0 0;
+    box-shadow: 0px 0px 0px 1px white inset;
+    box-sizing: border-box;
+}
+
+.wpd-modal-type-info #wpd_modal_head {
+    background: #1794c3;
+}
+
+#wpd_modal_head {
+    padding: 0 1.5em;
+    vertical-align: middle;
+}
+
+#wpd_modal_head svg {
+    width: 24px;
+    height: auto;
+    max-height: 36px;
+    vertical-align: middle;
+    margin-right: 12px;
+}
+
+#wpd_modal_head h3 {
+    color: white;
+    margin: 0.8em 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#wpd_modal_inner {
+    width: 100%;
+    padding: 0 1.5em;
+}
+
+#wpd_modal_inner p {
+    margin: 1em 0;
+}
+
+#wpd_modal_buttons {
+    margin: 0;
+    width: 100%;
+    text-align: right;
+    border-top: 1px solid #e4e4e4;
+    padding: 0 1.5em;
+    display: inline-block;
+}
+
+#wpd_modal_buttons .wpd-btn {
+    bottom: 0px;
+    width: auto;
+    display: inline-block;
+    box-shadow: rgb(29, 109, 146) 0px 1px 0px 0px, rgb(34, 142, 194) 0px 1px 0px 0px inset;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    text-decoration: none solid rgb(255, 255, 255);
+    text-shadow: rgb(61, 121, 155) 1px 1px 0px;
+    transform-origin: 84.1563px 13px;
+    background: rgba(0, 0, 0, 0) linear-gradient(rgb(27, 150, 208) 5%, rgb(21, 148, 188) 100%) repeat scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgb(255, 255, 255);
+    border-radius: 3px;
+    font: normal normal normal normal 15px / 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    margin: 0 0 0 24px;
+    outline: rgb(255, 255, 255) none 0px;
+    padding: 12px 20px;
+    margin: 1em 0 1em 1.5em;
+}
+
+#wpd_modal_buttons .wpd-btn-okay {
+    box-shadow: rgb(29, 109, 146) 0px 1px 0px 0px, rgb(34, 142, 194) 0px 1px 0px 0px inset;
+    text-shadow: rgb(61, 121, 155) 1px 1px 0px;
+    text-shadow: rgb(61, 121, 155) 1px 1px 0px;
+    background: rgba(0, 0, 0, 0) linear-gradient(rgb(27, 150, 208) 5%, rgb(21, 148, 188) 100%) repeat scroll 0% 0% / auto padding-box border-box;
+}
+
+#wpd_modal_buttons .wpd-btn-cancel {
+    box-shadow: rgb(146, 43, 29) 0px 1px 0px 0px, rgb(194, 62, 34) 0px 1px 0px 0px inset;
+    text-shadow: rgb(155, 79, 61) 1px 1px 0px;
+    text-shadow: rgb(155, 79, 61) 1px 1px 0px;
+    background: rgba(0, 0, 0, 0) linear-gradient(rgb(208, 62, 27) 5%, rgb(188, 42, 21) 100%) repeat scroll 0% 0% / auto padding-box border-box;
+}

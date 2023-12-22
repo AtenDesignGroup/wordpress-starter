@@ -1,0 +1,103 @@
+{
+  "default": {
+    "fe_sb_bg":"rgb(212, 58, 50)",
+    "fe_sb_border":"border:1px solid rgb(179, 51, 51);border-radius:3px 3px 3px 3px;",
+    "fe_sb_boxshadow":"box-shadow:0px 0px 0px 0px rgba(255, 255, 255, 0) ;",
+    "fe_sb_padding":"6px 14px 6px 14px",
+    "fe_sb_margin":"4px 0 0 0",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(255, 255, 255);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  },
+  "filled_r_red": {
+    "fe_sb_bg":"rgb(212, 58, 50)",
+    "fe_sb_border":"border:1px solid rgb(179, 51, 51);border-radius:0px 0px 0px 0px;"
+  },
+  "filled_r_blue": {
+    "fe_sb_bg":"rgb(50, 117, 212)",
+    "fe_sb_border":"border:1px solid rgb(50, 117, 212);border-radius:0px 0px 0px 0px;"
+  },
+  "filled_r_green": {
+    "fe_sb_bg":"rgb(50, 212, 91)",
+    "fe_sb_border":"border:1px solid rgb(50, 212, 91);border-radius:0px 0px 0px 0px;"
+  },
+  "filled_red": {
+    "fe_sb_bg":"rgb(212, 58, 50)",
+    "fe_sb_border":"border:1px solid rgb(179, 51, 51);border-radius:3px 3px 3px 3px;"
+  },
+  "filled_blue": {
+    "fe_sb_bg":"rgb(50, 117, 212)",
+    "fe_sb_border":"border:1px solid rgb(50, 117, 212);border-radius:3px 3px 3px 3px;"
+  },
+  "filled_green": {
+    "fe_sb_bg":"rgb(50, 212, 91)",
+    "fe_sb_border":"border:1px solid rgb(50, 212, 91);border-radius:3px 3px 3px 3px;"
+  },
+  "white_red": {
+    "fe_sb_bg":"rgb(255, 255, 255)",
+    "fe_sb_border":"border:1px solid rgb(179, 51, 51);border-radius:3px 3px 3px 3px;",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(179, 51, 51);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  },
+  "white_blue": {
+    "fe_sb_bg":"rgb(255, 255, 255)",
+    "fe_sb_border":"border:1px solid rgb(50, 117, 212);border-radius:3px 3px 3px 3px;",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(50, 117, 212);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  },
+  "white_green": {
+    "fe_sb_bg":"rgb(255, 255, 255)",
+    "fe_sb_border":"border:1px solid rgb(50, 212, 91);border-radius:3px 3px 3px 3px;",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(0, 151, 38);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  },
+  "r_red": {
+    "fe_sb_bg":"rgb(255, 255, 255)",
+    "fe_sb_border":"border:1px solid rgb(179, 51, 51);border-radius:0px 0px 0px 0px;",
+    "fe_sb_boxshadow":"box-shadow:0px 0px 0px 0px rgb(179, 51, 51) ;",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(179, 51, 51);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  },
+  "r_blue": {
+    "fe_sb_bg":"rgb(255, 255, 255)",
+    "fe_sb_border":"border:1px solid rgb(50, 117, 212);border-radius:0px 0px 0px 0px;",
+    "fe_sb_boxshadow":"box-shadow:0px 0px 0px 0px rgb(50, 117, 212) ;",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(50, 117, 212);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  },
+  "r_green": {
+    "fe_sb_bg":"rgb(255, 255, 255)",
+    "fe_sb_border":"border:1px solid rgb(50, 212, 91);border-radius:0px 0px 0px 0px;",
+    "fe_sb_boxshadow":"box-shadow:0px 0px 0px 0px rgb(50, 212, 91) ;",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(0, 151, 38);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  },
+  "c_red": {
+    "fe_sb_bg":"rgb(255, 255, 255)",
+    "fe_sb_border":"border:1px solid rgb(179, 51, 51);border-radius:40px 40px 40px 40px;",
+    "fe_sb_boxshadow":"box-shadow:0px 0px 0px 0px rgb(179, 51, 51) ;",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(179, 51, 51);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  },
+  "c_blue": {
+    "fe_sb_bg":"rgb(255, 255, 255)",
+    "fe_sb_border":"border:1px solid rgb(50, 117, 212);border-radius:40px 40px 40px 40px;",
+    "fe_sb_boxshadow":"box-shadow:0px 0px 0px 0px rgb(50, 117, 212) ;",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(50, 117, 212);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  },
+  "c_green": {
+    "fe_sb_bg":"rgb(255, 255, 255)",
+    "fe_sb_border":"border:1px solid rgb(50, 212, 91);border-radius:40px 40px 40px 40px;",
+    "fe_sb_boxshadow":"box-shadow:0px 0px 0px 0px rgb(50, 212, 91) ;",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(0, 151, 38);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  },
+  "b_red": {
+    "fe_sb_bg":"rgb(255, 255, 255)",
+    "fe_sb_border":"border:1px solid rgb(179, 51, 51);border-radius:0px 0px 0px 0px;",
+    "fe_sb_boxshadow":"box-shadow:0px 3px 0px 0px rgb(179, 51, 51) ;",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(179, 51, 51);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  },
+  "b_blue": {
+    "fe_sb_bg":"rgb(255, 255, 255)",
+    "fe_sb_border":"border:1px solid rgb(50, 117, 212);border-radius:0px 0px 0px 0px;",
+    "fe_sb_boxshadow":"box-shadow:0px 3px 0px 0px rgb(50, 117, 212) ;",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(50, 117, 212);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  },
+  "b_green": {
+    "fe_sb_bg":"rgb(255, 255, 255)",
+    "fe_sb_border":"border:1px solid rgb(50, 212, 91);border-radius:0px 0px 0px 0px;",
+    "fe_sb_boxshadow":"box-shadow:0px 3px 0px 0px rgb(50, 212, 91) ;",
+    "fe_sb_font":"font-weight:normal;font-family:Open Sans;color:rgb(0, 151, 38);font-size:13px;line-height:16px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);"
+  }
+}

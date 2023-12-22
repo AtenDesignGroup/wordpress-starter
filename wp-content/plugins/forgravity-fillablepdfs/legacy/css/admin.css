@@ -1,0 +1,65 @@
+/* ---------------------------------------------------
+	General Styling
+--------------------------------------------------- */
+
+#tab_templates .error {
+
+	padding: 1px 12px;
+
+}
+
+/* ---------------------------------------------------
+	Template: Thumbnail Preview
+--------------------------------------------------- */
+
+.fillablepdfs-template-thumbnail {
+
+	background: #fff;
+	border: 1px solid #ddd;
+	box-sizing: border-box;
+	height: auto;
+	max-width: 50%;
+
+}
+
+.fillablepdfs-template-thumbnail[src=""] {
+
+	display: none;
+
+}
+
+/* ---------------------------------------------------
+	Templates: File Upload Button
+--------------------------------------------------- */
+
+.fillablepdfs-template-file-upload {
+
+	position: relative;
+
+}
+
+.fillablepdfs-template-file-upload label {
+
+	margin: 0 5px 5px 0 !important;
+	position: relative;
+	z-index: 2;
+
+}
+
+.fillablepdfs-template-file-upload span {
+
+	font-weight: inherit;
+	line-height: 28px;
+
+}
+
+.fillablepdfs-template-file-upload input[type="file"] {
+
+	height: 0;
+	left: 0;
+	opacity: 0.01;
+	position: absolute;
+	top: 0;
+	width: 0;
+
+}

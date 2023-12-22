@@ -1,0 +1,93 @@
+#wpdreams .tabs {
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#wpdreams div[tabid] {
+    margin-top: 12px;
+}
+
+#wpdreams div[tabid] div[tabid] {
+    margin-top: 16px;
+}
+
+#wpdreams .tabs li {
+    display: block;
+    float: left;
+    width: auto;
+    line-height: 18px;
+    height: auto;
+    margin: 0;
+    border: none;
+}
+
+#wpdreams .tabs li a.tab_disabled {
+    opacity: 0.2;
+    position: relative;
+    user-select: none;
+    cursor: default;
+}
+
+#wpdreams .tabs a {
+    float: left;
+    position: relative;
+    text-transform: none;
+    text-decoration: none;
+    font-size: 13px;
+    color: #fff;
+    opacity: .4;
+    padding: 5px 10px;
+    margin: 0 10px;
+    border: none;
+    filter: alpha(opacity=30);
+}
+
+#wpdreams .tabs a:hover {
+    border-bottom-color: #2ac7e1;
+    opacity: 1;
+}
+
+#wpdreams .tabs a:focus {
+    outline: 0;
+}
+
+#wpdreams .tabs .current {
+    z-index: 3;
+    border-bottom-color: #3d3d3d;
+    opacity: 1;
+    box-shadow: 0px 10px 9px -12px #000000;
+    -webkit-box-shadow: 0px 10px 9px -12px #000000;
+}
+
+#wpdreams .tabs a {
+    background: none repeat scroll 0 0 #116889;
+    border-radius: 3px;
+    cursor: pointer;
+    display: block;
+    height: auto;
+    line-height: 18px;
+}
+
+#wpdreams div[tabid] {
+    display: none;
+}
+
+#wpdreams div[tabid="loader"] {
+    background: transparent url("icons/loading-big.gif") no-repeat center center;
+    height: 317px;
+    position: relative;
+    display: block;
+}
+
+#wpdreams div[tabid="loader"] p {
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: 96px;
+    left: 50%;
+    margin-left: -45px;
+    font-size: 22px;
+}

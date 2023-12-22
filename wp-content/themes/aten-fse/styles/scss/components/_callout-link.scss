@@ -1,0 +1,117 @@
+// Site callout link styles
+.callout-link-component {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  background: var(--navy) url("../aten-fse/assets/img/blue-corner.svg") no-repeat bottom right;
+  background-size: rem(260px) auto;
+  transition: background-color 0.3s ease;
+  border-radius: var(--default-border-radius);
+  overflow: hidden;
+
+  @include bp-min(tablet) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .callout-link-text {
+    padding: rem(24px);
+    // Adjusting width for padding to avoid text overflow
+    width: calc(100% - rem(48px));
+    
+    @include bp-min(tablet) {
+      padding: rem(40px);
+    }
+
+    h2 {
+      color: var(--white);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-h3);
+      display: inline-block;
+      margin-right: rem(10px);
+      max-width: calc(100% - rem(24px));
+
+      &::after {
+        vertical-align: top;
+        content: "arrow_circle_right";
+        display: inline-block;
+        @include font-material-icons;
+        font-size: rem(24px);
+        margin-left: rem(-24px);
+        position: relative;
+        left: rem(34px);
+        transition: all 0.3s ease;
+      }
+    }
+
+    p {
+      color: var(--white);
+    }
+
+    hr {
+      width: rem(60px);
+      margin: rem(16px) 0;
+      border-bottom-width: rem(4px);
+      transition: width 0.3s;
+    }
+  }
+
+  &.callout-without-image {
+
+    @include bp-min(smdesk) {
+      .callout-link-text {
+        padding-right: rem(120px);
+      }
+    }
+  }
+
+  .callout-link-image {
+    width: 100%;
+    height: rem(204px);
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+
+    @include bp-min(tablet) {
+      width: rem(260px);
+      height: auto;
+      min-height: rem(208px);
+    }
+
+    img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-origin: center;
+      transform: translate(-50%, -50%);
+      transition: 0.5s;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+    }
+  }
+
+  &:hover, 
+  &:focus {
+    background-color: var(--aten-blue-dark);
+
+    h2 {
+      text-decoration: underline;
+
+      &::after {
+        left: rem(42px);
+      }
+    }
+
+    hr {
+      width: rem(90px);
+    }
+
+    .callout-link-image {
+      img {
+        transform: translate(-50%, -50%) scale(1.1, 1.1);
+      }
+    }
+  }
+}

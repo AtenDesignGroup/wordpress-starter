@@ -1,0 +1,44 @@
+{
+  "name": "homepage-progress-block",
+  "title": "Homepage Progress Block",
+  "active": true,
+  "description": "Custom block for the Homepage, add up to 4 columns with section title and links",
+  "category": "common",
+  "icon": "testimonial",
+  "keywords": [
+    "progress",
+    "progress block",
+    "homepage"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "news",
+    "location"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "progress-block.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten-fse/assets/img/block-previews/progress_block.svg"
+      }
+    }
+  }
+}

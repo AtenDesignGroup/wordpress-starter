@@ -1,0 +1,46 @@
+{
+  "name": "column-block",
+  "title": "Column Block",
+  "active": true,
+  "description": "a block that displays a title, link, and body text, allows up to 3 columns",
+  "category": "common",
+  "icon": "schedule",
+  "keywords": [
+    "column",
+    "column block",
+    "row",
+    "layout"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "news",
+    "location",
+    "tribe_events"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "column-block.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten-fse/assets/img/block-previews/column_block.svg"
+      }
+    }
+  }
+}

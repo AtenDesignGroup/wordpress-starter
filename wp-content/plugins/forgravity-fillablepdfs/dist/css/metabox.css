@@ -1,0 +1,113 @@
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./src/scss/metabox.scss ***!
+  \******************************************************************************************************************************************************************************************************************/
+/* ---------------------------------------------------
+	Definitions
+--------------------------------------------------- */
+/* ---------------------------------------------------
+	Colors
+--------------------------------------------------- */
+/* ---------------------------------------------------
+	Documents Metabox
+--------------------------------------------------- */
+#fillablepdfs-metabox__documents .inside {
+  padding: 0 0 1.125rem !important;
+}
+
+.fillablepdfs-metabox__documents-table {
+  border-collapse: collapse;
+}
+.fillablepdfs-metabox__documents-table tr {
+  border-bottom: 1px solid #EBECED;
+}
+.fillablepdfs-metabox__documents-table tr:nth-child(odd) {
+  background: #F6F8FC;
+}
+.fillablepdfs-metabox__documents-table tr td {
+  padding: 0.9375rem 1.5rem;
+}
+.fillablepdfs-metabox__documents-table tr td:last-child {
+  text-align: right;
+}
+#side-sortables .fillablepdfs-metabox__documents-table {
+  display: block;
+}
+#side-sortables .fillablepdfs-metabox__documents-table tbody {
+  display: block;
+  width: 100%;
+}
+#side-sortables .fillablepdfs-metabox__documents-table tr {
+  display: table;
+  width: 100%;
+}
+#side-sortables .fillablepdfs-metabox__documents-table tr td {
+  box-sizing: border-box;
+  display: block;
+}
+#side-sortables .fillablepdfs-metabox__documents-table tr td:first-child {
+  padding-bottom: 0;
+}
+#side-sortables .fillablepdfs-metabox__documents-table tr td:last-child {
+  text-align: left;
+}
+#side-sortables .fillablepdfs-metabox__documents-table tr td .fillablepdfs-metabox__documents-button:first-of-type {
+  margin-left: 0;
+}
+.fillablepdfs-metabox__documents-file-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  position: relative;
+}
+.fillablepdfs-metabox__documents-file-name:before {
+  background: url("data:image/svg+xml;base64,PHN2ZyBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMiAxNiIgdmlld0JveD0iMCAwIDEyIDE2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im03IDBjLjMgMCAuNS4xLjcuM2w0IDRjLjIuMi4zLjQuMy43djhjMCAxLjctMS4zIDMtMyAzaC02Yy0xLjcgMC0zLTEuMy0zLTN2LTEwYzAtMS43IDEuMy0zIDMtM3ptLTEgMmgtM2MtLjYgMC0xIC40LTEgMXYxMGMwIC42LjQgMSAxIDFoNmMuNiAwIDEtLjQgMS0xdi03aC0zYy0uNSAwLS45LS40LTEtLjl2LS4xeiIgZmlsbD0iIzExMSIvPjwvc3ZnPg==");
+  background-size: contain;
+  content: "";
+  display: inline-block;
+  height: 1rem;
+  margin-right: 0.625rem;
+  vertical-align: middle;
+  width: 0.75rem;
+}
+.fillablepdfs-metabox__documents-button {
+  background: #FFF;
+  border: 1px solid #9595A9;
+  border-radius: 0.25rem;
+  color: #2A2A52;
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.875rem;
+  margin-left: 0.625rem;
+  padding: 0 0.75rem;
+  text-decoration: none;
+}
+.fillablepdfs-metabox__documents-delete {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  height: 2rem;
+  margin-left: 0.625rem;
+  padding: 0 0.5rem;
+  vertical-align: top;
+}
+.fillablepdfs-metabox__documents-delete img {
+  pointer-events: none;
+}
+.fillablepdfs-metabox__documents-regenerate {
+  margin-left: 1.5rem !important;
+  margin-top: 2px !important;
+}
+.fillablepdfs-metabox__documents--no-documents {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+}
+.fillablepdfs-metabox__documents--no-documents .button {
+  margin-top: 1.25rem;
+}
+#normal-sortables .fillablepdfs-metabox__documents--no-documents {
+  padding: 4.125rem 0;
+}
+#side-sortables .fillablepdfs-metabox__documents--no-documents {
+  padding: 2.5rem 1rem;
+}
