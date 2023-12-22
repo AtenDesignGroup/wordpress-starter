@@ -32,7 +32,6 @@ pantheon.upstream.yml
 *.jar
 *.rar
 *.tar
-*.zip
 *.tgz
 !wp-includes/**/*.gz
 
