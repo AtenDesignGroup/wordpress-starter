@@ -1,0 +1,44 @@
+{
+  "name": "custom-pullquote",
+  "title": "Pullquote",
+  "active": true,
+  "description": "Custom pullquote block for the Aten FSE theme: quote, citation and image (optional)",
+  "category": "common",
+  "icon": "format-quote",
+  "keywords": [
+    "pullquote",
+    "quote",
+    "cite"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "news",
+    "location"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "pullquote.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten-fse/assets/img/block-previews/pullquote_block.svg"
+      }
+    }
+  }
+}

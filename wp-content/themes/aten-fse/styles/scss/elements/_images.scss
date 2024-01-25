@@ -1,0 +1,112 @@
+/* Image block styles for child theme */
+figure {
+  max-width: 100%;
+
+  figcaption {
+    @include font-body-14;
+    // Explicitly setting font size because it does not change with screen size
+    font-size: rem(14px);
+    font-style: italic;
+    color: var(--aten-gray-dark);
+    margin: rem(12px) auto 0;
+    width: min-content;
+    min-width: 100%;
+  }
+}
+
+.wp-block-image {
+  max-width: 100%;
+  box-sizing: border-box;
+
+  img {
+    width: 100%!important;
+    height: auto!important;
+  }
+
+  // Default style is image block with wave border
+  &.is-style-default,
+  &.is-style-block-large {
+    // Important is needed to override WP alignment classes
+    float: none!important;
+    
+    @include bp-min(tablet) {
+      position: relative;
+      background-color: var(--black);
+
+      &::before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        z-index: 2;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        background-image: linear-gradient(rgba(0,0,0,0) 25%, rgba(0,0,0,0.85));
+      }
+
+      &::after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        z-index: 3;
+        bottom: 0;
+        height: rem(100px);
+        width: 100%;
+        background-image: url('../aten-fse/assets/img/image-border.svg');
+        background-size: cover;
+        background-position: bottom center;
+      }
+
+      figcaption {
+        position: absolute;
+        z-index: 4;
+        bottom: rem(50px);
+        margin-left: rem(12px);
+        min-width: 0;
+        width: 90%;
+        max-width: 770px;
+        color: var(--white);
+      }
+    }  
+
+    img {
+      border-radius: var(--default-border-radius);
+    }
+  }
+
+  &.is-style-inline-blue,
+  &.is-style-inline-white,
+  &.is-style-inline-large-blue,
+  &.is-style-inline-large-white {
+    padding: rem(12px);
+    border-radius: rem(8px);
+    background-color: var(--white);
+    display: inline-block;
+
+    @include bp-min(tablet) {
+      padding: rem(20px);
+    }
+  }
+
+
+  &.is-style-inline-blue,
+  &.is-style-inline-white {
+
+    @include bp-min(tablet) {
+      // Important is needed to override WP alignment classes
+      float: right!important;
+      max-width: 60%;
+      margin-left: rem(28px);
+    }
+  }
+
+  &.is-style-inline-blue,
+  &.is-style-inline-large-blue {
+    background-color: var(--aten-blue-light);
+  }
+
+  &.is-style-inline-white,
+  &.is-style-inline-large-white {
+    padding: 0;
+  }
+}

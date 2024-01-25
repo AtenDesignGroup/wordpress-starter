@@ -1,0 +1,44 @@
+{
+  "name": "locations-block",
+  "title": "Locations Block",
+  "active": true,
+  "description": "Custom Block to display Locations list",
+  "category": "common",
+  "icon": "location",
+  "keywords": [
+    "Locations",
+    "Location",
+    "Location Block"
+  ],
+  "post_types": [
+    "page",
+    "post",
+    "tribe_event",
+    "location"
+  ],
+  "align_content": "top",
+  "mode": "edit",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "locations-block.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten-fse/assets/img/block-previews/location_block.svg"
+      }
+    }
+  }
+}

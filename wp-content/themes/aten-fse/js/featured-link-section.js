@@ -1,0 +1,1 @@
+jQuery(document).ready(function(t){t(".featured-button").each(function(){t(this).hover(function(){t(this).closest(".title-wrapper").siblings(".title-bg").addClass("image-zoom")},function(){t(this).closest(".title-wrapper").siblings(".title-bg").removeClass("image-zoom")})})});
