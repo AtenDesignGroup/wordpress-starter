@@ -1,0 +1,154 @@
+// Large buttons with backgrounds
+// -----------------------------------
+
+@mixin btn-large($buttonStyle: var(--default-button-ci)) {
+  // Style defaults to the theme default button ci
+  $background-color: var(--default-button-ci) !default;
+  $color: var(--white) !default;
+  $hover-background: var(--default-button-hover-ci) !default;
+  $hover-color: var(--white) !default;
+
+  background-color: $background-color;
+  border: none;
+  border-radius: var(--default-border-radius);
+  color: $color;
+  display: block;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-18);
+  font-weight: var(--font-weight-bold);
+  line-height: 156%;
+  padding: rem(8px) rem(36px) rem(8px) rem(16px);
+  text-align: left;
+  text-decoration: none;
+  transition-property: all;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  width: fit-content;
+  text-indent: 0;
+  position: relative;
+
+  @include bp-min(tablet) {
+      padding-right: rem(48px);           
+  }
+
+  // Account for if this wraps another div
+  a {
+    color: $color;
+    text-decoration: none;
+  }
+
+  &::after {
+    @include font-material-icons;
+    color: $color;
+    content: "arrow_circle_right";
+    display: inline;
+    position: absolute;
+    font-size: rem(24px);
+    margin-left: rem(8px);
+
+    @include bp-max(tablet) {
+      font-size: rem(20px);
+      margin-left: rem(6px);
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $hover-background;
+    color: $hover-color;
+    text-decoration: underline;
+    transition-property: all;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @include bp-max(tablet) {
+    padding: rem(4px) rem(32px) rem(4px) rem(12px);
+
+    &::after {
+      margin-left: rem(4px);
+    }
+  }
+}
+
+// Regular buttons without backgrounds
+// -----------------------------------
+
+@mixin btn($buttonStyle: var(--default-button-ci)) {
+  // Style defaults to navy
+  $color: var(--default-button-ci) !default;
+  $hover-color: var(--default-button-hover-ci) !default;
+  $color-arrow: var(--default-button-ci) !default;
+  $hover-arrow: var(--default-button-hover-ci) !default;
+
+  // White style button, for use on dark backgrounds
+  @if $buttonStyle == var(--white) {
+    $color: var(--white);
+    $hover-color: var(--white);
+    $color-arrow: var(--white);
+    $hover-arrow: var(--white);
+  }
+
+  color: $color;
+  display: block;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-18);
+  font-weight: var(--font-weight-bold);
+  line-height: 156%;
+  text-align: left;
+  text-decoration: none;
+  transition-property: all;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  width: fit-content;
+  text-indent: 0;
+  position: relative;
+  padding-right: rem(36px);
+
+  @include bp-min(tablet) {
+      padding-right: rem(48px);           
+  }
+
+  // Account for if this wraps another div
+  a {
+    color: $color;
+    text-decoration: none;
+  }
+
+  &::after {
+    @include font-material-icons;
+    color: $color-arrow;
+    content: "arrow_circle_right";
+    display: inline;
+    position: absolute;
+    font-size: rem(24px);
+    margin-left: rem(8px);
+
+    @include bp-max(tablet) {
+      font-size: rem(20px);
+      margin-left: rem(6px);
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: $hover-color;
+    text-decoration: underline;
+    transition-property: all;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &::after {
+      color: $hover-color;
+    }
+  }
+
+  @include bp-max(tablet) {
+    padding: rem(4px) rem(32px) rem(4px) rem(12px);
+    
+    &::after {
+      color: $hover-color;
+      margin-left: rem(4px);
+    }
+  }
+}

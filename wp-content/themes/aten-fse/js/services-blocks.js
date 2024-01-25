@@ -1,0 +1,1 @@
+jQuery(document).ready(function(e){e(".service-card-link").each(function(){e(this).hover(function(){e(this).closest(".service-card").addClass("focused")},function(){e(this).closest(".service-card").removeClass("focused")})})});

@@ -1,0 +1,40 @@
+// Heading block styles
+.wp-block-heading {
+    font-weight: var(--font-weight-bold);
+
+    &.is-style-heading-stylized {
+        @include font-h2;
+        font-weight: var(--font-weight-bold);
+        position: relative;
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: rem(-10px);
+            left: rem(-15px);
+            width: 100%;
+            height: rem(35px);
+            z-index: -1;
+            background-image: url('/wp-content/themes/aten-fse/assets/img/blue-swoosh.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+
+            @include bp-min(smdesk) {
+                top: rem(-20px);
+                left: rem(-100px);
+                height: rem(95px);
+            }
+        }
+    }
+}
+
+h6.wp-block-heading {
+    &.is-style-heading-stylized {
+        letter-spacing: 0;
+    }
+
+    &:not(.is-style-heading-stylized) {
+        text-transform: uppercase!important;
+    }
+}

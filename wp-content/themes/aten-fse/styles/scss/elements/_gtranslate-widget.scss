@@ -1,0 +1,103 @@
+// Google Translate widget styling for utility and main menu
+.gtranslate_wrapper {
+    position: relative;
+    background-color: var(--aten-blue-light);
+    padding: rem(8px) rem(8px) rem(8px) rem(42px);
+    border-radius: var(--default-border-radius);
+    margin-bottom: rem(20px);
+
+    @include bp-max(smdesk) {
+        &:hover,
+        &:focus {
+            background-color: var(--aten-blue);
+        }
+    }
+
+    @include bp-min(smdesk) {
+        background-color: var(--aten-blue-light);
+        padding: 0 rem(6px) 0 rem(10px);
+        margin-bottom: 0;
+        margin-right: rem(12px);
+        margin-left: rem(6px);
+        border-radius: rem(100px);
+    }
+
+    @include bp-min(lgdesk) {
+        margin-right: rem(16px);
+        margin-left: rem(2px);
+    }
+
+    .menu-icon {
+        @include font-material-icons;
+        color: var(--aten-green-dark);
+        vertical-align: top;
+        display: inline-block;
+        font-size: rem(18px);
+        text-decoration: none;
+        position: absolute;
+        left: rem(10px);
+        top: 50%;
+        transform: translate(0, -50%);
+
+        @include bp-min(smdesk) {
+            left: rem(14px);
+        }
+    
+
+        &.right {
+            color: var(--aten-blue-dark);
+            right: rem(10px);
+            left: auto;
+            font-size: rem(26px);
+            z-index: 1;
+
+            @include bp-min(smdesk) {
+                font-size: rem(18px);
+            }
+
+            @include bp-min(lgdesk) {
+                font-size: rem(21px);
+            }
+        }
+    }
+
+    select {
+        border: 0;
+        @include font-body-16;
+        font-weight: var(--font-weight-bold);
+        color: var(--aten-blue-dark);
+        background-color: var(--transparent);
+        appearance: none;
+        position: relative;
+        z-index: 2;
+        width: auto;
+
+        &:focus,
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+
+            & ~ .menu-icon {
+                color: var(--aten-blue-dark);
+            }
+        }
+
+        @include bp-min(smdesk) {
+            @include font-body-14;
+            font-weight: var(--font-weight-bold);
+            padding-left: rem(26px);
+            padding-right: rem(26px);
+        }
+
+        @include bp-min(lgdesk) {
+            @include font-body-18;
+            font-weight: var(--font-weight-bold);
+        }
+    }
+}
+
+#mega-menu-wrap-main-nav {
+    .menu-icon.right {
+        font-size: rem(26px);
+    }
+}
