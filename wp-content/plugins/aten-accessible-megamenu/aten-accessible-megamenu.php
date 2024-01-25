@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       a11y Mega Menu
+ * Plugin Name:       Aten Accessible Megamenu
  * Plugin URI:        https://aten.io/
  * Description:       A custom FSE-compatible block that generates a fully-accessible mega menu from any WordPress menu. 
  * Requires at least: 6.1
