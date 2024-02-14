@@ -1,0 +1,202 @@
+// The following custom property naming conventions are inspired by
+// "Naming Tokens in Design Systems" by Nathan Curtis
+// https://medium.com/eightshapes-llc/naming-tokens-in-design-systems-9e86c7444676
+// These default values are intended to be mofified and extended to suite the needs
+// of an individual project.
+
+@font-face {
+  font-family: "Mint Grotesk";
+  src: url("../ccc/assets/fonts/MintGroteskDisplay-Regular.otf");
+}
+@font-face {
+  font-family: "Mint Grotesk";
+  src: url("../ccc/assets/fonts/MintGroteskDisplay-Bold.otf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Mint Grotesk";
+  src: url("../ccc/assets/fonts/MintGroteskDisplay-Italic.otf");
+  font-style: italic;
+}
+@font-face {
+  font-family: "Mint Grotesk";
+  src: url("../ccc/assets/fonts/MintGroteskDisplay-BoldItalic.otf");
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Mint Grotesk";
+  src: url("../ccc/assets/fonts/MintGroteskDisplay-Italic.otf");
+  font-style: oblique;
+}
+@font-face {
+  font-family: "Mint Grotesk";
+  src: url("../ccc/assets/fonts/MintGroteskDisplay-BoldItalic.otf");
+  font-weight: bold;
+  font-style: oblique;
+}
+
+:root {
+  //Font: Families
+  --font-family-mono: monospace;
+  --font-family-mint: "Mint Grotesk", sans-serif;
+  --font-family-franklin: "franklin-gothic-atf", sans-serif;
+  --font-family-icons: "Material Symbols Outlined";
+
+  //Font: Theme Defaults
+  /* Font Family */
+  --font-headings:  var(--font-family-mint);
+  --font-base: var(--font-family-franklin);
+	--global--font-primary: var(--font-headings, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif);
+	--global--font-secondary: var(--font-base, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif);
+
+	/* Font Size */
+	--global--font-size-base: var(--font-size-b18);
+	--global--font-size-xs: var(--font-size-b14);
+	--global--font-size-sm: var(--font-size-b14);
+	--global--font-size-md: var(--font-size-b16);
+	--global--font-size-lg: var(--font-size-b18);
+	--global--font-size-xl: var(--font-size-b28);
+	--global--font-size-xxl: var(--font-size-b28);
+	--global--font-size-xxxl: var(--font-size-b28);
+	--global--font-size-page-title: var(--font-size-h100);
+	--global--letter-spacing: normal;
+
+	/* Line Height */
+	--global--line-height-body: unset;
+	--global--line-height-heading: unset;
+	--global--line-height-page-title: unset;
+
+	/* Headings */
+	--heading--font-family: var(--global--font-primary);
+	--heading--font-size-h6: var(--font-size-h24);
+	--heading--font-size-h5: var(--font-size-h32);
+	--heading--font-size-h4: var(--font-size-h48);
+	--heading--font-size-h3: var(--font-size-h60);
+	--heading--font-size-h2: var(--font-size-h80);
+	--heading--font-size-h1: var(--font-size-h100);
+	--heading--letter-spacing-h6: unset;
+	--heading--letter-spacing-h5: var(--global--letter-spacing);
+	--heading--letter-spacing-h4: var(--global--letter-spacing);
+	--heading--letter-spacing-h3: var(--global--letter-spacing);
+	--heading--letter-spacing-h2: var(--global--letter-spacing);
+	--heading--letter-spacing-h1: var(--global--letter-spacing);
+	--heading--line-height-h6: var(--line-height-h24);
+	--heading--line-height-h5: var(--line-height-h32);
+	--heading--line-height-h4: var(--line-height-h48);
+	--heading--line-height-h3: var(--line-height-h60);
+	--heading--line-height-h2: var(--line-height-h80);
+	--heading--line-height-h1: var(--line-height-h100);
+	--heading--font-weight: var(--font-weight-bold);
+	--heading--font-weight-page-title: var(--font-weight-bold);
+	--heading--font-weight-strong: var(--font-weight-bold);
+
+  // Font Line Height
+  // Styles that stop changing line height are not included in next breakpoint
+
+  // Breakpoints min 0<=768px (mobile)
+  @include bp-min(mobile) {
+    --line-height-h100: #{rem(44px)};
+    --line-height-h80: #{rem(44px)};
+    --line-height-h60: #{rem(44px)};
+    --line-height-h48: #{rem(40px)};
+    --line-height-h32: #{rem(32px)};
+    --line-height-h24: #{rem(26px)};
+
+    --line-height-b28: #{rem(28px)};
+    --line-height-b18: #{rem(26px)};
+    --line-height-b16: #{rem(26px)};
+    --line-height-b14: #{rem(20px)};
+
+    --line-height-l18: #{rem(26px)};
+    --line-height-l14: #{rem(24px)};
+  }
+  // Breakpoints between 769px<=1023px (tablet)
+  @include bp-min(tablet) {
+    --line-height-h100: #{rem(70px)};
+    --line-height-h80: #{rem(60px)};
+    --line-height-h60: #{rem(60px)};
+    --line-height-h48: #{rem(44px)};
+    --line-height-h32: #{rem(34px)};
+    --line-height-h24: #{rem(32px)};
+
+    --line-height-b28: #{rem(34px)};
+
+    --line-height-l18: #{rem(28px)};
+  }
+  // Breakpoints between 1024px<=1199px (small desktop)
+  @include bp-min(smdesk) {
+    --line-height-h100: #{rem(90px)};
+    --line-height-h80: #{rem(90px)};
+    --line-height-h60: #{rem(70px)};
+    --line-height-h48: #{rem(60px)};
+    --line-height-h32: #{rem(44px)};
+    --line-height-h24: #{rem(34px)};
+
+    --line-height-b28: #{rem(38px)};
+    --line-height-b18: #{rem(28px)};
+  }
+  // Breakpoints 1400px+ (large desktop)
+  @include bp-min(lgdesk) {
+    --line-height-h100: #{rem(110px)};
+  }
+
+  // Font: Sizes
+  // Styles that stop changing size are not included in next breakpoint
+
+  // Breakpoints min 0<=768px (mobile)
+  @include bp-min(mobile) {
+    --font-size-h100: #{rem(32px)};
+    --font-size-h80: #{rem(32px)};
+    --font-size-h60: #{rem(32px)};
+    --font-size-h48: #{rem(28px)};
+    --font-size-h32: #{rem(22px)};
+    --font-size-h24: #{rem(16px)};
+
+    --font-size-b28: #{rem(18px)};
+    --font-size-b18: #{rem(16px)};
+    --font-size-b16: #{rem(16px)};
+    --font-size-b14: #{rem(14px)};
+
+    --font-size-l18: #{rem(16px)};
+    --font-size-l14: #{rem(14px)};
+  }
+  // Breakpoints between 769px<=1023px (tablet)
+  @include bp-min(tablet) {
+    --font-size-h100: #{rem(60px)};
+    --font-size-h80: #{rem(48px)};
+    --font-size-h60: #{rem(48px)};
+    --font-size-h48: #{rem(32px)};
+    --font-size-h32: #{rem(24px)};
+    --font-size-h24: #{rem(22px)};
+
+    --font-size-b18: #{rem(18px)};
+    --font-size-b28: #{rem(24px)};
+
+    --font-size-l18: #{rem(18px)};
+  }
+  // Breakpoints between 1024px<=1199px (small desktop)
+  @include bp-min(smdesk) {
+    --font-size-h100: #{rem(80px)};
+    --font-size-h80: #{rem(80px)};
+    --font-size-h60: #{rem(60px)};
+    --font-size-h48: #{rem(48px)};
+    --font-size-h32: #{rem(32px)};
+    --font-size-h24: #{rem(24px)};
+
+    --font-size-b28: #{rem(28px)};
+  }
+  // Breakpoints 1400px+ (large desktop)
+  @include bp-min(lgdesk) {
+    --font-size-h100: #{rem(100px)};
+  }
+
+  //Font: Weight
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+}

@@ -1,0 +1,45 @@
+{
+  "name": "accordion-block",
+  "title": "Accordion Block",
+  "active": true,
+  "description": "A block to add an expandable accordion section with unlimited panels containing text and media.",
+  "category": "common",
+  "icon": "align-wide",
+  "keywords": [
+    "accordion",
+    "faq",
+    "list",
+    "content"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "message",
+    "research"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "accordion-block.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/accordion.svg"
+      }
+    }
+  }
+}

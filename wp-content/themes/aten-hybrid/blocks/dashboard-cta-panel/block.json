@@ -1,0 +1,24 @@
+{
+    "name": "acf/dashboard-cta-panel",
+    "title": "Dashboard CTA Panel",
+    "description": "A block to display up to 3 callout cards on the user dashboard.",
+    "category": "dashboard",
+    "icon": "megaphone",
+    "keywords": ["card", "icon", "blurb", "cta", "dashboard", "call", "action"],
+    "supports": {
+      "multiple": false
+    },
+    "acf": {
+      "mode": "edit",
+      "renderTemplate": "dashboard-cta-panel.php"
+    },
+    "align": "full",
+    "example": {
+      "attributes": {
+        "mode": "preview",
+        "data": {
+          "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/dashboard-cta-panel.svg"
+        }
+      }
+    }
+  }

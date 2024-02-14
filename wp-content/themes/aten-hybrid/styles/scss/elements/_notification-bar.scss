@@ -1,0 +1,125 @@
+/* Easy Notification Bar Styles */
+.easy-notification-bar.ccc-notification-bar {
+    display: none!important;
+    padding: rem(16px) rem(24px)!important;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--black);
+
+    .easy-notification-bar-container {
+        text-align: left!important;
+        display: flex;
+        align-items: center;
+        background-color: var(--white);
+        padding: rem(12px) rem(24px);
+        border-radius: rem(12px);
+        position: relative;
+
+        .easy-notification-bar-message {
+            width: 100%;
+            padding-bottom: rem(36px);
+
+            a {
+                @include btn-no-bg;
+                @include font-body-18;
+                @include font-weight-bold; 
+                display: block;
+
+                &:focus {
+                    outline-offset: 0;
+                }
+
+                @include bp-min(lgdesk) {
+                    display: inline-block;
+                    margin-left: rem(12px);
+                }
+            }
+
+            p {
+                @include font-body-18;
+                @include font-weight-bold;
+                display: inline-block;
+                color: var(--black);
+
+                a {
+                    display: inline-block;
+                    color: var(--purple);
+
+                    &:hover, 
+                    &:focus {
+                        color: var(--dark-purple);
+                    }
+                }
+            }
+
+            @include bp-min(lgdesk) {
+                padding-bottom: 0;
+                width: calc(100% - rem(110px));
+            }
+        }
+
+        @include bp-min(tablet) {
+            border-radius: rem(20px);
+        }
+
+        @include bp-min(smdesk) {
+            padding: rem(16px) rem(60px);
+        }
+    }
+
+    .easy-notification-bar__close { 
+        bottom: rem(16px);
+        left: rem(20px);
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        color: var(--purple);
+        text-decoration: underline;
+        transform: none;
+        top: auto;
+        right: auto;
+
+        span {  
+            margin-bottom: rem(2px);
+        }
+
+        &:hover,
+        &:focus {
+            color: var(--dark-purple);
+            text-decoration: none;
+        }
+
+        &:focus,
+        &:focus-within {
+            outline: rem(1px) solid var(--dark-purple)!important;
+            outline-offset: rem(4px);
+        }
+
+        @include bp-min(smdesk) {
+            left: rem(56px);
+            bottom: rem(20px);
+        }
+
+        @include bp-min(lgdesk) {
+            top: 50%;
+            transform: translate(0, -50%);
+            right: rem(60px);
+            left: auto;
+        }
+    }
+
+    @include bp-min(smdesk) {
+        padding: rem(20px) rem(60px)!important;
+    }
+
+    @include bp-min(lgdesk) {
+        padding: rem(40px) rem(60px)!important;
+    }
+}
+
+.page-id-40 .easy-notification-bar.ccc-notification-bar:not(.easy-notification-bar--hidden) {
+    display: flex!important;
+}
+
+
+

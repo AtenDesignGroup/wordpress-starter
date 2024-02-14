@@ -1,0 +1,32 @@
+{
+    "name": "bs-ccc",
+    "version": "1.0.0",
+    "description": "Contain build tools for the Cost & Coverage Collective theme",
+    "main": "gulpfile.js",
+    "author": "Aten Design Group",
+    "dependencies": {
+        "@babel/core": "^7.17.7",
+        "@babel/preset-env": "^7.16.11",
+        "babel-loader": "^8.2.4",
+        "browser-sync": "^2.27.10",
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^6.1.0",
+        "gulp-clean": "^0.4.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-ignore": "^3.0.0",
+        "gulp-plumber": "^1.2.1",
+        "gulp-sass": "^5.1.0",
+        "gulp-sourcemaps": "^3.0.0",
+        "gulp-uglify": "^3.0.2",
+        "lodash": "^4.17.21",
+        "path": "^0.12.7",
+        "sass": "^1.62.0",
+        "wavify": "^1.0.0",
+        "webpack": "^5.75.0",
+        "webpack-stream": "^7.0.0"
+    },
+    "scripts": {
+        "watch": "gulp watch",
+        "build": "gulp build"
+    }
+}

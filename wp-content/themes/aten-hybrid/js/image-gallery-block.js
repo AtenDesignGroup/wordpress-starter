@@ -1,0 +1,1 @@
+jQuery(document).ready(function(n){n(".tobii-image").each(function(){n(this).find("figcaption").wrapInner('<span class="lightbox-caption" />');var i=n(this).find("img").attr("data-src"),i=n('.img-download-link[href="'+i+'"]');n(i).clone().insertAfter(n(this).find(".lightbox-caption"))})});

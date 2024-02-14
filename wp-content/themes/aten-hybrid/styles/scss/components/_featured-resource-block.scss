@@ -1,0 +1,305 @@
+/* Featured Resource Block Styles */
+#ccc-site .archive-featured-resource-wrapper {
+
+    article {
+        position: relative;
+        z-index: 2;
+
+        @include bp-min(lgdesk) {
+            height: calc(100% - rem(100px));
+        }
+    }
+
+    .featured-resource-list {
+        @include list--unordered-flex(column, rem(20px));
+
+        @include bp-min(tablet) {
+            gap: rem(40px);
+        }
+    }
+
+    .archive-card {
+        width: 100%;
+        position: relative;
+        @include bg-gradient(90deg, var(--dark-purple), var(--black));
+
+        * {
+            color: var(--white);
+        }
+
+        .entry-content {
+            margin: rem(20px);
+
+            @include bp-min(tablet) {
+                margin: rem(40px);
+            }
+
+            @include bp-min(smdesk) {
+                margin: rem(60px);
+            }
+
+            @include bp-min(lgdesk) {
+                height: 100%;
+            }
+        }
+
+        .card-details {
+            margin: 0;
+
+            @include bp-min(tablet) {
+                max-width: none;
+            }
+
+            @include bp-min(lgdesk) {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            a {
+                outline-color: var(--white)!important;
+            }
+        }
+
+        .card-category {
+            display: flex;
+            align-items: center;
+            gap: rem(12px);
+            margin-bottom: rem(20px);
+
+            a {
+                text-decoration: none;
+                @include font-label-18;
+                font-family: var(--font-family-mint);
+                @include font-weight-bold;
+
+                &:hover,
+                &:focus {
+                    text-decoration: underline;
+                }
+
+                @include bp-max(tablet) {
+                    font-size: rem(12px);
+                }
+            }
+
+            .category-icon {
+                width: rem(18px);
+                height: rem(18px);
+
+                @include bp-min(tablet) {
+                    width: rem(28px);
+                    height: rem(28px);
+                }
+            }
+
+            @include bp-min(tablet) {
+                margin-bottom: rem(28px);
+            }
+        }
+
+        .card-title {
+            h2 {
+                @include font-h3;
+                @include font-weight-bold;
+            }
+            
+            a {
+                text-decoration: none;
+                color: var(--white);
+                @include font-h2;
+                @include font-weight-bold;
+
+                &:hover,
+                &:focus {
+                    text-decoration: underline;
+                }
+
+                &:focus {
+                    outline: rem(2px) solid var(--white)!important;
+                }
+            }
+
+            @include bp-min(lgdesk) {
+                flex-grow: 1;
+            }
+        }
+
+        .topic-wrapper {
+            margin-top: rem(20px);
+            padding-top: rem(20px);
+            border-top: rem(1px) solid #C68CFF;
+
+            > p {
+                @include font-body-16;
+                @include font-weight-bold;
+                margin-bottom: rem(12px);
+
+                @include bp-min(tablet) {
+                    margin-bottom: 0;
+                    position: relative;
+                    top: rem(-2px);
+
+                    &::after {
+                        content: url('../ccc/assets/icons/ui/purple/diagonal_divider.svg');
+                        display: inline-block;
+                        height: rem(26px);
+                        right: rem(-17px);
+                        overflow: hidden;
+                        position: relative;
+                        top: rem(6px);
+                    }
+                }
+            }
+
+            ul {
+                @include list--unordered-flex(row, rem(34px));
+                flex-wrap: wrap;
+                gap: rem(12px) rem(18px);
+
+                li {
+                    display: flex;
+
+                    a {
+                        @include font-body-16;
+
+                        @include bp-max(tablet) {
+                            font-size: rem(12px);
+                        }
+                    }
+
+                    &::after {
+                        content: url('../ccc/assets/icons/ui/purple/diagonal_divider.svg');
+                        display: inline-block;
+                        height: rem(18px);
+                        overflow: hidden;
+                        position: relative;
+                        right: rem(-9px);
+                        top: 50%;
+                        transform: translate(0, -50%);
+
+                        @include bp-min(tablet) {
+                            height: rem(26px);
+                            right: rem(-17px);
+                        }
+                    }
+
+                    &:last-child {
+                        &::after {
+                            content: '';
+                        }
+                    }
+                }
+
+                @include bp-min(tablet) {
+                    gap: rem(14px) rem(34px);
+                }
+            }
+
+            @include bp-min(tablet) {
+                margin-top: rem(28px);
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: rem(4px) rem(34px);
+            }
+
+            @include bp-min(smdesk) {
+
+            }
+        }
+
+        // For Message cards only
+        .customizable-tag {
+            position: absolute;
+            top: 0;
+            right: rem(20px);
+            display: flex;
+            align-items: center;
+            gap: rem(4px);
+
+            p {
+                @include font-body-14;
+                @include font-weight-bold;
+
+                @include bp-min(tablet) {
+                    @include font-body-16;
+                    @include font-weight-bold;
+                }
+            }
+
+            .message-customizable-icon {
+                height: rem(18px);
+                width: rem(18px);
+            }
+
+            @include bp-min(tablet) {
+                top: rem(-15px);
+            }
+
+            @include bp-min(lgdesk) {
+                top: rem(-40px);
+            }
+        }
+
+        // For Research cards only
+        .external-icon {
+            position: absolute;
+            top: 0;
+            right: rem(20px);
+
+            .research-external-icon {
+                height: rem(20px);
+                width: rem(20px);
+
+                @include bp-min(tablet) {
+                    height: rem(24px);
+                    width: rem(24px);
+                }
+            }
+
+            @include bp-min(tablet) {
+                top: rem(-15px);
+                right: rem(22px);
+            }
+
+            @include bp-min(lgdesk) {
+                top: rem(-40px);
+            }
+        }
+
+        .card-border-wrapper {
+            display: none;
+        }
+
+        @include bp-min(tablet) {
+            width: calc(100vw - rem(80px));
+            max-width: 100rem;
+            margin: 0 auto;
+            border-radius: rem(20px);
+        }
+
+        @include bp-min(smdesk) {
+            width: calc(100vw - rem(120px));
+        }
+
+        @include bp-min(lgdesk) {
+            width: calc(100vw - rem(120px));
+            max-width: rem(1600px);
+        }
+    }
+
+    @include bp-min(tablet) {
+        gap: rem(20px);
+    }
+
+    @include bp-min(smdesk) {
+        gap: rem(40px);
+    }
+
+    @include bp-min(lgdesk) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}

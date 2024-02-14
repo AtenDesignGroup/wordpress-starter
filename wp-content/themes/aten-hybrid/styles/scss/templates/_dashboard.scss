@@ -1,0 +1,87 @@
+/* Dashboard Styling */
+body.page-id-40 {
+    #main.site-main {
+        @include bg-gradient(90deg, var(--orange), var(--coral), var(--purple));
+        
+        @include bp-max(tablet) {
+            padding-bottom: 0;
+        }
+    }
+
+    #content {
+        position: relative;
+        margin-top: rem(-230px);
+
+        .entry-content {
+            margin-top: 0;
+
+            @include bp-min(tablet) {
+                margin-bottom: rem(20px);
+            }
+
+            @include bp-min(lgdesk) {
+                margin-bottom: rem(80px);
+            }
+        }
+
+        #dashboard-page-blue-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 70%;
+            width: 100%;
+            background-color: var(--dark-purple);
+            z-index: 0;
+    
+            .hero-decorative-lines {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-image: url('../ccc/assets/images/line_graphic.svg');
+                background-size: auto 50%;
+                background-position: top;
+                background-repeat: no-repeat;
+                z-index: 1;
+                display: none;
+        
+                @include bp-min(tablet) {
+                    display: block;
+                }
+
+                @include bp-min(lgdesk) {
+                    background-size: cover;
+                    background-position: center center;
+                }
+            }
+
+            @include bp-min(smdesk) {
+                height: 75%;
+            }
+
+            @include bp-min(lgdesk) {
+                height: 40%;
+            }
+        }
+    }
+
+    footer.entry-footer {
+        display: none;
+    }
+
+    &.pmpro-body-level-required:not(.pmpro-body-has-access) {
+        #main.site-main {
+            background: var(--white);
+            min-height: 50vh;
+        }
+
+        #content {
+            margin-top: var(--global--spacing-vertical);
+        }
+
+        #dashboard-page-blue-bg {
+            display: none;
+        }
+    }
+}
