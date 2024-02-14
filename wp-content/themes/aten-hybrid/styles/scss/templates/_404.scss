@@ -1,0 +1,127 @@
+/* 404 Page Styling */
+body.error404,
+body.search-no-results,
+article#post- {
+    .page-header-wrapper .page-header-content {
+        h2 {
+            max-width: rem(980px);
+            @include font-body-28;
+            color: var(--white);
+            margin-top: rem(12px);
+
+            @include bp-min(smdesk) {
+                margin-top: rem(24px);
+            }
+        }
+    }
+
+    .cta-panel-component-404 {
+        position: relative;
+        z-index: 3;
+        @include bg-gradient(90deg, var(--orange), var(--coral), var(--purple));
+        padding: rem(20px);
+        margin-top: rem(-32px);
+    
+        ul.cta-cards {
+            @include list--unordered-flex(column, rem(20px));
+    
+            li.cta-card {
+                background-color: var(--white);
+                padding: rem(20px);
+                border-radius: rem(12px);
+                transition: all .3s ease;
+    
+                h3 {
+                    margin-bottom: rem(12px);
+    
+                    @include bp-min(tablet) {
+                        margin-bottom: rem(20px);
+                        font-size: var(--font-size-h48);
+                        line-height: var(--line-height-h48);
+                    }
+    
+                    @include bp-min(smdesk) {
+                        font-size: var(--font-size-h32);
+                        line-height: var(--line-height-h32);
+                        margin-bottom: 0;
+                        flex-grow: 1;
+                    }
+                }
+    
+                a {
+                    @include font-label-18;
+                    @include font-weight-bold;
+    
+                    @include bp-min(tablet) {
+                        padding: 1rem 3.75rem 1rem 1.75rem!important;
+                    }
+                }
+    
+                .cta-btn-wrap {
+                    @include bp-min(smdesk) {
+                        text-align: right;
+                        flex-shrink: 0;
+                    }
+    
+                    @include bp-min(lgdesk) {
+                        text-align: left;
+                    }
+                }
+    
+                @include bp-min(tablet) {
+                    padding: rem(40px);
+                    border-radius: rem(20px);
+    
+                    &:hover,
+                    &:focus,
+                    &:focus-within {
+                        transform: scale(1.05);
+                    }
+                }
+    
+                @include bp-min(smdesk) {
+                    padding: rem(60px);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: rem(30px);
+                }
+    
+                @include bp-min(lgdesk) {
+                    gap: rem(40px);
+                    width: 40%;
+                    padding: rem(40px);
+                }
+            }
+    
+            @include bp-min(tablet) {
+                gap: rem(40px);
+            }
+    
+            @include bp-min(lgdesk) {
+                flex-direction: row;
+            }
+        }
+    
+        @include bp-min(tablet) {
+            padding: rem(40px);
+            border-radius: rem(20px);
+            max-width: var(--responsive--alignfull-width);
+            margin: 0 var(--global--spacing-horizontal) rem(48px);
+            width: auto;
+        }
+
+        @include bp-min(smdesk) {
+            padding: rem(60px);
+        }
+    
+        @include bp-min(lgdesk) {
+            padding: rem(80px);
+            margin-bottom: rem(60px);
+        }
+    }
+
+    footer.entry-footer {
+        display: none;
+    }
+}

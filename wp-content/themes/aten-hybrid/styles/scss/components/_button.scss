@@ -1,0 +1,97 @@
+/* Button Component Styling */
+#ccc-site .wp-block-buttons,
+.wp-toolbar #wpcontent .wp-block-buttons {
+     > .wp-block-button {
+        display: block;
+        margin-bottom: var(--global--spacing-vertical);
+    }    
+
+    .wp-block-button {
+        .wp-element-button {
+            @include btn-large;
+        }
+
+        &.is-style-default-white,
+        &.is-style-no-icon-white {
+            .wp-element-button {
+                @include btn-large(var(--white));
+            }
+        }
+
+        &.is-style-download-purple {
+            .wp-element-button {
+                @include btn-download;
+            }
+        }
+
+        &.is-style-download-gray {
+            .wp-element-button {
+                @include btn-download(var(--gray));
+            }
+        }
+
+        &.is-style-text-icon,
+        &.is-style-text-no-icon {
+            .wp-element-button {
+                @include btn-no-bg;
+            }
+        }
+
+        &.is-style-text-icon-white,
+        &.is-style-text-no-icon-white {
+            .wp-element-button {
+                @include btn-no-bg(var(--white));
+            }
+        }
+
+        &:not(.is-style-no-icon-purple):not(.is-style-no-icon-white):not(.is-style-download-purple):not(.is-style-download-gray):not(.is-style-text-no-icon):not(.is-style-text-no-icon-white) {
+            .wp-element-button {
+                @include btn-with-icon;
+
+                &.external-link {
+                    @include btn-with-icon(var(--external));
+                }
+            }
+
+            &.is-style-text-icon,
+            &.is-style-default-white {
+                .wp-element-button {
+                    &::after {
+                        background-image: url('../ccc/assets/icons/ui/purple/arrow_right.svg');
+                    }
+
+                    &:hover,
+                    &:focus {
+                        &::after {
+                            background-image: url('../ccc/assets/icons/ui/dark_purple/arrow_right.svg');
+                        }
+                    }
+
+                    &.external-link {
+                        &::after {
+                            background-image: url('../ccc/assets/icons/ui/purple/external.svg');
+                        }
+    
+                        &:hover,
+                        &:focus {
+                            &::after {
+                                background-image: url('../ccc/assets/icons/ui/dark_purple/external.svg');
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.is-style-text-icon,
+            &.is-style-text-icon-white {
+                .wp-element-button {
+                    padding-right: rem(60px)!important;
+
+                    @include bp-max(smdesk) {
+                       padding-right: rem(48px)!important;
+                    }
+                }
+            }
+        }
+    }
+}

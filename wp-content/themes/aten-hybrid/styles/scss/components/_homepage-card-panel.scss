@@ -1,0 +1,185 @@
+/* Homepage Card Panel Styles */
+#ccc-site .homepage-card-panel-component,
+.wp-toolbar .homepage-card-panel-component {
+    position: relative;
+    
+    .card-panel-wrap {
+        background-color: var(--white);
+        border-radius: rem(12px);
+        padding: rem(20px);
+        position: relative;
+        z-index: 5;
+
+        .card-text-wrap {
+            h2 {
+                @include font-h3;
+                @include font-weight-bold;
+                margin-bottom: rem(20px);
+
+                @include bp-min(tablet) {
+                    @include font-h2;
+                    @include font-weight-bold;
+                    margin-bottom: rem(40px);
+                }
+            }
+
+            p {
+                @include font-h4;
+                @include font-weight-bold;
+                max-width: rem(980px);
+            }
+        }
+
+        .card-list-wrap {
+            margin-top: rem(20px);
+
+            ul.informational-cards {
+                padding: 0;
+                margin: 0;
+                list-style-type: none;
+                display: flex;
+                flex-direction: column;
+                gap: rem(20px);
+
+                li.informational-card {
+                    padding: rem(20px);
+
+                    &.orange {
+                        @include gradient-border(
+                            rem(4px),
+                            rem(12px) rem(12px) 0 0,
+                            var(--white),
+                            var(--orange),
+                            #d89eb7
+                        );
+
+                        @include bp-min(tablet) {
+                            @include gradient-border(
+                                rem(4px),
+                                rem(20px) rem(20px) 0 0,
+                                var(--white),
+                                var(--orange),
+                                #d89eb7
+                            );
+                        }
+                    }
+
+                    &.red {
+                        @include gradient-border(
+                            rem(4px),
+                            rem(12px) rem(12px) 0 0,
+                            var(--white),
+                            var(--red),
+                            #d888b3
+                        );
+
+                        @include bp-min(tablet) {
+                            @include gradient-border(
+                                rem(4px),
+                                rem(20px) rem(20px) 0 0,
+                                var(--white),
+                                var(--red),
+                                #d888b3
+                            );
+                        }
+                    }
+
+                    &.purple {
+                        @include gradient-border(
+                            rem(4px),
+                            rem(12px) rem(12px) 0 0,
+                            var(--white),
+                            var(--purple),
+                            #c08df1
+                        );
+
+                        @include bp-min(tablet) {
+                            @include gradient-border(
+                                rem(4px),
+                                rem(20px) rem(20px) 0 0,
+                                var(--white),
+                                var(--purple),
+                                #c08df1
+                            );
+                        }
+                    }
+
+                    h3 {
+                        @include font-h4;
+                        @include font-weight-bold;
+                        margin-top: rem(8px);
+                        margin-bottom: rem(8px);
+
+                        @include bp-min(tablet) {
+                            @include font-h3;
+                            @include font-weight-bold;
+                            margin-top: rem(20px);
+                            margin-bottom: rem(20px);
+                        }
+                    }
+
+                    p {
+                        @include bp-min(tablet) {
+                            font-size: var(--font-size-h24);
+                            line-height: var(--line-height-h24);
+                        }
+                    }
+
+                    @include bp-min(tablet) {
+                        padding: rem(40px);
+                    }
+
+                    @include bp-min(lgdesk) {
+                        width: 33%;
+                    }
+                }
+
+                @include bp-min(tablet) {
+                    gap: rem(40px);
+                }
+
+                @include bp-min(lgdesk) {
+                    flex-direction: row;
+                }
+            }
+
+            @include bp-min(tablet) {
+                margin-top: rem(40px);
+            }
+        }
+
+        @include bp-min(tablet) {
+            padding: rem(40px);
+            border-radius: rem(20px);
+        }
+
+        @include bp-min(smdesk) {
+            padding: rem(60px);
+        }
+    }
+
+    img.card-icon {
+        width: rem(28px);
+        height: auto;
+
+        @include bp-min(tablet) {
+            width: rem(48px);
+        }
+    }
+
+    .content-end-triangle {
+        display: none;
+        position: absolute;
+        z-index: 3;
+        bottom: rem(-30px);
+        right: rem(-30px);
+
+        @include bp-min(smdesk) {
+            display: block;
+        }
+    }
+
+    @include bp-min(smdesk) {
+        max-width: calc(100% - rem(120px));
+    }
+}

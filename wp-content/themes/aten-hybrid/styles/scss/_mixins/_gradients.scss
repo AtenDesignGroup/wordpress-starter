@@ -1,0 +1,25 @@
+@mixin bg-gradient($angle: 0deg, $colors...) {
+    $colorList: nth($colors, 1);
+    @for $i from 2 to (length($colors) + 1) {
+      $colorList: append($colorList , nth($colors, $i), 'comma');
+    }
+    background-image: linear-gradient($angle, $colorList);
+}
+
+@mixin gradient-border(
+    $borderWidth: rem(4px), 
+    $borderRadius: rem(20px) rem(20px) 0 0, 
+    $backgroundColor: var(--white), 
+    $colors...
+    ) {
+
+    $colorList: nth($colors, 1);
+    @for $i from 2 to (length($colors) + 1) {
+      $colorList: append($colorList , nth($colors, $i), 'comma');
+    }
+
+    background: linear-gradient($backgroundColor, $backgroundColor) padding-box,
+                linear-gradient(180deg, $colorList, #6300C700 99%, transparent 100%) border-box;
+    border-radius: $borderRadius;
+    border: $borderWidth solid transparent;
+}

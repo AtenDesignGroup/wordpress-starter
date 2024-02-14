@@ -1,0 +1,283 @@
+/* Video Gallery Block Styling */
+#ccc-site .video-gallery-block,
+.wp-toolbar #wpcontent .video-gallery-block {
+    padding-left: var(--global--spacing-horizontal);
+    padding-right: var(--global--spacing-horizontal);
+
+    .video-grid {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: rem(20px);
+
+        .single-video-item {
+            width: 100%;
+
+            .single-video-wrapper {
+                width: 100%;
+
+                    .video-thumbnail-wrapper {
+                        width: 100%;
+                        height: 100%;
+                        min-height: rem(240px);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-size: cover;
+                        background-position: center center;
+
+                        @include bp-min(smdesk) {
+                            min-height: rem(290px);
+                        }
+                    }
+            }
+
+            @include bp-min(tablet) {
+                width: calc(50% - rem(20px));
+            }
+
+            @include bp-min(smdesk) {
+                width: calc(50% - rem(30px));
+            }
+
+            @include bp-min(lgdesk) {
+                width: calc(33% - rem(35.5px));
+            }
+        }
+
+        @include bp-min(tablet) {
+            gap: rem(20px) rem(40px);
+        }
+
+        @include bp-min(smdesk) {
+            gap: rem(40px);
+        }
+
+        @include bp-min(smdesk) {
+            gap: rem(40px) rem(60px);
+        }
+
+        .video-meta {
+            margin-top: rem(12px);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: rem(12px) rem(20px);
+
+            p, 
+            a {
+                @include font-body-14;
+            }
+
+            a {
+                outline-color: var(--purple)!important;
+                outline-offset: rem(4px);
+            }
+
+            p.video-download {
+                flex-shrink: 0;
+
+                a {
+                    position: relative;
+                    padding-right: rem(24px);
+
+                    &::after {
+                        content: "";
+                        background-image: url('../ccc/assets/icons/ui/purple/arrow_download.svg');
+                        background-size: contain;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        display: inline;
+                        position: absolute;
+                        width: rem(18px);
+                        height: rem(20px);
+                        right: 0;
+                        top: 55%;
+                        transform: translate(0, -50%);
+                    }
+
+                    &:hover,
+                    &:focus {
+                        &::after {
+                            background-image: url('../ccc/assets/icons/ui/dark_purple/arrow_download.svg');
+                        }
+                    }
+                }
+            }
+
+            @include bp-min(smdesk) {
+                flex-wrap: nowrap;
+            }
+        }
+    }
+
+    @include bp-min(smdesk) {
+        padding-left: rem(60px);
+        padding-right: rem(60px);
+    }
+
+    @include bp-min(lgdesk) {
+        padding-left: rem(50px);
+        padding-right: rem(50px);
+        max-width: rem(1500px);
+    }
+}
+
+.video-lightbox-content {
+    display: none;
+}
+
+.video-lightbox-trigger {
+    display: block; 
+
+    &:focus {
+        outline: rem(1px) solid var(--purple)!important;
+        outline-offset: rem(3px);
+    }
+}
+
+.video-gallery-lightbox:not(.image-gallery-lightbox) {
+    background-color: #000;
+
+    .tobii__btn.tobii__btn--close {
+        right: rem(20px);
+        top: rem(20px);
+        height: rem(52px);
+        width: rem(52px);
+        outline-offset: rem(4px);
+        outline-width: rem(1px);
+        border-radius: rem(8px);
+        outline-color: var(--white);
+        background-color: transparent;
+        border-color: transparent;
+        opacity: 1;
+
+        > svg {
+            transform: none;
+            opacity: 1!important;
+
+            path {
+                stroke: var(--white);
+            }
+        }
+    }
+
+    .tobii__slider {
+        transform: none!important;
+        
+        .tobii__slide {
+            width: 75%;
+            height: 75%;
+            left: 50%!important;
+            top: 50%!important;
+            transform: translate(-50%, -50%);
+            max-width: none;
+
+            .tobii-html {
+                max-width: rem(980px);
+                max-height: none;
+                width: 75vw;
+                background-color: #000;
+                
+                iframe {
+                    width: 75vw;
+                    height: 35vh;
+
+                    @include bp-min(tablet) {
+                        height: 50vh;
+                    }
+
+                    @include bp-min(smdesk) {
+                        height: 65vh;
+                    }
+                }
+
+                .video-lightbox-content {
+                    display: block;
+                }
+
+                @include bp-max(tablet) {
+                    position: relative;
+                    // Offset to avoid overlap with nav controls
+                    top: -5vh;
+                }
+            }
+
+            .video-lightbox-content {
+                background-color: #000;
+            }
+
+            .lightbox-video-meta {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                max-width: 75vw;
+                margin-top: rem(8px);
+                flex-wrap: wrap;
+
+                .lightbox-video-title,
+                .lightbox-video-title a,
+                .lightbox-video-download a {
+                    color: var(--white)!important;
+                    @include font-body-14;
+
+                    @include bp-max(tablet) {
+                        font-size: rem(12px);
+                    }
+                }
+
+                .lightbox-video-title {
+                    max-width: rem(400px);
+                    width: 100%;
+
+                    @include bp-min(tablet) {
+                        width: auto;
+                    }
+                }
+
+                .lightbox-video-download {
+                    margin-top: rem(12px);
+
+                    a {
+                        flex-shrink: 0;
+                        position: relative;
+                        padding-right: rem(24px);
+                        display: flex;
+                        align-items: center;
+                        outline-color: var(--white);
+                        outline-width: rem(1px);
+                        outline-offset: rem(3px);
+    
+                        &::after {
+                            content: "";
+                            background-image: url('../ccc/assets/icons/ui/white/arrow_download.svg');
+                            background-size: contain;
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            display: inline;
+                            position: absolute;
+                            width: rem(18px);
+                            height: rem(18px);
+                            right: 0;
+                            top: 55%;
+                            transform: translate(0, -50%);
+                        }
+                    }
+
+                    @include bp-min(tablet) {
+                        margin-top: 0;
+                    }
+                }
+
+                @include bp-min(tablet) {
+                    margin-top: rem(16px);
+                    flex-wrap: nowrap;
+                }
+            }
+        }
+    }
+} 

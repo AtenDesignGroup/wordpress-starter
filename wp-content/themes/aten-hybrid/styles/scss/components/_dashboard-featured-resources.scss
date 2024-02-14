@@ -1,0 +1,275 @@
+/* Dashboard Featured Resource Block Styling */
+#ccc-site .dashboard-featured-resource-component,
+.wp-toolbar .dashboard-featured-resource-component {
+    background-color: var(--black);
+    position: relative;
+    margin-top: rem(20px);
+    border-radius: rem(12px);
+    padding: rem(20px);
+
+    .resource-title-wrapper {
+        display: flex;
+        align-items: center;
+        gap: rem(20px);
+        margin-bottom: rem(20px);
+
+        h2 {
+            color: var(--white);
+            @include font-label-18;
+            @include headings;
+            @include font-weight-bold;
+            flex-shrink: 0;
+        }
+
+        hr {
+            border-color: var(--white);
+            border-width: rem(1px);
+            width: 100%;
+        }
+
+        @include bp-min(tablet) {
+            margin-bottom: rem(40px);
+        }
+    }
+
+    ul.featured-resources {
+        @include list--unordered-flex(column, rem(40px));
+
+        li.featured-resource {
+            width: 100%;
+            border: 0px;
+            position: relative;
+            transition: all .25s ease;
+            padding: rem(20px);
+
+            .resource-border-wrapper {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+                opacity: 1;
+                transition: opacity 0.5s ease;
+
+                @include gradient-border(
+                    rem(4px),
+                    rem(12px) rem(12px) 0 0,
+                    var(--black),
+                    var(--orange),
+                    #662545
+                );
+    
+                &.hover {
+                    @include gradient-border(
+                        rem(4px),
+                        rem(12px) rem(12px) 0 0,
+                        var(--black),
+                        var(--white)
+                    );
+                    opacity: 0;
+                }
+
+                @include bp-min(tablet) {
+                    @include gradient-border(
+                        rem(4px),
+                        rem(20px) rem(20px) 0 0,
+                        var(--black),
+                        var(--orange),
+                        #662545
+                    );
+        
+                    &.hover {
+                        @include gradient-border(
+                            rem(4px),
+                            rem(20px) rem(20px) 0 0,
+                            var(--black),
+                            var(--white)
+                        );
+                    }
+                }
+            }
+
+            &:hover,
+            &:focus-within {
+                .resource-border-wrapper:not(.hover) {
+                    opacity: 0;
+                }
+
+                .resource-border-wrapper.hover {
+                    opacity: 1;
+                }
+            }
+
+            .resource-contents {
+                position: relative;
+                z-index: 2;
+            }
+
+            .resource-type {
+                display: flex;
+                align-items: center;
+                gap: rem(10px);
+
+                .resource-icon {
+                    width: rem(20px);
+                    height: auto;
+
+                    @include bp-min(tablet) {
+                        width: rem(28px);
+                    }
+                }
+
+                p {
+                    color: var(--white);
+                    @include font-label-14;
+                    font-family: var(--font-family-mint);
+                    @include font-weight-bold;
+
+                    @include bp-min(tablet) {
+                        font-size: var(--font-size-l18);
+                        line-height: var(--line-height-l18);
+                    }
+                }
+            }
+
+            h3 {
+                margin-top: rem(20px);
+
+                a {
+                    color: var(--white);
+                    @include font-h3;
+                    @include font-weight-bold;
+                    text-decoration: none;
+                    outline-color: var(--white);
+                    outline-offset: rem(4px);
+                    outline-width: rem(1px);
+
+                    &:hover,
+                    &:focus {
+                        text-decoration: underline;
+                    }
+
+                    @include bp-min(tablet) {
+                        font-size: var(--font-size-h48);
+                        line-height: var(--line-height-h48);
+                        outline-width: rem(2px);
+                    }
+
+                    @include bp-min(smdesk) {
+                        font-size: var(--font-size-h32);
+                        line-height: var(--line-height-h32);
+                    }
+
+                    @include bp-min(lgdesk) {
+                        font-size: var(--font-size-h48);
+                        line-height: var(--line-height-h48);
+                    }
+                }
+
+                @include bp-min(tablet) {
+                    margin-top: rem(40px);
+                }
+            }
+
+            .resource-topic-wrapper {
+                margin-top: var(--global--spacing-vertical);
+    
+                > p {
+                    @include font-weight-bold;
+                    margin-bottom: rem(12px);
+                }
+    
+                ul {
+                    @include list--unordered-flex(row, rem(34px));
+                    flex-wrap: wrap;
+                    gap: rem(4px) rem(18px);
+    
+                    li {
+                        display: flex;
+    
+                        a {
+                            @include font-body-16;
+                            color: var(--white)!important;
+    
+                            @include bp-max(tablet) {
+                                font-size: rem(12px);
+                            }
+                        }
+    
+                        &::after {
+                            content: url('../ccc/assets/icons/ui/white/diagonal_divider.svg');
+                            display: inline-block;
+                            height: rem(18px);
+                            overflow: hidden;
+                            position: relative;
+                            right: rem(-9px);
+                            top: 50%;
+                            transform: translate(0, -50%);
+    
+                            @include bp-min(tablet) {
+                                height: rem(26px);
+                                right: rem(-17px);
+                            }
+                        }
+    
+                        &:last-child {
+                            &::after {
+                                content: '';
+                            }
+                        }
+                    }
+    
+                    @include bp-min(tablet) {
+                        gap: rem(14px) rem(34px);
+                    }
+                }
+    
+                @include bp-min(tablet) {
+                    border-top: rem(1px) solid var(--purple);
+                    padding-top: rem(20px);
+                }
+            }
+
+            @include bp-min(tablet) {
+                padding: rem(40px);
+            }
+
+            @include bp-min(lgdesk) {
+                padding: rem(60px);
+            }
+        }
+
+        @include bp-min(tablet) {
+            gap: rem(40px);
+        }
+    }
+
+    @include bp-min(tablet) {
+        margin-top: rem(40px);
+        padding: rem(40px);
+        border-radius: rem(20px);
+    }
+
+    @include bp-min(tablet) {
+        margin-top: rem(40px);
+        padding: rem(60px);
+    }
+
+    @include bp-min(lgdesk) {
+        max-width: var(--responsive--alignfull-width);
+        width: auto;
+        margin-left: var(--global--spacing-horizontal);
+        margin-right: var(--global--spacing-horizontal);
+        margin-top: rem(60px);
+        padding: rem(80px);
+    }
+}
+
+.wp-block-acf-dashboard-featured-resources {
+    max-width: calc(100vw - 2 * var(--global--spacing-horizontal));
+
+    .featured-resource {
+        max-width: calc(100% - rem(130px));
+    }
+}

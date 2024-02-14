@@ -1,0 +1,142 @@
+// Layouts for content
+// -----------------------------------
+.l-gutter {
+  @include l-gutter;
+}
+
+.l-narrow {
+  @include l-narrow;
+}
+
+.l-full {
+  @include l-full;
+}
+
+[class*="l-gutter"] [class*="l-gutter"] {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.js-delay {
+  display: none;
+}
+
+:root {
+  // Expose margin amounts for offset
+  @include bp-min(mobile) {
+    --margin: 15px;
+  }
+  // Tablet
+  @include bp-min(tablet) {
+    --margin: 40px;
+  }
+  // Small & Medium Desktop
+  @include bp-min(smdesk) {
+    --margin: 60px;
+  }
+  // Large Desktop
+  @include bp-min(lgdesk) {
+    --margin: 120px;
+  }
+}
+
+// Attach smooth for all scrollable elements
+html {
+  scroll-behavior: smooth;
+}
+
+.contains-sidebar-content{ 
+  @include bp-min(tablet) {
+    flex-direction: column;
+  }
+
+  @include bp-min(smdesk) {
+    flex-direction: row;
+  }
+}
+
+// Arranging columns for 2-col layouts when in mobile view
+.wp-block-columns.sidebar-layout {
+  
+  .sidebar-layout-sidebar {
+    @include bp-min(smdesk) {
+      padding-left: rem(30px);
+    }
+
+    @include bp-min(lgdesk) {
+      padding-left: rem(40px);
+
+      > div {
+        border-left: rem(2px) solid var(--cloud-gray);
+        padding-left: rem(60px);
+      }
+    }
+  }
+
+  @include bp-max(smdesk) {
+    // Overriding WP default
+    flex-wrap: wrap!important;
+
+    .sidebar-layout-content,
+    .sidebar-layout-sidebar {
+      width: 100%;
+      // Overriding WP default
+      flex-basis: 100%!important;
+    }
+  }
+}
+
+main#wp--skip-link--target {
+  // Removing whitespace between menu and header of templates
+  margin-top: 0px!important;
+}
+
+#main.site-main {
+  @include bp-max(tablet) {
+    padding-top: 0;
+  }
+}
+
+.wp-block-columns {
+  position: relative;
+}
+
+.cleardiv {
+  clear: both;
+}
+
+.mobile-only {
+  @include bp-min(tablet) {
+    display: none!important;
+  }
+}
+
+.tablet-up {
+  @include bp-max(tablet) {
+    display: none!important;
+  }
+}
+
+#main.site-main {
+  padding-top: calc(0.75 * var(--global--spacing-vertical));
+  padding-bottom: calc(0.75 * var(--global--spacing-vertical));
+
+  .entry-content {
+    margin-top: 0;
+    margin-bottom: calc(0.75 * var(--global--spacing-vertical));
+
+    @include bp-min(smdesk) {
+      margin-top: calc(0.5 * var(--global--spacing-vertical));
+    }
+  }
+
+  @include bp-min(lgdesk) {
+    padding-top: 0;
+    padding-bottom: var(--global--spacing-vertical);
+  }
+
+  @include bp-max(tablet) {
+      padding-top: 0;
+      padding-bottom: 0;
+  }
+}

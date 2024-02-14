@@ -1,0 +1,35 @@
+// Theme colors
+:root {
+  --black: #191326;
+  --bright-purple: #9D3AFF;
+  --cloud-gray: #E6E9F2;
+  --coral: #FF2100;
+  --dark-purple: #2A0080;
+  --darkest-purple: #19004D;
+  --gray: #CACFE0;
+  --medium-gray: #ACB0BF;
+  --orange: #FF6D00;
+  --pale-cloud-gray: #F5F6FA;
+  --purple: #6300C7;
+  --red: #DB0000;
+  --wcag-placeholder: #4D566C;
+  --white: #ffffff;
+
+  	/* Colors */
+	--global--color-black: var(--black);
+	--global--color-dark-gray: var(--wcag-placeholder);
+	--global--color-gray: var(--medium-gray);
+	--global--color-light-gray: var(--gray);
+	--global--color-purple: var(--purple);
+	--global--color-red: var(--red);
+	--global--color-orange: var(--coral);
+	--global--color-yellow: var(--orange);
+	--global--color-white: var(--white);
+	--global--color-white-50: rgba(255, 255, 255, 0.5);
+	--global--color-white-90: rgba(255, 255, 255, 0.9);
+	--global--color-primary: var(--global--color-black); /* Body text color, site title, footer text color. */
+	--global--color-secondary: var(--global--color-black); /* Headings */
+	--global--color-primary-hover: var(--global--color-primary);
+	--global--color-background: var(--global--color-white); 
+	--global--color-border: var(--global--color-gray); /* Used for borders (separators) */
+}

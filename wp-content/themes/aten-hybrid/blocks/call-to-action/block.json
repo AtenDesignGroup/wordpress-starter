@@ -1,0 +1,23 @@
+{
+    "name": "acf/call-to-action",
+    "title": "Call To Action",
+    "description": "A block whose primary purpose is to call out information/text with an optional button link.",
+    "category": "common",
+    "icon": "admin-comments",
+    "keywords": ["cta", "link", "blurb", "call", "action"],
+    "supports": {
+    },
+    "acf": {
+      "mode": "edit",
+      "renderTemplate": "call-to-action.php"
+    },
+    "align": "full",
+    "example": {
+      "attributes": {
+        "mode": "preview",
+        "data": {
+          "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/call_to_action.svg"
+        }
+      }
+    }
+  }

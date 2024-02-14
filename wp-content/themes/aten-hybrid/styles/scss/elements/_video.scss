@@ -1,0 +1,7 @@
+/* Video Element styles */
+.wp-block-embed.is-type-video {
+    @include bp-min(lgdesk) {
+        max-width: rem(1236px)!important;
+        width: 100%;
+    }
+}

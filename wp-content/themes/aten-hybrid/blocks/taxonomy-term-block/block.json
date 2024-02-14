@@ -1,0 +1,29 @@
+{
+  "name": "acf/taxonomy-term-block",
+  "title": "Taxonomy Term Block",
+  "description": "A custom block that displays the resource publication date, resource type, and resource topics.",
+  "category": "formatting",
+  "icon": "feedback",
+  "keywords": ["taxonomy", "topic", "type", "category", "tag"],
+  "supports": {
+    "multiple": false,
+    "mode": false
+  },
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "taxonomy-term-block.php"
+  },
+  "post_types": [
+    "research",
+    "message"
+  ],
+  "align": "full",
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/taxonomy_term_block.svg"
+      }
+    }
+  }
+}

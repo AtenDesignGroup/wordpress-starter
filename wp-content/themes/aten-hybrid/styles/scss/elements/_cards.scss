@@ -1,0 +1,399 @@
+/* Card Element Styles */
+#main .archive-list {
+    @include list--unordered-flex(column, 0px);
+    background-color: var(--black);
+
+    article {
+        position: relative;
+        z-index: 2;
+
+        @include bp-min(lgdesk) {
+            height: calc(100% - rem(100px));
+        }
+    }
+
+    .archive-card {
+        width: 100%;
+        border-width: rem(4px);
+        border-style: solid;
+        border-image: linear-gradient(to right, var(--orange), var(--coral), var(--purple));
+        border-image-slice: 1;
+        border-top: 0;
+        border-right: 0;
+        border-left: 0;
+        position: relative;
+
+        * {
+            color: var(--white);
+        }
+
+        .entry-content {
+            margin: rem(40px) rem(20px) rem(32px);
+
+            @include bp-min(tablet) {
+                margin: rem(40px);
+            }
+
+            @include bp-min(lgdesk) {
+                height: 100%;
+                margin: rem(60px) rem(60px) rem(40px);
+            }
+        }
+
+        .card-details {
+            margin: 0;
+
+            @include bp-min(lgdesk) {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            a {
+                outline-color: var(--white)!important;
+            }
+        }
+
+        .card-category {
+            display: flex;
+            align-items: center;
+            gap: rem(12px);
+            margin-bottom: rem(20px);
+
+            a {
+                text-decoration: none;
+                @include font-label-18;
+                font-family: var(--font-family-mint);
+                @include font-weight-bold;
+
+                &:hover,
+                &:focus {
+                    text-decoration: underline;
+                }
+
+                @include bp-max(tablet) {
+                    font-size: rem(12px);
+                }
+            }
+
+            .category-icon {
+                width: rem(18px);
+                height: rem(18px);
+
+                @include bp-min(tablet) {
+                    width: rem(28px);
+                    height: rem(28px);
+                }
+            }
+        }
+
+        .card-title {
+            .entry-title {
+                @include font-h3;
+                @include font-weight-bold;
+            }
+            
+            a {
+                text-decoration: none;
+                color: var(--white);
+                @include font-h3;
+                @include font-weight-bold;
+
+                &:hover,
+                &:focus {
+                    text-decoration: underline;
+                }
+
+                &:focus {
+                    outline: rem(2px) solid var(--white)!important;
+                }
+            }
+
+            @include bp-min(lgdesk) {
+                flex-grow: 1;
+            }
+        }
+
+        .topic-wrapper {
+            margin-top: rem(20px);
+
+            > p {
+                @include font-weight-bold;
+                margin-bottom: rem(12px);
+            }
+
+            ul {
+                @include list--unordered-flex(row, rem(34px));
+                flex-wrap: wrap;
+                gap: rem(12px) rem(18px);
+
+                li {
+                    display: flex;
+
+                    a {
+                        @include font-body-16;
+
+                        @include bp-max(tablet) {
+                            font-size: rem(12px);
+                        }
+                    }
+
+                    &::after {
+                        content: url('../ccc/assets/icons/ui/white/diagonal_divider.svg');
+                        display: inline-block;
+                        height: rem(18px);
+                        overflow: hidden;
+                        position: relative;
+                        right: rem(-9px);
+                        top: 50%;
+                        transform: translate(0, -50%);
+
+                        @include bp-min(tablet) {
+                            height: rem(26px);
+                            right: rem(-17px);
+                        }
+                    }
+
+                    &:last-child {
+                        &::after {
+                            content: '';
+                        }
+                    }
+                }
+
+                @include bp-min(tablet) {
+                    gap: rem(14px) rem(34px);
+                }
+            }
+
+            @include bp-min(tablet) {
+                border-top: rem(1px) solid var(--purple);
+                margin-top: rem(40px);
+                padding-top: rem(20px);
+            }
+
+            @include bp-min(smdesk) {
+                margin-top: rem(80px);
+            }
+        }
+
+        // For Message cards only
+        .customizable-tag {
+            position: absolute;
+            top: 0;
+            right: rem(20px);
+            display: flex;
+            align-items: center;
+            gap: rem(4px);
+
+            p {
+                @include font-body-14;
+                @include font-weight-bold;
+
+                @include bp-min(tablet) {
+                    @include font-body-16;
+                    @include font-weight-bold;
+                }
+            }
+
+            .message-customizable-icon {
+                height: rem(18px);
+                width: rem(18px);
+            }
+
+            @include bp-min(tablet) {
+                top: rem(-15px);
+            }
+
+            @include bp-min(lgdesk) {
+                top: rem(-40px);
+            }
+        }
+
+        // For Research cards only
+        .external-icon {
+            position: absolute;
+            top: 0;
+            right: rem(20px);
+
+            .research-external-icon {
+                height: rem(20px);
+                width: rem(20px);
+
+                @include bp-min(tablet) {
+                    height: rem(24px);
+                    width: rem(24px);
+                }
+            }
+
+            @include bp-min(tablet) {
+                top: rem(-15px);
+                right: rem(22px);
+            }
+
+            @include bp-min(lgdesk) {
+                top: rem(-40px);
+            }
+        }
+
+        .card-border-wrapper {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0;
+
+            @include gradient-border(
+                rem(4px),
+                rem(12px) rem(12px) 0 0,
+                var(--black),
+                var(--orange),
+                var(--coral),
+                var(--purple)
+            );
+
+            &.hover {
+                @include gradient-border(
+                    rem(4px),
+                    rem(12px) rem(12px) 0 0,
+                    var(--black),
+                    var(--white)
+                );
+            }
+
+            @include bp-min(tablet) {
+                transition: opacity 0.5s ease;
+
+                @include gradient-border(
+                    rem(4px),
+                    rem(20px) rem(20px) 0 0,
+                    var(--black),
+                    var(--orange),
+                    var(--coral),
+                    var(--purple)
+                );
+
+                &.hover {
+                    @include gradient-border(
+                        rem(4px),
+                        rem(20px) rem(20px) 0 0,
+                        var(--black),
+                        var(--white)
+                    );
+                }
+            }
+        }
+
+        &:nth-of-type(n) {
+            .card-border-wrapper:not(.hover) {
+                @include gradient-border(
+                    rem(4px),
+                    rem(12px) rem(12px) 0 0,
+                    var(--black),
+                    var(--orange),
+                    var(--coral),
+                    var(--purple)
+                );
+
+                @include bp-min(tablet) {
+                    @include gradient-border(
+                        rem(4px),
+                        rem(20px) rem(20px) 0 0,
+                        var(--black),
+                        var(--orange),
+                        var(--coral),
+                        var(--purple)
+                    );
+                }
+            }
+        }
+
+        &:nth-of-type(3n + 2) {
+            .card-border-wrapper:not(.hover) {
+                @include gradient-border(
+                    rem(4px),
+                    rem(12px) rem(12px) 0 0,
+                    var(--black),
+                    var(--purple),
+                    var(--coral)
+                );
+
+                @include bp-min(tablet) {
+                    @include gradient-border(
+                        rem(4px),
+                        rem(20px) rem(20px) 0 0,
+                        var(--black),
+                        var(--purple),
+                        var(--coral)
+                    );
+                }
+            }
+        }
+
+        &:nth-of-type(3n + 3) {
+            .card-border-wrapper:not(.hover) {
+                @include gradient-border(
+                    rem(4px),
+                    rem(12px) rem(12px) 0 0,
+                    var(--black),
+                    var(--coral),
+                    var(--bright-purple),
+                    var(--purple)
+                );
+
+                @include bp-min(tablet) {
+                    @include gradient-border(
+                        rem(4px),
+                        rem(20px) rem(20px) 0 0,
+                        var(--black),
+                        var(--coral),
+                        var(--bright-purple),
+                        var(--purple)
+                    );
+                }
+            }
+        }
+
+        @include bp-min(tablet) {
+            border: 0px;
+            position: relative;
+
+            .card-border-wrapper:not(.hover) {
+                opacity: 1;
+            }
+
+            &:hover,
+            &:focus-within {
+                .card-border-wrapper {
+                    &:not(.hover) {
+                        opacity: 0;
+                    }
+                    
+                    &.hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        @include bp-min(lgdesk) {
+            width: calc(50% - rem(20px));
+        } 
+    }
+
+    @include bp-min(tablet) {
+        gap: rem(20px);
+    }
+
+    @include bp-min(smdesk) {
+        gap: rem(40px);
+    }
+
+    @include bp-min(lgdesk) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}

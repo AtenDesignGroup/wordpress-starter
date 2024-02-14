@@ -1,0 +1,24 @@
+{
+  "name": "acf/page-header",
+  "title": "Standard Page Header",
+  "description": "A custom block that adds a page header with an optional description. Resource and Message posts can have a resource download button and customized icon.",
+  "category": "formatting",
+  "icon": "button",
+  "keywords": ["subtitle", "header", "hero"],
+  "supports": {
+    "multiple": false
+  },
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "page-header.php"
+  },
+  "align": "full",
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/page_header.svg"
+      }
+    }
+  }
+}

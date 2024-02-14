@@ -1,0 +1,24 @@
+{
+    "name": "acf/dashboard-featured-resources",
+    "title": "Dashboard Featured Resources",
+    "description": "A block designed to display up to three featured Research or Message posts on the user dashboard.",
+    "category": "dashboard",
+    "icon": "align-wide",
+    "keywords": ["dashboard", "resources", "research", "message", "featured"],
+    "supports": {
+      "multiple": false
+    },
+    "acf": {
+      "mode": "edit",
+      "renderTemplate": "dashboard-featured-resources.php"
+    },
+    "align": "full",
+    "example": {
+      "attributes": {
+        "mode": "preview",
+        "data": {
+          "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/dashboard-featured-resources.svg"
+        }
+      }
+    }
+  }

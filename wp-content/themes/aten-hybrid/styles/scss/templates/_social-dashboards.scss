@@ -1,0 +1,26 @@
+/* Social Listening Dashboard Styling */
+body.page-id-42 {
+    .entry-content {
+        margin-top: 0;
+
+        @include bp-min(smdesk) {
+            margin-top: rem(60px);
+        }
+
+        @include bp-min(lgdesk) {
+            margin-top: rem(-10px);
+        }
+    }
+
+    .social-listening-map-block {
+        margin-bottom: rem(30px);
+
+        @include bp-min(tablet) {
+            margin-bottom: rem(60px);
+        }
+
+        @include bp-min(lgdesk) {
+            margin-bottom: rem(120px);
+        }
+    }
+}

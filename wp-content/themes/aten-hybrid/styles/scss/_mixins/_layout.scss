@@ -1,0 +1,80 @@
+@mixin l-gutter {
+  // Mobile Screens
+  @include bp-min(mobile) {
+    margin-left: rem(15px);
+    margin-right: rem(15px);
+  }
+  // Tablet
+  @include bp-min(tablet) {
+    margin-left: rem(40px);
+    margin-right: rem(40px);
+  }
+  // Small & Large Desktop
+  @include bp-min(smdesk) {
+    margin-left: rem(60px);
+    margin-right: rem(60px);
+  }
+  @include bp-min(wrapper) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@mixin l-narrow {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: rem(986px);
+}
+
+@mixin l-full {
+  position: relative;
+  z-index: 1;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: var(--white);
+    width: 100vw;
+    height: 100%;
+    z-index: -1;
+    top: 0;
+    left: rem(-15px);
+
+    @include bp-min(tablet) {
+      left: rem(-40px);
+    }
+
+    @include bp-min(smdesk) {
+      left: rem(-60px);
+    }
+
+    @include bp-min(lgdesk) {
+      left: rem(-120px);
+    }
+
+    @include bp-min(wrapper) {
+      left: calc(0px - (100vw - rem(1620px)) / 2);
+    }
+  }
+}
+
+@mixin pseudo-band($color) {
+  position: relative;
+  &:before,
+  &:after {
+    background-color: var($color);
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    z-index: -1;
+  }
+  &:before {
+    right: 0;
+  }
+  &:after {
+    left: 0;
+  }
+}
