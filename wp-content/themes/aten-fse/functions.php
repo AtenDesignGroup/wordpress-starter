@@ -161,22 +161,10 @@ function aten_fse_enqueue_styles()
   wp_enqueue_style('theme-icons-outline', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined', []);
 }
 
-
 function admin_style() {
   wp_enqueue_style('admin-styles', get_stylesheet_directory_uri() . '/admin-styles.css');
 }
 add_action('admin_enqueue_scripts', 'admin_style');
-
-/**
- * Enqueue custom theme javascript for footer wave.
- */
-function footer_script()
-{
-  wp_enqueue_script('tween-max', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js', [], '', TRUE);
-  wp_enqueue_script('footer-js', get_stylesheet_directory_uri() . '/js/footer.js', [], '', TRUE);
-}
-
-add_action('wp_enqueue_scripts', 'footer_script', 100);
 
 /**
  *
@@ -191,36 +179,6 @@ function aten_fse_menus_init()
 }
 
 add_action('after_setup_theme', 'aten_fse_menus_init');
-
-/**
-* Filters the next, previous and submit buttons.
-* Replaces the form's <input> buttons with <button> while maintaining attributes from original <input>.
-*
-* @param string $button Contains the <input> tag to be filtered.
-* @param object $form Contains all the properties of the current form.
-*
-* @return string The filtered button.
-*
-* Source: Official Gravity Forms documentation: https://docs.gravityforms.com/gform_submit_button/
-*/
-add_filter( 'gform_next_button', 'input_to_button', 10, 2 );
-add_filter( 'gform_previous_button', 'input_to_button', 10, 2 );
-add_filter( 'gform_submit_button', 'input_to_button', 10, 2 );
-function input_to_button( $button, $form ) {
-     
-    $dom = new DOMDocument();
-    $dom->loadHTML( '<?xml encoding="utf-8" ?>' . $button );
-    $input = $dom->getElementsByTagName( 'input' )->item(0);
-    $new_button = $dom->createElement( 'button' );
-    $new_button->appendChild( $dom->createTextNode( $input->getAttribute( 'value' ) ) );
-    $input->removeAttribute( 'value' );
-    foreach( $input->attributes as $attribute ) {
-        $new_button->setAttribute( $attribute->name, $attribute->value );
-    }
-    $input->parentNode->replaceChild( $new_button, $input );
- 
-    return $dom->saveHtml( $new_button );
-}
 
 /**
  * Pretty Printing.
@@ -273,20 +231,6 @@ function ea_pp($obj, $label = '')
   </script>
 <?php
 }
-
-/**
- * DEVELOPMENT ONLY, REMOVE BEFORE PRODUCTION
- * Adds current template below footer for debugging
- */
-//function meks_which_template_is_loaded()
-//{
-//  if (is_super_admin()) {
-//    global $template;
-//    print_r($template);
-//  }
-//}
-//
-//add_action('wp_footer', 'meks_which_template_is_loaded');
 
 /**
  * Register custom header for Aten FSE theme.
@@ -472,50 +416,6 @@ function adding_icon_font_to_block_editor () {
 add_action('enqueue_block_assets', 'adding_icon_font_to_block_editor');
 
 /**
- * Trigger the Permalinks Manager plugin to generate the permastructure when taxonomy changes are made to a post.
- * This is the solution to the Location posts not matching the permastructure upon initial publication.
- * 
- * Permalinks Manager Lite or Permalinks Manager Pro plugin is required
- */
-
-function generate_custom_location_permalinks($post_id, $terms, $taxonomy) {
-	// Check for plugin and apply changes only to location posts
-	if(class_exists('Permalink_Manager_URI_Functions') && get_post_type($post_id) === 'location') {
-    // Generate permalink according to the plugin permastruct settings
-		$custom_uri = Permalink_Manager_URI_Functions_Post::get_default_post_uri($post_id, false, true);
-    // Save new permalink to the database
-		Permalink_Manager_URI_Functions::save_single_uri($post_id, $custom_uri, false, true);
-	}
-}
-add_action('set_object_terms', 'generate_custom_location_permalinks', 9, 3);
-
-function generate_custom_page_permalinks($post) {
-	// Check for plugin and apply changes only to pages 
-	if(class_exists('Permalink_Manager_URI_Functions') && get_post_type($post) === 'page') {
-    // Generate permalink according to the plugin permastruct settings
-		$custom_uri = Permalink_Manager_URI_Functions_Post::get_default_post_uri($post, false, true);
-    // Save new permalink to the database
-		Permalink_Manager_URI_Functions::save_single_uri($post, $custom_uri, false, true);
-	}
-}
-add_action('set_object_terms', 'generate_custom_page_permalinks', 9, 3);
-
-/**
- * Filters location and page permalinks for the departments/ ancestor category and removes it from the permalink.
- * 
- * Permalinks Manager Lite or Permalinks Manager Pro plugin is required
- */
-function remove_department_from_permalinks($default_uri, $native_slug, $post, $slug, $native_uri) {
-	// Do not change native permalinks or different post types
-	if($native_uri || ($post->post_type !== 'location' && $post->post_type !== 'page') ) { return $default_uri; }
-  // Remove departments from the categorical slug
-  $default_uri = str_replace('departments/', '', $default_uri);
-  // Remove trailiing slash
-	return trim($default_uri, "/");
-}
-add_filter('permalink_manager_filter_default_post_uri', 'remove_department_from_permalinks', 10, 5);
-
-/**
  * Validates the phone number field in the contact info ACF group as a numeric value
  */
 function validate_text_as_number($valid, $value, $field, $input) {
@@ -561,24 +461,6 @@ function display_aten_fse_site_logo() {
 }
 
 add_shortcode('aten_fse_site_logo', 'display_aten_fse_site_logo');
-
-
-
-/**
- * allow grouping in a dropdown menu on a gravity form
- */
-add_filter( 'gform_field_choice_markup_pre_render', function ( $choice_markup, $choice, $field ) {
-	if ( $field->get_input_type() == 'select' ) {
-		$choice_value = rgar( $choice, 'value' );
-		if ( $choice_value === 'optgroup-start' ) {
-			return sprintf( '<optgroup label="%s">', esc_html( $choice['text'] ) );
-		} elseif ( $choice_value === 'optgroup-end' ) {
-			return '</optgroup>';
-		}
-	}
-
-	return $choice_markup;
-}, 10, 3 );
 
 /**
  * Managing menu icons and menu item display through ACF fields
@@ -635,90 +517,6 @@ function set_default_featured_image( $post_id, $post ) {
 	return $post_id;
 }
 add_action( 'save_post', 'set_default_featured_image', 10, 2 );
-
-/**
- * Customizing the Single Events post template placeholder content
- * Uses filter hook provided by TEC: https://theeventscalendar.com/knowledgebase/k/change-the-default-event-template-in-block-editor/
- */
-add_filter( 'tribe_events_editor_default_template', function( $template ) {
-  $template = array(
-    array( 'tribe/event-datetime' ),
-    array( 'core/heading', array( 'level' => 2, 'content' => 'Event Details' ) ),
-    array( 'core/paragraph', array( 'content' => 'Sed purus auctor amet interdum adipiscing iaculis arcu. Duis auctor in risus aliquam quis velit turpis urna. Nisl aliquam vitae fames eget porta risus cras imperdiet metus. Id arcu sollicitudin tortor maecenas.' ) ),
-    array( 'core/paragraph', array( 'content' => 'Senectus commodo in bibendum lacus amet ut morbi. Ullamcorper tortor auctor ullamcorper nibh semper est amet diam. Gravida venenatis rhoncus duis nibh. Ut dignissim a diam a aliquam.' ) ),
-    array(
-      'core/buttons',
-      array(),
-      array(
-        array( 'core/button', array( 
-          'text' => 'Button Text', 
-          'url' => '/',
-          'style' => 'no-bg-duo-tone' 
-          ) ),
-      )
-    ),
-    array( 'acf/event-location' ),
-    array( 'acf/divider', array(
-      'data' => array(
-        'separator_style' => 'gold_line'
-      )
-    )),
-    array( 'tribe/event-tags'),
-    array( 'acf/divider' )
-  );
-
-  return $template;
-}, 11, 1 );
-
-/**
- * Modifying Related Events block to use Location and not categories/tags
- * Funcion provided by TEC: https://theeventscalendar.com/knowledgebase/k/using-venues-for-related-events/
- */
-function tribe_modify_related_posts_args ( $args ) {
-  $event_post_ID = get_the_ID();
-  $location_post = '';
-  // Get first location post ID from event post Location block
-  $locations = get_field('locations', get_the_ID());
-  if( have_rows('locations', $event_post_ID) ): while(have_rows('locations', $event_post_ID)) : the_row();
-      if(!$location_post) {
-        $location_post = get_sub_field('existing_location');
-      }
-  endwhile; endif;
- 
-  if ( $location_post ) {
-    unset( $args['tax_query'] );
-    $args['meta_query'] = [
-      'relation' => 'AND',
-      [
-        'key' => 'locations_$_existing_location',
-        'value' => $location_post,
-        'compare' => '=',
-      ]
-    ];
-  }
- 
-  return $args;
-}
-add_filter( 'tribe_related_posts_args', 'tribe_modify_related_posts_args' );
-
-function wpza_replace_repeater_field( $where ) {
-  $where = str_replace( "meta_key = 'repeaterkey_$", "meta_key LIKE 'repeaterkey_%", $where );
-  return $where;
-}
-add_filter( 'posts_where', 'wpza_replace_repeater_field' );
-
-/*
- *  Adding filter for sidebar menu queries to adjust for ACF repeater subfields
- */
-function division_department_posts_where( $where ) {
-    
-  $where = str_replace("meta_key = 'divisions_$", "meta_key LIKE 'divisions_%", $where);
-  $where = str_replace("meta_key = 'departments_$", "meta_key LIKE 'departments_%", $where);
-
-  return $where;
-}
-
-add_filter('posts_where', 'division_department_posts_where');
 
 /* 
  *  Adjusting the WP Query Loop Block behavior for the extended News Query Block
