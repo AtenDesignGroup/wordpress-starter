@@ -44,7 +44,6 @@ footer {
 
   // Back to top button
   .back-to-top {
-    @include animate---all-off;
     align-items: center;
     background: var(--sky-blue);
     border-radius: rem(100px);
@@ -60,7 +59,6 @@ footer {
 
     &:hover,
     &:focus {
-      @include animate---all-on;
       background: var(--aten-yellow);
     }
 
@@ -270,7 +268,6 @@ footer {
   li.social-item {
     a:hover,
     a:focus {
-      @include animate---all-on;
       border-bottom: rem(2px) solid var(--aten-yellow);
       text-decoration: underline;
       svg path {
@@ -278,7 +275,6 @@ footer {
       }
     }
     svg path {
-      @include animate---all-off;
       fill: var(--white);
     }
   }
