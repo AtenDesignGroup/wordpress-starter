@@ -260,30 +260,32 @@ add_action('init', 'register_acf_blocks');
  *
  */
 function register_acf_blocks() {
-  register_block_type(__DIR__ . '/blocks/all-services-block');
-  register_block_type(__DIR__ . '/blocks/accent-text-block');
-  register_block_type(__DIR__ . '/blocks/accordion-block');
-  register_block_type(__DIR__ . '/blocks/callout');
-  register_block_type(__DIR__ . '/blocks/callout-block');
-  register_block_type(__DIR__ . '/blocks/column-block');
-  register_block_type(__DIR__ . '/blocks/contact-info');
-  register_block_type(__DIR__ . '/blocks/event-location');
-  register_block_type(__DIR__ . '/blocks/featured-link-cards');
-  register_block_type(__DIR__ . '/blocks/featured-link-section');
-  register_block_type(__DIR__ . '/blocks/homepage-hero');
-  register_block_type(__DIR__ . '/blocks/information-header');
-  register_block_type(__DIR__ . '/blocks/inline-contact-block');
-  register_block_type(__DIR__ . '/blocks/jump-link-block');
-  register_block_type(__DIR__ . '/blocks/locations-block');
-  register_block_type(__DIR__ . '/blocks/news-meta-fields');
-  register_block_type(__DIR__ . '/blocks/news-release-block');
-  register_block_type(__DIR__ . '/blocks/page-header');
-  register_block_type(__DIR__ . '/blocks/progress-block');
-  register_block_type(__DIR__ . '/blocks/pullquote');
-  register_block_type(__DIR__ . '/blocks/resource-block');
-  register_block_type(__DIR__ . '/blocks/rotating-banner');
-  register_block_type(__DIR__ . '/blocks/separator');
-  register_block_type(__DIR__ . '/blocks/services-list-block');
+  if (!class_exists('ACF')) {
+    register_block_type(__DIR__ . '/blocks/all-services-block');
+    register_block_type(__DIR__ . '/blocks/accent-text-block');
+    register_block_type(__DIR__ . '/blocks/accordion-block');
+    register_block_type(__DIR__ . '/blocks/callout');
+    register_block_type(__DIR__ . '/blocks/callout-block');
+    register_block_type(__DIR__ . '/blocks/column-block');
+    register_block_type(__DIR__ . '/blocks/contact-info');
+    register_block_type(__DIR__ . '/blocks/event-location');
+    register_block_type(__DIR__ . '/blocks/featured-link-cards');
+    register_block_type(__DIR__ . '/blocks/featured-link-section');
+    register_block_type(__DIR__ . '/blocks/homepage-hero');
+    register_block_type(__DIR__ . '/blocks/information-header');
+    register_block_type(__DIR__ . '/blocks/inline-contact-block');
+    register_block_type(__DIR__ . '/blocks/jump-link-block');
+    register_block_type(__DIR__ . '/blocks/locations-block');
+    register_block_type(__DIR__ . '/blocks/news-meta-fields');
+    register_block_type(__DIR__ . '/blocks/news-release-block');
+    register_block_type(__DIR__ . '/blocks/page-header');
+    register_block_type(__DIR__ . '/blocks/progress-block');
+    register_block_type(__DIR__ . '/blocks/pullquote');
+    register_block_type(__DIR__ . '/blocks/resource-block');
+    register_block_type(__DIR__ . '/blocks/rotating-banner');
+    register_block_type(__DIR__ . '/blocks/separator');
+    register_block_type(__DIR__ . '/blocks/services-list-block');
+  }
 }
 
 /*
@@ -366,7 +368,7 @@ function remove_block_toolbar_settings() {
 add_action('enqueue_block_assets', 'remove_block_toolbar_settings');
 
 /**
- * Control what options appear in the backend editor block toolbars.
+ * Custom query loop for news posts
  */
 function custom_news_query_loop_variation() {
 
@@ -492,32 +494,34 @@ add_filter('wp_nav_menu_objects', 'my_wp_nav_menu_objects', 10, 2);
  *
  */
 function my_wp_nav_menu_objects($items, $args) {
-  // Loop through each menu item.
-  foreach ($items as &$item) {
-    // Pulling ACF field values.
-    $icon = get_field('menu_item_icon', $item);
-    $is_top_level = get_field('no_children', $item);
-    $is_submenu_heading = get_field('submenu_heading', $item);
-    $with_border = get_field('with_border', $item);
+  if (!class_exists('ACF')) {
+    // Loop through each menu item.
+    foreach ($items as &$item) {
+      // Pulling ACF field values.
+      $icon = get_field('menu_item_icon', $item);
+      $is_top_level = get_field('no_children', $item);
+      $is_submenu_heading = get_field('submenu_heading', $item);
+      $with_border = get_field('with_border', $item);
 
-    // Append icon to the title of each menu item.
-    if ($icon) {
-      $item->title .= '<span class="menu-icon notranslate" aria-hidden="true">' . $icon . '</span>';
-    }
+      // Append icon to the title of each menu item.
+      if ($icon) {
+        $item->title .= '<span class="menu-icon notranslate" aria-hidden="true">' . $icon . '</span>';
+      }
 
-    // Add class for top-level only items.
-    if ($is_top_level) {
-      $item->classes[] = 'no-children';
-      $item->title .= ' <span class="menu-icon right notranslate" aria-hidden="true">chevron_right</span>';
-    }
+      // Add class for top-level only items.
+      if ($is_top_level) {
+        $item->classes[] = 'no-children';
+        $item->title .= ' <span class="menu-icon right notranslate" aria-hidden="true">chevron_right</span>';
+      }
 
-    // Add class for submenu heading items.
-    if ($is_submenu_heading) {
-      $item->classes[] = 'submenu-heading';
+      // Add class for submenu heading items.
+      if ($is_submenu_heading) {
+        $item->classes[] = 'submenu-heading';
 
-      // Add class for a bottom border on submenu heading items.
-      if ($with_border) {
-        $item->classes[] = 'with-border';
+        // Add class for a bottom border on submenu heading items.
+        if ($with_border) {
+          $item->classes[] = 'with-border';
+        }
       }
     }
   }
