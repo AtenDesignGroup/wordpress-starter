@@ -1,0 +1,65 @@
+// Functions
+@import "_functions/_functions";
+
+// Mixins
+@import "_mixins/_mixins";
+
+// Settings
+@import "_settings/_settings";
+
+// Elements
+@import "elements/_elements";
+
+// Components
+@import "components/_components";
+
+// Page templates
+@import "templates/_templates";
+
+.a11y-visible {
+    display: none;
+}
+
+body {
+    padding: 0 rem(16px) rem(16px);
+
+    .acf-block-preview {
+        margin-bottom: rem(28px);
+    }
+
+    .l-gutter {
+        margin-left: 0px!important;
+    }
+
+    // Accordion panels are always expanded inside the editor
+    .accordion-block .accordion-block-panel.collapsed {
+        height: auto!important;
+        overflow: visible!important;
+    }
+}
+
+// Image block styles for editor
+.wp-block-image {
+    figcaption {
+        // Overriding WP default caption min-width in editor previews
+        min-width: 100%!important;
+    }
+
+    .components-resizable-box__container {
+        // Overriding WP default caption width in editor previews
+        width: 100%!important;
+    }
+}
+
+// ACF radio button styles
+.acf-radio-list {
+    input[type="radio"] {
+        width: auto;
+    }
+}
+
+.acf-true-false {
+    input[type="checkbox"] {
+        width: auto;
+    }
+}

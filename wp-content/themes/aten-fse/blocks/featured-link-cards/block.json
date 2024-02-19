@@ -1,0 +1,45 @@
+{
+  "name": "featured-link-cards",
+  "title": "Featured Link Cards",
+  "active": true,
+  "description": "Custom block to display featured links as cards in a grid layout.",
+  "category": "common",
+  "icon": "editor-table",
+  "keywords": [
+    "cta",
+    "call to action",
+    "links",
+    "grid"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "news",
+    "location"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "featured-link-cards.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/featured_link_cards.svg"
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+// Resource Block styling
+.resources-block-wrapper {
+  ul {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(4px);
+
+    li.resource {
+      text-indent: 0;
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: var(--default-border-radius);
+      background-color: var(--aten-blue-light);
+      padding: rem(12px) rem(12px) rem(42px);
+      position: relative;
+
+      @include bp-min(tablet) {
+        width: calc(50% - rem(2px));
+        padding: rem(24px) rem(24px) rem(54px);
+      }
+
+      @include bp-min(mddesk) {
+        width: calc(33.33% - rem(3px));
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+
+    h2 {
+      @include font-body-16;
+      font-weight: var(--font-weight-bold);
+      display: inline-block;
+    }
+
+    &:hover,
+    &:focus {
+      h2 {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  p {
+    @include font-body-14;
+    margin: 0;
+
+    &.resource-details {
+      font-size: rem(12px);
+      position: absolute;
+      bottom: rem(12px);
+      max-width: calc(100% - rem(24px));
+
+      @include bp-min(tablet) {
+        bottom: rem(24px);
+        max-width: calc(100% - rem(48px));
+      }
+    }
+
+    &:not(.resource-details) {
+      margin-bottom: rem(12px);
+    }
+  }
+
+  .resource-icon {
+    @include font-material-icons;
+    font-size: rem(14px);
+    color: var(--aten-gray-dark);
+    vertical-align: top;
+  }
+}

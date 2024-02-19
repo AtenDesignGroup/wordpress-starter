@@ -1,0 +1,205 @@
+// Rotating Banner for homepage 
+.rotating-banner-block {
+  background-color: var(--aten-blue-light);
+  margin-top: rem(-20px);
+
+  @include bp-min(tablet) {
+    margin-top: rem(-68px);
+  }
+
+  @include bp-min(smdesk) {
+    margin-top: rem(-50px);
+  }
+
+  @include bp-min(mddesk) {
+    margin-top: rem(-80px);
+  }
+
+  @include bp-max(tablet) {
+    .splide__arrows {
+      position: absolute; 
+      bottom: rem(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: rem(110px);
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+
+    button.splide__arrow {
+      position: static;
+      transform: none;
+    }
+
+    .rotating-banner-slide-content {
+      @include l-gutter;
+    }
+  }
+
+  #rotating-banner {
+    padding-bottom: rem(48px);
+
+    @include bp-min(tablet) {
+      width: calc(100% - rem(180px));
+      max-width: rem(1380px);
+      margin: 0 auto;
+      padding-bottom: 0;
+    }
+
+    @include bp-min(mddesk) {
+      padding-bottom: rem(50px);
+    }
+
+    @include bp-min(lgdesk) {
+      padding-bottom: rem(40px);
+    }
+  }
+
+  button.splide__arrow {
+    @include font-material-icons;
+    font-size: rem(34px);
+    padding: 0;
+    background-color: var(--transparent);
+    width: auto;
+    height: auto;
+    line-height: 1;
+    color: var(--aten-blue-dark);
+    opacity: 1;
+
+    @include bp-min(tablet) {
+      // Half of the vertical offset of #rotating-banner
+      top: calc(50% - rem(10px));
+
+      &.splide__arrow--prev {
+        left: rem(-50px);
+      }
+
+      &.splide__arrow--next {
+        right: rem(-50px);
+      }
+    }
+
+    @include bp-min(mddesk) {
+      // Half of the vertical offset of #rotating-banner
+      top: calc(50% - rem(34px));
+    }
+
+    &:hover,
+    &:focus {
+      color: var(--aten-blue-dark);
+    }
+  }
+
+  .splide__slide {
+    padding-bottom: rem(20px);
+  }
+
+  .rotating-banner-slide-content {
+    background-color: var(--white);
+    border-radius: var(--default-border-radius);
+    box-shadow: var(--default-box-shadow);
+    overflow: hidden;
+    height: 100%;
+
+    @include bp-min(tablet) {
+      display: flex;
+      width: calc(100% - rem(32px));
+      margin: 0 auto;
+    }
+
+    .rotating-slide-image {
+      width: 100%;
+      height: rem(220px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      @include bp-min(tablet) {
+        width: 44%;
+        height: rem(190px);
+      }
+
+      @include bp-min(mddesk) {
+        width: 45%;
+      }
+
+      @include bp-min(lgdesk) {
+        width: 40%;
+        height: rem(160px);
+      }
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .rotating-slide-description {
+      padding: rem(24px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      @include bp-min(tablet) {
+        padding: rem(32px);
+        width: 56%;
+        flex-grow: 1;
+      }
+
+      @include bp-min(mddesk) {
+        width: 55%;
+      }
+
+      @include bp-min(mddesk) {
+        width: 60%;
+      }
+
+      * {
+        text-indent: 0;
+        @include font-body-14;
+      }
+
+      a {
+        font-weight: var(--font-weight-bold);
+        font-size: rem(16px);
+        display: block;
+        text-decoration: none;
+
+        @include bp-min(tablet) {
+          @include font-h4;
+          font-weight: var(--font-weight-bold);
+          // Explicitly set across all breakpoints 
+          font-size: rem(22px);
+          line-height: rem(32px);
+        }
+
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+
+      p {
+        margin: rem(2px) 0 0;
+
+        @include bp-min(tablet) {
+          margin-top: rem(8px);
+        }
+
+        @include bp-max(tablet) {
+          font-size: rem(14px);
+        }
+      }
+    }
+  }
+
+  .splide.is-focus-in .splide__arrow:focus,
+  button.splide__arrow:focus,
+  button.splide__arrow:focus-visible {
+    outline: rem(3px) solid -webkit-focus-ring-color;
+    outline-offset: 0px;
+  }
+}

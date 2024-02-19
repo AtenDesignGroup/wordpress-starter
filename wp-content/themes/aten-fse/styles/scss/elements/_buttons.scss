@@ -1,0 +1,77 @@
+// The base styles are controlled in the button mixin file
+
+// Large buttons with backgrounds
+// -----------------------------------
+
+.btn-large--navy,
+.wp-block-button .wp-block-button__link {
+  @include btn-large(var(--navy));
+}
+
+.btn-large--gold,
+.wp-block-button.is-style-default-gold .wp-block-button__link {
+  @include btn-large(var(--gold));
+}
+
+.btn-large--sky-blue,
+.wp-block-button.is-style-default-sky-blue .wp-block-button__link {
+  @include btn-large(var(--sky-blue));
+}
+
+.btn-large--white {
+  @include btn-large(var(--white));
+}
+
+// Regular buttons without backgrounds
+// -----------------------------------
+
+.btn--navy,
+.wp-block-button.is-style-no-bg-navy .wp-block-button__link {
+  @include btn(var(--navy));
+  background-color: var(--transparent);
+}
+
+.btn--black,
+.wp-block-button.is-style-no-bg-black .wp-block-button__link {
+  @include btn(var(--black));
+  background-color: var(--transparent);
+}
+
+.btn--green,
+.wp-block-button.is-style-no-bg-green .wp-block-button__link {
+  @include btn(var(--green));
+  background-color: var(--transparent);
+}
+
+.btn--duo-tone,
+.wp-block-button.is-style-no-bg-duo-tone .wp-block-button__link {
+  @include btn(var(--duo-tone));
+  background-color: var(--transparent);
+}
+
+.btn--white {
+  @include btn(var(--white));
+}
+
+.wp-block-button__width-100,
+.wp-block-button__width-75,
+.wp-block-button__width-50,
+.wp-block-button__width-25 {
+  // Importants are required here to override WP Core functionality
+  width: auto!important;
+  flex-basis: auto!important;
+}
+
+.wp-block-button.is-style-no-bg-navy,
+.wp-block-button.is-style-no-bg-black,
+.wp-block-button.is-style-no-bg-green,
+.wp-block-button.is-style-no-bg-duo-tone {
+
+  .wp-block-button__link {
+    padding: rem(8px) 0;
+  
+    @include bp-max(tablet) {
+      padding: rem(4px) 0;
+    }
+  }
+}

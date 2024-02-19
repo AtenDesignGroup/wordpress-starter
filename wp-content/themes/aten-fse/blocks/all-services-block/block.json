@@ -1,0 +1,44 @@
+{
+  "name": "all-services-block",
+  "title": "All Services",
+  "active": true,
+  "description": "A block to display all services as categorized cards",
+  "category": "common",
+  "icon": "media-spreadsheet",
+  "keywords": [
+    "cards",
+    "services",
+    "popular"
+  ],
+  "post_types": [
+    "page"
+  ],
+  "mode": "edit",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "all-services-block.php"
+  },
+  "enqueue_style": "",
+  "enqueue_script": "",
+  "enqueue_assets": "",
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/all_services_block.svg"
+      }
+    }
+  }
+
+}

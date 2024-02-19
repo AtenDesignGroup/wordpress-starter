@@ -1,0 +1,24 @@
+{
+  "name": "acf/page-header",
+  "title": "Page Header",
+  "description": "A custom block that adds a page header with a subtitle",
+  "category": "formatting",
+  "icon": "admin-comments",
+  "keywords": ["subtitle", "header", "hero"],
+  "supports": {
+    "mode": false
+  },
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "page-header.php"
+  },
+  "align": "full",
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/page_header.svg"
+      }
+    }
+  }
+}
