@@ -1,11 +1,11 @@
 # Aten FSE Theme
 
-This theme is built on top of the WordPress core theme Twenty Twenty Three (https://wordpress.com/theme/twentytwentythree).
+This theme is built on top of the WordPress core theme Twenty Twenty Four (https://wordpress.com/theme/twentytwentyfour).
 
 The theme utilizes the ACF plugin to handle custom fields and Custom Post Types for its unique content. There are several custom plugins that provide addtional templating support within the plugins folder, these include:
 
 - Aten Contact Info
-- Aten Hierarchical Menu 
+- Aten Hierarchical Menu
 - Aten Related Pages
 
 ## Development Workflow

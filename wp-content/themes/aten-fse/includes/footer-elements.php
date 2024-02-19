@@ -11,30 +11,30 @@
  */
 function aten_fse_widgets_init() {
   register_sidebar([
-    'name'          => esc_html__('Upper Footer Menu', 'aten-fse'),
+    'name'          => esc_html__('Upper Footer Menu', 'aten_fse'),
     'id'            => 'upper-footer-menu-1',
-    'description'   => esc_html__('Add widgets here.', 'aten-fse'),
+    'description'   => esc_html__('Add widgets here.', 'aten_fse'),
     'before_widget' => '',
     'after_widget'  => '',
   ]);
   register_sidebar([
-    'name'          => esc_html__('Upper Footer Location', 'aten-fse'),
+    'name'          => esc_html__('Upper Footer Location', 'aten_fse'),
     'id'            => 'upper-footer-location-1',
-    'description'   => esc_html__('Add widgets here.', 'aten-fse'),
+    'description'   => esc_html__('Add widgets here.', 'aten_fse'),
     'before_widget' => '',
     'after_widget'  => '',
   ]);
   register_sidebar([
     'name'          => esc_html__('Upper Footer Services', 'textdomain'),
     'id'            => 'upper-footer-services-1',
-    'description'   => esc_html__('Add widgets here.', 'aten-fse'),
+    'description'   => esc_html__('Add widgets here.', 'aten_fse'),
     'before_widget' => '',
     'after_widget'  => '',
   ]);
   register_sidebar([
-    'name'          => esc_html__('Lower Footer Menu', 'aten-fse'),
+    'name'          => esc_html__('Lower Footer Menu', 'aten_fse'),
     'id'            => 'lower-footer-menu-1',
-    'description'   => esc_html__('Add widgets here.', 'aten-fse'),
+    'description'   => esc_html__('Add widgets here.', 'aten_fse'),
     'before_widget' => '',
     'after_widget'  => '',
   ]);

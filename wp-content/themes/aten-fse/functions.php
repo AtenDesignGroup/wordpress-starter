@@ -2,13 +2,13 @@
 
 /**
  * @file
- * Aten FSE functions and definitions.
+ * Aten Full Site Editor functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package WordPress
  * @subpackage Aten FSE
- * @since Twenty Twenty-Three 1.1
+ * @since Twenty Twenty Four 1.0
  */
 
 require_once __DIR__ . '/includes/footer-elements.php';
@@ -17,19 +17,21 @@ require_once __DIR__ . '/includes/footer-elements.php';
  * These includes have been commented out as we are importing Post Types into the UI after they're created
  * these files will include the back up PHP for Custom Post Types / Advanced Custom Fields / Custom Taxonomies
  */
-require_once __DIR__ . '/includes/custom-post-type-default-content/news-default-content.php';
-require_once __DIR__ . '/includes/custom-post-type-default-content/location-default-content.php';
+// require_once __DIR__ . '/includes/custom-post-type-default-content/example-default-content.php';.
+
 
 /**
  * Adding support for custom editor styles.
  */
 add_theme_support('editor-styles');
-add_editor_style( get_stylesheet_directory_uri() . '/editor-style.css' );
+add_editor_style(get_stylesheet_directory_uri() . '/editor-style.css');
 
 add_action('wp_enqueue_scripts', 'aten_fse_enqueue_styles');
 
-// Adding inline styles to WP Admin header to apply them without the default 'editor-style-wrapper' prefix from Gutenberg
-// This is necessary to style the Add Block button, as that lives outside the default Gutenberg style wrapper
+/**
+ * Adding inline styles to WP Admin header to apply them without the default 'editor-style-wrapper' prefix from Gutenberg
+ * This is necessary to style the Add Block button, as that lives outside the default Gutenberg style wrapper.
+ */
 function editor_style_add_block_btn() {
   echo '<style>
   .block-editor-default-block-appender,
@@ -45,7 +47,7 @@ function editor_style_add_block_btn() {
   .block-editor-block-list__empty-block-inserter .block-editor-inserter .block-editor-default-block-appender__content {
     position: absolute !important;
   }
-  
+
   .block-editor-block-list__empty-block-inserter {
     left: 50%;
     right: auto;
@@ -53,7 +55,7 @@ function editor_style_add_block_btn() {
     -ms-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
   }
-  
+
   .block-editor-block-list__empty-block-inserter .block-editor-inserter__toggle.components-button.has-icon,
   .block-editor-block-list__insertion-point-inserter .block-editor-inserter__toggle.components-button.has-icon,
   .block-editor-block-list__block .block-list-appender .block-editor-inserter__toggle.components-button.has-icon,
@@ -147,30 +149,33 @@ function editor_style_add_block_btn() {
   </style>
   ';
 }
+
 add_action('admin_head', 'editor_style_add_block_btn');
 
 /**
  * Add custom styles to site.
  */
-function aten_fse_enqueue_styles()
-{
-  wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', []);
+function aten_fse_enqueue_styles() {
+  wp_enqueue_style('aten_fse', get_stylesheet_directory_uri() . '/style.css', []);
 
   // Add external styles.
-  wp_enqueue_styles('theme-icon-default', 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap', []);
+  wp_enqueue_style('theme-icon-default', 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap', []);
   wp_enqueue_style('theme-icons-outline', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined', []);
 }
 
+/**
+ *
+ */
 function admin_style() {
   wp_enqueue_style('admin-styles', get_stylesheet_directory_uri() . '/admin-styles.css');
 }
+
 add_action('admin_enqueue_scripts', 'admin_style');
 
 /**
  *
  */
-function aten_fse_menus_init()
-{
+function aten_fse_menus_init() {
   register_nav_menus([
     'primary' => esc_html__('Primary Menu', 'aten-fse'),
     'main-nav' => esc_html__('Main Navigation Menu', 'aten-fse'),
@@ -190,10 +195,9 @@ add_action('after_setup_theme', 'aten_fse_menus_init');
  *
  * @return null
  */
-function ea_pp($obj, $label = '')
-{
+function ea_pp($obj, $label = '') {
   $data = json_encode(print_r($obj, TRUE));
-?>
+  ?>
   <style type="text/css">
     #bsdLogger {
       position: absolute;
@@ -229,14 +233,13 @@ function ea_pp($obj, $label = '')
     };
     window.addEventListener("DOMContentLoaded", doStuff, false);
   </script>
-<?php
+  <?php
 }
 
 /**
  * Register custom header for Aten FSE theme.
  */
-function aten_fse_custom_header()
-{
+function aten_fse_custom_header() {
   register_default_headers([
     'custom' => [
       'url'           => get_stylesheet_directory_uri() . '/images/header-custom.jpg',
@@ -252,8 +255,11 @@ add_action('after_setup_theme', 'aten_fse_custom_header');
  * Register custom blocks for Aten FSE theme.
  */
 add_action('init', 'register_acf_blocks');
-function register_acf_blocks()
-{
+
+/**
+ *
+ */
+function register_acf_blocks() {
   register_block_type(__DIR__ . '/blocks/all-services-block');
   register_block_type(__DIR__ . '/blocks/accent-text-block');
   register_block_type(__DIR__ . '/blocks/accordion-block');
@@ -288,8 +294,7 @@ add_filter('allowed_block_types_all', 'aten_fse_blacklist_blocks');
 /**
  *
  */
-function aten_fse_blacklist_blocks($allowed_blocks)
-{
+function aten_fse_blacklist_blocks($allowed_blocks) {
   // Get all the registered blocks.
   $blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
 
@@ -303,71 +308,73 @@ function aten_fse_blacklist_blocks($allowed_blocks)
 }
 
 /**
- * Adding custom image sizes for custom blocks
+ * Adding custom image sizes for custom blocks.
  */
-add_image_size( 'callout-link', 400, 400 );
-add_image_size( 'location-image', 300, 240 );
+add_image_size('callout-link', 400, 400);
+add_image_size('location-image', 300, 240);
 
 /**
  * @return void
  */
 function enqueue_splide_scripts() {
-	// Enqueue Splide.js CSS
-	wp_enqueue_style( 'splide-css', get_stylesheet_directory_uri() . '/styles/splide/splide.min.css' );
+  // Enqueue Splide.js CSS.
+  wp_enqueue_style('splide-css', get_stylesheet_directory_uri() . '/styles/splide/splide.min.css');
 
-	// Enqueue Splide.js JavaScript
-	wp_enqueue_script( 'splide-js', get_stylesheet_directory_uri() . '/styles/splide/splide.min.js', array( 'jquery' ), '2.4.16', true );
+  // Enqueue Splide.js JavaScript.
+  wp_enqueue_script('splide-js', get_stylesheet_directory_uri() . '/styles/splide/splide.min.js', ['jquery'], '2.4.16', TRUE);
 }
-add_action( 'wp_enqueue_scripts', 'enqueue_splide_scripts' );
+
+add_action('wp_enqueue_scripts', 'enqueue_splide_scripts');
 
 /**
  * @return void
  */
 function enqueue_custom_scripts() {
-	// Enqueue your custom JavaScript file
-  wp_enqueue_script( 'utility-functions', get_stylesheet_directory_uri() . '/js/utility-functions.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'accordion-block', get_stylesheet_directory_uri( ) . '/js/accordion-block.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'category-cards', get_stylesheet_directory_uri() . '/js/category-cards.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'custom-js', get_stylesheet_directory_uri() . '/styles/splide/splideshow.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'events', get_stylesheet_directory_uri() . '/js/events.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'featured-link-cards', get_stylesheet_directory_uri() . '/js/featured-link-cards.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'featured-link-section', get_stylesheet_directory_uri( ) . '/js/featured-link-section.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'forms', get_stylesheet_directory_uri() . '/js/forms.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'header-nav', get_stylesheet_directory_uri() . '/js/header-nav.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'jump-link-functionality', get_stylesheet_directory_uri( ) . '/js/jump-link-functionality.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'location-block', get_stylesheet_directory_uri() . '/js/location-block.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'notification-bar', get_stylesheet_directory_uri() . '/js/notification-bar.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'pagination', get_stylesheet_directory_uri( ) . '/js/pagination.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'search', get_stylesheet_directory_uri( ) . '/js/search.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'services-blocks', get_stylesheet_directory_uri( ) . '/js/services-blocks.js', array( 'jquery' ), '1.0', true );
-  wp_enqueue_script( 'sidebar-menu', get_stylesheet_directory_uri( ) . '/js/sidebar-menu.js', array( 'jquery' ), '1.0', true );
+  // Enqueue your custom JavaScript file.
+  wp_enqueue_script('utility-functions', get_stylesheet_directory_uri() . '/js/utility-functions.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('accordion-block', get_stylesheet_directory_uri() . '/js/accordion-block.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('category-cards', get_stylesheet_directory_uri() . '/js/category-cards.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/styles/splide/splideshow.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('events', get_stylesheet_directory_uri() . '/js/events.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('featured-link-cards', get_stylesheet_directory_uri() . '/js/featured-link-cards.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('featured-link-section', get_stylesheet_directory_uri() . '/js/featured-link-section.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('forms', get_stylesheet_directory_uri() . '/js/forms.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('header-nav', get_stylesheet_directory_uri() . '/js/header-nav.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('jump-link-functionality', get_stylesheet_directory_uri() . '/js/jump-link-functionality.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('location-block', get_stylesheet_directory_uri() . '/js/location-block.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('notification-bar', get_stylesheet_directory_uri() . '/js/notification-bar.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('pagination', get_stylesheet_directory_uri() . '/js/pagination.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('search', get_stylesheet_directory_uri() . '/js/search.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('services-blocks', get_stylesheet_directory_uri() . '/js/services-blocks.js', ['jquery'], '1.0', TRUE);
+  wp_enqueue_script('sidebar-menu', get_stylesheet_directory_uri() . '/js/sidebar-menu.js', ['jquery'], '1.0', TRUE);
 }
-add_action( 'wp_enqueue_scripts', 'enqueue_custom_scripts' );
 
-/*
- * Control what options appear in the backend editor block toolbars
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
+/**
+ * Control what options appear in the backend editor block toolbars.
  */
-function remove_block_toolbar_settings () {
+function remove_block_toolbar_settings() {
 
-	wp_enqueue_script(
-		'remove-block-toolbar-settings',
-		get_stylesheet_directory_uri( ) . '/js/block-toolbar-settings.js',
-		array( 'wp-block-editor' ),
-	);
+  wp_enqueue_script(
+        'remove-block-toolbar-settings',
+        get_stylesheet_directory_uri() . '/js/block-toolbar-settings.js',
+        ['wp-block-editor'],
+  );
 }
 
 add_action('enqueue_block_assets', 'remove_block_toolbar_settings');
 
-/*
- * Control what options appear in the backend editor block toolbars
+/**
+ * Control what options appear in the backend editor block toolbars.
  */
-function custom_news_query_loop_variation () {
+function custom_news_query_loop_variation() {
 
-	wp_enqueue_script(
-		'query-loop-variations',
-		get_stylesheet_directory_uri( ) . '/js/query-loop-variations.js',
-		array( 'wp-block-editor' ),
-	);
+  wp_enqueue_script(
+        'query-loop-variations',
+        get_stylesheet_directory_uri() . '/js/query-loop-variations.js',
+        ['wp-block-editor'],
+  );
 }
 
 add_action('enqueue_block_assets', 'custom_news_query_loop_variation');
@@ -375,8 +382,8 @@ add_action('enqueue_block_assets', 'custom_news_query_loop_variation');
 /*
  * Convert all H1 headings added via the heading block to H2
  */
-add_filter('render_block', function($block_content, $block) {
-  if ( $block['blockName'] === 'core/heading' ) {
+add_filter('render_block', function ($block_content, $block) {
+  if ($block['blockName'] === 'core/heading') {
       $block_content = str_replace('<h1', '<h2', $block_content);
       $block_content = str_replace('</h1', '</h2', $block_content);
   }
@@ -387,28 +394,29 @@ add_filter('render_block', function($block_content, $block) {
 /*
  * Removing H1 from all TinyMCE text editors (WYSIWYG)
  */
-add_filter( 'tiny_mce_before_init', function( $settings ){
-	$settings['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6';
-	return $settings;
-} );
+add_filter('tiny_mce_before_init', function ($settings) {
+  $settings['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6';
+  return $settings;
+});
 
-/* 
-* Adding support for pages to have categories
-*/
+/**
+ * Adding support for pages to have categories.
+ */
 function add_categories_to_pages() {
   register_taxonomy_for_object_type('category', 'page');
 }
-add_action( 'init', 'add_categories_to_pages' );
 
-/*
- * Adding icon font to backend editor for button arrows to appear properly in editor
+add_action('init', 'add_categories_to_pages');
+
+/**
+ * Adding icon font to backend editor for button arrows to appear properly in editor.
  */
-function adding_icon_font_to_block_editor () {
+function adding_icon_font_to_block_editor() {
 
-  wp_enqueue_style( 
-    'adding-icon-font-to-block-editor', 
+  wp_enqueue_style(
+    'adding-icon-font-to-block-editor',
     'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined',
-    array( 'wp-block-editor' ), null 
+    ['wp-block-editor'], NULL
   );
 
 }
@@ -416,10 +424,10 @@ function adding_icon_font_to_block_editor () {
 add_action('enqueue_block_assets', 'adding_icon_font_to_block_editor');
 
 /**
- * Validates the phone number field in the contact info ACF group as a numeric value
+ * Validates the phone number field in the contact info ACF group as a numeric value.
  */
 function validate_text_as_number($valid, $value, $field, $input) {
-  if ($valid !== true) {
+  if ($valid !== TRUE) {
     return $valid;
   }
   if (preg_match('/[^0-9]/', $value)) {
@@ -427,28 +435,41 @@ function validate_text_as_number($valid, $value, $field, $input) {
   }
   return $valid;
 }
+
 add_filter('acf/validate_value/name=phone_number', 'validate_text_as_number', 20, 4);
 
 /**
- * Adjusting the path for the ACF Icon Selector to use the Material Font Icons inside of /assets/icons/acf-icons
+ * Adjusting the path for the ACF Icon Selector to use the Material Font Icons inside of /assets/icons/acf-icons.
  */
-add_filter( 'acf_icon_path_suffix', 'acf_icon_path_suffix' );
-function acf_icon_path_suffix( $path_suffix ) {
-    return 'assets/icons/acf-icons/';
+add_filter('acf_icon_path_suffix', 'acf_icon_path_suffix');
+
+/**
+ *
+ */
+function acf_icon_path_suffix($path_suffix) {
+  return 'assets/icons/acf-icons/';
 }
 
-add_filter( 'acf_icon_path', 'acf_icon_path' );
-function acf_icon_path( $path_suffix ) {
-    return plugin_dir_path( __FILE__ );
+add_filter('acf_icon_path', 'acf_icon_path');
+
+/**
+ *
+ */
+function acf_icon_path($path_suffix) {
+  return plugin_dir_path(__FILE__);
 }
 
-add_filter( 'acf_icon_url', 'acf_icon_url' );
-function acf_icon_url( $path_suffix ) {
-    return plugin_dir_url( __FILE__ );
+add_filter('acf_icon_url', 'acf_icon_url');
+
+/**
+ *
+ */
+function acf_icon_url($path_suffix) {
+  return plugin_dir_url(__FILE__);
 }
 
 /**
- * Creating a shortcode to embed the SVG version of the site logo
+ * Creating a shortcode to embed the SVG version of the site logo.
  */
 function display_aten_fse_site_logo() {
   $logo_path = get_template_directory_uri() . '/assets/logo.svg';
@@ -456,84 +477,91 @@ function display_aten_fse_site_logo() {
   <div class="site-logo">
     <a href="<?php echo get_home_url(); ?>" title="Homepage"><img src="<?php echo $logo_path; ?>" title="Home" alt="Aten Logo" /></a>
   </div>
-  <?php 
+  <?php
   return ob_get_clean();
 }
 
 add_shortcode('aten_fse_site_logo', 'display_aten_fse_site_logo');
 
 /**
- * Managing menu icons and menu item display through ACF fields
+ * Managing menu icons and menu item display through ACF fields.
  */
 add_filter('wp_nav_menu_objects', 'my_wp_nav_menu_objects', 10, 2);
 
-function my_wp_nav_menu_objects( $items, $args ) {
-    // Loop through each menu item
-    foreach( $items as &$item ) {
-        // Pulling ACF field values
-        $icon = get_field('menu_item_icon', $item);
-        $is_top_level = get_field('no_children', $item);
-        $is_submenu_heading = get_field('submenu_heading', $item);
-        $with_border = get_field('with_border', $item);
-        
-        // Append icon to the title of each menu item
-        if( $icon ) {
-          $item->title .= '<span class="menu-icon notranslate" aria-hidden="true">' . $icon . '</span>';
-        }
+/**
+ *
+ */
+function my_wp_nav_menu_objects($items, $args) {
+  // Loop through each menu item.
+  foreach ($items as &$item) {
+    // Pulling ACF field values.
+    $icon = get_field('menu_item_icon', $item);
+    $is_top_level = get_field('no_children', $item);
+    $is_submenu_heading = get_field('submenu_heading', $item);
+    $with_border = get_field('with_border', $item);
 
-        // Add class for top-level only items
-        if($is_top_level) {
-          $item->classes[] = 'no-children';
-          $item->title .= ' <span class="menu-icon right notranslate" aria-hidden="true">chevron_right</span>';
-        }
+    // Append icon to the title of each menu item.
+    if ($icon) {
+      $item->title .= '<span class="menu-icon notranslate" aria-hidden="true">' . $icon . '</span>';
+    }
 
-        // Add class for submenu heading items
-        if($is_submenu_heading) {
-          $item->classes[] = 'submenu-heading';
+    // Add class for top-level only items.
+    if ($is_top_level) {
+      $item->classes[] = 'no-children';
+      $item->title .= ' <span class="menu-icon right notranslate" aria-hidden="true">chevron_right</span>';
+    }
 
-          // Add class for a bottom border on submenu heading items
-          if($with_border) {
-            $item->classes[] = 'with-border';
-          }
-        }
+    // Add class for submenu heading items.
+    if ($is_submenu_heading) {
+      $item->classes[] = 'submenu-heading';
+
+      // Add class for a bottom border on submenu heading items.
+      if ($with_border) {
+        $item->classes[] = 'with-border';
       }
+    }
+  }
 
-    // Return menu items
-    return $items;
+  // Return menu items.
+  return $items;
 }
 
 /**
- * Set a default featured image for News posts
+ * Set a default featured image for News posts.
  */
-function set_default_featured_image( $post_id, $post ) {
-	// Check post type and see if the post has a featured image
-	if ( !has_post_thumbnail( $post_id ) && get_post_type( $post_id ) === 'news' ) {
-    // Assigning default image attachment ID
-		$default_image_id = 72; 
-		// Set featured image of the post to the default image
-		set_post_thumbnail( $post_id, $default_image_id );
-	}
+function set_default_featured_image($post_id, $post) {
+  // Check post type and see if the post has a featured image.
+  if (!has_post_thumbnail($post_id) && get_post_type($post_id) === 'news') {
+    // Assigning default image attachment ID.
+    $default_image_id = 72;
+    // Set featured image of the post to the default image.
+    set_post_thumbnail($post_id, $default_image_id);
+  }
 
-	return $post_id;
+  return $post_id;
 }
-add_action( 'save_post', 'set_default_featured_image', 10, 2 );
 
-/* 
+add_action('save_post', 'set_default_featured_image', 10, 2);
+
+/*
  *  Adjusting the WP Query Loop Block behavior for the extended News Query Block
  */
-// Customizing the query used to render the block on the front-end
-function custom_news_query_loop_pre_render( $pre_render, $parsed_block ) {
-  // Verify that this only runs on our extended version of the query lop
-  if ( !empty($parsed_block['attrs']['namespace']) && 'loop-patterns/news-query' === $parsed_block['attrs']['namespace'] ) {
-    // Filter the query loop block args
+
+/**
+ * Customizing the query used to render the block on the front-end.
+ */
+function custom_news_query_loop_pre_render($pre_render, $parsed_block) {
+  // Verify that this only runs on our extended version of the query lop.
+  if (!empty($parsed_block['attrs']['namespace']) && 'loop-patterns/news-query' === $parsed_block['attrs']['namespace']) {
+    // Filter the query loop block args.
     add_filter(
       'query_loop_block_query_vars',
-      function( $query, $block ) {
-        // Sorting by ACF field for most recently published -> oldest news post
+      function ($query, $block) {
+        // Sorting by ACF field for most recently published -> oldest news post.
         $query['meta_key'] = 'publication_date';
         $query['orderby'] = 'meta_value';
         $query['order'] = 'DESC';
-        
+
         return $query;
       },
       10,
@@ -542,15 +570,18 @@ function custom_news_query_loop_pre_render( $pre_render, $parsed_block ) {
   }
   return $pre_render;
 }
-add_filter( 'pre_render_block', 'custom_news_query_loop_pre_render', 10, 2 );
 
-// Customizing the query used to render the block on the back-end editor
-function customizing_news_query_block( $args, $request ) {
-  // Checking for date filter so this doesn't run on every news query sitewide
-  $dateFilter = $request['filterByDate']; 
-  // If our flag var is present, the query is being run by our custom query loop block
-  if ( $dateFilter ) {
-    // Update the query for the back end view
+add_filter('pre_render_block', 'custom_news_query_loop_pre_render', 10, 2);
+
+/**
+ * Customizing the query used to render the block on the back-end editor.
+ */
+function customizing_news_query_block($args, $request) {
+  // Checking for date filter so this doesn't run on every news query sitewide.
+  $dateFilter = $request['filterByDate'];
+  // If our flag var is present, the query is being run by our custom query loop block.
+  if ($dateFilter) {
+    // Update the query for the back end view.
     $args['meta_key'] = 'publication_date';
     $args['orderby'] = 'meta_value';
     $args['order'] = 'DESC';
@@ -558,125 +589,140 @@ function customizing_news_query_block( $args, $request ) {
 
   return $args;
 }
-add_filter( 'rest_news_query', 'customizing_news_query_block', 10, 2 );
 
-/*
- * Rewriting Search slug to use /search/ base 
+add_filter('rest_news_query', 'customizing_news_query_block', 10, 2);
+
+/**
+ * Rewriting Search slug to use /search/ base.
  */
-function aten_fse_custom_search_rules( $rewrite ) {
+function aten_fse_custom_search_rules($rewrite) {
   global $wp_rewrite;
-  $rules = array(
+  $rules = [
     $wp_rewrite->search_base . '/?$' => '/search/?s=',
-  );
+  ];
   $rewrite = $rewrite + $rules;
   return $rewrite;
 }
-add_filter( 'search_rewrite_rules', 'aten_fse_custom_search_rules', 10, 1 );
 
+add_filter('search_rewrite_rules', 'aten_fse_custom_search_rules', 10, 1);
+
+/**
+ *
+ */
 function aten_fse_search_template_redirect() {
   global $wp_rewrite;
-  // Check that there is a search term
-  if ( is_search() && isset ( $_GET['s'] ) ) {
-    // Append search term to the /search/ base URL
-    $s         = sanitize_text_field( $_GET['s'] ); 
+  // Check that there is a search term.
+  if (is_search() && isset($_GET['s'])) {
+    // Append search term to the /search/ base URL.
+    $s         = sanitize_text_field($_GET['s']);
     $location  = '/';
-    $location .= trailingslashit( $wp_rewrite->search_base );
-    $location .= ( ! empty ( $s ) ) ? user_trailingslashit( urlencode( $s ) ) : urlencode( $s );
-    $location  = home_url( $location );
-    wp_safe_redirect( $location, 301 );
+    $location .= trailingslashit($wp_rewrite->search_base);
+    $location .= (!empty($s)) ? user_trailingslashit(urlencode($s)) : urlencode($s);
+    $location  = home_url($location);
+    wp_safe_redirect($location, 301);
 
     exit;
   }
 }
-add_action( 'template_redirect', 'aten_fse_search_template_redirect' );
 
-/** 
- * Shortcode to display count of results and search term on search results page
+add_action('template_redirect', 'aten_fse_search_template_redirect');
+
+/**
+ * Shortcode to display count of results and search term on search results page.
  */
 function display_search_details() {
-  // Setting up defaults
+  // Setting up defaults.
   $result_text = '';
   $search_term = get_search_query();
 
-  // If a search term was submitted
-  if($search_term) {
-    // Get query details
+  // If a search term was submitted.
+  if ($search_term) {
+    // Get query details.
     global $wp_query;
-    if($wp_query->found_posts < 2) {
+    if ($wp_query->found_posts < 2) {
       $result_text = "Showing 1 result for";
-    } else {
+    }
+    else {
       $result_text = "Showing " . $wp_query->found_posts . " results for";
     }
   }
   ob_start();
-    // Don't show anything if no search term exists
-    if($search_term && ($wp_query->found_posts > 0)) {
-      echo '<h2 class="search-results-count"><em>' . $result_text . ' </em><strong>' . $search_term . '</strong></h2>';
-    }
+  // Don't show anything if no search term exists.
+  if ($search_term && ($wp_query->found_posts > 0)) {
+    echo '<h2 class="search-results-count"><em>' . $result_text . ' </em><strong>' . $search_term . '</strong></h2>';
+  }
   return ob_get_clean();
 }
 
 add_shortcode('search_details', 'display_search_details');
 
-/* 
- * Adding the page slug to the body class for targeting global elements at the template-level
+/**
+ * Adding the page slug to the body class for targeting global elements at the template-level.
  */
-function add_slug_body_class( $classes ) {
+function add_slug_body_class($classes) {
   global $post;
-  if ( isset( $post ) ) {
+  if (isset($post)) {
     $classes[] = $post->post_type . '-' . $post->post_name;
   }
   return $classes;
 }
 
-add_filter( 'body_class', 'add_slug_body_class' );
+add_filter('body_class', 'add_slug_body_class');
 
 /**
- * Trimming excerpts to the nearest full sentence, limit 3 sentences
+ * Trimming excerpts to the nearest full sentence, limit 3 sentences.
  */
-
-function adjust_excerpt_length( $length ) {
-  if ( is_admin() ) {
-          return $length;
+function adjust_excerpt_length($length) {
+  if (is_admin()) {
+    return $length;
   }
-  // Setting it to 30 full words
+  // Setting it to 30 full words.
   return 30;
 }
-add_filter( 'excerpt_length', 'adjust_excerpt_length', 999 );
 
-function remove_read_more_ellipses( $more ) {
+add_filter('excerpt_length', 'adjust_excerpt_length', 999);
+
+/**
+ *
+ */
+function remove_read_more_ellipses($more) {
   return '';
 }
+
 add_filter('excerpt_more', 'remove_read_more_ellipses');
 
-function trim_excerpt_to_full_sentence( $excerpt ) {
-  $sentence_punctuation = array('.', '!', '?', '...');
+/**
+ *
+ */
+function trim_excerpt_to_full_sentence($excerpt) {
+  $sentence_punctuation = ['.', '!', '?', '...'];
   $number_sentences = 3;
   $excerpt_chunk = $excerpt;
 
-  for($i = 0; $i < $number_sentences; $i++) {
-      $lowest_sentence_end[$i] = 200;
-      foreach( $sentence_punctuation as $end_punctuation) {
-        $sentence_end = strpos( $excerpt_chunk, $end_punctuation);
-        if($sentence_end !== false && $sentence_end < $lowest_sentence_end[$i]){
-            $lowest_sentence_end[$i] = $sentence_end + strlen( $end_punctuation );
-        }
-        $sentence_end = false;
+  for ($i = 0; $i < $number_sentences; $i++) {
+    $lowest_sentence_end[$i] = 200;
+    foreach ($sentence_punctuation as $end_punctuation) {
+      $sentence_end = strpos($excerpt_chunk, $end_punctuation);
+      if ($sentence_end !== FALSE && $sentence_end < $lowest_sentence_end[$i]) {
+        $lowest_sentence_end[$i] = $sentence_end + strlen($end_punctuation);
       }
+      $sentence_end = FALSE;
+    }
 
-      $sentences[$i] = substr( $excerpt_chunk, 0, $lowest_sentence_end[$i]);
-      $excerpt_chunk = substr( $excerpt_chunk, $lowest_sentence_end[$i]);
+    $sentences[$i] = substr($excerpt_chunk, 0, $lowest_sentence_end[$i]);
+    $excerpt_chunk = substr($excerpt_chunk, $lowest_sentence_end[$i]);
   }
 
   return implode('', $sentences);
 }
+
 add_filter('get_the_excerpt', 'trim_excerpt_to_full_sentence');
 
-/** 
- *  Removing unnecessary options from the Easy Notification Bar customizer
+/**
+ * Removing unnecessary options from the Easy Notification Bar customizer.
  */
-function removing_unnecessary_notification_bar_options( $wp_customize ) {
-	$wp_customize->remove_control('easy_nb_background_color');
+function removing_unnecessary_notification_bar_options($wp_customize) {
+  $wp_customize->remove_control('easy_nb_background_color');
   $wp_customize->remove_control('easy_nb_text_color');
   $wp_customize->remove_control('easy_nb_text_align');
   $wp_customize->remove_control('easy_nb_enable_system_font_family');
@@ -688,9 +734,12 @@ function removing_unnecessary_notification_bar_options( $wp_customize ) {
   $wp_customize->remove_control('easy_nb_is_sticky');
   $wp_customize->remove_control('easy_nb_button_text');
 }
-add_action( 'customize_register', 'removing_unnecessary_notification_bar_options' );
 
-// Adding white bg to icon in editor
+add_action('customize_register', 'removing_unnecessary_notification_bar_options');
+
+/**
+ * Adding white bg to icon in editor.
+ */
 function changing_icon_bg_in_admin() {
   echo '<style>
 
@@ -714,27 +763,64 @@ function changing_icon_bg_in_admin() {
   }
   </style>';
 }
+
 add_action('admin_head', 'changing_icon_bg_in_admin');
 
-// Disabling access to author archive pages
+// Disabling access to author archive pages.
 add_action('template_redirect', 'disable_direct_access_to_author_page');
+
+/**
+ *
+ */
 function disable_direct_access_to_author_page() {
-    global $wp_query;
-    // If accessing an author archive page
-    if ( is_author() ) {
-        // Set author pages as a 404
-        $wp_query->set_404();
-        status_header(404);
-        // Redirect to homepage
-        wp_redirect(get_option('home'));
-    }
+  global $wp_query;
+  // If accessing an author archive page.
+  if (is_author()) {
+    // Set author pages as a 404.
+    $wp_query->set_404();
+    status_header(404);
+    // Redirect to homepage.
+    wp_redirect(get_option('home'));
+  }
 }
 
 /**
- * Disabling AJAX for all Gravity Forms
+ * Disabling AJAX for all Gravity Forms.
  */
 add_filter('gform_form_args', 'no_ajax_on_all_forms', 10, 1);
-function no_ajax_on_all_forms($args){
-    $args['ajax'] = false;
-    return $args;
+
+/**
+ *
+ */
+function no_ajax_on_all_forms($args) {
+  $args['ajax'] = FALSE;
+  return $args;
 }
+
+/**
+ * Register pattern categories.
+ */
+
+if (!function_exists('twentytwentyfour_pattern_categories')) :
+
+  /**
+   * Register pattern categories.
+   *
+   * @since Twenty Twenty-Four 1.0
+   *
+   * @return void
+   */
+  function twentytwentyfour_pattern_categories() {
+
+    register_block_pattern_category(
+    'page',
+    [
+      'label'       => _x('Pages', 'Block pattern category'),
+      'description' => __('A collection of full page layouts.'),
+    ]
+    );
+  }
+
+endif;
+
+add_action('init', 'twentytwentyfour_pattern_categories');

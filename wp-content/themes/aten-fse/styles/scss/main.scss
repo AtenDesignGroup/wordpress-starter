@@ -1,34 +1,34 @@
 /*
 Theme Name: Aten FSE Theme
-Theme URI: https://wordpress.org/themes/twentytwentythree
+Theme URI: https://wordpress.org/themes/twentytwentyfour
 Author: Aten Design Group
 Author URI: https://atendesigngroup.com/
-Description: A child theme based on the Twenty Twenty-Three WordPress core theme. This is a custom theme designed as a starter theme for FSE customization.
+Description: A child theme based on the Twenty Twenty Four WordPress core theme. This is a custom theme designed as a starter theme for FSE customization.
 Requires at least: 6.1
 Tested up to: 6.2
 Requires PHP: 8.0
 Version: 1.0
-Text Domain: twentytwentythree
+Text Domain: twentytwentyfour
 Tags: one-column, custom-colors, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, rtl-language-support, translation-ready, wide-blocks, block-styles, accessibility-ready
 */
 
 // Functions
-@import "_functions/_functions";
+@import '_functions/_functions';
 
 // Mixins
-@import "_mixins/_mixins";
+@import '_mixins/_mixins';
 
 // Import settings
-@import "_settings/_settings";
+@import '_settings/_settings';
 
 // Broad element styling
-@import "elements/_elements";
+@import 'elements/_elements';
 
 // Individual components
-@import "components/_components";
+@import 'components/_components';
 
 // Page templates
-@import "templates/_templates";
+@import 'templates/_templates';
 
 // Set default full window width
 :root {
