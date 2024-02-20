@@ -4,8 +4,7 @@
  * Webpack compilation services - https://webpack.js.org/
  *
  * - 01 - Imports
- * - 02 - Entry Points
- * - 03 - Exports
+ * - 02 - Exports
  */
 
 /*------------------------------------*\
@@ -15,46 +14,23 @@
   still required to be defined.
 \*------------------------------------*/
 
-const glob = require("glob");
-const path = require("path");
-const webpack = require("webpack");
+const webpack = require('webpack');
 
 /*------------------------------------*\
-  02 - Entry Points
-  Since Webpack does not inherently dynamically build a list of resources to
-  be compiled, we will use a Glob (https://github.com/isaacs/node-glob) to
-  automatically watch JavaScript files and automatically compile them into
-  a distribution directory.
-\*------------------------------------*/
-
-const entryPoints = glob
-  .sync("./styles/js/**/*.js")
-  .reduce((entries, entry) => {
-    const entryName = path.parse(entry).name;
-    entries[entryName] = entry;
-    return entries;
-  }, {});
-
-/*------------------------------------*\
-  03 - Exports
+  02 - Exports
   Prepare all resources using Webpack to be exported as distributed and
   compiled files. Here, Babel (https://babeljs.io/) is being used to convert
   any ES6 syntax to earlier versions, if necessary.
 \*------------------------------------*/
 
 module.exports = {
-  mode: "none",
-  entry: entryPoints,
-  output: {
-    path: `${__dirname}/js`,
-    filename: `[name].js`,
-  },
-  devtool: "source-map",
+  mode: 'none',
+  devtool: 'source-map',
   externals: {
-    jquery: "jQuery",
+    jquery: 'jQuery',
   },
   resolve: {
-    extensions: [".js", ".jsx", ".vue"],
+    extensions: ['.js', '.jsx', '.vue'],
   },
   module: {
     rules: [
@@ -62,7 +38,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader", // All Babel plugins and options will be loaded via the babel.config.js file
+          loader: 'babel-loader', // All Babel plugins and options will be loaded via the babel.config.js file
         },
       },
     ],

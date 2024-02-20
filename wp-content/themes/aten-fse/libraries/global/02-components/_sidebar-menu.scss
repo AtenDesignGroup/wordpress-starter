@@ -1,0 +1,246 @@
+@use '../../partials/partials' as *;
+
+// Sidebar Menu styles
+.aten-fse-sidebar-menu {
+  width: 100%;
+
+  @include bp-min(desktop) {
+    padding-bottom: rem(20px);
+  }
+
+  button {
+    background-color: var(--transparent);
+    border: 0;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+    }
+  }
+
+  h2 {
+    line-height: rem(24px);
+    margin-bottom: rem(12px);
+
+    &:hover,
+    &:focus,
+    *:hover,
+    *:focus {
+      cursor: text;
+    }
+
+    button {
+      @include type-scale(label, 14);
+      font-weight: var(--aten-fw-bold);
+      color: var(--black);
+      text-align: left;
+
+      .sidebar-icon {
+        display: none;
+      }
+    }
+  }
+
+  .sidebar-icon {
+    @include font-material-icons;
+    font-size: rem(20px);
+  }
+
+  h3 {
+    line-height: rem(28px);
+
+    button {
+      @include type-scale(body, 18);
+      font-weight: var(--aten-fw-bold);
+      line-height: rem(28px);
+      color: var(--aten-blue-dark);
+      text-align: left;
+      padding: 0;
+      position: relative;
+
+      .sidebar-icon {
+        position: absolute;
+        left: rem(-30px);
+
+        .collapsed {
+          display: block;
+        }
+
+        .expanded {
+          display: none;
+        }
+      }
+
+      &[aria-expanded='true'] {
+        .expanded {
+          display: block;
+        }
+
+        .collapsed {
+          display: none;
+        }
+      }
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    text-indent: 0;
+    margin: rem(8px) 0;
+
+    a {
+      @include type-scale(body, 16);
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+
+    &.active {
+      a {
+        font-weight: var(--aten-fw-bold);
+        color: var(--black);
+        text-decoration: none;
+      }
+    }
+  }
+
+  .sidebar-accordion-panel {
+    &.collapsed {
+      height: 0;
+      overflow: hidden;
+    }
+  }
+
+  .sidebar-item {
+    border-radius: var(--default-border-radius);
+    padding: 0 rem(16px) 0 rem(44px);
+    margin-bottom: rem(8px);
+    width: 100%;
+    background-color: var(--transparent);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+
+    &.active {
+      margin-top: rem(8px);
+      padding: rem(16px) rem(16px) rem(28px) rem(44px);
+      background-color: var(--aten-blue-light);
+    }
+
+    &:first-of-type.active {
+      margin-top: 0;
+    }
+
+    button {
+      &:hover,
+      &:focus {
+        color: var(--aten-blue-dark);
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // Mobile Styles
+  &.mobile-aligned {
+    max-width: rem(620px);
+    margin: 0 auto rem(24px);
+
+    @include bp-max(sm-desktop) {
+      max-width: none;
+    }
+
+    h2 {
+      width: 100%;
+      background-color: var(--aten-blue);
+      border-radius: var(--default-border-radius);
+
+      &:hover,
+      &:focus,
+      *:hover,
+      *:focus {
+        cursor: pointer;
+      }
+
+      button {
+        box-sizing: border-box;
+        padding: rem(12px) rem(20px);
+        width: 100%;
+        text-align: left;
+        position: relative;
+
+        .sidebar-icon {
+          display: block;
+          font-size: rem(22px);
+          color: var(--aten-green-dark);
+          position: absolute;
+          right: rem(20px);
+          top: 50%;
+          transform: translate(0, -45%);
+          transition: transform 0.3s ease;
+        }
+
+        &[aria-expanded='true'] {
+          .sidebar-icon {
+            transform: rotateX(-180deg) translate(0, 55%);
+          }
+        }
+      }
+    }
+
+    .sidebar-item-wrapper {
+      padding: rem(40px);
+      background-color: var(--white);
+      box-shadow: var(--default-box-shadow);
+
+      @include bp-max(sm-desktop) {
+        padding: rem(20px);
+      }
+    }
+  }
+}
+
+.basic-page-sidebar {
+  @include bp-max(desktop) {
+    border-top: rem(2px) solid var(--cloud-grey);
+    margin-top: rem(38px);
+
+    > .wp-block-group {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: rem(30px);
+      flex-wrap: nowrap;
+    }
+  }
+
+  @include bp-max(sm-desktop) {
+    margin-top: 0;
+
+    > .wp-block-group {
+      gap: rem(30px);
+      flex-wrap: wrap;
+
+      > div {
+        width: calc(50% - rem(15px));
+      }
+    }
+  }
+
+  @include bp-max(tablet) {
+    margin-top: 0;
+
+    > .wp-block-group {
+      gap: 0;
+
+      > div {
+        width: 100%;
+      }
+    }
+  }
+}
