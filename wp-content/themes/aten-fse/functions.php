@@ -313,22 +313,23 @@ function get_block_files() {
  *   Registers each block using acf_register_block_type.
  */
 function register_acf_blocks() {
-  if (function_exists('register_block_type')) {
-    $block_files = get_block_files();
+  if (class_exists('ACF')) {
+    if (function_exists('register_block_type')) {
+      $block_files = get_block_files();
 
-    foreach ($block_files as $block) {
-      register_block_type(__DIR__ . '/blocks/' . $block['name']);
+      foreach ($block_files as $block) {
+        register_block_type(__DIR__ . '/blocks/' . $block['name']);
 
-      // If css exists attach it.
-      if (isset($block['css'])) {
-        wp_register_style($block['name'], get_stylesheet_directory_uri() . '/blocks/' . $block['css']);
+        // If css exists attach it.
+        if (isset($block['css'])) {
+          wp_register_style($block['name'], get_stylesheet_directory_uri() . '/blocks/' . $block['css']);
+        }
+
+        // If js exists attach it.
+        if (isset($block['js'])) {
+          wp_enqueue_script($block['name'], get_stylesheet_directory_uri() . '/blocks/' . $block['js']['src'], $block['js']['deps'], $block['js']['ver'], $block['js']['in_footer']);
+        }
       }
-
-      // If js exists attach it.
-      if (isset($block['js'])) {
-        wp_enqueue_script($block['name'], get_stylesheet_directory_uri() . '/blocks/' . $block['js']['src'], $block['js']['deps'], $block['js']['ver'], $block['js']['in_footer']);
-      }
-
     }
   }
 }
@@ -454,7 +455,7 @@ function remove_block_toolbar_settings() {
 add_action('enqueue_block_assets', 'remove_block_toolbar_settings');
 
 /**
- * Control what options appear in the backend editor block toolbars.
+ * Custom query loop for news posts
  */
 function custom_news_query_loop_variation() {
 
@@ -580,32 +581,34 @@ add_filter('wp_nav_menu_objects', 'my_wp_nav_menu_objects', 10, 2);
  *
  */
 function my_wp_nav_menu_objects($items, $args) {
-  // Loop through each menu item.
-  foreach ($items as &$item) {
-    // Pulling ACF field values.
-    $icon = get_field('menu_item_icon', $item);
-    $is_top_level = get_field('no_children', $item);
-    $is_submenu_heading = get_field('submenu_heading', $item);
-    $with_border = get_field('with_border', $item);
+  if (class_exists('ACF')) {
+    // Loop through each menu item.
+    foreach ($items as &$item) {
+      // Pulling ACF field values.
+      $icon = get_field('menu_item_icon', $item);
+      $is_top_level = get_field('no_children', $item);
+      $is_submenu_heading = get_field('submenu_heading', $item);
+      $with_border = get_field('with_border', $item);
 
-    // Append icon to the title of each menu item.
-    if ($icon) {
-      $item->title .= '<span class="menu-icon notranslate" aria-hidden="true">' . $icon . '</span>';
-    }
+      // Append icon to the title of each menu item.
+      if ($icon) {
+        $item->title .= '<span class="menu-icon notranslate" aria-hidden="true">' . $icon . '</span>';
+      }
 
-    // Add class for top-level only items.
-    if ($is_top_level) {
-      $item->classes[] = 'no-children';
-      $item->title .= ' <span class="menu-icon right notranslate" aria-hidden="true">chevron_right</span>';
-    }
+      // Add class for top-level only items.
+      if ($is_top_level) {
+        $item->classes[] = 'no-children';
+        $item->title .= ' <span class="menu-icon right notranslate" aria-hidden="true">chevron_right</span>';
+      }
 
-    // Add class for submenu heading items.
-    if ($is_submenu_heading) {
-      $item->classes[] = 'submenu-heading';
+      // Add class for submenu heading items.
+      if ($is_submenu_heading) {
+        $item->classes[] = 'submenu-heading';
 
-      // Add class for a bottom border on submenu heading items.
-      if ($with_border) {
-        $item->classes[] = 'with-border';
+        // Add class for a bottom border on submenu heading items.
+        if ($with_border) {
+          $item->classes[] = 'with-border';
+        }
       }
     }
   }
