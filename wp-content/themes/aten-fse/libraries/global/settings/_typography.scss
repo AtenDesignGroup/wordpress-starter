@@ -1,0 +1,320 @@
+//
+// Settings - Typography
+//
+// - 01 - Imports
+// - 02 - Families
+// - 03 - Typographic Scale
+// - 04 - Weights
+// - 05 - Body
+// - 06 - Headings
+// - 07 - Links
+// - 08 - Bold
+// - 09 - Paragraphs
+// - 10 - Blockquote
+//
+
+//------------------------------------
+//  01 - Imports
+//------------------------------------
+
+@use '../../partials/mixins/typography' as mixins-typography;
+
+//------------------------------------
+//  02 - Families
+//  A mixin is created and than instantly called here so that we can utilize the same styles within other
+//  stylesheets, like the `wysiwyg.scss` file.
+//------------------------------------
+
+@mixin typography-families() {
+  :root {
+    --aten-ff-base: 'Inter', sans-serif;
+    --aten-ff-icons: 'Material Symbols Outlined';
+    --aten-ff-default: var(--aten-ff-base);
+  }
+}
+
+@include typography-families();
+
+//------------------------------------
+//  03 - Typographic Scale
+//  The scale is organized into groups of font sizes, such as headings and body text.
+//  Additional categories can be added based on the needs of the design. Each category is
+//  broken up into font-size (integers) representing the target `px` value at the largest
+//  breakpoint. Within each font-size, target `px` values are set per breakpoint.
+//
+//  By default the heading group utilizes semantic HTML elements `h1` through `h4` for category names.
+//  The body and label groups have a base font-size and additional font-sizes can be added as needed.
+//  When adding additional font-sizes, the new categories should be named with the target `px` value.
+//  The example below shows a new `18` group in the body category. At it's largest this font-size will
+//  display at 18px and will scale down to 14px at the mobile breakpoint.
+//  Example:
+//   body: (
+//     base: (
+//        mobile: (14, 22),
+//        tablet: (24, 32),
+//        sm-desktop: (28, 40),
+//        desktop: (32, 44),
+//      ),
+//      18: (
+//        mobile: (14, 22),
+//        tablet: (16, 26),
+//        sm-desktop: (18, 28),
+//        desktop: (18, 28),
+//      ),
+//    ),
+//
+//  Note: The breakpoints listed here must correspond with breakpoints defined in
+//  `libraries/partials/settings/breakpoints.scss`.
+//
+/// $typographic-scale: (
+///   category1: (
+///     size1: (
+///       breakpoint1: (fontSizePixelValue, lineHeightPixelValue),
+///       breakpoint2: (fontSizePixelValue, lineHeightPixelValue),
+///       ...
+///     ),
+///     size2: ( ... ),
+///     ...
+///   ),
+///   category2: ( ... ),
+///   ...
+/// );
+//------------------------------------
+
+/* prettier-ignore */
+$typographic-scale: (
+  heading: (
+    h1: (
+      mobile: (44, 52),
+      tablet: (52, 60),
+      sm-desktop: (72, 72),
+      desktop: (96, 92),
+    ),
+    h2: (
+      mobile: (32, 36),
+      tablet: (42, 48),
+      sm-desktop: (44, 52),
+      desktop: (52, 60),
+    ),
+    h3: (
+      mobile: (24, 28),
+      tablet: (28, 32),
+      sm-desktop: (32, 36),
+      desktop: (44, 52),
+    ),
+    h4: (
+      mobile: (22, 28),
+      tablet: (24, 28),
+      sm-desktop: (28, 32),
+      desktop: (32, 36),
+    ),
+  ),
+  body: (
+    base: (
+      mobile: (14, 22),
+      tablet: (24, 32),
+      sm-desktop: (28, 40),
+      desktop: (32, 44),
+    ),
+    18: (
+      mobile: (14, 22),
+      tablet: (16, 26),
+      sm-desktop: (18, 28),
+      desktop: (18, 28),
+    ),
+    16: (
+      mobile: (14, 22),
+      tablet: (16, 26),
+      sm-desktop: (16, 26),
+      desktop: (16, 26),
+    ),
+    14: (
+      mobile: (12, 22),
+      tablet: (14, 24),
+      sm-desktop: (14, 24),
+      desktop: (14, 24),
+    ),
+  ),
+  label: (
+    18: (
+      mobile: (14, 24),
+      tablet: (16, 28),
+      sm-desktop: (18, 28),
+    ),
+    16: (
+      mobile: (14, 24),
+      tablet: (16, 24),
+      sm-desktop: (16, 28),
+    ),
+    14: (
+      mobile: (12, 22),
+      tablet: (14, 24),
+    ),
+  ),
+);
+
+@mixin typography-scale() {
+  @include mixins-typography.type-scale-custom-props($typographic-scale);
+}
+
+@include typography-scale();
+
+//------------------------------------
+//  04 - Weights
+//  A mixin is created and than instantly called here so that we can utilize the same styles within other
+//  stylesheets, like the `wysiwyg.scss` file.
+//------------------------------------
+
+@mixin typography-weights() {
+  :root {
+    --aten-fw-thin: 100;
+    --aten-fw-light: 300;
+    --aten-fw-regular: 400;
+    --aten-fw-book: 400;
+    --aten-fw-medium: 500;
+    --aten-fw-semibold: 600;
+    --aten-fw-bold: 700;
+  }
+}
+
+@include typography-weights;
+
+//------------------------------------
+//  05 - Body
+//  A mixin is created and than instantly called here so that we can utilize the same styles within other
+//  stylesheets, like the `wysiwyg.scss` file.
+//------------------------------------
+
+@mixin typography-body() {
+  body {
+    @include mixins-typography.type-scale(body, base);
+    color: var(--black);
+    font-family: var(--aten-ff-base);
+  }
+}
+
+@include typography-body();
+
+//------------------------------------
+//  06 - Headings
+//  A mixin is created and than instantly called here so that we can utilize the same styles within other
+//  stylesheets, like the `wysiwyg.scss` file.
+//------------------------------------
+
+@mixin typography-headings() {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: var(--black);
+    margin-bottom: 0;
+
+    > a {
+      text-decoration: none;
+    }
+
+    + p {
+      margin-top: 16px;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h1 {
+    @include mixins-typography.heading-01();
+  }
+
+  h2 {
+    @include mixins-typography.heading-02();
+  }
+
+  h3 {
+    @include mixins-typography.heading-03();
+  }
+
+  h4 {
+    @include mixins-typography.heading-04();
+  }
+
+  h5 {
+    @include mixins-typography.heading-05();
+  }
+
+  h6 {
+    @include mixins-typography.heading-06();
+  }
+}
+
+@include typography-headings();
+
+//------------------------------------
+//  07 - Links
+//  A mixin is created and than instantly called here so that we can utilize the same styles within other
+//  stylesheets, like the `wysiwyg.scss` file.
+//------------------------------------
+
+@mixin typography-links() {
+  a {
+    color: var(--default-link-ci);
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: var(--default-link-hover-ci);
+      text-decoration: none;
+    }
+  }
+}
+
+@include typography-links();
+
+//------------------------------------
+//  08 - Bold
+//  A mixin is created and than instantly called here so that we can utilize the same styles within other
+//  stylesheets, like the `wysiwyg.scss` file.
+//------------------------------------
+
+@mixin typography-bold() {
+  strong,
+  b {
+    font-weight: var(--aten-fw-bold);
+  }
+}
+
+@include typography-bold();
+
+//------------------------------------
+//  09 - Paragraphs
+//  A mixin is created and than instantly called here so that we can utilize the same styles within other
+//  stylesheets, like the `wysiwyg.scss` file.
+//------------------------------------
+
+@mixin typography-paragraphs() {
+  p:not(:first-child) {
+    margin: 16px 0 0;
+  }
+}
+
+@include typography-paragraphs();
+
+//------------------------------------
+//  10 - Blockquote
+//  A mixin is created and than instantly called here so that we can utilize the same styles within other
+//  stylesheets, like the `wysiwyg.scss` file.
+//------------------------------------
+
+@mixin typography-blockquote() {
+  blockquote {
+    text-indent: -0.4em;
+    font-style: italic;
+  }
+
+  blockquote:not(:first-child) {
+    margin: 16px 0 0;
+  }
+}
+
+@include typography-blockquote();

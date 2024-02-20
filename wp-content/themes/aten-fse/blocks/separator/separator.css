@@ -1,0 +1,49 @@
+.separator-component {
+  float: none !important;
+}
+.separator-component.gold-line {
+  border-color: var(--aten-yellow);
+  border-bottom-width: 0.25rem;
+}
+.separator-component, .separator-component.grey-line {
+  border-color: var(--aten-gray-light);
+}
+.separator-component, .separator-component.gold-line, .separator-component.grey-line {
+  max-width: 100%;
+  margin-top: 2.25rem;
+  margin-bottom: 2.25rem;
+}
+@media (min-width: 768px) {
+  .separator-component, .separator-component.gold-line, .separator-component.grey-line {
+    margin-top: 2.75rem;
+    margin-bottom: 2.75rem;
+  }
+}
+@media (min-width: 1200px) {
+  .separator-component, .separator-component.gold-line, .separator-component.grey-line {
+    margin-top: 3.25rem;
+    margin-bottom: 3.25rem;
+  }
+}
+@media (min-width: 1400px) {
+  .separator-component.gold-line {
+    max-width: none;
+    width: calc(100% + 7.5rem);
+    position: relative;
+    left: -3.75rem;
+  }
+}
+.separator-component.gold-wave {
+  width: 10rem;
+  height: 1rem;
+  border: 0px;
+  background-image: url("/wp-content/themes/aten-fse/assets/img/gold-wave.svg");
+  background-size: contain;
+  background-position: center center;
+}
+@media (min-width: 768px) {
+  .separator-component.gold-wave {
+    width: 17.5rem;
+    height: 1.75rem;
+  }
+}

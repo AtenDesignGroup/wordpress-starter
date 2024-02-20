@@ -1,0 +1,64 @@
+/*
+Theme Name: Aten FSE Theme
+Theme URI: https://wordpress.org/themes/twentytwentyfour
+Author: Aten Design Group
+Author URI: https://atendesigngroup.com/
+Description: A child theme based on the Twenty Twenty Four WordPress core theme. This is a custom theme designed as a starter theme for FSE customization.
+Requires at least: 6.1
+Tested up to: 6.2
+Requires PHP: 8.0
+Version: 1.0
+Text Domain: twentytwentyfour
+Tags: one-column, custom-colors, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, rtl-language-support, translation-ready, wide-blocks, block-styles, accessibility-ready
+*/
+
+// Import global settings
+@forward './global/settings/colors';
+@forward './global/settings/typography';
+@forward './global/settings/layouts';
+
+// Broad element styling
+@forward './global/elements/buttons';
+@forward './global/elements/events';
+@forward './global/elements/gtranslate-widget';
+@forward './global/elements/images';
+@forward './global/elements/layout';
+@forward './global/elements/main-menu';
+@forward './global/elements/notification-bar';
+@forward './global/elements/pagination';
+@forward './global/elements/search-widget';
+@forward './global/elements/tables';
+@forward './global/elements/text';
+@forward './global/elements/utility-nav';
+
+// Individual components
+@forward './global/components/callout-link';
+@forward './global/components/footer';
+@forward './global/components/heading-block';
+@forward './global/components/news-archives';
+@forward './global/components/sidebar-menu';
+
+// Page templates
+@forward './global/templates/_templates';
+
+// Set default full window width
+:root {
+  --windowWidth: 1620px;
+
+  // On largest screens take windowWidth less container width
+  // divide to get 1 side beyond container width, this is used
+  // so that placement is correct for images beyond container
+  --full-left: calc(calc(var(--windowWidth) - 1400px) / -2);
+  --full-right: calc(calc(var(--windowWidth) - 1400px) / -2);
+}
+
+// Utility class for screen-reader only content
+.a11y-visible {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}

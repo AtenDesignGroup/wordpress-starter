@@ -1,0 +1,216 @@
+//
+// Mixins - Typography
+// Use these mixins when needing to easily define typography styles, such as sizes and typographical layout.
+//
+// - 01 - Typography
+// - 02 - Headings
+// - 03 - Body
+// - 04 - Google Material Symbols Icon Font
+//
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use '../settings/base' as settings-base;
+@use '../mixins/breakpoints' as bp;
+
+// ------------------------------------
+// 01 - Typography
+// Mixin for determining font sizing and line heights from CSS variables.
+// @param $font-size: [integer] size of font depicted by a number / associates with CSS variables.
+// @param $line-height: [string] setting of line height as depicted by a string / associates with CSS variables.
+// ------------------------------------
+
+@mixin type-scale($category, $size, $prefix: settings-base.$property-prefix) {
+  @if $prefix != '' {
+    $prefix: $prefix + '-';
+  }
+
+  font-size: var(--#{$prefix}fs-#{$category}-#{$size});
+  line-height: var(--#{$prefix}lh-#{$category}-#{$size});
+}
+
+@function convert-map($input-map) {
+  $output-map: ();
+
+  @each $category, $sizes in $input-map {
+    @each $size, $breakpoints in $sizes {
+      @each $breakpoint, $values in $breakpoints {
+        $font-size: math.div(nth($values, 1), 16);
+        $line-height: math.div(nth($values, 2), nth($values, 1));
+        $output-map: map.deep-merge(
+          $output-map,
+          (
+            $breakpoint: (
+              fs: (
+                $category: (
+                  $size: (
+                    $font-size,
+                    nth($values, 1),
+                  ),
+                ),
+              ),
+              lh: (
+                $category: (
+                  $size: (
+                    $line-height,
+                    nth($values, 2),
+                  ),
+                ),
+              ),
+            ),
+          )
+        );
+      }
+    }
+  }
+
+  @return $output-map;
+}
+
+/// This mixin generates a full range of :root definitions for each category, size, and breakpoint
+/// from a typographic scale.
+///
+/// The typographic scale should be in the format:
+/// $typographic-scale: (
+///   category1: (
+///     size1: (
+///       breakpoint1: (fontSizePixelValue, lineHeightPixelValue),
+///       breakpoint2: (fontSizePixelValue, lineHeightPixelValue),
+///       ...
+///     ),
+///     size2: ( ... ),
+///     ...
+///   ),
+///   category2: ( ... ),
+///   ...
+/// );
+/// @access public
+///
+/// @param {Map} $map - The typography map
+/// @param {String} $prefix - The prefix to use for the CSS custom properties
+///
+/// @example scss - Usage
+///   @include type-scale-custom-props($typography-map);
+///   @include type-scale-custom-props($typography-map, 'theme-name');
+@mixin type-scale-custom-props(
+  $scale,
+  $prefix: settings-base.$property-prefix
+) {
+  $map: convert-map($scale);
+  @if $prefix != '' {
+    $prefix: $prefix + '-';
+  }
+  $new-prefix: $prefix $prefix + '-';
+
+  :root {
+    @each $breakpoint, $props in $map {
+      @if ($breakpoint == 'mobile') {
+        @each $category, $sizes in map.get($props, 'fs') {
+          /* font-sizes: #{$category} */
+          @each $size, $value in $sizes {
+            --#{$prefix}fs-#{$category}-#{$size}: #{nth(
+                $value,
+                1
+              )}rem; /* #{nth($value, 2)}px */
+          }
+        }
+
+        @each $category, $sizes in map.get($props, 'lh') {
+          /* line-heights: #{$category} */
+          @each $size, $value in $sizes {
+            --#{$prefix}lh-#{$category}-#{$size}: #{nth(
+                $value,
+                1
+              )}; /* #{nth($value, 2)}px */
+          }
+        }
+      } @else {
+        @include bp.bp-min($breakpoint) {
+          @each $category, $sizes in map.get($props, 'fs') {
+            /* font-sizes: #{$category} */
+            @each $size, $value in $sizes {
+              --#{$prefix}fs-#{$category}-#{$size}: #{nth(
+                  $value,
+                  1
+                )}rem; /* #{nth($value, 2)}px */
+            }
+          }
+
+          @each $category, $sizes in map.get($props, 'lh') {
+            /* line-heights: #{$category} */
+            @each $size, $value in $sizes {
+              --#{$prefix}lh-#{$category}-#{$size}: #{nth(
+                  $value,
+                  1
+                )}; /* #{nth($value, 2)}px */
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------------
+// 02 - Headings
+// ------------------------------------
+
+@mixin heading-base() {
+  font-weight: var(--aten-fw-bold);
+}
+
+@mixin heading-01() {
+  @include heading-base();
+  @include type-scale(heading, h1);
+}
+
+@mixin heading-02() {
+  @include heading-base();
+  @include type-scale(heading, h2);
+}
+
+@mixin heading-03() {
+  @include heading-base();
+  @include type-scale(heading, h3);
+}
+
+@mixin heading-04() {
+  @include heading-base();
+  @include type-scale(heading, h4);
+}
+
+@mixin heading-05() {
+  @include heading-base();
+  @include type-scale(body, 18);
+}
+
+@mixin heading-06() {
+  @include heading-base();
+  @include type-scale(body, 16);
+}
+
+// ------------------------------------
+// 03 - Body
+// ------------------------------------
+
+@mixin body-base() {
+  font-weight: var(--aten-fw-regular);
+}
+
+// ------------------------------------
+// 04 - Google Material Symbols Icon Font
+// ------------------------------------
+@mixin font-material-icons {
+  font-family: var(--font-family-icons);
+  font-weight: var(--aten-fw-regular);
+  text-decoration: none;
+  text-transform: none;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+}
