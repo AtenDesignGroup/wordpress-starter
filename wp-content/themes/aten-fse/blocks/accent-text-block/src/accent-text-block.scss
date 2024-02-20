@@ -1,0 +1,85 @@
+@use '../../../libraries/partials/partials' as *;
+
+// Accent Text Block (Colored Rich Text Block) styling
+.accent-text-block {
+  @include bp-max(tablet) {
+    width: 100vw;
+  }
+
+  .accent-text-block-component {
+    width: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding: rem(24px);
+    box-sizing: border-box;
+
+    @include bp-min(tablet) {
+      padding: rem(48px) rem(48px) rem(24px);
+    }
+
+    @include bp-min(lg-desktop) {
+      padding: rem(80px) rem(118px) rem(24px);
+    }
+
+    &,
+    &.white {
+      background-color: var(--white);
+      background-image: url('../aten-fse/assets/img/swishies_sky-blue.svg');
+    }
+  }
+
+  .wave-border {
+    width: 100%;
+    margin-top: rem(-1px);
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  h2 {
+    @include type-scale(heading, h2);
+    font-weight: var(--aten-fw-bold);
+  }
+
+  .accent-text-block-content {
+    > * {
+      margin: rem(28px) 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+    }
+
+    p {
+      &.paragraph-large {
+        @include type-scale(body, 20);
+      }
+
+      &.paragraph-regular {
+        @include type-scale(body, 18);
+      }
+
+      &.paragraph-small {
+        @include type-scale(body, 16);
+      }
+    }
+  }
+
+  .resources-block-wrapper ul {
+    margin: 0;
+  }
+}
+
+.l-gutter .accent-text-block {
+  @include bp-max(tablet) {
+    // Offset l-gutter margin to take up full width on mobile
+    margin-left: rem(-15px);
+  }
+}
