@@ -156,10 +156,10 @@ add_action('admin_head', 'editor_style_add_block_btn');
  * Add custom styles to site.
  */
 function aten_fse_enqueue_styles() {
-  wp_enqueue_style('aten_fse', get_stylesheet_directory_uri() . '/style.css', []);
+  wp_enqueue_style('child-style', get_stylesheet_directory_uri() . '/style.css', []);
 
   // Add external styles.
-  wp_enqueue_style('theme-icon-default', 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap', []);
+  wp_enqueue_style('theme-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap', []);
   wp_enqueue_style('theme-icons-outline', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined', []);
 }
 
@@ -257,33 +257,80 @@ add_action('after_setup_theme', 'aten_fse_custom_header');
 add_action('init', 'register_acf_blocks');
 
 /**
+ * Retrieves a list of block files from the /blocks directory.
  *
+ * This function scans the /blocks directory and for each subdirectory,
+ * it creates an array with the block's name and the names of its CSS and
+ * JS files, if they exist.
+ *
+ * @return array
+ *   An array of associative arrays, each containing the name of a
+ *   block and the names of its CSS and JS files.
+ */
+function get_block_files() {
+  $dirs = glob(__DIR__ . '/blocks/*', GLOB_ONLYDIR);
+
+  $block_files = [];
+
+  foreach ($dirs as $dir) {
+    $block_name = pathinfo($dir, PATHINFO_BASENAME);
+    $css_file = "{$block_name}.css";
+    $js_file = "{$block_name}.js";
+
+    // Setting block name.
+    $block = ['name' => $block_name];
+
+    // If css file exists, add to the block array.
+    if (file_exists(__DIR__ . "/blocks/{$block_name}/{$css_file}")) {
+      $block['css'] = $css_file;
+    }
+    // If JS file exists, add to the block array.
+    // @todo Update attachment to provide dependencies and load requirements.
+    if (file_exists(__DIR__ . "/blocks/{$block_name}/{$js_file}")) {
+      $block['js']['src'] = get_template_directory_uri() . "/blocks/{$block_name}/{$js_file}";
+      $block['js']['deps'] = ['jquery'];
+      $block['js']['ver'] = '1.0';
+      $block['js']['in_footer'] = TRUE;
+    }
+
+    // Add block to the block files array.
+    $block_files[] = $block;
+  }
+
+  return $block_files;
+}
+
+/**
+ * Registers ACF blocks using the block files in the /blocks directory.
+ *
+ * This function uses the get_block_files function to retrieve an array
+ *  of block files.
+ * It then registers each block using acf_register_block_type, setting
+ * the block's name, CSS file (as render_template), and JS file
+ * (as enqueue_script).
+ *
+ * @return void
+ *   Registers each block using acf_register_block_type.
  */
 function register_acf_blocks() {
-  register_block_type(__DIR__ . '/blocks/all-services-block');
-  register_block_type(__DIR__ . '/blocks/accent-text-block');
-  register_block_type(__DIR__ . '/blocks/accordion-block');
-  register_block_type(__DIR__ . '/blocks/callout');
-  register_block_type(__DIR__ . '/blocks/callout-block');
-  register_block_type(__DIR__ . '/blocks/column-block');
-  register_block_type(__DIR__ . '/blocks/contact-info');
-  register_block_type(__DIR__ . '/blocks/event-location');
-  register_block_type(__DIR__ . '/blocks/featured-link-cards');
-  register_block_type(__DIR__ . '/blocks/featured-link-section');
-  register_block_type(__DIR__ . '/blocks/homepage-hero');
-  register_block_type(__DIR__ . '/blocks/information-header');
-  register_block_type(__DIR__ . '/blocks/inline-contact-block');
-  register_block_type(__DIR__ . '/blocks/jump-link-block');
-  register_block_type(__DIR__ . '/blocks/locations-block');
-  register_block_type(__DIR__ . '/blocks/news-meta-fields');
-  register_block_type(__DIR__ . '/blocks/news-release-block');
-  register_block_type(__DIR__ . '/blocks/page-header');
-  register_block_type(__DIR__ . '/blocks/progress-block');
-  register_block_type(__DIR__ . '/blocks/pullquote');
-  register_block_type(__DIR__ . '/blocks/resource-block');
-  register_block_type(__DIR__ . '/blocks/rotating-banner');
-  register_block_type(__DIR__ . '/blocks/separator');
-  register_block_type(__DIR__ . '/blocks/services-list-block');
+  if (function_exists('register_block_type')) {
+    $block_files = get_block_files();
+
+    foreach ($block_files as $block) {
+      register_block_type(__DIR__ . '/blocks/' . $block['name']);
+
+      // If css exists attach it.
+      if (isset($block['css'])) {
+        wp_register_style($block['name'], get_stylesheet_directory_uri() . '/blocks/' . $block['css']);
+      }
+
+      // If js exists attach it.
+      if (isset($block['js'])) {
+        wp_enqueue_script($block['name'], get_stylesheet_directory_uri() . '/blocks/' . $block['js']['src'], $block['js']['deps'], $block['js']['ver'], $block['js']['in_footer']);
+      }
+
+    }
+  }
 }
 
 /*
@@ -318,35 +365,76 @@ add_image_size('location-image', 300, 240);
  */
 function enqueue_splide_scripts() {
   // Enqueue Splide.js CSS.
-  wp_enqueue_style('splide-css', get_stylesheet_directory_uri() . '/styles/splide/splide.min.css');
+  wp_enqueue_style('splide-css', get_stylesheet_directory_uri() . '/vendor/splide/splide.min.css');
 
   // Enqueue Splide.js JavaScript.
-  wp_enqueue_script('splide-js', get_stylesheet_directory_uri() . '/styles/splide/splide.min.js', ['jquery'], '2.4.16', TRUE);
+  wp_enqueue_script('splide-js', get_stylesheet_directory_uri() . '/vendor/splide/splide.min.js', ['jquery'], '2.4.16', TRUE);
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_splide_scripts');
 
 /**
- * @return void
+ * Retrieves all JavaScript files from the blocks src directories.
+ *
+ * This function uses the glob function to get an array of all .js files in
+ * the blocks src directories and libraries/js directories.
+ * It then loops over these files, creating an array of script details for
+ * each one to be enqueued by enqueue_custom_scripts.
+ * The handle for each script is the file name without the extension, and the
+ * source is the file's URL relative to the theme directory.
+ *
+ * @return array
+ *   An array of scripts, where each script is an associative array with keys
+ *   for the handle, source, dependencies, version, if to load in the footer.
+ */
+function get_global_js_files() {
+  // Get all JS files in blocks/*/src.
+  $files = array_merge(glob(__DIR__ . '/dist/js/**/*.js'));
+
+  $scripts = [];
+  foreach ($files as $file) {
+    // Get the file name without the extension as $name.
+    $name = basename($file, '.js');
+
+    $scripts[] = [
+      'name' => $name,
+      'src' => get_template_directory_uri() . '/' . $file,
+      'deps' => ['jquery'],
+      'ver' => '1.0',
+      'in_footer' => TRUE,
+    ];
+  }
+
+  return $scripts;
+}
+
+/**
+ * Enqueues custom scripts for the theme.
+ *
+ * This function retrieves all JavaScript files from the blocks src directories
+ * using the get_all_js_files function.
+ * It then loops over these scripts & enqueues each one using wp_enqueue_script.
+ * The handle, source, dependencies, version, and footer loading preference
+ * for each script are determined by the get_all_js_files function.
+ *
+ * This function is hooked into the wp_enqueue_scripts action.
+ *
+ * @see get_all_js_files
+ * @see wp_enqueue_script
  */
 function enqueue_custom_scripts() {
-  // Enqueue your custom JavaScript file.
-  wp_enqueue_script('utility-functions', get_stylesheet_directory_uri() . '/js/utility-functions.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('accordion-block', get_stylesheet_directory_uri() . '/js/accordion-block.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('category-cards', get_stylesheet_directory_uri() . '/js/category-cards.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('custom-js', get_stylesheet_directory_uri() . '/styles/splide/splideshow.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('events', get_stylesheet_directory_uri() . '/js/events.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('featured-link-cards', get_stylesheet_directory_uri() . '/js/featured-link-cards.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('featured-link-section', get_stylesheet_directory_uri() . '/js/featured-link-section.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('forms', get_stylesheet_directory_uri() . '/js/forms.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('header-nav', get_stylesheet_directory_uri() . '/js/header-nav.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('jump-link-functionality', get_stylesheet_directory_uri() . '/js/jump-link-functionality.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('location-block', get_stylesheet_directory_uri() . '/js/location-block.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('notification-bar', get_stylesheet_directory_uri() . '/js/notification-bar.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('pagination', get_stylesheet_directory_uri() . '/js/pagination.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('search', get_stylesheet_directory_uri() . '/js/search.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('services-blocks', get_stylesheet_directory_uri() . '/js/services-blocks.js', ['jquery'], '1.0', TRUE);
-  wp_enqueue_script('sidebar-menu', get_stylesheet_directory_uri() . '/js/sidebar-menu.js', ['jquery'], '1.0', TRUE);
+
+  $scripts = get_global_js_files();
+
+  foreach ($scripts as $script) {
+    wp_enqueue_script(
+          $script['name'],
+          $script['src'],
+          $script['deps'],
+          $script['ver'],
+          $script['in_footer']
+      );
+  }
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');

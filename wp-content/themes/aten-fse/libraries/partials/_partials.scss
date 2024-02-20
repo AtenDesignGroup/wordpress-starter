@@ -1,0 +1,33 @@
+//
+// Partials Combined
+// Partials can be imported into theme files either one by one, or by using this combined Partials file. To use this
+// file as the import statement, `@use '[path]/partials/partials' as *`.
+//
+// - 01 - Settings
+// - 02 - Functions
+// - 03 - Mixins
+//
+
+//------------------------------------
+//  01 - Settings
+//------------------------------------
+
+@forward 'utility/base';
+@forward 'animations/mixins';
+@forward 'breakpoints/mixins';
+@forward 'breakpoints/settings';
+
+//------------------------------------
+//  02 - Functions
+//------------------------------------
+
+@forward 'calculations/mixins';
+
+//------------------------------------
+//  03 - Mixins
+//------------------------------------
+
+@forward 'theme/buttons';
+@forward 'theme/layout';
+@forward 'theme/list';
+@forward 'typography/mixins';

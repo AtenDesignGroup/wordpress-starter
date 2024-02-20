@@ -1,0 +1,81 @@
+@use '../../partials/partials' as *;
+// Rule
+hr {
+  border: 0;
+  border-bottom: 2px solid var(--cloud-grey);
+
+  &.gold {
+    border-color: var(--aten-yellow);
+  }
+
+  &.black {
+    border-color: var(--black);
+  }
+}
+
+// Label classes
+// -----------------------------------
+
+.label-20 {
+  @include type-scale(label, 20);
+}
+
+.label-18 {
+  @include type-scale(label, 18);
+}
+
+.label-16 {
+  @include type-scale(label, 16);
+}
+
+.label-14 {
+  @include type-scale(label, 14);
+}
+
+// Links
+// -----------------------------------
+a {
+  color: var(--aten-blue-dark);
+  text-decoration: underline;
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--aten-blue-dark);
+    text-decoration: none;
+  }
+
+  // Support inverted text underline
+  &.inverse {
+    text-decoration: none;
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Lists
+// ------------------
+ol {
+  @include type-scale(body, 18);
+  text-indent: rem(2px);
+  padding-inline-start: rem(20px);
+}
+
+ul {
+  @include type-scale(body, 18);
+  text-indent: rem(4px);
+  padding-inline-start: rem(18px);
+}
+
+//Visually Hidden
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}

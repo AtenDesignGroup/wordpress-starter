@@ -1,0 +1,13 @@
+/// Short name for the theme.
+/// This is used as a prefix for custom proprty names to ensure
+/// they are unique and do not conflict with custom properties
+/// from 3rd-party themes, modules and libraries.
+/// @access public
+/// @type String
+/// @example scss - Usage
+///   --#{$theme_short_name}-text-color: red;
+///
+///   p {
+///     color: var(--#{$theme_short_name}-text-color);
+///   }
+$property-prefix: 'aten';

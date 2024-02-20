@@ -168,7 +168,7 @@
       "h6": {},
       "heading": {
         "typography": {
-          "fontFamily": "var(--font-family-default)"
+          "fontFamily": "var(--aten-ff-default)"
         }
       },
       "link": {
@@ -176,7 +176,7 @@
           "text": "var(--default-link-ci)"
         },
         "typography": {
-          "fontFamily": "var(--font-family-default)",
+          "fontFamily": "var(--aten-ff-default)",
           "textDecoration": "underline"
         },
         ":hover": {
