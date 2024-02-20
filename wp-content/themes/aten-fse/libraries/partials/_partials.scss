@@ -3,31 +3,48 @@
 // Partials can be imported into theme files either one by one, or by using this combined Partials file. To use this
 // file as the import statement, `@use '[path]/partials/partials' as *`.
 //
-// - 01 - Settings
-// - 02 - Functions
-// - 03 - Mixins
+// - 01 - Animations
+// - 02 - Breakpoints
+// - 03 - Calculations
+// - 04 - Layouts
+// - 05 - Theme
+// - 06 - Typography
+// - 07 - Utility
 //
 
 //------------------------------------
-//  01 - Settings
+//  01 - Animations
 //------------------------------------
-
-@forward 'utility/base';
 @forward 'animations/mixins';
+
+//------------------------------------
+//  02 - Breakpoints
+//------------------------------------
 @forward 'breakpoints/mixins';
 @forward 'breakpoints/settings';
 
 //------------------------------------
-//  02 - Functions
+//  03 - Calculations
 //------------------------------------
-
 @forward 'calculations/mixins';
 
 //------------------------------------
-//  03 - Mixins
+//  04 - Layouts
 //------------------------------------
+@forward 'layouts/mixins';
 
+//------------------------------------
+//  05 - Theme
+//------------------------------------
 @forward 'theme/buttons';
-@forward 'theme/layout';
 @forward 'theme/list';
+
+//------------------------------------
+//  06 - Typography
+//------------------------------------
 @forward 'typography/mixins';
+
+//------------------------------------
+//  07 - Utility
+//------------------------------------
+@forward 'utility/base';
