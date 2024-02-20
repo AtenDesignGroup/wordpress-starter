@@ -28,6 +28,11 @@
 }
 
 :root {
+  --default-border-radius: 0px;
+  --default-box-shadow: rem(2px) rem(2px) rem(10px) rgba(0, 0, 0, 0.15);
+}
+
+:root {
   --aten-ff-base: "Inter", sans-serif;
   --aten-ff-icons: "Material Symbols Outlined";
   --aten-ff-default: var(--aten-ff-base);
@@ -259,11 +264,6 @@ blockquote {
 
 blockquote:not(:first-child) {
   margin: 16px 0 0;
-}
-
-:root {
-  --default-border-radius: 0px;
-  --default-box-shadow: rem(2px) rem(2px) rem(10px) rgba(0, 0, 0, 0.15);
 }
 
 .btn-large--navy,
@@ -3444,6 +3444,12 @@ h6.wp-block-heading:not(.is-style-heading-stylized) {
   display: none;
 }
 
+body {
+  padding: 0 1rem 1rem;
+}
+body .acf-block-preview {
+  margin-bottom: 1.75rem;
+}
 body .l-gutter {
   margin-left: 0px !important;
 }

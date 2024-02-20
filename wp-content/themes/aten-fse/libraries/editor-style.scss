@@ -1,42 +1,45 @@
 // Import global settings
-@forward './global/settings/colors';
-@forward './global/settings/typography';
-@forward './global/settings/layouts';
+@forward './global/00-base/colors';
+@forward './global/00-base/layouts';
+@forward './global/00-base/typography';
 
 // Broad element styling
-@forward './global/elements/buttons';
-@forward './global/elements/events';
-@forward './global/elements/gtranslate-widget';
-@forward './global/elements/images';
-@forward './global/elements/layout';
-@forward './global/elements/main-menu';
-@forward './global/elements/notification-bar';
-@forward './global/elements/pagination';
-@forward './global/elements/search-widget';
-@forward './global/elements/tables';
-@forward './global/elements/text';
-@forward './global/elements/utility-nav';
+@forward './global/01-elements/buttons';
+@forward './global/01-elements/events';
+@forward './global/01-elements/gtranslate-widget';
+@forward './global/01-elements/images';
+@forward './global/01-elements/layout';
+@forward './global/01-elements/main-menu';
+@forward './global/01-elements/notification-bar';
+@forward './global/01-elements/pagination';
+@forward './global/01-elements/search-widget';
+@forward './global/01-elements/tables';
+@forward './global/01-elements/text';
+@forward './global/01-elements/utility-nav';
 
 // Individual components
-@forward './global/components/callout-link';
-@forward './global/components/footer';
-@forward './global/components/heading-block';
-@forward './global/components/news-archives';
-@forward './global/components/sidebar-menu';
+@forward './global/02-components/callout-link';
+@forward './global/02-components/footer';
+@forward './global/02-components/heading-block';
+@forward './global/02-components/news-archives';
+@forward './global/02-components/sidebar-menu';
 
 // Page templates
-@forward './global/templates/_templates';
+@forward './global/03-layouts/layouts';
+
+
+@use './partials/partials' as *;
 
 .a11y-visible {
   display: none;
 }
 
 body {
-  //   padding: 0 rem(16px) rem(16px);
+    padding: 0 rem(16px) rem(16px);
 
-  //   .acf-block-preview {
-  //     margin-bottom: rem(28px);
-  //   }
+    .acf-block-preview {
+      margin-bottom: rem(28px);
+    }
 
   .l-gutter {
     margin-left: 0px !important;

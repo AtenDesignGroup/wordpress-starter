@@ -15,7 +15,7 @@
 //------------------------------------
 
 @use 'sass:map';
-@use '../settings/breakpoints' as settings-breakpoints;
+@use '../breakpoints/settings' as settings-breakpoints;
 
 //------------------------------------
 //  02 - Minimum Breakpoint

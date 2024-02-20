@@ -1,5 +1,5 @@
-@use '../mixins/breakpoints.scss' as bp;
-@use '../functions/calculations.scss' as calc;
+@use '../breakpoints/mixins' as bp;
+@use '../calculations/mixins' as calc;
 
 @mixin l-gutter {
   // Mobile Screens

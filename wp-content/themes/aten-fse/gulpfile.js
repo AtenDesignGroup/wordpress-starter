@@ -51,7 +51,7 @@ const paths = {
     },
     scripts: {
       src: `libraries/js/**/*.js`,
-      dest: `.`,
+      dest: `dist/js`,
     },
   },
   editor: {
@@ -91,7 +91,7 @@ const renameBaseScripts = (file) => {
   return path.relative(
     paths.base.scripts.src,
     file.path
-      .replace('/libraries', `/${paths.base.scripts.src}`)
+      .replace('/libraries/js', `/${paths.base.scripts.src}`)
       // Remove the .js extension
       .slice(0, -3)
   );

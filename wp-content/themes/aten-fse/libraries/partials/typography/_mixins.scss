@@ -10,8 +10,8 @@
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:math';
-@use '../settings/base' as settings-base;
-@use '../mixins/breakpoints' as bp;
+@use '../utility/base' as settings-base;
+@use '../breakpoints/mixins' as bp;
 
 // ------------------------------------
 // 01 - Typography
