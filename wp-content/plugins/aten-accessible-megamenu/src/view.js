@@ -46,6 +46,7 @@ jQuery(document).ready(function($){
                 break;
             case "ArrowLeft":
             case "ArrowUp":
+                event.preventDefault();
                 if(prev_list_item.length) {
                     prev_list_item.find('a, button').focus();
                 } else {
@@ -54,6 +55,7 @@ jQuery(document).ready(function($){
                 break;    
             case "ArrowRight":
             case "ArrowDown":
+                event.preventDefault();
                 if($(this).hasClass('adg-a11y-megamenu-button') && ($(this).attr('aria-expanded') == 'true')) {
                     $(this).siblings('.submenu-expanded').find('li').first().find('a, button').focus();
                 } else {
