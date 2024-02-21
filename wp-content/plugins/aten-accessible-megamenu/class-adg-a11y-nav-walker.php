@@ -26,7 +26,7 @@ if ( ! class_exists( 'ADG_A11y_Nav_Walker' ) ) {
 		 * @param int    $id ID of the current menu item. Default 0.
 		 * @see https://developer.wordpress.org/reference/classes/walker_nav_menu/start_el/
 		 */
-		public function start_el( $output, $item, $depth = 0, $args = array(), $id = 0 ) {
+		public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 			$output .= "<li class='" . implode( ' ', $item->classes ) . "'>";
 			if ( ! ( in_array( 'menu-item-has-children', $item->classes, true ) ) ) {
 				if ( ( in_array( 'current-menu-item', $item->classes, true ) ) ) {
