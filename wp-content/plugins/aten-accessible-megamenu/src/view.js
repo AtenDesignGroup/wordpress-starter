@@ -29,26 +29,23 @@ jQuery(document).ready(function($){
     toggleMobileMenuActivation();
 
     $('.adg-a11y-megamenu .menu-item-type-custom a, .adg-a11y-megamenu .adg-a11y-megamenu-button').on('keydown', function(event) {
+        event.stopImmediatePropagation();
         let next_list_item = $(this).closest('li').next();
         let prev_list_item = $(this).closest('li').prev();
-
+        
         switch(event.key) {
             case "Escape":
-                let target_button = $(this).closest('ul').siblings('button');
+                let target_button;
+                if($(this).hasClass('adg-a11y-megamenu-button')) {
+                    target_button = $(this);
+                } else {
+                    target_button = $(this).closest('ul').siblings('button');
+                }
                 toggleMenu(target_button);
                 $(target_button).focus();
-                event.stopPropagation();
                 break;
             case "ArrowLeft":
-                event.stopPropagation();
-                if(prev_list_item.length) {
-                    prev_list_item.find('a, button').focus();
-                } else {
-                    $(this).closest('ul').siblings('button').focus();
-                }
-                break;
             case "ArrowUp":
-                event.stopPropagation();
                 if(prev_list_item.length) {
                     prev_list_item.find('a, button').focus();
                 } else {
@@ -56,19 +53,15 @@ jQuery(document).ready(function($){
                 }
                 break;    
             case "ArrowRight":
-                event.stopPropagation();
-                if(next_list_item.length) {
-                    next_list_item.find('a, button').focus();
-                } else {
-                    $(this).closest('.menu-item-has-children').next().find('a, button').focus();
-                }
-                break;
             case "ArrowDown":
-                event.stopPropagation();
-                if(next_list_item.length) {
-                    next_list_item.find('a, button').focus();
+                if($(this).hasClass('adg-a11y-megamenu-button') && ($(this).attr('aria-expanded') == 'true')) {
+                    $(this).siblings('.submenu-expanded').find('li').first().find('a, button').focus();
                 } else {
-                    $(this).closest('.menu-item-has-children').next().find('a, button').focus();
+                    if(next_list_item.length) {
+                        next_list_item.find('a, button').focus();
+                    } else {
+                        $(this).closest('.menu-item-has-children').next().find('a, button').focus();
+                    }
                 }
                 break; 
             }
