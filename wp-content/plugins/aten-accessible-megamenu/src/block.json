@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "aten-design-group/accessible-megamenu",
+	"version": "0.1.0",
+	"title": "Accessible Mega Menu",
+	"category": "widgets",
+	"description": "A block that generates a fully-accessible megamenu from any WordPress menu.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"multiple": false
+	},
+	"textdomain": "adg-accessible-megamenu",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"attributes": {
+		"menu_id": {
+			"type": "string",
+			"default": ""
+		},
+		"menu_name": {
+			"type": "string",
+			"default": ""
+		},
+		"menu_slug": {
+			"type": "string",
+			"default": ""
+		},
+		"mobile_breakpoint": {
+			"type": "string",
+			"default": "1024"
+		}
+	}
+}
