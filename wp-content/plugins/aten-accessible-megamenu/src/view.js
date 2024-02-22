@@ -28,7 +28,7 @@ jQuery(document).ready(function($){
 
     toggleMobileMenuActivation();
 
-    $('.adg-a11y-megamenu .menu-item-type-custom a, .adg-a11y-megamenu .adg-a11y-megamenu-button').on('keydown', function(event) {
+    $('.adg-a11y-megamenu .menu-item-type-custom a, .adg-a11y-megamenu .adg-a11y-megamenu-button, .adg-a11y-megamenu .menu-item').on('keydown', function(event) {
         event.stopImmediatePropagation();
         let next_list_item = $(this).closest('li').next();
         let prev_list_item = $(this).closest('li').prev();
@@ -41,7 +41,9 @@ jQuery(document).ready(function($){
                 } else {
                     target_button = $(this).closest('ul').siblings('button');
                 }
-                toggleMenu(target_button);
+                if($(target_button).attr('aria-expanded') == 'true') {
+                    toggleMenu(target_button);
+                }
                 $(target_button).focus();
                 break;
             case "ArrowLeft":
