@@ -117,7 +117,6 @@ else :
 		</div>
 
 												<?php
-												// Services sections.
-											endif;
+												endif;
 
 						endif;
