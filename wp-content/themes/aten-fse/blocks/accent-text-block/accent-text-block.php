@@ -14,7 +14,7 @@
  */
 
 if ( isset( $block['data']['preview_image'] ) ) :    /* rendering in inserter preview  */
-	echo '<img src="' . esc_html( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
+	echo '<img src="' . esc_attr( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
 else :
 	// Support custom "anchor" values.
 	$anchor = '';
@@ -37,7 +37,7 @@ else :
 	$section_title = get_field( 'accent_text_block_title' );
 	?>
 
-	<div <?php echo esc_html( $anchor ); ?> class="<?php echo esc_attr( $class_name ); ?>">
+	<div <?php echo esc_attr( $anchor ); ?> class="<?php echo esc_attr( $class_name ); ?>">
 		<div class="accent-text-block-component <?php echo esc_attr( $color ); ?>">
 			<h2><?php echo esc_html( $section_title ); ?></h2>
 			<div class="accent-text-block-content">
@@ -57,7 +57,7 @@ else :
 						elseif ( get_row_layout() === 'paragraph_block' ) :
 							$paragraph_text_size = get_sub_field( 'paragraph_text_size' );
 							$paragraph_content   = get_sub_field( 'paragraph_content' );
-							echo "<p class='paragraph-" . esc_html( $paragraph_text_size ) . "'>" . esc_html( $paragraph_content ) . '</p>';
+							echo "<p class='paragraph-" . esc_attr( $paragraph_text_size ) . "'>" . esc_html( $paragraph_content ) . '</p>';
 
 							// Resources block.
 						elseif ( get_row_layout() === 'resources_block' ) :
@@ -91,7 +91,7 @@ else :
 
 									// Output the description text.
 									if ( $description ) {
-										echo '<p>' . esc_html( $descriptio ) . '</p>';
+										echo '<p>' . esc_html( $description ) . '</p>';
 									}
 									echo '<p class="resource-details">';
 
@@ -140,8 +140,8 @@ else :
 							$button_target = $button_link['target'] ?? '_self';
 							?>
 
-							<div class="wp-block-button is-style-<?php echo esc_html( $button_style ); ?>">
-								<a class="wp-block-button__link wp-element-button" href="<?php echo esc_html( $button_link['url'] ); ?>" title="<?php echo esc_html( $button_link['title'] ); ?>" target="<?php echo esc_html( $button_target ); ?>">
+							<div class="wp-block-button is-style-<?php echo esc_attr( $button_style ); ?>">
+								<a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $button_link['url'] ); ?>" title="<?php echo esc_attr( $button_link['title'] ); ?>" target="<?php echo esc_attr( $button_target ); ?>">
 									<?php echo esc_html( $button_link['title'] ); ?>
 								</a>
 							</div>
@@ -156,7 +156,7 @@ else :
 							if ( 'link' !== $video_source && $video_file ) :
 								?>
 								<figure class="wp-block-video">
-								<video controls="" preload="metadata" src="<?php echo esc_html( $video_file['url'] ); ?>" type="<?php echo esc_html( $video_file['mime_type'] ); ?>" alt="<?php echo esc_html( $video_file['alt'] ); ?>"></video>
+								<video controls="" preload="metadata" src="<?php echo esc_html( $video_file['url'] ); ?>" type="<?php echo esc_attr( $video_file['mime_type'] ); ?>" alt="<?php echo esc_attr( $video_file['alt'] ); ?>"></video>
 								</figure>
 								<?php
 		elseif ( 'link' === $video_source && $video_link ) :
