@@ -1,0 +1,679 @@
+@use '../../partials/partials' as *;
+
+/* Form styles for child theme */
+label,
+legend,
+.gform_wrapper.gravity-theme .gfield_label {
+  color: var(--black);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-18);
+  font-weight: var(--aten-fw-bold);
+  line-height: 156%;
+  margin-bottom: 6px;
+  padding: 0;
+}
+
+// Giving all placeholder text a WCAG compliant text color for white background
+.gform_fields .gfield {
+  input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: var(--wcag-placeholder) !important;
+  }
+
+  input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: var(--wcag-placeholder) !important;
+  }
+
+  input:-ms-input-placeholder {
+    /* IE 10+ */
+    color: var(--wcag-placeholder) !important;
+  }
+
+  input:-moz-placeholder {
+    /* Firefox 18- */
+    color: var(--wcag-placeholder) !important;
+  }
+}
+
+.gform_wrapper.gravity-theme .gf_progressbar {
+  border-radius: var(--default-border-radius);
+  margin-bottom: rem(28px);
+  background-color: var(--aten-blue-light);
+  border: rem(1px) solid var(--default-border-ci);
+
+  .gf_progressbar_percentage {
+    background-color: var(--aten-blue-dark);
+    height: rem(28px);
+    border-radius: rem(4px) rem(4px) 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    span {
+      @include type-scale(body, 14);
+      color: var(--white);
+    }
+  }
+}
+
+.gfield.hide-bottom-border {
+  border-bottom: 0px solid transparent !important;
+}
+
+h2.gsection_title,
+h3.gsection_title,
+.gfield h3 {
+  font-weight: var(--aten-fw-bold);
+}
+
+.gfield.spacer {
+  display: none;
+}
+
+.gfield_radio,
+.gfield_checkbox {
+  display: flex;
+  flex-direction: column;
+  gap: rem(12px);
+  position: relative;
+}
+
+.gform_wrapper.gravity-theme .gsection {
+  padding-bottom: rem(24px);
+  border-bottom: rem(2px) solid var(--cloud-grey);
+
+  @include bp-min(tablet) {
+    padding-bottom: rem(28px);
+  }
+
+  h3 {
+    font-weight: var(--aten-fw-bold);
+  }
+}
+
+.gform_wrapper.gravity-theme .gfield_required .gfield_required_asterisk,
+.gform_required_legend .gfield_required.gfield_required_asterisk {
+  font-size: rem(20px);
+  vertical-align: top;
+}
+
+input:not([type='submit']):not([type='button']):not([type='radio']):not(
+    [type='checkbox']
+  ):not([type='search']),
+select,
+textarea,
+.gform_wrapper.gravity-theme
+  input:not([type='submit']):not([type='button']):not([type='radio']):not(
+    [type='checkbox']
+  ),
+.gform_wrapper.gravity-theme select,
+.gform_wrapper.gravity-theme textarea {
+  @include type-scale(body, 18);
+  background: var(--white);
+  border: 1px solid var(--default-border-ci);
+  border-radius: 4px;
+  text-indent: 0;
+  padding: rem(8px) rem(16px);
+
+  @include bp-min(mobile) {
+    width: 100%;
+  }
+
+  &:disabled {
+    border: 1px solid var(--default-border-ci);
+    &::placeholder {
+      color: var(--aten-gray-light);
+    }
+  }
+
+  &::placeholder {
+    color: var(--aten-gray-light);
+    font-family: var(--font-family-sans);
+    font-style: italic;
+    font-size: var(--font-size-body-18);
+    font-weight: var(--aten-fw-regular);
+    line-height: 156%;
+  }
+}
+
+.gform_wrapper {
+  button[type='submit'],
+  input[type='submit'],
+  input[type='button'],
+  .gform_next_button {
+    @include btn-large(var(--navy));
+
+    @include bp-max(tablet) {
+      padding: 0.5rem 2.25rem 0.5rem 1rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  input[type='button'][value='Next'] {
+    font-weight: var(--aten-fw-bold) !important;
+  }
+
+  .gf-clear-button {
+    padding: rem(9.5px) rem(16px) rem(9.5px) rem(30px);
+
+    &::after {
+      content: '';
+    }
+
+    &::before {
+      @include font-material-icons;
+      content: 'close';
+      display: inline;
+      position: absolute;
+      left: rem(8px);
+      font-size: rem(24px);
+
+      @include bp-max(tablet) {
+        font-size: rem(20px);
+        left: rem(6px);
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @include bp-min(tablet) {
+      padding-left: rem(36px);
+    }
+  }
+
+  .dashicons-trash {
+    color: var(--black) !important;
+  }
+}
+
+button.gform_button {
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
+
+  display: inline-block;
+
+  @include bp-max(tablet) {
+    &::after {
+      font-size: rem(16px);
+      vertical-align: top;
+    }
+  }
+}
+
+// Gravity Form specific helper text class
+.gform_wrapper.gravity-theme .gfield_description,
+.gform_wrapper.gravity-theme .field_description_above .gfield_description,
+.gform_wrapper.gravity-theme .gf_progressbar_title {
+  color: var(--aten-gray-dark);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-14);
+  font-style: italic;
+  font-weight: var(--aten-fw-regular);
+  line-height: 157%;
+  margin-top: rem(6px);
+  padding-top: 0;
+  padding-bottom: rem(6px);
+}
+
+.gform_wrapper.gravity-theme .gfield_validation_message,
+.gform_wrapper.gravity-theme .validation_message {
+  padding-top: rem(6px);
+  border-radius: var(--default-border-radius);
+}
+
+.gform_wrapper.gravity-theme .gfield_validation_message {
+  padding: rem(16px) rem(16px) rem(16px) rem(48px);
+
+  h2 {
+    color: #c02b0a;
+    font-size: rem(13.2px);
+    font-weight: var(--aten-fw-bold);
+    line-height: rem(17.6px);
+    font-style: normal;
+  }
+}
+
+.gform_wrapper.gravity-theme .gf_progressbar.gf_progressbar_custom {
+  border-radius: rem(4px) !important;
+  background-color: var(--white) !important;
+  border: rem(1px) solid var(--default-border-ci);
+  height: auto;
+
+  .gf_progressbar_percentage {
+    color: var(--black);
+    border-radius: rem(4px) !important;
+    background-color: var(--aten-blue-light);
+    padding: rem(4px) rem(8px);
+    height: auto;
+
+    span {
+      @include type-scale(body, 14);
+      font-weight: var(--aten-fw-bold);
+      float: none;
+    }
+  }
+}
+
+@include bp-min(tablet) {
+  .ginput_complex .ginput_left,
+  .ginput_complex .name_first,
+  .gfield--width-half.first-half {
+    padding-right: 2% !important;
+  }
+
+  .ginput_complex .ginput_right,
+  .ginput_complex .name_last,
+  .gfield--width-half.second-half {
+    padding-left: 2% !important;
+  }
+}
+
+.gform_wrapper.gravity-theme
+  .gform_fields
+  .gfield
+  .gfield_radio
+  input[type='radio']:checked
+  + label,
+.gform_wrapper.gravity-theme
+  .gform_fields
+  .gfield
+  .gfield_checkbox
+  input[type='checkbox']:checked
+  + label {
+  font-weight: var(--aten-fw-bold);
+}
+
+.gform_wrapper.gravity-theme button.gfield_choice_all_toggle,
+.gform_wrapper.gravity-theme input[type='button'],
+.gform_wrapper.gravity-theme .button:not([type='submit']) {
+  @include btn-large(var(--navy));
+  padding-right: rem(16px) !important;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
+
+  &::after {
+    display: none !important;
+  }
+
+  &.deselect-btn,
+  &.gform_previous_button {
+    @include btn-large(var(--sky-blue));
+    display: inline-block;
+  }
+}
+
+.gform_wrapper.gravity-theme .gform_fields {
+  grid-row-gap: rem(24px);
+
+  @include bp-min(tablet) {
+    grid-row-gap: rem(28px);
+  }
+}
+
+.gform_wrapper.gravity-theme {
+  .gfield_required .gfield_required_asterisk,
+  .gfield_required.gfield_required_asterisk {
+    font-weight: 900;
+    font-size: rem(26px);
+    padding: 0;
+    vertical-align: bottom;
+  }
+
+  input:not([type='submit']),
+  textarea {
+    @include type-scale(body, 18);
+  }
+
+  select {
+    @include type-scale(body, 18);
+    color: var(--black);
+    padding: rem(8px) rem(16px);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('../aten-fse/assets/icons/expand_more.svg');
+    background-repeat: no-repeat;
+    background-position: right rem(18px) top 50%;
+    background-size: rem(12px) auto;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+    }
+  }
+
+  .gsection_description {
+    font-family: var(--font-family-sans);
+  }
+
+  .ginput_full:not(:last-of-type) {
+    margin-bottom: rem(12px);
+  }
+
+  .ginput_complex label {
+    @include type-scale(body, 14);
+    font-style: italic;
+    color: var(--aten-gray-dark);
+  }
+
+  .gchoice {
+    align-items: center;
+    display: flex;
+    flex-flow: row;
+    label {
+      font-size: var(--font-size-body-18);
+      font-weight: var(--aten-fw-regular);
+      max-width: fit-content;
+      &:hover,
+      &:focus {
+        cursor: pointer;
+      }
+    }
+
+    input {
+      height: rem(18px);
+      margin-bottom: 0;
+      margin-right: rem(12px);
+      width: rem(18px);
+      &:hover,
+      &:focus {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.gform_confirmation_wrapper {
+  @include type-scale(body, 18);
+
+  .gform_confirmation_message {
+    border-radius: var(--default-border-radius);
+    background-color: var(--aten-blue-light);
+    padding: rem(16px);
+
+    .confirmation-contents {
+      margin: 0;
+    }
+  }
+}
+
+.application-status-results {
+  @include type-scale(body, 18);
+  border-radius: var(--default-border-radius);
+  background-color: var(--aten-blue-light);
+  padding: rem(16px);
+  overflow-x: scroll;
+
+  ul {
+    margin-top: 0;
+    padding: 0;
+    list-style-type: none;
+
+    li {
+      font-weight: var(--aten-fw-bold);
+    }
+  }
+
+  table {
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+
+    td {
+      background-color: var(--white);
+    }
+  }
+}
+
+.gform_wrapper.gravity-theme .gform_footer,
+.gform_wrapper.gravity-theme .gform_page_footer {
+  display: flex;
+  padding-top: rem(22px);
+  flex-direction: column;
+  gap: rem(8px);
+
+  @include bp-min(tablet) {
+    gap: rem(24px);
+    flex-direction: row;
+  }
+}
+
+/* Custom Checkboxes */
+.gfield_checkbox {
+  position: relative;
+
+  label {
+    overflow: visible;
+  }
+
+  input[type='checkbox'] {
+    position: absolute;
+    top: rem(2px) !important;
+
+    @include bp-min(tablet) {
+      top: rem(4px) !important;
+    }
+  }
+
+  input[type='checkbox'] + label {
+    position: relative;
+    overflow: hidden;
+    padding-left: rem(34px);
+    cursor: pointer;
+    display: inline-block;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      z-index: 1;
+      -webkit-transition: 0.2s;
+      transition: 0.2s;
+    }
+  }
+
+  input[type='checkbox']:not(:checked) + label:after,
+  input[type='checkbox']:checked + label:after {
+    width: rem(16px);
+    height: rem(16px);
+    border: rem(2px) solid var(--default-border-ci);
+    top: rem(1px);
+    left: rem(2px);
+    border-radius: var(--default-border-radius);
+    background-color: var(--white);
+    z-index: 1;
+
+    @include bp-min(tablet) {
+      top: rem(3.5px);
+    }
+  }
+
+  input[type='checkbox']:not(:checked) + label:before {
+    width: 0;
+    height: 0;
+    border: rem(2px) solid transparent;
+    left: rem(6px);
+    top: rem(10px);
+    transform: rotateZ(40deg);
+    transform-origin: 100% 100%;
+  }
+
+  input[type='checkbox']:checked + label:before {
+    top: rem(1px);
+    left: rem(2px);
+    width: rem(5px);
+    height: rem(8px);
+    margin-top: rem(3px);
+    border-top: rem(2px) solid transparent;
+    border-left: rem(2px) solid transparent;
+    border-right: rem(3px) solid var(--black);
+    border-bottom: rem(3px) solid var(--black);
+    transform: rotateZ(40deg);
+    transform-origin: 100% 100%;
+    z-index: 2;
+
+    @include bp-min(tablet) {
+      top: rem(3px);
+    }
+  }
+}
+
+/* Custom Radio Buttons */
+.gfield_radio .gchoice {
+  position: relative;
+
+  label {
+    &:before,
+    &:after {
+      bottom: 0;
+      content: '';
+      margin: auto;
+      position: absolute;
+      top: 0;
+    }
+
+    &:after {
+      content: '';
+      background-color: var(--white);
+      border: rem(2px) solid var(--default-border-ci);
+      border-radius: 50%;
+      display: inline-block;
+      height: rem(16px);
+      left: rem(4px);
+      position: absolute;
+      top: 0;
+      transition: left 0.25s, background-color 0.13s;
+      width: rem(16px);
+
+      @include bp-max(tablet) {
+        left: rem(2px);
+      }
+    }
+  }
+
+  input[type='radio'] {
+    height: rem(15px);
+    width: rem(15px);
+
+    &:checked + label:before {
+      content: '●';
+      color: var(--aten-blue-dark);
+      font-size: rem(26.5px);
+      font-weight: 700;
+      left: rem(6px);
+      text-align: center;
+      top: rem(-2px);
+      z-index: 9;
+
+      @include bp-max(tablet) {
+        left: rem(4px);
+      }
+    }
+  }
+}
+
+/* Custom Media Upload field */
+.gform_drop_area {
+  background-color: var(--aten-blue-light) !important;
+
+  .gform_drop_instructions {
+    @include type-scale(body, 16);
+  }
+
+  .gform_button_select_files {
+    @include btn-large;
+    margin: 0 auto;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+    }
+
+    &:after {
+      content: 'add_circle';
+    }
+  }
+}
+
+.ginput_preview {
+  > span {
+    @include type-scale(body, 14);
+    font-weight: var(--aten-fw-bold);
+  }
+}
+
+/* External Form Embeds (Inspection Request Form */
+.dynamically-hidden {
+  display: none;
+}
+
+#external-inspection-form-wrapper {
+  > *:not(.external-form-visible) {
+    display: none;
+  }
+
+  .external-form-visible {
+    margin-bottom: rem(28px);
+
+    .obapps-blue {
+      border-radius: var(--default-border-radius);
+      background-color: var(--aten-blue-light);
+      display: flex;
+      flex-direction: column;
+      gap: rem(12px);
+      padding: rem(16px);
+
+      p {
+        margin: 0;
+        @include type-scale(body, 16);
+        font-weight: var(--aten-fw-bold);
+        color: var(--aten-blue-dark);
+
+        @include bp-max(tablet) {
+          @include type-scale(body, 14);
+          font-weight: var(--aten-fw-bold);
+        }
+      }
+    }
+  }
+}
+
+#field_11_21 {
+  .ginput_complex .ginput_container_date {
+    flex-grow: 1;
+
+    @include bp-max(tablet) {
+      max-width: 33%;
+    }
+  }
+  flex-direction: column;
+  gap: rem(8px);
+
+  @include bp-min(tablet) {
+    gap: rem(24px);
+    flex-direction: row;
+  }
+}
+
+#gform_confirmation_message_4,
+#gform_confirmation_message_5 {
+  h2 {
+    font-weight: var(--aten-fw-bold);
+  }
+
+  h3 {
+    font-weight: var(--aten-fw-bold);
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "callout-block",
+  "title": "Callout Block",
+  "active": true,
+  "description": "A block whose primary purpose is to call out information\/text with an optional link.",
+  "category": "common",
+  "icon": "megaphone",
+  "keywords": [
+    "callout",
+    "cta block",
+    "callout block"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "news",
+    "location",
+    "tribe_events"
+  ],
+  "mode": "edit",
+  "align": "",
+  "align_text": "",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "callout-block.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/callout_block.svg"
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+@use '../../partials/partials' as *;
+/*
+* Styling of the Easy Notification Bar
+*/
+
+.easy-notification-bar.aten-fse-notification-bar {
+  padding: rem(16px) rem(15px) !important;
+  background-color: var(--aten-yellow);
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include bp-min(sm-desktop) {
+    padding: rem(16px) rem(60px) !important;
+  }
+
+  .notification-icon {
+    @include font-material-icons;
+    text-decoration: none !important;
+    font-size: rem(20px);
+    margin-right: rem(20px);
+
+    @include bp-min(sm-desktop) {
+      font-size: rem(32px);
+      line-height: rem(28px);
+    }
+  }
+
+  .easy-notification-bar-container {
+    text-align: left !important;
+    display: flex;
+    align-items: center;
+
+    ol {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .easy-notification-bar-message {
+    @include type-scale(body, 18);
+    font-weight: var(--aten-fw-bold);
+    margin-right: rem(12px);
+
+    @include bp-max(sm-desktop) {
+      font-size: rem(14px);
+    }
+  }
+
+  .easy-notification-bar__close {
+    border-radius: rem(100px);
+    background-color: var(--white);
+    padding: rem(8px) rem(16px);
+    position: static;
+    transform: none;
+    display: inline-flex;
+    align-items: center;
+
+    span {
+      @include type-scale(label, 14);
+      font-weight: var(--aten-fw-bold);
+      margin-right: rem(4px);
+      text-decoration: none;
+
+      @include bp-max(sm-desktop) {
+        font-size: rem(12px);
+      }
+    }
+
+    svg {
+      @include bp-max(sm-desktop) {
+        height: rem(20px);
+        width: rem(20px);
+      }
+    }
+
+    &:hover,
+    &:focus {
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.notification-bar-link {
+  text-decoration: none !important;
+  display: flex;
+
+  .easy-notification-bar-message {
+    text-decoration: underline;
+  }
+
+  &:hover,
+  &:focus {
+    .easy-notification-bar-message {
+      text-decoration: none;
+    }
+  }
+}

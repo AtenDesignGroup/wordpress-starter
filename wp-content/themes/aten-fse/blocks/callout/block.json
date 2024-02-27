@@ -1,0 +1,46 @@
+{
+  "name": "callout-link",
+  "title": "Callout Link",
+  "active": true,
+  "description": "Custom block to display linked title, additional text and image (optional)",
+  "category": "common",
+  "icon": "embed-generic",
+  "keywords": [
+    "CTA",
+    "callout",
+    "link",
+    "call-to-action"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "news",
+    "location"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "callout.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/callout.svg"
+      }
+    }
+  }
+
+}

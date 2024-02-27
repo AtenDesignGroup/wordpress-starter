@@ -1,0 +1,51 @@
+{
+  "name": "jump-link-block",
+  "title": "Jump Link",
+  "active": true,
+  "description": "A block to add text, buttons, media, resource blocks, or accordion blocks, with a list of jump links for quick navigation between content sections.",
+  "category": "common",
+  "icon": "list-view",
+  "keywords": [
+    "accordion",
+    "media",
+    "list",
+    "content",
+    "buttons",
+    "text",
+    "link",
+    "links",
+    "navigation"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "news",
+    "location",
+    "tribe_events"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "jump-link-block.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/jump_link_block.svg"
+      }
+    }
+  }
+}
