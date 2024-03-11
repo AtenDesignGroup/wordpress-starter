@@ -53,9 +53,9 @@
       "fontSizes": []
     },
     "blocks": {
-			"core/paragraph": {
-				"typography": {
-					"fontSizes": [
+      "core/paragraph": {
+        "typography": {
+          "fontSizes": [
             {
               "slug": "small",
               "size": "var(--font-size-small)",
@@ -77,11 +77,11 @@
               "name": "XL"
             }
           ]
-				}
-			},
+        }
+      },
       "core/list": {
-				"typography": {
-					"fontSizes": [
+        "typography": {
+          "fontSizes": [
             {
               "slug": "small",
               "size": "var(--font-size-small)",
@@ -103,13 +103,13 @@
               "name": "XL"
             }
           ]
-				}
-			},
+        }
+      },
       "core/table": {
-				"typography": {
-					"textTransform": false
-				}
-			},
+        "typography": {
+          "textTransform": false
+        }
+      },
       "core/button": {
         "color": {
           "background": false,
@@ -130,15 +130,15 @@
           }
         },
         "typography": {
-					"textTransform": false
-				}
+          "textTransform": false
+        }
       },
       "core/buttons": {
         "typography": {
-					"textTransform": false
-				}
+          "textTransform": false
+        }
       }
-		},
+    },
     "useRootPaddingAwareAlignments": true
   },
   "styles": {

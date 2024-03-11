@@ -27,7 +27,6 @@
 // Page templates
 @forward './global/03-layouts/layouts';
 
-
 @use './partials/partials' as *;
 
 .a11y-visible {
@@ -35,11 +34,11 @@
 }
 
 body {
-    padding: 0 rem(16px) rem(16px);
+  padding: 0 rem(16px) rem(16px);
 
-    .acf-block-preview {
-      margin-bottom: rem(28px);
-    }
+  .acf-block-preview {
+    margin-bottom: rem(28px);
+  }
 
   .l-gutter {
     margin-left: 0px !important;
