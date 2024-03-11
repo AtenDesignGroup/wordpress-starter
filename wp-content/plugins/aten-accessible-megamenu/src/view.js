@@ -17,7 +17,7 @@
 
 jQuery(document).ready(function($){
     $('.adg-a11y-megamenu-nav-container').prepend('<button class="adg-a11y-mobile-menu-toggle" aria-expanded="false"><span class="dashicons dashicons-no-alt" aria-hidden="true"></span><span class="dashicons dashicons-menu" aria-hidden="true"></span><span class="adg-a11y-mobile-menu-toggle-text">Menu</span></button>');
-  
+
     $('.adg-a11y-megamenu-button').click(function(){
         toggleMenu($(this));
     });
@@ -32,7 +32,7 @@ jQuery(document).ready(function($){
         event.stopImmediatePropagation();
         let next_list_item = $(this).closest('li').next();
         let prev_list_item = $(this).closest('li').prev();
-        
+
         switch(event.key) {
             case "Escape":
                 let target_button;
@@ -58,7 +58,7 @@ jQuery(document).ready(function($){
                 } else {
                     $(this).closest('ul').siblings('button').focus();
                 }
-                break;    
+                break;
             case "ArrowRight":
             case "ArrowDown":
                 event.preventDefault();
@@ -73,7 +73,7 @@ jQuery(document).ready(function($){
                         $(this).closest('.menu-item-has-children').next().find('a, button').focus();
                     }
                 }
-                break; 
+                break;
             }
     });
 
@@ -128,7 +128,7 @@ jQuery(document).ready(function($){
                 $(trigger_button).attr('aria-expanded','true');
                 $(target_sub_menu).addClass('submenu-expanded');
             }
-    
+
             $(trigger_button).toggleClass('submenu-open');
         }
     }
