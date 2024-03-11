@@ -1,0 +1,38 @@
+.ame-rendered-form-table {
+	.ws_tooltip_trigger .dashicons {
+		$reducedHeight: 14px;
+
+		font-size: 18px;
+		height: $reducedHeight;
+	}
+
+	td .ws_tooltip_trigger .dashicons {
+		vertical-align: text-top;
+	}
+
+	.ame-understated-tooltip .dashicons {
+		color: #777;
+	}
+
+	.ame-understated-tooltip:hover .dashicons {
+		color: unset;
+	}
+
+	//WordPress sets the vertical alignment of labels to "middle" by default.
+	//For labels in group titles, we need to change that back to "baseline"
+	//to align the title with the tooltip trigger.
+	th.ame-customizable-cg-has-tooltip label {
+		vertical-align: baseline;
+	}
+
+	.ame-nested-section-header {
+		> td {
+			padding: 0;
+		}
+
+		h3, h4 {
+			font-size: 1.142857em;
+			color: #333A3F;
+		}
+	}
+}

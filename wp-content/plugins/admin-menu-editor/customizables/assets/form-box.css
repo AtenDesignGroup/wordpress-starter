@@ -1,0 +1,59 @@
+.ame-form-box {
+  box-sizing: border-box;
+  background: white;
+  border: 1px solid #ccd0d4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  margin-bottom: 20px;
+  margin-top: 0.5em;
+  padding: 0;
+}
+
+.ame-form-box-header {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+}
+.ame-form-box-header h2, .ame-form-box-header h3 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.ame-form-box-content {
+  margin: 12px;
+}
+
+.ame-form-box-group {
+  margin: 15px 0;
+}
+
+.ame-form-box-group-title {
+  display: inline-block;
+  vertical-align: top;
+  width: 200px;
+  padding-right: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.ame-form-box-group-content {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.ame-form-box-full-width-content {
+  width: 100%;
+}
+
+.ame-form-box-main-column {
+  width: 540px;
+  float: left;
+  margin-right: 15px;
+}
+
+.ame-form-box-sidebar-column {
+  width: 300px;
+  float: left;
+}
+
+/*# sourceMappingURL=form-box.css.map */

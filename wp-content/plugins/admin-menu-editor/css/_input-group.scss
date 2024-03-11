@@ -1,0 +1,16 @@
+.ame-input-group {
+	display: flex;
+	flex-wrap: wrap;
+
+	.ame-input-group-secondary, > :not(:first-child) {
+		margin-left: -1px;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+
+	> :not(:last-child) {
+		margin-right: 0;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+}

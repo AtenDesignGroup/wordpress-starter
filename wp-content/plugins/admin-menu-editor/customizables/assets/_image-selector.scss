@@ -1,0 +1,70 @@
+.ame-image-selector-v2 {
+	.ame-image-preview {
+		border: 1px dashed #b4b9be;
+		text-align: center;
+		background: #f1f1f1;
+		line-height: 0;
+
+		display: inline-block;
+		box-sizing: border-box;
+
+		img {
+			max-width: 100%;
+		}
+	}
+
+	.ame-image-preview-placeholder {
+		display: inline-block;
+		padding: 10px;
+		line-height: normal;
+	}
+
+	.ame-external-image-url {
+		margin-top: 0.4em;
+	}
+
+	.ame-image-selector-actions {
+		display: block;
+		margin-top: 0.8em;
+	}
+
+	.ame-remove-image-link {
+		line-height: 30px; //Must match the height of a secondary button.
+		margin-left: 1em;
+	}
+}
+
+//Adjustments for the Admin Customizer module.
+.ame-ac-control .ame-image-selector-v2 {
+	box-sizing: border-box;
+	width: 100%;
+
+	//Keep the action buttons in one row.
+	.ame-image-selector-actions {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: baseline;
+	}
+
+	//Add a small space between the "image" and "url" buttons. Usually, this happens
+	//automatically due to whitespace, but we need an explicit margin for a flex child.
+	.ame-set-external-image-url {
+		margin-left: 0.30769231em; //About 4px.
+	}
+
+	//Align the "remove" action to the right.
+	.ame-remove-image-link {
+		margin-left: auto;
+	}
+
+	.ame-image-preview {
+		box-sizing: border-box;
+	}
+
+	//Make the image preview fill the available space when it's empty.
+	//This is for consistency with the image control in the Customizer.
+	.ame-image-preview-empty {
+		width: 100%;
+	}
+}
