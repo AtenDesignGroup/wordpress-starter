@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"module": "none",
+		"target": "es5",
+		"sourceMap": true,
+		"strict": true
+	},
+	"exclude": []
+}

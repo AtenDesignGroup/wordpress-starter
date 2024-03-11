@@ -1,0 +1,25 @@
+.ame-rendered-form-table .ws_tooltip_trigger .dashicons {
+  font-size: 18px;
+  height: 14px;
+}
+.ame-rendered-form-table td .ws_tooltip_trigger .dashicons {
+  vertical-align: text-top;
+}
+.ame-rendered-form-table .ame-understated-tooltip .dashicons {
+  color: #777;
+}
+.ame-rendered-form-table .ame-understated-tooltip:hover .dashicons {
+  color: unset;
+}
+.ame-rendered-form-table th.ame-customizable-cg-has-tooltip label {
+  vertical-align: baseline;
+}
+.ame-rendered-form-table .ame-nested-section-header > td {
+  padding: 0;
+}
+.ame-rendered-form-table .ame-nested-section-header h3, .ame-rendered-form-table .ame-nested-section-header h4 {
+  font-size: 1.142857em;
+  color: #333A3F;
+}
+
+/*# sourceMappingURL=form-table.css.map */
