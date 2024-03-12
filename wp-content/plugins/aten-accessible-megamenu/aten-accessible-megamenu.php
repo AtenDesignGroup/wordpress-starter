@@ -70,7 +70,7 @@ function adg_a11y_menu_render_menu( $attr ) {
 		$menu_prefixed_id  = 'adg-a11y-megamenu-' . $menu_slug; ?>
 
 			<nav id="<?php echo esc_html( $menu_prefixed_id ); ?>-wrap" class="adg-a11y-megamenu-wrap" aria-label="<?php echo esc_html( $menu_name ); ?>" data-mobile-breakpoint="<?php echo esc_html( $mobile_breakpoint ); ?>">
-				
+
 				<?php
 				register_nav_menus( array( $menu_slug => esc_html( $menu_name ) ) );
 

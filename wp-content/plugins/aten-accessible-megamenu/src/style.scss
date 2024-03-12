@@ -3,91 +3,86 @@
  * and in the editor.
  */
 
- /* Default Menu Styles */
- .adg-a11y-megamenu {
-	display: flex;
-	flex-direction: row;
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
+/* Default Menu Styles */
+.adg-a11y-megamenu {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 
+  > li {
+    margin: 10px 5px;
+    position: relative;
+  }
 
-	> li {
-		margin: 10px 5px;
-		position: relative;
-	}
+  .sub-menu {
+    display: none;
+    height: 0;
+    opacity: 0;
 
-	.sub-menu {
-		display: none;
-		height: 0;
-		opacity: 0;
-	
-		&.submenu-expanded {
-			display: block;
-			height: auto;
-			opacity: 1;
-			position: absolute;
-			top: 40px;
-			left: 15px;
-			width: auto; 
-			min-width: 200px;
-			padding: 0;
-		}
-	}
- } 
+    &.submenu-expanded {
+      display: block;
+      height: auto;
+      opacity: 1;
+      position: absolute;
+      top: 40px;
+      left: 15px;
+      width: auto;
+      min-width: 200px;
+      padding: 0;
+    }
+  }
+}
 
- nav.adg-a11y-megamenu-wrap {
-	.adg-a11y-mobile-menu-toggle {
-		display: none;
-	}
+nav.adg-a11y-megamenu-wrap {
+  .adg-a11y-mobile-menu-toggle {
+    display: none;
+  }
 
-	/* Mobile Menu Mode */
-	&.adg-a11y-mobile-menu-wrapper {
-		.adg-a11y-megamenu {
-			display: none;
-			height: 0;
-			opacity: 0;
-			transition: all .3s ease;
-	
-			&.menu-expanded {
-				display: flex;
-				flex-direction: column;
-				height: auto;
-				opacity: 1;
-				position: static;
-			}
-		}
-	
-		.adg-a11y-mobile-menu-toggle {
-			display: block;
+  /* Mobile Menu Mode */
+  &.adg-a11y-mobile-menu-wrapper {
+    .adg-a11y-megamenu {
+      display: none;
+      height: 0;
+      opacity: 0;
+      transition: all 0.3s ease;
 
-			.dashicons-no-alt {
-				display: none;
-			}
-		
-			.dashicons-menu {
-				display: inline-block;
-			}
-		
-			&[aria-expanded="true"] {
-				.dashicons-no-alt {
-					display: inline-block;
-				}
-		
-				.dashicons-menu {
-					display: none;
-				}
-			}
-		} 
+      &.menu-expanded {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        opacity: 1;
+        position: static;
+      }
+    }
 
-		.sub-menu {
-		
-			&.submenu-expanded {
-				position: static;
-			}
-		}
-	 }
- }
+    .adg-a11y-mobile-menu-toggle {
+      display: block;
 
+      .dashicons-no-alt {
+        display: none;
+      }
 
+      .dashicons-menu {
+        display: inline-block;
+      }
 
+      &[aria-expanded='true'] {
+        .dashicons-no-alt {
+          display: inline-block;
+        }
+
+        .dashicons-menu {
+          display: none;
+        }
+      }
+    }
+
+    .sub-menu {
+      &.submenu-expanded {
+        position: static;
+      }
+    }
+  }
+}
