@@ -3,79 +3,11 @@
 .accordion-block {
   display: flex;
   flex-direction: column;
-  gap: rem(12px);
 
   .accordion-block-item {
-    h3 {
-      button {
-        border: 0;
-        background-color: var(--white);
-        box-shadow: var(--default-box-shadow);
-        border-radius: var(--default-border-radius);
-        padding: rem(8px) rem(36px);
-        @include type-scale(body, 20);
-        font-weight: var(--aten-fw-bold);
-        color: var(--aten-blue-dark);
-        position: relative;
-        width: 100%;
-        text-align: left;
-        transition: all 0.3s ease;
-
-        @include bp-min(tablet) {
-          padding: rem(12px) rem(32px);
-        }
-
-        @include bp-min(desktop) {
-          padding: rem(12px) rem(48px);
-        }
-
-        &:hover,
-        &:focus {
-          cursor: pointer;
-          text-decoration: underline;
-          background-color: var(--aten-blue-light);
-          box-shadow: none;
-        }
-      }
-
-      .accordion-icon {
-        @include font-material-icons;
-        position: absolute;
-        left: rem(10px);
-        font-size: rem(20px);
-        color: var(--aten-green-dark);
-
-        @include bp-min(tablet) {
-          font-size: rem(22px);
-          left: rem(6px);
-        }
-
-        @include bp-min(desktop) {
-          left: rem(16px);
-        }
-      }
-    }
-
     .accordion-block-panel {
-      margin-top: rem(12px);
-      border: rem(2px) solid var(--default-border-ci);
-      border-radius: var(--default-border-radius);
-      padding: rem(20px);
       display: flex;
       flex-direction: column;
-      gap: rem(20px);
-
-      @include bp-min(tablet) {
-        padding: rem(32px);
-      }
-
-      @include bp-min(sm-desktop) {
-        padding: rem(48px);
-      }
-
-      > * {
-        margin: 0;
-      }
     }
 
     .wp-block-video {
@@ -88,30 +20,9 @@
 
     .resources-block {
       ul {
-        margin: 0;
-
         li.resource {
           width: 100%;
-
-          @include bp-min(desktop) {
-            width: calc(50% - rem(8px));
-          }
         }
-      }
-
-      .resource-icon {
-        color: var(--black);
-      }
-    }
-
-    &.active {
-      button {
-        background-color: var(--aten-blue-light);
-        box-shadow: none;
-      }
-
-      .accordion-icon {
-        color: var(--aten-blue-dark);
       }
     }
   }
