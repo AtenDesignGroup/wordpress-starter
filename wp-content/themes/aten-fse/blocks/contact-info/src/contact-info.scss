@@ -41,8 +41,6 @@
 
   h2.title {
     @include type-scale(heading, h6);
-    // Explicitly setting font size as it does not change with screen size
-    font-size: rem(14px);
     font-weight: var(--aten-fw-bold);
     margin-top: rem(20px);
 
@@ -61,8 +59,6 @@
 
     li {
       @include type-scale(body, 16);
-      // Explicitly setting font size as it does not change with screen size
-      font-size: rem(16px);
       margin-bottom: rem(16px);
       text-indent: 0;
       // Setting a minimum height equal to the icon size to avoid icon overlap
