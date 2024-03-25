@@ -11,7 +11,8 @@
     "Location Block"
   ],
   "post_types": [
-    "tribe_event"
+    "post",
+    "page"
   ],
   "align_content": "top",
   "mode": "edit",
