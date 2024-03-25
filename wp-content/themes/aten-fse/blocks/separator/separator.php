@@ -2,6 +2,8 @@
 /**
  * Separator Block Template.
  *
+ * @package aten-fse
+ *
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).
  * @param   bool $is_preview True during backend preview render.
@@ -11,10 +13,10 @@
  * @param   array $context The context provided to the block by the post or it's parent block.
  */
 
-if( isset( $block['data']['preview_image'] )  ) :    /* rendering in inserter preview  */
-    echo '<img src="'. $block['data']['preview_image'] .'" style="width:100%; height:auto;">';
+if ( isset( $block['data']['preview_image'] ) ) :    /* rendering in inserter preview  */
+	echo '<img src="' . esc_attr( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
 else :
-		
+
 	// Support custom "anchor" values.
 	$anchor = '';
 	if ( ! empty( $block['anchor'] ) ) {
@@ -35,5 +37,5 @@ else :
 	?>
 
 	<div class="cleardiv"></div>
-	<hr <?php echo $anchor; ?> class="wp-block-separator is-style-wide <?php echo esc_attr( $class_name ) . ' ' . esc_attr( str_replace('_', '-', $style) ); ?>">
+	<hr <?php echo $anchor; ?> class="wp-block-separator is-style-wide <?php echo esc_attr( $class_name ) . ' ' . esc_attr( str_replace( '_', '-', $style ) ); ?>">
 <?php endif; ?>
