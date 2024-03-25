@@ -32,7 +32,7 @@ else :
 		$class_name .= ' align' . $block['align'];
 	}
 
-	// Looping through repeater for Column Blocks
+	// Looping through repeater for Column Blocks.
 	if ( have_rows( 'column-blocks' ) ) :
 		$column_count = 0;
 		$columns      = get_field( 'column-blocks' );
@@ -41,17 +41,17 @@ else :
 		}
 		?>
 
-	<div <?php echo $anchor; ?>class="<?php echo esc_attr( $class_name ); ?>">
+	<div <?php echo esc_attr( $anchor ); ?> class="<?php echo esc_attr( $class_name ); ?>">
 		<div class="column-blocks-wrapper">
-			<ul class="column-layout-<?php echo $column_count; ?>">
+			<ul class="column-layout-<?php echo esc_attr( $column_count ); ?>">
 				<?php
 				while ( have_rows( 'column-blocks' ) ) :
 					the_row();
-					// Getting the subfield values
-					$title     = get_sub_field( 'title' );
-					$image     = get_sub_field( 'image' );
-					$link      = get_sub_field( 'link' );
-					$body_text = get_sub_field( 'body_text' );
+					// Getting the subfield values.
+					$custom_title = get_sub_field( 'title' );
+					$image        = get_sub_field( 'image' );
+					$custom_link  = get_sub_field( 'link' );
+					$body_text    = get_sub_field( 'body_text' );
 					?>
 					<li class="column-block-column 
 					<?php
@@ -59,7 +59,7 @@ else :
 						echo 'with-image'; }
 					?>
 					<?php
-					if ( $column_count === 1 ) {
+					if ( 1 === $column_count ) {
 						echo 'single-column'; }
 					?>
 ">
@@ -71,33 +71,27 @@ else :
 							</div>
 						<?php endif; ?>
 						<div class="column-block-content">
-							<h2><?php echo $title; ?></h2>
+							<h2><?php echo esc_html( $custom_title ); ?></h2>
 
 							<?php if ( $body_text ) : ?> 
 								<div class="column-block-text">
-									<?php echo $body_text; ?>
+									<?php echo esc_html( $body_text ); ?>
 							</div>
 							<?php endif; ?>
 
 							<?php
-							if ( $link ) :
-								$link_url    = $link['url'];
-								$link_title  = $link['title'];
-								$link_target = $link['target'] ? $link['target'] : '_self';
+							if ( $custom_link ) :
+								$custom_link_url    = $custom_link['url'];
+								$custom_link_title  = $custom_link['title'];
+								$custom_link_target = $custom_link['target'] ? $custom_link['target'] : '_self';
 								?>
 								<div class="column-block-link">
-									<a class="button btn-large--navy" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>">
-									<?php echo esc_html( $link_title ); ?>&nbsp;<span class="button-icon notranslate" aria-hidden="true">arrow_circle_right</span>
+									<a class="button btn-large--navy" href="<?php echo esc_url( $custom_link_url ); ?>" target="<?php echo esc_attr( $custom_link_target ); ?>">
+									<?php echo esc_html( $custom_link_title ); ?>&nbsp;<span class="button-icon notranslate" aria-hidden="true">arrow_circle_right</span>
 									</a>
 								</div>
 							<?php endif; ?>
 						</div>
-
-						<?php if ( $column_count === 1 ) : ?>
-							<div class="wave-border">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/img/callout-wave-cloud.svg" alt="" />
-							</div>
-						<?php endif; ?>
 					</li>
 				<?php endwhile; ?>
 			</ul>
