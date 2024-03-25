@@ -72,28 +72,6 @@
         font-size: var(--font-size-h2);
       }
     }
-
-    &.cloud {
-      @include bp-min(tablet) {
-        background-image: url('../aten-fse/assets/img/swishies_sky-blue.svg');
-      }
-
-      a.button {
-        @include btn-large(var(--navy));
-      }
-    }
-
-    &.gold {
-      @include bp-min(tablet) {
-        background-image: url('../aten-fse/assets/img/swishies_gold.svg');
-      }
-    }
-
-    &.navy {
-      @include bp-min(tablet) {
-        background-image: url('../aten-fse/assets/img/swishies_black.svg');
-      }
-    }
   }
 
   .small {
@@ -119,26 +97,6 @@
       padding-left: 0px !important;
       border: 0;
       background-color: transparent;
-    }
-
-    &.navy {
-      a.button {
-        @include btn(var(--white));
-        padding-left: 0px !important;
-      }
-    }
-  }
-
-  .callout-border {
-    width: 100%;
-
-    @include bp-max(tablet) {
-      display: none;
-    }
-
-    img {
-      width: 100%;
-      height: auto;
     }
   }
 }
