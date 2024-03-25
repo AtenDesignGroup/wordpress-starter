@@ -2,6 +2,8 @@
 /**
  * Homepage Hero Block Template.
  *
+ * @package aten-fse
+ *
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).
  * @param   bool $is_preview True during backend preview render.
@@ -11,8 +13,8 @@
  * @param   array $context The context provided to the block by the post or it's parent block.
  */
 
-if( isset( $block['data']['preview_image'] )  ) :    /* rendering in inserter preview  */
-    echo '<img src="'. $block['data']['preview_image'] .'" style="width:100%; height:auto;">';
+if ( isset( $block['data']['preview_image'] ) ) :    /* rendering in inserter preview  */
+	echo '<img src="' . esc_attr( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
 else :
 
 	// Support custom "anchor" values.
@@ -29,9 +31,9 @@ else :
 
 	// Load values and assign defaults.
 	$subtitle = get_field( 'subtitle' );
-	$link = get_field( 'link' );
-	$images = get_field('background_slider_images');
-	$size = 'full';
+	$link     = get_field( 'link' );
+	$images   = get_field( 'background_slider_images' );
+	$size     = 'full';
 
 	?>
 
@@ -39,11 +41,17 @@ else :
 		<section id="homepage-image-carousel" class="splide" role="group" aria-label="A carousel of images" aria-roledescription="carousel">
 			<div class="splide__track">
 				<ul class="splide__list" id="homepage-hero-images">
-					<?php if($images) : foreach( $images as $img ): ?>
+					<?php
+					if ( $images ) :
+						foreach ( $images as $img ) :
+							?>
 						<li class="splide__slide homepage-hero-image">
-							<?php echo wp_get_attachment_image( $img['id'], $size ); ?>
+													<?php echo wp_get_attachment_image( $img['id'], $size ); ?>
 						</li>
-					<?php endforeach; endif; ?>
+											<?php
+					endforeach;
+endif;
+					?>
 				</ul>
 				<div id="homepage-slider-overlay"></div>
 			</div>
@@ -60,8 +68,10 @@ else :
 				</div>
 				<div class="homepage-hero-subtitle">
 					<p><?php echo do_shortcode( '[city_hall_hours]' ); ?></p>
-					<?php if( $link ):
-						$link_target = isset($link['target']) ? $link['target'] : '_self'; ?>
+					<?php
+					if ( $link ) :
+						$link_target = isset( $link['target'] ) ? $link['target'] : '_self';
+						?>
 						<a class="button btn-large--white" href="<?php echo esc_url( $link['url'] ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link['title'] ); ?></a>
 					<?php endif; ?>
 				</div>
