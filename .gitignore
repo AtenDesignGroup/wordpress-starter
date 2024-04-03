@@ -18,6 +18,35 @@ sitemap.xml.gz
 wp-content/cache/
 wp-content/backups/
 
+# Ignore WordPress core files
+/.htaccess
+/license.txt
+/readme.html
+/wp-activate.php
+/wp-blog-header.php
+/wp-comments-post.php
+/wp-config-sample.php
+/wp-cron.php
+/wp-links-opml.php
+/wp-load.php
+/wp-login.php
+/wp-mail.php
+/wp-settings.php
+/wp-signup.php
+/wp-trackback.php
+/xmlrpc.php
+/wp-admin/
+/wp-includes/
+
+# Ignore default WordPress content except for your custom themes and plugins
+/wp-content/index.php
+/wp-content/mu-plugins/
+/wp-content/themes/twenty*/
+
+# Include your custom themes and plugins
+!/wp-content/themes/aten-fse
+!/wp-content/plugins/
+
 # Remove vendor directory from git
 vendor/
 
@@ -58,6 +87,7 @@ Thumbs.db
 # SASS #
 ##########
 .sass-cache
+node_modules/
 
 # Editors #
 .idea
