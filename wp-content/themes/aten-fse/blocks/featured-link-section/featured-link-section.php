@@ -33,18 +33,18 @@ else :
 	}
 
 
-	// Looping through repeater for Featured Link Sections
+	// Looping through repeater for Featured Link Sections.
 	if ( have_rows( 'featured_links' ) ) :
-		// Counting sections for color and layout purposes
-		$section_count = 0; ?>
-		<div <?php echo $anchor; ?> class="<?php echo esc_attr( $class_name ); ?> featured-link-section-wrapper">
+		// Counting sections for color and layout purposes.
+		$section_count = 0; ?> 
+		<div <?php echo esc_attr( $anchor ); ?> class="<?php echo esc_attr( $class_name ); ?> featured-link-section-wrapper">
 			<ul class="sections">
 
 				<?php
 				while ( have_rows( 'featured_links' ) ) :
 					the_row();
 					++$section_count;
-					// Getting the subfield values
+					// Getting the subfield values.
 					$section_title     = get_sub_field( 'title' );
 					$section_icon      = get_sub_field( 'featured_icon' );
 					$section_image     = get_sub_field( 'display_image' );
@@ -53,16 +53,16 @@ else :
 						$section_image_url = $section_image['url'];
 					}
 					?>
-				<li class="featured-link-section featured-link-section-<?php echo $section_count; ?>">
+				<li class="featured-link-section featured-link-section-<?php echo esc_attr( $section_count ); ?>">
 					<!-- Title Pane containing title, icon, background image, and button links -->
 					<div class="title-pane">
-						<div class="title-bg" style="background-image: linear-gradient(rgba(28, 63, 148, 0.9) 6.15%, rgba(28, 63, 148, 0.15)), url('<?php echo $section_image_url; ?>');"></div>
+						<div class="title-bg" style="background-image: linear-gradient(rgba(28, 63, 148, 0.9) 6.15%, rgba(28, 63, 148, 0.15)), url('<?php echo esc_attr( $section_image_url ); ?>');"></div>
 						<div class="title-wrapper">
-							<img role="icon" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/icons/acf-icons/handshake.svg" alt="" />
+							<img role="icon" src="<?php echo esc_attr( get_stylesheet_directory_uri() ); ?>/assets/icons/acf-icons/handshake.svg" alt="" />
 							<div class="desktop-title">
-								<h2><?php echo $section_title; ?></h2>
+								<h2><?php echo esc_html( $section_title ); ?></h2>
 								<?php
-								// Looping through button links, up to 2 allowed
+								// Looping through button links, up to 2 allowed.
 								if ( have_rows( 'button_links' ) ) :
 									?>
 									<div class="button-link-wrapper">		
@@ -72,7 +72,7 @@ else :
 										$button_link = get_sub_field( 'button_link' );
 										$button_text = get_sub_field( 'button_text' );
 										?>
-										<a href="<?php echo $button_link['url']; ?>" title="<?php echo $button_link['title']; ?>" class="btn-large--white featured-button"><?php echo $button_text; ?></a>
+										<a href="<?php echo esc_attr( $button_link['url'] ); ?>" title="<?php echo esc_attr( $button_link['title'] ); ?>" class="btn-large--white featured-button"><?php echo esc_html( $button_text ); ?></a>
 									<?php endwhile; ?>
 									</div>
 								<?php endif; ?>
@@ -83,7 +83,7 @@ else :
 					<!-- Link Pane, contains ul of links. Also contains title, icon, and button links when mobile -->
 					<div class="link-pane">
 						<div class="mobile-title">
-							<h2><?php echo $section_title; ?></h2>
+							<h2><?php echo esc_html( $section_title ); ?></h2>
 							<?php if ( have_rows( 'button_links' ) ) : ?>
 								<div class="button-link-wrapper">		
 								<?php
@@ -92,7 +92,7 @@ else :
 									$button_link = get_sub_field( 'button_link' );
 									$button_text = get_sub_field( 'button_text' );
 									?>
-									<a href="<?php echo $button_link['url']; ?>" title="<?php echo $button_link['title']; ?>" class="btn--black"><?php echo $button_text; ?></a>
+									<a href="<?php echo esc_attr( $button_link['url'] ); ?>" title="<?php echo esc_attr( $button_link['title'] ); ?>" class="btn--black"><?php echo esc_html( $button_text ); ?></a>
 								<?php endwhile; ?>
 								</div>
 							<?php endif; ?>
@@ -100,7 +100,7 @@ else :
 						</div>
 
 						<?php
-						// Looping through list of links
+						// Looping through list of links.
 						if ( have_rows( 'listed_links' ) ) :
 							?>
 							<ul class="listed-links">
@@ -109,31 +109,31 @@ else :
 								the_row();
 								$link_icon   = get_sub_field( 'link_icon' );
 								$link_title  = get_sub_field( 'link_title' );
-								$link        = get_sub_field( 'link_url' );
-								$link_target = isset( $link['target'] ) ? $link['target'] : '_self';
+								$link_url    = get_sub_field( 'link_url' );
+								$link_target = isset( $link_url['target'] ) ? $link_url['target'] : '_self';
 								?>
 								<li>
-									<span class="list-link-icon notranslate" aria-hidden="true"><?php echo $link_icon; ?></span>
-									<a href="<?php echo $link['url']; ?>" title="<?php echo $link['title']; ?>" target="<?php echo $link_target; ?>">
+									<span class="list-link-icon notranslate" aria-hidden="true"><?php echo esc_html( $link_icon ); ?></span>
+									<a href="<?php echo esc_attr( $link_url['url'] ); ?>" title="<?php echo esc_html( $link_url['title'] ); ?>" target="<?php echo esc_html( $link_target ); ?>">
 										<?php
-										echo $link_title;
-										if ( $link_target === '_blank' ) {
+										echo esc_html( $link_title );
+										if ( '_blank' === $link_target ) {
 											?>
 										<span class="link-icon external-link notranslate" aria-hidden="true">open_in_new</span> <?php } ?>
 									</a>
 								</li>
-							<?php endwhile; // Listed Links ?>
+							<?php endwhile; // Endwhile Listed Links. ?>
 							</ul>
-						<?php endif; // Listed Links ?>
+						<?php endif; // Endif Listed Links. ?>
 					</div>
 
 				</li>
-				<?php endwhile; // Sections ?>
+				<?php endwhile; // Endwhile Sections. ?>
 			</ul>
 
 		</div>
 
 		<?php
-	endif; // Sections
+	endif; // Endif Sections.
 endif;
 ?>
