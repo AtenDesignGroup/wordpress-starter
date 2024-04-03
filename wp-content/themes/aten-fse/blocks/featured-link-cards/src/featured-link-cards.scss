@@ -17,24 +17,10 @@
     @include type-scale(heading, h2);
     font-weight: var(--aten-fw-bold);
     color: var(--aten-purple);
-    margin-bottom: rem(12px);
-
-    @include bp-max(tablet) {
-      font-size: rem(20px);
-    }
   }
 
   p.subtitle {
     @include type-scale(heading, h3);
-    font-size: rem(16px);
-
-    @include bp-min(tablet) {
-      font-size: rem(22px);
-    }
-
-    @include bp-min(sm-desktop) {
-      font-size: rem(28px);
-    }
   }
 
   ul.featured-link-cards-wrapper {
@@ -122,18 +108,11 @@
         }
 
         h3 {
-          font-size: rem(14px);
           color: var(--aten-purple);
           font-weight: var(--aten-fw-bold);
 
-          @include bp-min(tablet) {
-            font-size: rem(18px);
-          }
-
           @include bp-min(sm-desktop) {
             @include type-scale(heading, h4);
-            font-weight: var(--aten-fw-bold);
-            line-height: rem(32px);
           }
 
           a {
@@ -150,10 +129,6 @@
         p {
           @include type-scale(body, 16);
           margin: 0;
-
-          @include bp-max(tablet) {
-            font-size: rem(12px);
-          }
         }
       }
     }
