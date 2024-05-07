@@ -2,7 +2,7 @@
   "name": "inline-contact-block",
   "title": "Contact Information Block",
   "active": true,
-  "description": "Custom Block to display contact information for Divisions and Departments",
+  "description": "Custom Block to display contact information",
   "category": "common",
   "icon": "location",
   "keywords": [
