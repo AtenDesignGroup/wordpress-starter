@@ -2,7 +2,7 @@
 /**
  * News Meta Fields Block Template.
  *
- * @package aten-fse
+ * @package aten-fse.
  *
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).
@@ -13,7 +13,7 @@
  * @param   array $context The context provided to the block by the post or it's parent block.
  */
 
-if ( isset( $block['data']['preview_image'] ) ) :    /* rendering in inserter preview  */
+if ( isset( $block['data']['preview_image'] ) ) :    /* rendering in inserter preview. */
 	echo '<img src="' . esc_attr( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
 else :
 
@@ -33,30 +33,33 @@ else :
 	}
 
 	// Load values and assign defaults.
-	$publication_date = get_field( 'publication_date', $post_id );
-	$news_category    = $news_category_name = $news_category_icon = $news_category_link_title = '';
+	$publication_date         = get_field( 'publication_date', $post_id );
+	$news_category            = '';
+	$news_category_name       = '';
+	$news_category_icon       = '';
+	$news_category_link_title = '';
 
-	// Get the news category for this news item
+	// Get the news category for this news item.
 	$news_category_array = get_the_terms( $post_id, 'news_categories' );
 	foreach ( $news_category_array as $news_cat ) {
 		$news_category      = $news_cat;
 		$news_category_name = $news_category->slug;
 	}
 
-	// Determine which category it is
-	if ( $news_category_name === 'alert' ) {
+	// Determine which category it is.
+	if ( 'alert' === $news_category_name ) {
 		$news_category_name = 'Alerts';
 		$news_category_icon = 'warning';
-	} elseif ( $news_category_name === 'civic-participation' ) {
+	} elseif ( 'civic-participation' === $news_category_name ) {
 		$news_category_name = 'Civic Participation News';
 		$news_category_icon = 'podium';
-	} elseif ( $news_category_name === 'community' ) {
+	} elseif ( 'community' === $news_category_name ) {
 		$news_category_name = 'Community News';
 		$news_category_icon = 'groups';
-	} elseif ( $news_category_name === 'general-news-announcements' ) {
+	} elseif ( 'general-news-announcements' === $news_category_name ) {
 		$news_category_name = 'General News & Announcements';
 		$news_category_icon = 'campaign';
-	} elseif ( $news_category_name === 'government-officials' ) {
+	} elseif ( 'government-officials' === $news_category_name ) {
 		$news_category_name = 'Government Officials News';
 		$news_category_icon = 'workspace_premium';
 	}
@@ -65,12 +68,12 @@ else :
 	?>
 
 	<div class="news-category-icon-wrapper">
-		<a class="news-category-link" href="<?php echo get_category_link( $news_cat ); ?>" target="_self" title="<?php echo $news_category_help_text; ?>">
-			<span class="news-category-icon notranslate" aria-hidden="true"><?php echo $news_category_icon; ?></span>
-			<span class="a11y-visible news-category-icon-description"><?php echo $news_category_help_text; ?></span>
+		<a class="news-category-link" href="<?php echo esc_url( get_category_link( $news_cat ) ); ?>" target="_self" title="<?php echo esc_attr( $news_category_help_text ); ?>">
+			<span class="news-category-icon notranslate" aria-hidden="true"><?php echo esc_html( $news_category_icon ); ?></span>
+			<span class="a11y-visible news-category-icon-description"><?php echo esc_html( $news_category_help_text ); ?></span>
 		</a>
 	</div>
 	<p class="news-item-publication-date">
-		<?php echo $publication_date; ?>
+		<?php echo esc_html( $publication_date ); ?>
 	</p>
 <?php endif; ?>
