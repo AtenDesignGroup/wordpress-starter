@@ -11,14 +11,6 @@
     flex-direction: column;
   }
 
-  ul.location-blocks {
-    gap: rem(24px);
-
-    @include bp-min(sm-desktop) {
-      gap: rem(28px);
-    }
-  }
-
   li.location-item {
     border-radius: var(--default-border-radius);
     background-color: var(--aten-blue-light);
@@ -74,16 +66,12 @@
           width: rem(100px);
           min-width: rem(100px);
           justify-content: flex-end;
-          padding: rem(28px) rem(28px) rem(28px) 0;
         }
       }
     }
 
     .location-information {
-      padding: rem(24px);
-
       @include bp-min(sm-desktop) {
-        padding: rem(28px);
         flex-grow: 1;
       }
     }
@@ -91,7 +79,6 @@
     h2 {
       @include type-scale(body, 20);
       font-weight: var(--aten-fw-bold);
-      margin-bottom: rem(12px);
 
       a {
         text-decoration: none;
@@ -104,8 +91,6 @@
     }
 
     ul.location-details {
-      gap: rem(8px);
-
       li {
         display: flex;
         @include type-scale(body, 16);
@@ -113,14 +98,7 @@
 
       .contact-icon {
         @include font-material-icons;
-        margin-right: rem(12px);
         color: var(--aten-green-dark);
-        font-size: rem(20px);
-        line-height: 1;
-
-        @include bp-min(sm-desktop) {
-          font-size: rem(24px);
-        }
       }
     }
   }
