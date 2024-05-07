@@ -39,10 +39,10 @@ else :
 
 	?>
 
-	<div <?php echo $anchor; ?>class="<?php echo esc_attr( $class_name ); ?> pullquote-component l-gutter">
+	<div <?php echo esc_attr( $anchor ); ?>class="<?php echo esc_attr( $class_name ); ?> pullquote-component l-gutter">
 		<figure class="pullquote-text">
 			<blockquote cite="<?php echo esc_html( $citation ); ?>">
-				<?php echo $quote; ?>
+				<?php echo esc_html( $quote ); ?>
 			</blockquote>
 			<figcaption class="pullquote-citation">
 				<cite><?php echo esc_html( $citation ? '— ' . $citation : $citation ); ?></cite>
