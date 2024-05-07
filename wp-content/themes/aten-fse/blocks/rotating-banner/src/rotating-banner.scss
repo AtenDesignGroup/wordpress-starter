@@ -1,21 +1,8 @@
 @use '../../../libraries/partials/partials' as *;
 
-// Rotating Banner for homepage
+// Rotating Banner 
 .rotating-banner-block {
   background-color: var(--aten-blue-light);
-  margin-top: rem(-20px);
-
-  @include bp-min(tablet) {
-    margin-top: rem(-68px);
-  }
-
-  @include bp-min(sm-desktop) {
-    margin-top: rem(-50px);
-  }
-
-  @include bp-min(desktop) {
-    margin-top: rem(-80px);
-  }
 
   @include bp-max(tablet) {
     .splide__arrows {
@@ -24,7 +11,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: rem(110px);
       left: 50%;
       transform: translate(-50%, 0);
     }
@@ -40,21 +26,9 @@
   }
 
   #rotating-banner {
-    padding-bottom: rem(48px);
-
     @include bp-min(tablet) {
       width: calc(100% - rem(180px));
-      max-width: rem(1380px);
       margin: 0 auto;
-      padding-bottom: 0;
-    }
-
-    @include bp-min(desktop) {
-      padding-bottom: rem(50px);
-    }
-
-    @include bp-min(lg-desktop) {
-      padding-bottom: rem(40px);
     }
   }
 
@@ -93,10 +67,6 @@
     }
   }
 
-  .splide__slide {
-    padding-bottom: rem(20px);
-  }
-
   .rotating-banner-slide-content {
     background-color: var(--white);
     border-radius: var(--default-border-radius);
@@ -112,7 +82,7 @@
 
     .rotating-slide-image {
       width: 100%;
-      height: rem(220px);
+      min-height: rem(220px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -120,7 +90,7 @@
 
       @include bp-min(tablet) {
         width: 44%;
-        height: rem(190px);
+        min-height: rem(190px);
       }
 
       @include bp-min(desktop) {
@@ -129,7 +99,7 @@
 
       @include bp-min(lg-desktop) {
         width: 40%;
-        height: rem(160px);
+        min-height: rem(160px);
       }
 
       img {
@@ -140,13 +110,11 @@
     }
 
     .rotating-slide-description {
-      padding: rem(24px);
       display: flex;
       flex-direction: column;
       justify-content: center;
 
       @include bp-min(tablet) {
-        padding: rem(32px);
         width: 56%;
         flex-grow: 1;
       }
@@ -161,38 +129,16 @@
 
       * {
         text-indent: 0;
-        @include type-scale(body, 14);
       }
 
       a {
         font-weight: var(--aten-fw-bold);
-        font-size: rem(16px);
         display: block;
         text-decoration: none;
-
-        @include bp-min(tablet) {
-          @include type-scale(heading, h4);
-          font-weight: var(--aten-fw-bold);
-          // Explicitly set across all breakpoints
-          font-size: rem(22px);
-          line-height: rem(32px);
-        }
 
         &:hover,
         &:focus {
           text-decoration: underline;
-        }
-      }
-
-      p {
-        margin: rem(2px) 0 0;
-
-        @include bp-min(tablet) {
-          margin-top: rem(8px);
-        }
-
-        @include bp-max(tablet) {
-          font-size: rem(14px);
         }
       }
     }

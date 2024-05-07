@@ -1,6 +1,5 @@
 <?php
 /**
- * @file
  * Rotating Banner Block Template.
  *
  * @package aten-fse
@@ -34,7 +33,7 @@ else :
 	}
 	?>
 
-	<div <?php echo $anchor; ?>class="<?php echo esc_attr( $class_name ); ?> rotating-banner-component">
+	<div <?php echo esc_attr( $anchor ); ?>class="<?php echo esc_attr( $class_name ); ?> rotating-banner-component">
 		<div class="rotating-banner-wrapper">
 			<section id="rotating-banner" class="splide" role="group" aria-label="A rotating carousel of news and events" aria-roledescription="carousel">
 				<div class="splide__track">
@@ -47,7 +46,7 @@ else :
 								the_row();
 								// Get the image array using ACF's "sub_field" function.
 								$image       = get_sub_field( 'image' );
-								$link        = get_sub_field( 'link' );
+								$slide_link  = get_sub_field( 'link' );
 								$description = get_sub_field( 'description' );
 								?>
 								<li class="splide__slide rotating-banner-slide">
@@ -61,17 +60,17 @@ else :
 										<?php endif; ?>
 										<div class="rotating-slide-description">
 											<?php
-											if ( $link ) :
-												$link_url    = $link['url'];
-												$link_title  = $link['title'];
-												$link_target = $link['target'] ? $link['target'] : '_self';
+											if ( $slide_link ) :
+												$link_url    = $slide_link['url'];
+												$link_title  = $slide_link['title'];
+												$link_target = $slide_link['target'] ? $slide_link['target'] : '_self';
 												?>
 													<h2><a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a></h2>
 												<?php
 											endif;
 											if ( $description ) :
 												?>
-												<p><?php echo $description; ?></p>
+												<p><?php echo esc_html( $description ); ?></p>
 											<?php endif; ?>
 										</div>
 									</div>
