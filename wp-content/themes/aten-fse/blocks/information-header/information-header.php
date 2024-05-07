@@ -7,7 +7,7 @@
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).
  * @param   bool $is_preview True during backend preview render.
- * @param   int $post_id The post ID the block is rendering content against.
+ * @param   int $current_post_id The post ID the block is rendering content against.
  *          This is either the post ID currently being displayed inside a query loop,
  *          or the post ID of the post hosting this block.
  * @param   array $context The context provided to the block by the post or it's parent block.
@@ -33,13 +33,23 @@ else :
 	}
 
 	// Load values and assign defaults.
-	$post_id    = get_the_ID();
-	$post_title = get_the_title( $post_id );
+	$current_post_id = get_the_ID();
+	$post_title      = get_the_title( $current_post_id );
 
-	// Setting all values to an empty string by default
-	$address = $city = $state = $zip = $email = $hours_of_operation = $phone = $additional_information = $event_date = $event_time = $event_location = '';
+	// Setting all values to an empty string by default.
+	$address                = '';
+	$city                   = '';
+	$state                  = '';
+	$zip                    = '';
+	$email                  = '';
+	$hours_of_operation     = '';
+	$phone                  = '';
+	$additional_information = '';
+	$event_date             = '';
+	$event_time             = '';
+	$event_location         = '';
 
-	// Looping through the group to access subfields
+	// Looping through the group to access subfields.
 	if ( have_rows( 'contact_info' ) ) :
 		while ( have_rows( 'contact_info' ) ) :
 			the_row();
@@ -55,19 +65,20 @@ else :
 	endif;
 
 	if ( get_post_type() === 'tribe_events' ) :
-		$event_date = $event_start = tribe_get_start_date( null, false, 'l, F j, Y' );
-		$event_end  = tribe_get_end_date( null, false, 'l, F j, Y' );
+		$event_date  = tribe_get_start_date( null, false, 'l, F j, Y' );
+		$event_start = $event_date;
+		$event_end   = tribe_get_end_date( null, false, 'l, F j, Y' );
 		if ( $event_start !== $event_end ) {
 			$event_date .= ' – ' . $event_end;
 		}
 		$event_time             = tribe_get_start_time( null, 'g:i A' ) . ' – ' . tribe_get_end_time( null, 'g:i A' );
-		$event_location         = get_field( 'event_location', $post_id );
-		$additional_information = get_field( 'event_description', $post_id );
+		$event_location         = get_field( 'event_location', $current_post_id );
+		$additional_information = get_field( 'event_description', $current_post_id );
 	endif;
 
 	if ( get_post_type() === 'location' ) :
-		if ( have_rows( 'contact_info', $post_id ) ) :
-			while ( have_rows( 'contact_info', $post_id ) ) :
+		if ( have_rows( 'contact_info', $current_post_id ) ) :
+			while ( have_rows( 'contact_info', $current_post_id ) ) :
 				the_row();
 				$address                = ( get_sub_field( 'address' ) ?? '' );
 				$city                   = ( get_sub_field( 'city' ) ?? '' );
@@ -81,30 +92,29 @@ else :
 		endif;
 	endif;
 
-	// Building Google Maps link from the various address pieces
+	// Building Google Maps link from the various address pieces.
 	if ( $address && $city && $state && $zip ) {
-		// Concat the entire address string
+		// Concat the entire address string.
 		$concat_address = $address . ' ' . $city . ' ' . $state . ' ' . $zip;
-		// Replace whitespace for Google to handle it properly
+		// Replace whitespace for Google to handle it properly.
 		$concat_address = preg_replace( '/\s+/', '+', $concat_address );
 		$maps_link      = 'https://www.google.com/maps/place/' . $concat_address;
 	}
 
-	// Check for featured image, and place it as the background
+	// Check for featured image, and place it as the background.
 	$header_has_image = false;
 	if ( has_post_thumbnail() ) {
 		$header_has_image = true;
 	}
 
 	?>
-	<div <?php echo $anchor; ?>class="
+	<div <?php echo esc_attr( $anchor ); ?>class="
 					<?php
 					echo esc_attr( $class_name );
 					if ( $header_has_image ) {
 						echo ' has-image'; }
 					?>
 	information-header-block-component">
-		<div class="information-header-swishies"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/info-header_swishies.svg" /></div>
 		<div class="information-header-block-wrapper l-gutter">
 			<div class="information-header-block-title">
 				<h1 class="header-text"><?php echo esc_html( $post_title ); ?></h1>
@@ -117,18 +127,18 @@ else :
 			?>
 			">
 				<?php if ( $header_has_image ) : ?>
-					<div class="information-header-image-wrapper" style="background-image: url('<?php echo get_the_post_thumbnail_url(); ?>');">
+					<div class="information-header-image-wrapper" style="background-image: url('<?php echo esc_attr( get_the_post_thumbnail_url() ); ?>');">
 					</div>
 				<?php endif; ?>
 				<?php
-				$post_type    = get_post_type( $post_id );
-				$heading_text = 'Contact Info';
+				$current_post_type = get_post_type( $current_post_id );
+				$heading_text      = 'Contact Info';
 
-				if ( $post_type === 'tribe_events' ) {
+				if ( 'tribe_events' === $current_post_type ) {
 					$heading_text = 'Event Info'; }
 				?>
 				<div class="info-wrapper">
-					<h2 class="title"><?php echo $heading_text; ?></h2> 
+					<h2 class="title"><?php echo esc_html( $heading_text ); ?></h2> 
 					<?php
 					if (
 						$email
@@ -147,65 +157,65 @@ else :
 											<?php if ( $event_date ) : ?>
 								<li class="event-date">
 									<span class="contact-icon calendar notranslate" aria-hidden="true">calendar_today</span><span class="a11y-visible">Event Date </span>
-												<?php echo $event_date; ?>
+												<?php echo esc_html( $event_date ); ?>
 								</li>
-							<?php endif; // Event Dates ?>
+							<?php endif; // Event Dates. ?>
 
 											<?php if ( $event_time ) : ?>
 								<li class="event-time">
 									<span class="contact-icon clock notranslate" aria-hidden="true">schedule</span><span class="a11y-visible">Event Time </span>
-												<?php echo $event_time; ?>
+												<?php echo esc_html( $event_time ); ?>
 								</li>
-							<?php endif; // Event Time ?>
+							<?php endif; // Event Time. ?>
 
 											<?php if ( $event_location ) : ?>
 								<li class="event-location">
 									<span class="contact-icon location notranslate" aria-hidden="true">location_on</span><span class="a11y-visible">Event Location </span>
-									<a href="<?php echo get_the_permalink( $event_location->ID ); ?>"><?php echo get_the_title( $event_location->ID ); ?></a>
+									<a href="<?php echo esc_attr( get_the_permalink( $event_location->ID ) ); ?>"><?php echo esc_html( get_the_title( $event_location->ID ) ); ?></a>
 								</li>
-							<?php endif; // Event Location ?>
+							<?php endif; // Event Location. ?>
 
 											<?php if ( $phone ) : ?>
 								<li class="phone">
 									<span class="contact-icon call notranslate" aria-hidden="true">call</span><span class="a11y-visible">Phone Number </span>
-									<a href="tel:<?php echo $phone; ?>" title="Call">
+									<a href="tel:<?php echo esc_html( $phone ); ?>" title="Call">
 												<?php if ( strlen( $phone ) === 10 ) { ?>
-											(<?php echo substr( $phone, 0, 3 ); ?>) <?php echo substr( $phone, 2, 3 ); ?>-<?php echo substr( $phone, 5, 4 ); ?>
+											(<?php echo esc_html( substr( $phone, 0, 3 ) ); ?>) <?php echo esc_html( substr( $phone, 2, 3 ) ); ?>-<?php echo esc_html( substr( $phone, 5, 4 ) ); ?>
 													<?php
 												} else {
-													echo $phone; }
+													echo esc_html( $phone ); }
 												?>
 									</a>
 								</li>
-							<?php endif; // Phone ?>
+							<?php endif; // Phone. ?>
 
 											<?php if ( $address ) : ?>
 								<li class="address">
 									<span class="contact-icon address notranslate" aria-hidden="true">location_on</span><span class="a11y-visible">Street Address </span>
 												<?php if ( $maps_link ) { ?>
-										<a href="<?php echo $maps_link; ?>" target="_blank" title="Get directions">
+										<a href="<?php echo esc_url( $maps_link ); ?>" target="_blank" title="Get directions">
 									<?php } ?>
-												<?php echo ( $address . ', ' . $city . ', ' . $state . ' ' . $zip ); ?> 
+												<?php echo esc_html( $address . ', ' . $city . ', ' . $state . ' ' . $zip ); ?> 
 												<?php if ( $maps_link ) { ?>
 										</a> 
 									<?php } ?>
 								</li>
-							<?php endif; // Address ?>
+							<?php endif; // Address. ?>
 
 
 											<?php
 											if ( is_array( $hours_of_operation ) ) :
 												$hours = '';
-												// Loop through group for the nested repeater to function
-												if ( have_rows( 'contact_info', $post_id ) ) :
-													while ( have_rows( 'contact_info', $post_id ) ) :
+												// Loop through group for the nested repeater to function.
+												if ( have_rows( 'contact_info', $current_post_id ) ) :
+													while ( have_rows( 'contact_info', $current_post_id ) ) :
 														the_row();
 														?>
 								<li class="information-header-block-hours-of-operation">
 									<span class="contact-icon hours notranslate" aria-hidden="true">schedule</span><span class="a11y-visible">Operating Hours </span>
 									<span class="hour-entries">Hours: 
 														<?php
-															// Looping repeater nested inside group
+															// Looping repeater nested inside group.
 														if ( have_rows( 'hours_of_operation' ) ) :
 															while ( have_rows( 'hours_of_operation' ) ) :
 																the_row();
@@ -216,32 +226,32 @@ else :
 																if ( $days && $start_time && $end_time ) {
 																	$hours .= $days . ' ' . $start_time . '-' . $end_time . '; ';
 																}
-										endwhile; // While there are hours
+										endwhile; // While there are hours.
 
-															// Removing trailing semicolon
-															echo ( substr( $hours, 0, -2 ) );
+															// Removing trailing semicolon.
+															echo esc_html( substr( $hours, 0, -2 ) );
 															?>
 								</li>
 															<?php
 																				endif;
 endwhile;
 				endif;
-endif; // Hours
+endif; // Hours.
 											?>
 						
 											<?php if ( $email ) : ?>
 								<li class="email"><span class="contact-icon email notranslate" aria-hidden="true">mail</span><span class="a11y-visible">Email Address </span>
-									<a href="mailto:<?php echo $email; ?>" title="Send an email"><?php echo $email; ?></a>
+									<a href="mailto:<?php echo esc_url( $email ); ?>" title="Send an email"><?php echo esc_html( $email ); ?></a>
 								</li>
-							<?php endif; // Email ?>
+							<?php endif; // Email. ?>
 
 											<?php if ( $additional_information ) : ?>
 								<li class="additional-info"><span class="contact-icon info notranslate" aria-hidden="true">info</span><span class="a11y-visible">Additional Information </span>
 												<?php echo esc_html( $additional_information ); ?>
 								</li>
-							<?php endif; // Additional Information ?>
+							<?php endif; // Additional Information. ?>
 						</ul>
-					<?php endif; // If any contact information is available ?>
+					<?php endif; // If any contact information is available. ?>
 				</div>
 			</div>
 

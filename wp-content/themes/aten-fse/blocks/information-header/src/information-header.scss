@@ -2,80 +2,17 @@
 
 // Information Header block styles
 .information-header-block-component {
-  background-image: url('../aten-fse/assets/img/info-header.svg'),
-    linear-gradient(var(--navy) 10%, var(--white) 10.5%);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: bottom right;
-  padding-top: rem(24px);
-  margin-bottom: rem(28px);
   width: 100%;
   position: relative;
-
-  @include bp-min(tablet) {
-    padding-top: rem(48px);
-  }
-
-  @include bp-min(sm-desktop) {
-    padding-top: rem(64px);
-    margin-bottom: rem(34px);
-  }
-
-  @include bp-min(desktop) {
-    padding-top: rem(80px);
-    padding-bottom: rem(80px);
-    margin-bottom: rem(-54px);
-  }
-
-  &.has-image {
-    @include bp-min(desktop) {
-      padding-bottom: rem(136px);
-    }
-  }
-
-  .information-header-swishies {
-    width: 100%;
-    position: absolute;
-    top: rem(20px);
-    z-index: 1;
-
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
 
   ul {
     list-style-type: none;
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: rem(6px);
-
-    @include bp-min(desktop) {
-      gap: rem(14px);
-    }
 
     li {
-      @include type-scale(body, 14);
-      font-size: rem(14px);
       text-indent: 0;
-      // Setting a minimum height equal to the icon size to avoid icon overlap
-      min-height: rem(34px);
-      display: flex;
-      align-items: center;
-
-      @include bp-min(tablet) {
-        @include type-scale(body, 16);
-      }
-
-      @include bp-min(desktop) {
-        @include type-scale(body, 20);
-      }
-
-      @include bp-min(lg-desktop) {
-        font-size: rem(22px);
-      }
 
       &:nth-of-type(1) {
         .contact-icon {
@@ -117,7 +54,6 @@
         align-items: center;
         justify-content: center;
         float: left;
-        margin-right: rem(12px);
         flex-shrink: 0;
 
         @include bp-min(tablet) {
@@ -138,11 +74,9 @@
   .info-wrapper {
     width: 100%;
     box-sizing: border-box;
-    padding: rem(4px) rem(24px) rem(8px);
 
     @include bp-min(sm-desktop) {
       flex-shrink: 0;
-      padding: rem(60px);
       width: 43%;
     }
   }
@@ -153,11 +87,9 @@
   }
 
   .information-header-block-content {
-    background-color: var(--white);
     border-radius: var(--default-border-radius);
     box-shadow: var(--default-box-shadow);
     overflow: hidden;
-    margin-top: rem(22px);
     width: 100%;
 
     @include bp-min(sm-desktop) {
@@ -168,12 +100,9 @@
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
-          gap: rem(20px) rem(40px);
-          margin-bottom: 0;
 
           li {
             width: 30%;
-            margin-bottom: 0;
 
             &.additional-info {
               flex-grow: 1;
@@ -189,7 +118,7 @@
 
     .information-header-image-wrapper {
       width: 100%;
-      height: rem(180px);
+      min-height: rem(180px);
       overflow: hidden;
       background-position: center center;
       background-size: cover;
@@ -210,21 +139,6 @@
     }
   }
 
-  hr {
-    display: none;
-
-    @include bp-min(tablet) {
-      display: block;
-      width: rem(120px);
-      border-bottom-width: rem(8px);
-      margin: rem(32px) auto rem(24px) 0;
-    }
-
-    @include bp-min(desktop) {
-      margin: rem(48px) auto rem(54px) 0;
-    }
-  }
-
   h1 {
     @include type-scale(heading, h1);
     color: var(--white);
@@ -233,13 +147,6 @@
 
   h2.title {
     @include type-scale(heading, h6);
-    // Explicitly setting font size as it does not change with screen size
-    font-size: rem(14px);
     font-weight: var(--aten-fw-bold);
-    margin-top: rem(20px);
-
-    @include bp-min(sm-desktop) {
-      margin-top: 0;
-    }
   }
 }
