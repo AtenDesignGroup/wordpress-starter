@@ -7,7 +7,6 @@
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
-    gap: rem(4px);
 
     li.resource {
       text-indent: 0;
@@ -15,12 +14,10 @@
       box-sizing: border-box;
       border-radius: var(--default-border-radius);
       background-color: var(--aten-blue-light);
-      padding: rem(12px) rem(12px) rem(42px);
       position: relative;
 
       @include bp-min(tablet) {
         width: calc(50% - rem(2px));
-        padding: rem(24px) rem(24px) rem(54px);
       }
 
       @include bp-min(desktop) {
@@ -48,10 +45,8 @@
 
   p {
     @include type-scale(body, 14);
-    margin: 0;
 
     &.resource-details {
-      font-size: rem(12px);
       position: absolute;
       bottom: rem(12px);
       max-width: calc(100% - rem(24px));
@@ -60,10 +55,6 @@
         bottom: rem(24px);
         max-width: calc(100% - rem(48px));
       }
-    }
-
-    &:not(.resource-details) {
-      margin-bottom: rem(12px);
     }
   }
 
