@@ -37,5 +37,5 @@ else :
 	?>
 
 	<div class="cleardiv"></div>
-	<hr <?php echo $anchor; ?> class="wp-block-separator is-style-wide <?php echo esc_attr( $class_name ) . ' ' . esc_attr( str_replace( '_', '-', $style ) ); ?>">
+	<hr <?php echo esc_attr( $anchor ); ?> class="wp-block-separator is-style-wide <?php echo esc_attr( $class_name ) . ' ' . esc_attr( str_replace( '_', '-', $style ) ); ?>">
 <?php endif; ?>
