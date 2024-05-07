@@ -7,7 +7,7 @@
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).
  * @param   bool $is_preview True during backend preview render.
- * @param   int $post_id The post ID the block is rendering content against.
+ * @param   int $current_post_id The post ID the block is rendering content against.
  *          This is either the post ID currently being displayed inside a query loop,
  *          or the post ID of the post hosting this block.
  * @param   array $context The context provided to the block by the post or it's parent block.
@@ -33,14 +33,23 @@ else :
 	}
 
 	// Load values and assign defaults.
-	$post_id    = get_the_ID();
-	$post_title = get_the_title( $post_id );
-	// Setting all values to an empty string by default
-	$director = $address = $city = $state = $zip = $maps_link = $email = $hours_of_operation = $phone = $additional_information = '';
-	$contact  = get_field( 'inline_contact_info', $post_id );
-	// Looping through the group to access subfields
-	if ( have_rows( 'inline_contact_info', $post_id ) ) :
-		while ( have_rows( 'inline_contact_info', $post_id ) ) :
+	$current_post_id    = get_the_ID();
+	$current_post_title = get_the_title( $current_post_id );
+	// Setting all values to an empty string by default.
+	$director               = '';
+	$address                = '';
+	$city                   = '';
+	$state                  = '';
+	$zip                    = '';
+	$maps_link              = '';
+	$email                  = '';
+	$hours_of_operation     = '';
+	$phone                  = '';
+	$additional_information = '';
+	$contact                = get_field( 'inline_contact_info', $current_post_id );
+	// Looping through the group to access subfields.
+	if ( have_rows( 'inline_contact_info', $current_post_id ) ) :
+		while ( have_rows( 'inline_contact_info', $current_post_id ) ) :
 			the_row();
 			$director               = ( get_sub_field( 'director' ) ?? '' );
 			$address                = ( get_sub_field( 'address' ) ?? '' );
@@ -54,11 +63,11 @@ else :
 		endwhile;
 endif;
 
-	// Building Google Maps link from the various address pieces
+	// Building Google Maps link from the various address pieces.
 	if ( $address && $city && $state && $zip ) {
-		// Concat the entire address string
+		// Concat the entire address string.
 		$concat_address = $address . ' ' . $city . ' ' . $state . ' ' . $zip;
-		// Replace whitespace for Google to handle it properly
+		// Replace whitespace for Google to handle it properly.
 		$concat_address = preg_replace( '/\s+/', '+', $concat_address );
 		$maps_link      = 'https://www.google.com/maps/place/' . $concat_address;
 	}
@@ -72,7 +81,7 @@ endif;
 		|| $additional_information
 		|| have_rows( $hours_of_operation ) ) : ?>
 		
-		<div <?php echo $anchor; ?>class="<?php echo esc_attr( $class_name ); ?>">
+		<div <?php echo esc_attr( $anchor ); ?>class="<?php echo esc_attr( $class_name ); ?>">
 			<div class="inline-contact-info-block-wrapper contact-info l-gutter">
 				<div class="inline-contact-info-block">
 					<div class="info-content">
@@ -81,9 +90,9 @@ endif;
 								<?php if ( $director ) : ?>
 									<p>
 										<strong>Director</strong><br/>
-										<?php echo $director; ?>
+										<?php echo esc_html( $director ); ?>
 									</p>
-								<?php endif; // Director ?>
+								<?php endif; // Director. ?>
 
 								<?php if ( $address ) : ?>
 									<p>
@@ -91,46 +100,46 @@ endif;
 										<?php
 										if ( $maps_link ) {
 											?>
-											<a href="<?php echo $maps_link; ?>" target="_blank" title="Get directions"> <?php } ?>
-											<?php echo ( $address . ', ' . $city . ', ' . $state . ' ' . $zip ); ?>
+											<a href="<?php echo esc_url( $maps_link ); ?>" target="_blank" title="Get directions"> <?php } ?>
+											<?php echo esc_html( $address . ', ' . $city . ', ' . $state . ' ' . $zip ); ?>
 										<?php
 										if ( $maps_link ) {
 											?>
 											</a> <?php } ?>
 									</p>
-								<?php endif; // Address ?>
+								<?php endif; // Address. ?>
 
 								<?php if ( $phone ) : ?>
 									<p><strong>Phone</strong> 
-										<a href="tel:<?php echo $phone; ?>" title="Call">
+										<a href="tel:<?php echo esc_url( $phone ); ?>" title="Call">
 											<?php if ( strlen( $phone ) === 10 ) { ?>
-												(<?php echo substr( $phone, 0, 3 ); ?>) <?php echo substr( $phone, 2, 3 ); ?>-<?php echo substr( $phone, 5, 4 ); ?>
+												(<?php echo esc_html( substr( $phone, 0, 3 ) ); ?>) <?php echo esc_html( substr( $phone, 2, 3 ) ); ?>-<?php echo esc_html( substr( $phone, 5, 4 ) ); ?>
 												<?php
 											} else {
-												echo $phone; }
+												echo esc_html( $phone ); }
 											?>
 										</a>
 									</p>
-								<?php endif; // Phone ?>
+								<?php endif; // Phone. ?>
 
 								<?php if ( $email ) : ?>
 									<p><strong>Email</strong> 
-										<a href="mailto:<?php echo $email; ?>" title="Send an email"><?php echo $email; ?></a>
+										<a href="mailto:<?php echo esc_url( $email ); ?>" title="Send an email"><?php echo esc_html( $email ); ?></a>
 									</p>
-								<?php endif; // Email ?>
+								<?php endif; // Email. ?>
 
 								<?php
 								if ( is_array( $hours_of_operation ) ) :
 									$hours = '';
-									// Loop through group for the nested repeater to function
-									if ( have_rows( 'inline_contact_info', $post_id ) ) :
-										while ( have_rows( 'inline_contact_info', $post_id ) ) :
+									// Loop through group for the nested repeater to function.
+									if ( have_rows( 'inline_contact_info', $current_post_id ) ) :
+										while ( have_rows( 'inline_contact_info', $current_post_id ) ) :
 											the_row();
 											?>
 										<p class="information-header-block-hours-of-operation">
 											<strong>Hours</strong><br/>
 											<?php
-											// Looping repeater nested inside group
+											// Looping repeater nested inside group.
 											if ( have_rows( 'hours_of_operation' ) ) :
 												while ( have_rows( 'hours_of_operation' ) ) :
 													the_row();
@@ -141,24 +150,24 @@ endif;
 													if ( $days && $start_time && $end_time ) {
 														$hours .= $days . ' ' . $start_time . '-' . $end_time . '; ';
 													}
-											endwhile; // While there are hours
+											endwhile; // While there are hours.
 
-												// Removing trailing semicolon
-												echo ( substr( $hours, 0, -2 ) );
+												// Removing trailing semicolon.
+												echo esc_html( substr( $hours, 0, -2 ) );
 												?>
 										</p>
 												<?php
 																		endif;
 endwhile;
 endif;
-endif; // Hours
+endif; // Hours.
 								?>
 
 								<?php if ( $additional_information ) : ?>
 									<p><strong>For further information:</strong><br/>
 										<?php echo esc_html( $additional_information ); ?>
 									</p>
-								<?php endif; // Additional Information ?>
+								<?php endif; // Additional Information. ?>
 							</ul>
 					</div>
 				</div>
