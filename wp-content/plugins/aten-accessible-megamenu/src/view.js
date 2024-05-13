@@ -120,11 +120,13 @@ jQuery(document).ready(function($){
                 $(trigger_button).attr('aria-expanded','false');
                 $(target_sub_menu).removeClass('submenu-expanded');
             } else {
-                $('.adg-a11y-megamenu-button.submenu-open').each(function(){
-                    $(this).attr('aria-expanded','false');
-                    $(this).removeClass('submenu-open');
-                    $(this).siblings('.sub-menu').removeClass('submenu-expanded');
-                });
+                if(!$(trigger_button).parents('.submenu-expanded').length) {
+                    $('.adg-a11y-megamenu-button.submenu-open').each(function(){
+                        $(this).attr('aria-expanded','false');
+                        $(this).removeClass('submenu-open');
+                        $(this).siblings('.sub-menu').removeClass('submenu-expanded');
+                    });
+                }
                 $(trigger_button).attr('aria-expanded','true');
                 $(target_sub_menu).addClass('submenu-expanded');
             }
