@@ -39,6 +39,8 @@ jQuery(document).ready(function($){
                 if($(this).hasClass('adg-a11y-megamenu-button')) {
                     if($(this).attr('aria-expanded') == 'true') {
                         target_button = $(this);
+                    } if($(this).parents('.submenu-expanded').length) {
+                        target_button = $(this).closest('.submenu-expanded').siblings('.adg-a11y-megamenu-button');
                     } else {
                         target_button = $(this).closest('.adg-a11y-mobile-menu-wrapper').find('.adg-a11y-mobile-menu-toggle');
                     }
