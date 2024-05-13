@@ -13,6 +13,11 @@
  * ```
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
+ * 
+ * TODO:
+ * - on tab past submenu items, close submenu before moving focus to the next element
+ * - verify that backward tab doesn't reopen submenu
+ * - convert to JS once functional through jQuery
  */
 
 jQuery(document).ready(function($){
@@ -53,7 +58,23 @@ jQuery(document).ready(function($){
                 $(target_button).focus();
                 break;
             case "ArrowLeft":
+                /**
+                 * If the current item is a top-level item, move focus to the previous top-level item.
+                 * If the current item is NOT a top-level item, close the current open submenu and move focus to the previous top-level item.
+                 * If the current item is at the start of the top level, loop to the end.
+                 */
+                event.preventDefault();
+                if(prev_list_item.length) {
+                    prev_list_item.find('a, button').focus();
+                } else {
+                    $(this).closest('ul').siblings('button').focus();
+                }
+                break;
             case "ArrowUp":
+                /** TODO:
+                 * If current item is a submenu item, move focus to the previous item in the submenu.
+                 * If current item is at the start of the submenu, loop to the end.
+                 */
                 event.preventDefault();
                 if(prev_list_item.length) {
                     prev_list_item.find('a, button').focus();
@@ -62,7 +83,31 @@ jQuery(document).ready(function($){
                 }
                 break;
             case "ArrowRight":
+                /** TODO:
+                 * If the current item is a top-level item, move focus to the next top-level item.
+                 * If the current item is NOT a top-level item, close the current open submenu and move focus to the next top-level item.
+                 * If the current item is at the end of the top level, loop back to the start.
+                 */
+                event.preventDefault();
+                if($(this).hasClass('adg-a11y-mobile-menu-toggle') && ($(this).attr('aria-expanded') == 'true')) {
+                    $(this).siblings('.menu-expanded').find('li').first().find('a, button').focus();
+                } else if($(this).hasClass('adg-a11y-megamenu-button') && ($(this).attr('aria-expanded') == 'true')) {
+                    $(this).siblings('.submenu-expanded').find('li').first().find('a, button').focus();
+                } else {
+                    if(next_list_item.length) {
+                        next_list_item.find('a, button').focus();
+                    } else {
+                        $(this).closest('.menu-item-has-children').next().find('a, button').focus();
+                    }
+                }
+                break;
             case "ArrowDown":
+                /** TODO:
+                 * If the current item is a top-level item with no submenu, do nothing.
+                 * If the current item has a submenu, open the submenu and move focus to the first item in the submenu.
+                 * If current item is a submenu item, move focus to the next item in the submenu.
+                 * If current item is at the end of the submenu, loop back to the start.
+                 */
                 event.preventDefault();
                 if($(this).hasClass('adg-a11y-mobile-menu-toggle') && ($(this).attr('aria-expanded') == 'true')) {
                     $(this).siblings('.menu-expanded').find('li').first().find('a, button').focus();
