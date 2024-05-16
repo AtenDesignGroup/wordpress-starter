@@ -140,18 +140,19 @@ jQuery(document).ready(function($){
 
     function toggleMobileMenuActivation() {
         // Get mobile breakpoint from block settings
-        let mobile_breakpoint = $('nav.adg-a11y-megamenu-wrap').data('mobile-breakpoint');
+        let mobile_breakpoint = document.querySelector('.adg-a11y-megamenu-wrap').dataset.mobileBreakpoint;
+        let menu_toggle = document.querySelector('.adg-a11y-mobile-menu-toggle');
 
         // If the viewport is smaller or equal to the mobile breakpoint
         if(window.matchMedia("(max-width: " + mobile_breakpoint + "px)").matches) {
             // Add mobile classes to menu and menu wrapper
-            $('.adg-a11y-mobile-menu-toggle').addClass('adg-a11y-mobile-menu-active');
-            $('.adg-a11y-mobile-menu-toggle').closest('nav').addClass('adg-a11y-mobile-menu-wrapper');
+            menu_toggle.classList.add("adg-a11y-mobile-menu-active");
+            menu_toggle.closest('nav').classList.add('adg-a11y-mobile-menu-wrapper');
         } else { // If the viewport is larger than the mobile breakpoint
             // Remove mobile classes if present
             if($('.adg-a11y-mobile-menu-toggle').hasClass('adg-a11y-mobile-menu-active')) {
-                $('.adg-a11y-mobile-menu-toggle.adg-a11y-mobile-menu-active').removeClass('adg-a11y-mobile-menu-active');
-                $('.adg-a11y-mobile-menu-toggle').closest('nav').removeClass('adg-a11y-mobile-menu-wrapper');
+                menu_toggle.classList.remove("adg-a11y-mobile-menu-active");
+                menu_toggle.closest('nav').classList.remove('adg-a11y-mobile-menu-wrapper');
             }
         }
     }
