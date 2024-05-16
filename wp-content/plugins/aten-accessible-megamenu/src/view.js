@@ -75,7 +75,11 @@ jQuery(document).ready(function($){
                             toggleMenu($(this));
                         });
                     }
-                    $(this).parents('.adg-a11y-megamenu > .menu-item-has-children').next().find('a, button').focus();
+                    if($(this).parents('.adg-a11y-megamenu > .menu-item-has-children').next().length) {
+                        $(this).parents('.adg-a11y-megamenu > .menu-item-has-children').next().find('a, button').focus();
+                    } else {
+                        $(this).parents('.adg-a11y-megamenu').find('li').first().find('a, button').focus();
+                    }   
                 }
                 break;
             case "ArrowLeft":
@@ -96,7 +100,11 @@ jQuery(document).ready(function($){
                             toggleMenu($(this));
                         });
                     }
-                    $(this).parents('.adg-a11y-megamenu > .menu-item-has-children').prev().find('a, button').focus();
+                    if($(this).parents('.adg-a11y-megamenu > .menu-item-has-children').prev().length) {
+                        $(this).parents('.adg-a11y-megamenu > .menu-item-has-children').prev().find('a, button').focus();
+                    } else {
+                        $(this).parents('.adg-a11y-megamenu').find('li:last-child').find('a, button').focus();
+                    }   
                 }
                 break;
             case "ArrowUp":
