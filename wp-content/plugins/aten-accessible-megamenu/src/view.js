@@ -150,12 +150,11 @@ jQuery(document).ready(function($){
     });
 
     function toggleMobileMenuActivation() {
-        // Get viewport width and mobile breakpoint from block settings
-        let viewport_width = $( window ).width();
+        // Get mobile breakpoint from block settings
         let mobile_breakpoint = $('nav.adg-a11y-megamenu-wrap').data('mobile-breakpoint');
 
         // If the viewport is smaller or equal to the mobile breakpoint
-        if(viewport_width <= mobile_breakpoint) {
+        if(window.matchMedia("(max-width: " + mobile_breakpoint + "px)").matches) {
             // Add mobile classes to menu and menu wrapper
             $('.adg-a11y-mobile-menu-toggle').addClass('adg-a11y-mobile-menu-active');
             $('.adg-a11y-mobile-menu-toggle').closest('nav').addClass('adg-a11y-mobile-menu-wrapper');
