@@ -73,8 +73,8 @@ jQuery(document).ready(function($){
                             toggleMenu($(this));
                         });
                     }
-                    if($(this).parents('.adg-menu-item-level-0').next().length) {
-                        $(this).parents('.adg-menu-item-level-0').next().find('a, button').focus();
+                    if($(this).parents('.adg-a11y-menu-item-level-0').next().length) {
+                        $(this).parents('.adg-a11y-menu-item-level-0').next().find('a, button').focus();
                     } else {
                         $(this).parents('.adg-a11y-megamenu').find('li').first().find('a, button').focus();
                     }   
@@ -98,8 +98,8 @@ jQuery(document).ready(function($){
                             toggleMenu($(this));
                         });
                     }
-                    if($(this).parents('.adg-menu-item-level-0').prev().length) {
-                        $(this).parents('.adg-menu-item-level-0').prev().find('a, button').focus();
+                    if($(this).parents('.adg-a11y-menu-item-level-0').prev().length) {
+                        $(this).parents('.adg-a11y-menu-item-level-0').prev().find('a, button').focus();
                     } else {
                         $(this).parents('.adg-a11y-megamenu').find('li:last-child').find('a, button').focus();
                     }   
@@ -135,11 +135,11 @@ jQuery(document).ready(function($){
                 break;
             case "Tab":
                 if(event.shiftKey){
-                    if((!prev_list_item.length) && $(this).parent('li').hasClass('adg-menu-item-level-1')) {
-                        toggleMenu($(this).parents('.adg-menu-item-level-0').find('a, button'));
+                    if((!prev_list_item.length) && $(this).parent('li').hasClass('adg-a11y-menu-item-level-1')) {
+                        toggleMenu($(this).parents('.adg-a11y-menu-item-level-0').find('a, button'));
                     }
                 }  else if((!$(this).parent('li').hasClass('menu-item-has-children')) && (!next_list_item.length) && (!event.shiftKey)) {
-                    toggleMenu($(this).parents('.adg-menu-item-level-0').find('a, button'));
+                    toggleMenu($(this).parents('.adg-a11y-menu-item-level-0').find('a, button'));
                 }
                 break;
         }
