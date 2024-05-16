@@ -57,19 +57,6 @@ jQuery(document).ready(function($){
                 }
                 $(target_button).focus();
                 break;
-            case "ArrowLeft":
-                /** TODO:
-                 * If the current item is a top-level item, move focus to the previous top-level item.
-                 * If the current item is NOT a top-level item, close the current open submenu and move focus to the previous top-level item.
-                 * If the current item is at the start of the top level, loop to the end.
-                 */
-                event.preventDefault();
-                if(prev_list_item.length) {
-                    prev_list_item.find('a, button').focus();
-                } else {
-                    $(this).closest('ul').siblings('button').focus();
-                }
-                break;
             case "ArrowRight":
                 event.preventDefault();
                 if($(this).hasClass('adg-a11y-megamenu-button') && ($(this).attr('aria-expanded') == 'true')) {
@@ -90,7 +77,27 @@ jQuery(document).ready(function($){
                     }
                     $(this).parents('.adg-a11y-megamenu > .menu-item-has-children').next().find('a, button').focus();
                 }
-
+                break;
+            case "ArrowLeft":
+                event.preventDefault();
+                if($(this).hasClass('adg-a11y-megamenu-button') && ($(this).attr('aria-expanded') == 'true')) {
+                    toggleMenu($(this));
+                } 
+                if(!$(this).parents('.submenu-expanded').length) {
+                    if(prev_list_item.length) {
+                        prev_list_item.find('a, button').focus();
+                    } else {
+                        $(this).closest('.adg-a11y-megamenu').find('li:last-child').find('a, button').focus();
+                    }
+                } else {
+                    let open_menu_buttons = $(this).parentsUntil('.adg-a11y-megamenu', '.submenu-expanded').siblings('.adg-a11y-megamenu-button.submenu-open');
+                    if(open_menu_buttons.length) {
+                        open_menu_buttons.each(function(){
+                            toggleMenu($(this));
+                        });
+                    }
+                    $(this).parents('.adg-a11y-megamenu > .menu-item-has-children').prev().find('a, button').focus();
+                }
                 break;
             case "ArrowUp":
                 event.preventDefault();
