@@ -32,8 +32,8 @@ jQuery(document).ready(function($){
         switch(event.key) {
             case "Escape":
                 let target_button;
-                if($(this).hasClass('adg-a11y-megamenu-button')) {
-                    if($(this).attr('aria-expanded') == 'true') {
+                if($(this).classList.contains('adg-a11y-megamenu-button')) {
+                    if($(this).getAttribute('aria-expanded') == 'true') {
                         target_button = $(this);
                     } if($(this).parents('.submenu-expanded').length) {
                         target_button = $(this).closest('.submenu-expanded').siblings('.adg-a11y-megamenu-button');
@@ -43,14 +43,14 @@ jQuery(document).ready(function($){
                 } else {
                     target_button = $(this).closest('ul').siblings('button');
                 }
-                if($(target_button).attr('aria-expanded') == 'true') {
+                if($(target_button).getAttribute('aria-expanded') == 'true') {
                     toggleMenu(target_button);
                 }
                 $(target_button).focus();
                 break;
             case "ArrowRight":
                 event.preventDefault();
-                if($(this).hasClass('adg-a11y-megamenu-button') && ($(this).attr('aria-expanded') == 'true')) {
+                if($(this).classList.contains('adg-a11y-megamenu-button') && ($(this).getAttribute('aria-expanded') == 'true')) {
                     toggleMenu($(this));
                 } 
                 if(!$(this).parents('.submenu-expanded').length) {
@@ -75,7 +75,7 @@ jQuery(document).ready(function($){
                 break;
             case "ArrowLeft":
                 event.preventDefault();
-                if($(this).hasClass('adg-a11y-megamenu-button') && ($(this).attr('aria-expanded') == 'true')) {
+                if($(this).classList.contains('adg-a11y-megamenu-button') && ($(this).getAttribute('aria-expanded') == 'true')) {
                     toggleMenu($(this));
                 } 
                 if(!$(this).parents('.submenu-expanded').length) {
@@ -108,13 +108,13 @@ jQuery(document).ready(function($){
                 break;
             case "ArrowDown":
                 event.preventDefault();
-                if($(this).hasClass('adg-a11y-mobile-menu-toggle')) {
-                    if($(this).attr('aria-expanded') == 'false') {
+                if($(this).classList.contains('adg-a11y-mobile-menu-toggle')) {
+                    if($(this).getAttribute('aria-expanded') == 'false') {
                         toggleMenu($(this));
                     }
                     $(this).siblings('.menu-expanded').find('li').first().find('a, button').focus();   
-                } else if($(this).hasClass('adg-a11y-megamenu-button')) {
-                    if($(this).attr('aria-expanded') == 'false') {
+                } else if($(this).classList.contains('adg-a11y-megamenu-button')) {
+                    if($(this).getAttribute('aria-expanded') == 'false') {
                         toggleMenu($(this));
                     }  
                     $(this).siblings('.submenu-expanded').find('li').first().find('a, button').focus();
@@ -128,10 +128,10 @@ jQuery(document).ready(function($){
                 break;
             case "Tab":
                 if(event.shiftKey){
-                    if((!prev_list_item.length) && $(this).parent('li').hasClass('adg-a11y-menu-item-level-1')) {
+                    if((!prev_list_item.length) && $(this).parent('li').classList.contains('adg-a11y-menu-item-level-1')) {
                         toggleMenu($(this).parents('.adg-a11y-menu-item-level-0').find('a, button'));
                     }
-                }  else if((!$(this).parent('li').hasClass('menu-item-has-children')) && (!next_list_item.length) && (!event.shiftKey)) {
+                }  else if((!$(this).parent('li').classList.contains('menu-item-has-children')) && (!next_list_item.length) && (!event.shiftKey)) {
                     toggleMenu($(this).parents('.adg-a11y-menu-item-level-0').find('a, button'));
                 }
                 break;
@@ -150,7 +150,7 @@ jQuery(document).ready(function($){
             menu_toggle.closest('nav').classList.add('adg-a11y-mobile-menu-wrapper');
         } else { // If the viewport is larger than the mobile breakpoint
             // Remove mobile classes if present
-            if($('.adg-a11y-mobile-menu-toggle').hasClass('adg-a11y-mobile-menu-active')) {
+            if(menu_toggle.classList.contains('adg-a11y-mobile-menu-active')) {
                 menu_toggle.classList.remove("adg-a11y-mobile-menu-active");
                 menu_toggle.closest('nav').classList.remove('adg-a11y-mobile-menu-wrapper');
             }
@@ -159,36 +159,36 @@ jQuery(document).ready(function($){
 
     function toggleMenu(trigger_button) {
         // If expanding the mobile menu
-        if($(trigger_button).hasClass('adg-a11y-mobile-menu-toggle')) {
-            if($(trigger_button).attr('aria-expanded') == 'true') {
-                $(trigger_button).siblings('ul.adg-a11y-megamenu').removeClass('menu-expanded');
-                $(trigger_button).attr('aria-expanded', 'false');
-                $(trigger_button).find('.dashicons-no-alt').removeClass('active-icon');
-                $(trigger_button).find('.dashicons-menu').addClass('active-icon');
+        if(trigger_button.classList.contains('adg-a11y-mobile-menu-toggle')) {
+            if(trigger_button.getAttribute('aria-expanded') == 'true') {
+                $(trigger_button).siblings('ul.adg-a11y-megamenu').classList.remove('menu-expanded');
+                trigger_button.setAttribute('aria-expanded', 'false');
+                trigger_button.querySelector('.dashicons-no-alt').classList.remove('active-icon');
+                trigger_button.querySelector('.dashicons-menu').classList.add('active-icon');
             } else {
-                $(trigger_button).siblings('ul.adg-a11y-megamenu').addClass('menu-expanded');
-                $(trigger_button).attr('aria-expanded', 'true');
-                $(trigger_button).find('.dashicons-no-alt').addClass('active-icon');
-                $(trigger_button).find('.dashicons-menu').removeClass('active-icon');
+                $(trigger_button).siblings('ul.adg-a11y-megamenu').classList.add('menu-expanded');
+                trigger_button.setAttribute('aria-expanded', 'true');
+                trigger_button.querySelector('.dashicons-no-alt').classList.add('active-icon');
+                trigger_button.querySelector('.dashicons-menu').classList.remove('active-icon');
             }
         } else { // If expanding a submenu
             let target_sub_menu = $(trigger_button).siblings('.sub-menu');
-            if($(trigger_button).hasClass('submenu-open')) {
-                $(trigger_button).attr('aria-expanded','false');
-                $(target_sub_menu).removeClass('submenu-expanded');
+            if(trigger_button.classList.contains('submenu-open')) {
+                trigger_button.setAttribute('aria-expanded','false');
+                $(target_sub_menu).classList.remove('submenu-expanded');
             } else {
                 if(!$(trigger_button).parents('.submenu-expanded').length) {
                     $('.adg-a11y-megamenu-button.submenu-open').each(function(){
-                        $(this).attr('aria-expanded','false');
-                        $(this).removeClass('submenu-open');
-                        $(this).siblings('.sub-menu').removeClass('submenu-expanded');
+                        $(this).setAttribute('aria-expanded','false');
+                        $(this).classList.remove('submenu-open');
+                        $(this).siblings('.sub-menu').classList.remove('submenu-expanded');
                     });
                 }
-                $(trigger_button).attr('aria-expanded','true');
-                $(target_sub_menu).addClass('submenu-expanded');
+                trigger_button.setAttribute('aria-expanded','true');
+                $(target_sub_menu).classList.add('submenu-expanded');
             }
 
-            $(trigger_button).toggleClass('submenu-open');
+            trigger_button.classList.toggle('submenu-open');
         }
     }
 });
