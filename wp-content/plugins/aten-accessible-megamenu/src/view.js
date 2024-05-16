@@ -102,22 +102,23 @@ jQuery(document).ready(function($){
                 }
                 break;
             case "ArrowDown":
-                /** TODO:
-                 * If the current item is a top-level item with no submenu, do nothing.
-                 * If the current item has a submenu, open the submenu and move focus to the first item in the submenu.
-                 * If current item is a submenu item, move focus to the next item in the submenu.
-                 * If current item is at the end of the submenu, loop back to the start.
-                 */
                 event.preventDefault();
-                if($(this).hasClass('adg-a11y-mobile-menu-toggle') && ($(this).attr('aria-expanded') == 'true')) {
-                    $(this).siblings('.menu-expanded').find('li').first().find('a, button').focus();
-                } else if($(this).hasClass('adg-a11y-megamenu-button') && ($(this).attr('aria-expanded') == 'true')) {
+                if($(this).hasClass('adg-a11y-mobile-menu-toggle')) {
+                    if($(this).attr('aria-expanded') == 'false') {
+                        toggleMenu($(this));
+                    }
+                    $(this).siblings('.menu-expanded').find('li').first().find('a, button').focus();   
+                } else if($(this).hasClass('adg-a11y-megamenu-button')) {
+                    if($(this).attr('aria-expanded') == 'false') {
+                        toggleMenu($(this));
+                        console.log('it sees that the button is not expanded');
+                    }  
                     $(this).siblings('.submenu-expanded').find('li').first().find('a, button').focus();
                 } else {
-                    if(next_list_item.length) {
+                    if($(this).parents('.submenu-expanded').length && next_list_item.length) {
                         next_list_item.find('a, button').focus();
                     } else {
-                        $(this).closest('.menu-item-has-children').next().find('a, button').focus();
+                        $(this).closest('.submenu-expanded').find('li').first().find('a, button').focus();
                     }
                 }
                 break;
