@@ -15,8 +15,6 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
  * 
  * TODO:
- * - on tab past submenu items, close submenu before moving focus to the next element
- * - verify that backward tab doesn't reopen submenu
  * - convert to JS once functional through jQuery
  */
 
@@ -75,8 +73,8 @@ jQuery(document).ready(function($){
                             toggleMenu($(this));
                         });
                     }
-                    if($(this).parents('.adg-a11y-megamenu > .menu-item-has-children').next().length) {
-                        $(this).parents('.adg-a11y-megamenu > .menu-item-has-children').next().find('a, button').focus();
+                    if($(this).parents('.menu-item-level-0').next().length) {
+                        $(this).parents('.menu-item-level-0').next().find('a, button').focus();
                     } else {
                         $(this).parents('.adg-a11y-megamenu').find('li').first().find('a, button').focus();
                     }   
@@ -100,8 +98,8 @@ jQuery(document).ready(function($){
                             toggleMenu($(this));
                         });
                     }
-                    if($(this).parents('.adg-a11y-megamenu > .menu-item-has-children').prev().length) {
-                        $(this).parents('.adg-a11y-megamenu > .menu-item-has-children').prev().find('a, button').focus();
+                    if($(this).parents('.menu-item-level-0').prev().length) {
+                        $(this).parents('.menu-item-level-0').prev().find('a, button').focus();
                     } else {
                         $(this).parents('.adg-a11y-megamenu').find('li:last-child').find('a, button').focus();
                     }   
@@ -138,10 +136,10 @@ jQuery(document).ready(function($){
             case "Tab":
                 if(event.shiftKey){
                     if((!prev_list_item.length) && $(this).parent('li').hasClass('menu-item-level-1')) {
-                        toggleMenu($(this).parents('.adg-a11y-megamenu > .menu-item-has-children').find('a, button'));
+                        toggleMenu($(this).parents('.menu-item-level-0').find('a, button'));
                     }
                 }  else if((!$(this).parent('li').hasClass('menu-item-has-children')) && (!next_list_item.length) && (!event.shiftKey)) {
-                    toggleMenu($(this).parents('.adg-a11y-megamenu > .menu-item-has-children').find('a, button'));
+                    toggleMenu($(this).parents('.menu-item-level-0').find('a, button'));
                 }
                 break;
         }
