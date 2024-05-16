@@ -4,14 +4,6 @@
  * When this file is defined as the value of the `viewScript` property
  * in `block.json` it will be enqueued on the front end of the site.
  *
- * Example:
- *
- * ```js
- * {
- *   'viewScript': 'file:./view.js'
- * }
- * ```
- *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
  * 
  * TODO:
@@ -19,17 +11,18 @@
  */
 
 jQuery(document).ready(function($){
-    $('.adg-a11y-megamenu-nav-container').prepend('<button class="adg-a11y-mobile-menu-toggle" aria-expanded="false"><span class="dashicons dashicons-no-alt" aria-hidden="true"></span><span class="dashicons dashicons-menu" aria-hidden="true"></span><span class="adg-a11y-mobile-menu-toggle-text">Menu</span></button>');
+    document.querySelector('.adg-a11y-megamenu-nav-container').insertAdjacentHTML('afterbegin', '<button class="adg-a11y-mobile-menu-toggle" aria-expanded="false"><span class="dashicons dashicons-no-alt" aria-hidden="true"></span><span class="dashicons dashicons-menu" aria-hidden="true"></span><span class="adg-a11y-mobile-menu-toggle-text">Menu</span></button>');
 
-    $('.adg-a11y-megamenu-button').click(function(){
-        toggleMenu($(this));
-    });
-
-    $( window ).on( "resize", function() {
-        toggleMobileMenuActivation();
-    } );
+    window.addEventListener("resize", toggleMobileMenuActivation);
 
     toggleMobileMenuActivation();
+
+    var megamenu_buttons = document.querySelectorAll('.adg-a11y-megamenu-button, .adg-a11y-mobile-menu-toggle');
+    for (var i = 0; i < megamenu_buttons.length; i++) {
+        megamenu_buttons[i].addEventListener("click", function(){
+            toggleMenu(this);
+        });
+    }
 
     $('.adg-a11y-megamenu .menu-item-type-custom a, .adg-a11y-megamenu .adg-a11y-megamenu-button, .adg-a11y-megamenu .menu-item, .adg-a11y-mobile-menu-toggle').on('keydown', function(event) {
         event.stopImmediatePropagation();
@@ -143,10 +136,6 @@ jQuery(document).ready(function($){
                 }
                 break;
         }
-    });
-
-    $('.adg-a11y-mobile-menu-toggle').click(function(){
-        toggleMenu($(this));
     });
 
     function toggleMobileMenuActivation() {
