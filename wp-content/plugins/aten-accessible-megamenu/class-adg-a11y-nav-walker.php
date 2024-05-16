@@ -27,7 +27,7 @@ if ( ! class_exists( 'ADG_A11y_Nav_Walker' ) ) {
 		 * @see https://developer.wordpress.org/reference/classes/walker_nav_menu/start_el/
 		 */
 		public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-			$output .= "<li class='" . implode( ' ', $item->classes ) . "'>";
+			$output .= "<li class='" . implode( ' ', $item->classes ) . " menu-item-level-" . $depth . "'>";
 			if ( ! ( in_array( 'menu-item-has-children', $item->classes, true ) ) ) {
 				if ( ( in_array( 'current-menu-item', $item->classes, true ) ) ) {
 					$output .= '<a href="' . $item->url . '" aria-current="page">';

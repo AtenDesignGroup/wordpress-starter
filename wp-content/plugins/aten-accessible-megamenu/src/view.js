@@ -135,7 +135,16 @@ jQuery(document).ready(function($){
                     }
                 }
                 break;
-            }
+            case "Tab":
+                if(event.shiftKey){
+                    if((!prev_list_item.length) && $(this).parent('li').hasClass('menu-item-level-1')) {
+                        toggleMenu($(this).parents('.adg-a11y-megamenu > .menu-item-has-children').find('a, button'));
+                    }
+                }  else if((!$(this).parent('li').hasClass('menu-item-has-children')) && (!next_list_item.length) && (!event.shiftKey)) {
+                    toggleMenu($(this).parents('.adg-a11y-megamenu > .menu-item-has-children').find('a, button'));
+                }
+                break;
+        }
     });
 
     $('.adg-a11y-mobile-menu-toggle').click(function(){
