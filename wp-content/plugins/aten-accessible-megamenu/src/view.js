@@ -70,18 +70,6 @@ jQuery(document).ready(function($){
                     $(this).closest('ul').siblings('button').focus();
                 }
                 break;
-            case "ArrowUp":
-                /** TODO:
-                 * If current item is a submenu item, move focus to the previous item in the submenu.
-                 * If current item is at the start of the submenu, loop to the end.
-                 */
-                event.preventDefault();
-                if(prev_list_item.length) {
-                    prev_list_item.find('a, button').focus();
-                } else {
-                    $(this).closest('ul').siblings('button').focus();
-                }
-                break;
             case "ArrowRight":
                 /** TODO:
                  * If the current item is a top-level item, move focus to the next top-level item.
@@ -99,6 +87,14 @@ jQuery(document).ready(function($){
                     } else {
                         $(this).closest('.menu-item-has-children').next().find('a, button').focus();
                     }
+                }
+                break;
+            case "ArrowUp":
+                event.preventDefault();
+                if($(this).parents('.submenu-expanded').length && prev_list_item.length) {
+                    prev_list_item.find('a, button').focus();
+                } else {
+                    $(this).closest('.submenu-expanded').find('li:last-child').find('a, button').focus();
                 }
                 break;
             case "ArrowDown":
