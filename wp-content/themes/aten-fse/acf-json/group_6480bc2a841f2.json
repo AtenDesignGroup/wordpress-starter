@@ -1,6 +1,6 @@
 {
     "key": "group_6480bc2a841f2",
-    "title": "Accent Text Block",
+    "title": "Stylized Text Block",
     "fields": [
         {
             "key": "field_6480c8b279685",
@@ -35,8 +35,8 @@
         },
         {
             "key": "field_6481e69969ff5",
-            "label": "Accent Text Block Title",
-            "name": "accent_text_block_title",
+            "label": "Stylized Text Block Title",
+            "name": "stylized_text_block_title",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -56,8 +56,8 @@
         },
         {
             "key": "field_6480bc311e58a",
-            "label": "Colored Rich Text Box Fields",
-            "name": "colored_rich_text_box_fields",
+            "label": "Stylized Rich Text Box Fields",
+            "name": "stylized_rich_text_box_fields",
             "aria-label": "",
             "type": "flexible_content",
             "instructions": "",
@@ -560,7 +560,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/accent-text-block"
+                "value": "acf\/stylized-text-block"
             }
         ]
     ],

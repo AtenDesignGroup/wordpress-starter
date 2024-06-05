@@ -1,16 +1,16 @@
 @use '../../../libraries/partials/partials' as *;
 
-// Accent Text Block (Colored Rich Text Block) styling
-.accent-text-block {
+// Stylized Text Block styling
+.stylized-text-block {
   @include bp-max(tablet) {
     width: 100vw;
   }
 
-  .accent-text-block-component {
+  .stylized-text-block-component {
     width: 100%;
   }
 
-  .accent-text-block-content {
+  .stylized-text-block-content {
     iframe {
       display: block;
       max-width: 100%;

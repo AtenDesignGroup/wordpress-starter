@@ -1,6 +1,6 @@
 <?php
 /**
- * Accent Text Block Template.
+ * Stylized Text Block Template.
  *
  * @package aten-fse
  *
@@ -23,7 +23,7 @@ else :
 	}
 
 	// Create class attribute allowing for custom "className" and "align" values.
-	$class_name = 'accent-text-block';
+	$class_name = 'stylized-text-block';
 	if ( ! empty( $block['className'] ) ) {
 		$class_name .= ' ' . $block['className'];
 	}
@@ -33,14 +33,14 @@ else :
 
 	// Load values and assign defaults.
 	$color         = get_field( 'background_color' );
-	$content       = get_field( 'colored_rich_text_box_fields' );
-	$section_title = get_field( 'accent_text_block_title' );
+	$content       = get_field( 'stylized_rich_text_box_fields' );
+	$section_title = get_field( 'stylized_text_block_title' );
 	?>
 
 	<div <?php echo esc_attr( $anchor ); ?> class="<?php echo esc_attr( $class_name ); ?>">
-		<div class="accent-text-block-component <?php echo esc_attr( $color ); ?>">
+		<div class="stylized-text-block-component <?php echo esc_attr( $color ); ?>">
 			<h2><?php echo esc_html( $section_title ); ?></h2>
-			<div class="accent-text-block-content">
+			<div class="stylized-text-block-content">
 				<?php
 				if ( have_rows( 'colored_rich_text_box_fields' ) ) :
 					?>

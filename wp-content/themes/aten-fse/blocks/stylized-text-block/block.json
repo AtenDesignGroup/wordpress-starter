@@ -1,15 +1,15 @@
 {
-  "name": "accent-text-block",
-  "title": "Accent Text Block",
+  "name": "stylized-text-block",
+  "title": "Stylized Text Block",
   "active": true,
-  "description": "A block to allow colored backgrounds for text fields",
+  "description": "A block to allow colorful backgrounds for text fields",
   "category": "common",
   "icon": "megaphone",
   "keywords": [
-    "accent",
-    "colored block",
+    "stylized",
+    "color",
     "background color",
-    "colored"
+    "colorful"
   ],
   "post_types": [
     "post",
@@ -24,7 +24,7 @@
   "align_content": "top",
   "acf": {
     "mode": "edit",
-    "renderTemplate": "accent-text-block.php"
+    "renderTemplate": "stylized-text-block.php"
   },
   "supports": {
     "anchor": false,
@@ -41,7 +41,7 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/accent_text_block.svg"
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/stylized_text_block.svg"
       }
     }
   }
