@@ -1,7 +1,7 @@
 @use '../../../libraries/partials/partials' as *;
 
-// All Services Block
-.all-services-block {
+// Jump Link Directory Block
+.jump-link-directory-block {
     ul {
         list-style-type: none;
         padding: 0;
@@ -15,8 +15,8 @@
 
     .arrow-icon,
     .jump-link-icon,
-    .service-icon,
-    .services-icon {
+    .jump-link-card-icon,
+    .jump-link-cards-icon {
         @include font-material-icons;
     }
 
@@ -30,7 +30,7 @@
         flex-wrap: wrap;
     }
 
-    ul.service-cards {
+    ul.jump-link-cards {
         display: flex;
         flex-direction: column;
 
@@ -40,7 +40,7 @@
             justify-content: flex-start;
         }
 
-        li.service-card {
+        li.jump-link-card {
             display: flex;
             align-items: center;
 
@@ -59,7 +59,7 @@
             }
         }
 
-        .service-details {
+        .jump-link-card-details {
             a {
                 text-decoration: none;
 
