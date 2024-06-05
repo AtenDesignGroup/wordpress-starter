@@ -1,1 +1,0 @@
-jQuery(document).ready(function(o){o(".location-block-title").each(function(){o(this).hover(function(){o(this).closest(".location-information").siblings(".location-image.custom-image").addClass("image-zoom")},function(){o(this).closest(".location-information").siblings(".location-image.custom-image").removeClass("image-zoom")})})});
