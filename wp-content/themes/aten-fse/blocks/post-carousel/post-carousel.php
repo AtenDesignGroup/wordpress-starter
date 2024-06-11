@@ -1,6 +1,6 @@
 <?php
 /**
- * Rotating Banner Block Template.
+ * Post Carousel Block Template.
  *
  * @package aten-fse
  *
@@ -24,7 +24,7 @@ else :
 	}
 
 	// Create class attribute allowing for custom "className" and "align" values.
-	$class_name = 'rotating-banner-block';
+	$class_name = 'post-carousel-block';
 	if ( ! empty( $block['className'] ) ) {
 		$class_name .= ' ' . $block['className'];
 	}
@@ -33,32 +33,32 @@ else :
 	}
 	?>
 
-	<div <?php echo esc_attr( $anchor ); ?>class="<?php echo esc_attr( $class_name ); ?> rotating-banner-component">
-		<div class="rotating-banner-wrapper">
-			<section id="rotating-banner" class="splide" role="group" aria-label="A rotating carousel of news and events" aria-roledescription="carousel">
+	<div <?php echo esc_attr( $anchor ); ?>class="<?php echo esc_attr( $class_name ); ?> post-carousel-component">
+		<div class="post-carousel-wrapper">
+			<section id="post-carousel" class="splide" role="group" aria-label="A rotating carousel of posts" aria-roledescription="carousel">
 				<div class="splide__track">
 					<ul class="splide__list">
 						<?php
 						// Check if the ACF repeater field has rows.
-						if ( have_rows( 'banner_slides' ) ) {
+						if ( have_rows( 'carousel_slides' ) ) {
 							// Loop through the rows of the repeater field.
-							while ( have_rows( 'banner_slides' ) ) {
+							while ( have_rows( 'carousel_slides' ) ) {
 								the_row();
 								// Get the image array using ACF's "sub_field" function.
 								$image       = get_sub_field( 'image' );
 								$slide_link  = get_sub_field( 'link' );
 								$description = get_sub_field( 'description' );
 								?>
-								<li class="splide__slide rotating-banner-slide">
-									<div class="rotating-banner-slide-content">
+								<li class="splide__slide post-carousel-slide">
+									<div class="post-carousel-slide-content">
 										<?php
 										if ( $image ) :
 											?>
-											<div class="rotating-slide-image">
+											<div class="carousel-slide-image">
 												<img src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>">
 											</div>
 										<?php endif; ?>
-										<div class="rotating-slide-description">
+										<div class="carousel-slide-description">
 											<?php
 											if ( $slide_link ) :
 												$link_url    = $slide_link['url'];
