@@ -1,0 +1,120 @@
+.ame-tabbed-panel {
+  display: flex;
+  flex-direction: row;
+}
+
+.ame-tp-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin: 0;
+  border-right: 1px solid #dcdcde;
+  background-color: #f7f7f7;
+}
+.ame-tp-tabs li {
+  margin: 0;
+}
+.ame-tp-tabs li.ui-state-active {
+  background-color: #fff;
+}
+.ame-tp-tabs li.ui-state-active a {
+  color: #333;
+  border-right-color: #fff;
+  font-weight: 600;
+  box-shadow: none;
+}
+.ame-tp-tabs a {
+  display: block;
+  padding: 8px 10px;
+  text-decoration: none;
+  border-bottom: 1px solid #dcdcde;
+  border-right: 1px solid transparent;
+  margin-right: -1px;
+  font-size: 14px;
+  box-shadow: none;
+}
+
+.ame-tp-content {
+  flex: 1;
+  padding: 0 12px 8px 12px;
+  background: white;
+}
+
+.ame-tp-section {
+  font-size: 13px;
+}
+.ame-tp-section .ame-tp-control-group-title {
+  font-weight: 600;
+  font-size: 1.0769230769em;
+  margin: 0 0 0.2857142857em 0;
+  width: 12.8571428571em;
+  min-width: 3.5714285714em;
+  flex-grow: 0;
+}
+.ame-tp-section .ame-tp-control-group {
+  margin-bottom: 0.6153846154em;
+  display: flex;
+  flex-wrap: wrap;
+}
+.ame-tp-section .ame-tp-control-group-children .wp-color-result {
+  margin-bottom: 0;
+}
+.ame-tp-section .ame-tp-control-group-children fieldset > p {
+  margin: 0 0 4px 0;
+}
+.ame-tp-section .ame-tp-section {
+  margin-bottom: 1.1538461538em;
+}
+.ame-tp-section .ame-tp-section-children .ame-tp-section-title {
+  font-size: 1.1538461538em;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: #ccc;
+  background: #f9f9f9;
+  padding-top: 3px;
+  padding-bottom: 4px;
+  /*margin-left: -$contentHorizontalPadding;
+  margin-right: -$contentHorizontalPadding;
+  padding-left: $contentHorizontalPadding;
+  padding-right: $contentHorizontalPadding;*/
+}
+
+.ame-tp-section .ame-tp-control-group-title {
+  padding-top: 4px;
+}
+.ame-tp-section .ame-tp-control-group {
+  margin-bottom: 1.0769230769em;
+}
+.ame-tp-section .ame-tp-control-group-children > label {
+  padding-top: 0.3846153846em;
+}
+
+.ame-tp-height-100.ame-tabbed-panel {
+  height: 100%;
+}
+.ame-tp-height-100 .ame-tp-content {
+  box-sizing: border-box;
+  height: 100%;
+  padding-right: 0;
+}
+.ame-tp-height-100 .ame-tp-content > .ui-tabs-panel {
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 12px;
+}
+.ame-tp-height-100 .ame-tp-tabs {
+  box-sizing: border-box;
+  height: 100%;
+  /*
+  Overflow must be visible or the "push the active tab over the border to hide the border"
+  trick won't work. Apparently, combining "overflow-x: visible" with "overflow-y: auto"
+  causes the browser to convert "visible" to "auto".
+
+  @see https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue/6433475#6433475
+   */
+  overflow-y: visible;
+  overflow-x: visible;
+}
+
+/*# sourceMappingURL=tabbed-panels.css.map */

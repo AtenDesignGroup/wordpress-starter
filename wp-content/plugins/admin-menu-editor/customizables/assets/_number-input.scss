@@ -1,0 +1,17 @@
+@use "sass:math";
+@import "../../css/forms";
+
+.ame-number-input-control {
+	@include ame-invalid-input-styles;
+}
+
+$smallInputWidth: 5.1em;
+.ame-small-number-input {
+	width: $smallInputWidth;
+}
+
+//Also make font size inputs smaller since the number will usually be only
+//2-3 digits. It still needs to be big enough to fit a "Default" placeholder (if present).
+.ame-font-size-input {
+	width: $smallInputWidth;
+}

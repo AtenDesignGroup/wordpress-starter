@@ -1,0 +1,180 @@
+$baseFontSize: 13;
+@function pxToEm($px, $baseSize: $baseFontSize) {
+	@return ($px / $baseSize) * 1em;
+}
+
+$contentHorizontalPadding: 12px;
+
+.ame-tabbed-panel {
+	display: flex;
+	flex-direction: row;
+}
+
+.ame-tp-tabs {
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+	margin: 0;
+
+	border-right: 1px solid #dcdcde;
+	background-color: #f7f7f7;
+
+	li {
+		margin: 0;
+
+		&:hover {
+
+		}
+
+		&.ui-state-active {
+			background-color: #fff;
+
+			a {
+				color: #333;
+				border-right-color: #fff;
+				font-weight: 600;
+				box-shadow: none;
+			}
+		}
+	}
+
+	a {
+		display: block;
+		padding: 8px 10px;
+		text-decoration: none;
+		border-bottom: 1px solid #dcdcde;
+
+		border-right: 1px solid transparent;
+		margin-right: -1px;
+
+		font-size: 14px;
+		box-shadow: none;
+	}
+}
+
+.ame-tp-content {
+	flex: 1;
+	padding: 0 $contentHorizontalPadding 8px $contentHorizontalPadding;
+	background: white;
+}
+
+.ame-tp-section {
+	font-size: $baseFontSize * 1px;
+
+	.ame-tp-control-group-title {
+		$titleFontSize: 14;
+
+		font-weight: 600;
+		font-size: pxToEm($titleFontSize);
+		margin: 0 0 pxToEm(4, $titleFontSize) 0;
+
+		width: pxToEm(180, $titleFontSize);
+		min-width: pxToEm(50, $titleFontSize);
+
+		flex-grow: 0;
+	}
+
+	.ame-tp-control-group {
+		margin-bottom: pxToEm(8);
+
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.ame-tp-control-group-children {
+		//Adjust the layout of some child controls that look weird outside a form table.
+		.wp-color-result {
+			margin-bottom: 0;
+		}
+
+		fieldset > p {
+			margin: 0 0 4px 0;
+		}
+	}
+
+	.ame-tp-section {
+		margin-bottom: pxToEm(15);
+	}
+
+	//Nested section titles.
+	.ame-tp-section-children {
+		.ame-tp-section-title {
+			font-size: pxToEm(15);
+
+			border-width: 1px 0;
+			border-style: solid;
+			border-color: #ccc;
+			background: #f9f9f9;
+
+			padding-top: 3px;
+			padding-bottom: 4px;
+
+			//Expand the title background to the left and right edges of the content area.
+			/*margin-left: -$contentHorizontalPadding;
+			margin-right: -$contentHorizontalPadding;
+			padding-left: $contentHorizontalPadding;
+			padding-right: $contentHorizontalPadding;*/
+		}
+	}
+}
+
+//For layout with left-aligned labels.
+.ame-tp-section {
+	.ame-tp-control-group-title {
+		padding-top: 4px;
+	}
+
+	.ame-tp-control-group {
+		margin-bottom: pxToEm(14);
+	}
+
+	.ame-tp-control-group-children {
+		//Move plain controls (like a checkbox in a label element) down
+		//to match the group title position.
+		> label {
+			padding-top: pxToEm(5);
+		}
+	}
+}
+
+//Alternative layout that takes up 100% of the available height and scrolls
+//the tab contents they're too tall.
+.ame-tp-height-100 {
+	&.ame-tabbed-panel {
+		height: 100%
+	}
+
+	.ame-tp-content {
+		box-sizing: border-box;
+		height: 100%;
+
+		//Move the padding to the individual tabs instead of the content area.
+		//A tab's scroll bar should be flush to the right edge, without any extra
+		//padding after it.
+		padding-right: 0;
+	}
+
+	.ame-tp-content > .ui-tabs-panel {
+		box-sizing: border-box;
+		height: 100%;
+		overflow-y: auto;
+
+		//Content padding was moved here from the content area.
+		padding-right: $contentHorizontalPadding;
+	}
+
+	.ame-tp-tabs {
+		box-sizing: border-box;
+		height: 100%;
+
+		/*
+		Overflow must be visible or the "push the active tab over the border to hide the border"
+		trick won't work. Apparently, combining "overflow-x: visible" with "overflow-y: auto"
+		causes the browser to convert "visible" to "auto".
+
+		@see https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue/6433475#6433475
+		 */
+		overflow-y: visible;
+		overflow-x: visible;
+	}
+}

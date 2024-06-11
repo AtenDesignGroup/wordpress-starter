@@ -554,7 +554,9 @@ button.gform_button {
       left: rem(4px);
       position: absolute;
       top: 0;
-      transition: left 0.25s, background-color 0.13s;
+      transition:
+        left 0.25s,
+        background-color 0.13s;
       width: rem(16px);
 
       @include bp-max(tablet) {

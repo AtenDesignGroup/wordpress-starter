@@ -1,0 +1,71 @@
+.ame-rg-has-nested-controls {
+	//When a radio group has nested controls, use a two-column grid layout.
+	//The first column contains the radio buttons and their labels, the second
+	//column contains the nested controls.
+
+	display: grid;
+	grid-template-columns: repeat(2, minmax(auto, max-content));
+	column-gap: (16/13) * 1em;
+	row-gap: (8/13) * 1em;
+	align-items: center;
+
+	.ame-rg-option-label {
+		grid-column: 1;
+	}
+
+	.ame-rg-nested-control {
+		grid-column: 2;
+	}
+
+	&.ame-rg-no-center-items {
+		align-items: normal;
+	}
+}
+
+//Options that include a color picker need a special case because the color picker
+//changes height when the user expands it. The radio buttons and their labels should
+//be aligned with the default height of the color picker, and not move when the picker
+//expands.
+.ame-rg-with-color-pickers {
+	align-items: normal;
+
+	//Hack: Add a vertical margin to the label so that it's aligned with the color picker.
+	.ame-rg-has-choice-child {
+		margin-top: (5/13) * 1em;
+	}
+
+	//Also, the color picker should reserve space for the expanded state so that
+	//the radio buttons and their labels don't move when the picker expands.
+	//The default color picker width is 255px. It's set in /wp-admin/js/color-picker.js.
+	//The border adds 2px to the width, so we'll use 257px.
+	.ame-rg-nested-control .wp-picker-container {
+		min-width: 257px;
+	}
+}
+
+//Layout adjustments for the customizer.
+.ame-ac-control {
+	.ame-radio-group-component > p {
+		margin-top: 8px;
+		margin-bottom: 8px;
+
+		&:first-of-type {
+			margin-top: 0;
+		}
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+
+	//Nested color pickers don't fit on the same row as the radio buttons because
+	//there just isn't enough space. So, we'll move them to the next row.
+	.ame-rg-with-color-pickers {
+		.ame-rg-nested-control {
+			grid-column: 1;
+			.wp-picker-container {
+				min-width: unset;
+			}
+		}
+	}
+}

@@ -1,0 +1,123 @@
+@use "sass:math";
+
+.ame-container-with-popup-slider {
+	overflow: visible; //Let the slider show up fully even if the container is too small.
+}
+
+.ame-popup-slider {
+	&, * {
+		box-sizing: border-box;
+	}
+
+	$handleSize: 16px;
+	$tipHeight: 8px;
+
+	//To make it easier to click the bar, the actual size of the clickable area
+	//is larger than the part that's colored in.
+	$barSize: $handleSize;
+	$barVisualSize: 4px;
+
+	$topSpacing: math.max(0, math.round(($barSize - $barVisualSize) / 2));
+	$sideSpacing: 0;
+	$barBorderRadius: 3px;
+
+	$outerPadding: 8px;
+	$sliderBorderColor: #ccd0d4;
+
+	position: absolute;
+
+	border: 1px solid $sliderBorderColor;
+	border-radius: 4px;
+	background: white;
+	padding: $outerPadding ($outerPadding + math.max($barVisualSize, $handleSize/2));
+	box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.20);
+
+	//Clickable area. The handle moves inside this area.
+	.ame-popup-slider-bar {
+		display: block;
+		height: $barSize;
+		position: relative;
+		overflow: visible;
+
+		cursor: pointer;
+	}
+
+	//Visual line inside the clickable area.
+	.ame-popup-slider-groove {
+		display: block;
+		height: 100%;
+		min-width: $handleSize;
+		//Note: This uses padding instead of margin to avoid margin collapsing.
+		//Setting the parent to "overflow: hidden" would also work, but we want
+		//the handle to stay completely visible even if it's bigger than the bar.
+		padding: $topSpacing $sideSpacing;
+
+		&:before {
+			display: block;
+			content: " ";
+			width: 100%;
+			height: 100%;
+			background-color: #ebebeb;
+			border-radius: $barBorderRadius;
+		}
+	}
+
+	.ame-popup-slider-handle {
+		cursor: pointer;
+		width: $handleSize;
+		height: $handleSize;
+
+		position: absolute;
+		top: ($barSize - $handleSize);
+		margin-left: -($handleSize / 2);
+
+		border-radius: 50%;
+
+		background-color: #fff;
+		border: 2px solid #3582c4;
+
+		//box-shadow: 0 1px 3px rgba(0, 0, 0, 0.20);
+	}
+
+	//Note: Consider using SVG instead. This is too much work for a simple triangle with a border.
+	$tipSide: math.ceil(math.sqrt(2) * $tipHeight);
+	.ame-popup-slider-tip {
+		display: block;
+
+		width: $tipSide * 2;
+		height: $tipSide;
+
+		padding-right: $tipSide;
+		padding-left: 1px;
+		padding-bottom: 0;
+
+		position: absolute;
+		top: -1 * math.ceil($tipSide);
+		overflow: hidden;
+
+		pointer-events: none;
+
+		&:after {
+			display: block;
+			content: " ";
+			width: $tipSide;
+			height: $tipSide;
+			background-color: white;
+
+			box-shadow: 0 0 0 0.9px $sliderBorderColor;
+
+			transform-origin: left bottom;
+			transform: rotate(45deg);
+		}
+	}
+
+	.ame-popup-slider-top-tip {
+		top: -1 * math.ceil($tipSide);
+	}
+
+	.ame-popup-slider-bottom-tip {
+		top: 100%;
+		//Flip it vertically.
+		transform: scaleY(-1);
+	}
+}

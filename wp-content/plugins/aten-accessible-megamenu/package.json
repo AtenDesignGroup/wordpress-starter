@@ -16,6 +16,7 @@
 		"start": "wp-scripts start --webpack-copy-php"
 	},
 	"devDependencies": {
+		"@wordpress/eslint-plugin": "^17.10.0",
 		"@wordpress/scripts": "^26.12.0"
 	}
 }

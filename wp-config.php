@@ -17,46 +17,39 @@
  *
  * @package WordPress
  */
-
-// ** Database settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-define( 'DB_NAME', 'wordpress' );
-
-/** Database username */
-define( 'DB_USER', 'wordpress' );
-
-/** Database password */
-define( 'DB_PASSWORD', 'wordpress' );
-
-/** Database hostname */
-define( 'DB_HOST', 'database' );
-
-/** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8mb4' );
-
-/** The database collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', '' );
-
-/**#@+
- * Authentication unique keys and salts.
+/**
+ * Local configuration information.
  *
- * Change these to different unique phrases! You can generate these using
- * the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}.
- *
- * You can change these at any point in time to invalidate all existing cookies.
- * This will force all users to have to log in again.
- *
- * @since 2.6.0
+ * If you are working in a local/desktop development environment and want to
+ * keep your config separate, we recommend using a 'wp-config-local.php' file,
+ * which you should also make sure you .gitignore.
  */
-define( 'AUTH_KEY',         'QC;}vgFRl@3,idO^oc[,fII2)&kC5q,CBw2UeJAT7U>([2r1FzkK:DcB]9rpNzip' );
-define( 'SECURE_AUTH_KEY',  '4r&npPGZkV}o`ve$k5eJHiT8m7$+6a0V>odXz9<Wg%}H8#pFC?aem}y;`%W$Bx5U' );
-define( 'LOGGED_IN_KEY',    'IUn(>}h_r$3ZL::;B+*2(f3S&q@jj2PF8(uU|8;CT!DE2h|WTGF0he5g`m:<?IKh' );
-define( 'NONCE_KEY',        'YdPkV2c&o$<5K(odvrx0dX:()`8ZKNk$~;&q+TV:@1?mu(?V^^0G?2@q*C-exl:a' );
-define( 'AUTH_SALT',        'f3G;.Ejq dm1D+.X Sapc~vQDz5|E[-Enj(m^TT-tXp07uQcES47h1+*s;#dn!dI' );
-define( 'SECURE_AUTH_SALT', 'Fg>-h[dP>OJPv&!l9Aw^W/wBK<2:[lc`+lBDEAa@[)|Y9+,4NAG_InC/oI6,=>i(' );
-define( 'LOGGED_IN_SALT',   'Cug}U(4fgl[$21UieL)Q6}fPIV$;!Dii8sL,cN9G }#V)};?9m:>K@/ QQ:cZBR2' );
-define( 'NONCE_SALT',       '^cc3;?{<XM4-fakh)_n#(I_LwwMZG&T|J5UTIxkC;p~t-!=3 xmtLPTk]46f]~gt' );
+if (file_exists(dirname(__FILE__) . '/wp-config-local.php')){
+	# IMPORTANT: ensure your local config does not include wp-settings.php
+	require_once(dirname(__FILE__) . '/wp-config-local.php');
 
+/**
+ * This block will be executed if you are NOT running on Pantheon and have NO
+ * wp-config-local.php. Insert alternate config here if necessary.
+ *
+ * If you are only running on Pantheon, you can ignore this block.
+ */
+} else {
+	define('DB_NAME',          'database_name');
+	define('DB_USER',          'database_username');
+	define('DB_PASSWORD',      'database_password');
+	define('DB_HOST',          'database_host');
+	define('DB_CHARSET',       'utf8');
+	define('DB_COLLATE',       '');
+	define('AUTH_KEY',         'put your unique phrase here');
+	define('SECURE_AUTH_KEY',  'put your unique phrase here');
+	define('LOGGED_IN_KEY',    'put your unique phrase here');
+	define('NONCE_KEY',        'put your unique phrase here');
+	define('AUTH_SALT',        'put your unique phrase here');
+	define('SECURE_AUTH_SALT', 'put your unique phrase here');
+	define('LOGGED_IN_SALT',   'put your unique phrase here');
+	define('NONCE_SALT',       'put your unique phrase here');
+}
 /**#@-*/
 
 /**
@@ -74,12 +67,12 @@ $table_prefix = 'wp_';
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
  *
- * For information on other constants that can be used for debugging,
- * visit the documentation.
- *
- * @link https://wordpress.org/documentation/article/debugging-in-wordpress/
+ * You may want to examine $_ENV['PANTHEON_ENVIRONMENT'] to set this to be
+ * "true" in dev, but false in test and live.
  */
-define( 'WP_DEBUG', false );
+if ( ! defined( 'WP_DEBUG' ) ) {
+	define('WP_DEBUG', false);
+}
 
 /* Add any custom values between this line and the "stop editing" line. */
 
