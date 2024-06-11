@@ -1,0 +1,23 @@
+{
+    "name": "acf/callout-text-box",
+    "title": "Callout Text Box",
+    "description": "A stylized block to call out information/text with an optional button link.",
+    "category": "common",
+    "icon": "format-aside",
+    "keywords": ["cta", "link", "blurb", "call", "action", "callout", "text"],
+    "supports": {
+    },
+    "acf": {
+      "mode": "edit",
+      "renderTemplate": "callout-text-box.php"
+    },
+    "align": "full",
+    "example": {
+      "attributes": {
+        "mode": "preview",
+        "data": {
+          "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/callout_text_box.svg"
+        }
+      }
+    }
+  }

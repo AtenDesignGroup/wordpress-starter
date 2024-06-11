@@ -8,7 +8,13 @@ services:
     xdebug: debug
     config:
       php: .vscode/php.ini
+    build_as_root:
+      - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+      - chmod +x wp-cli.phar
+      - mv wp-cli.phar /usr/local/bin/wp
 tooling:
+  wp:
+    service: 'appserver'
   xdebug-on:
     service: appserver
     description: Enable xdebug for Apache.
