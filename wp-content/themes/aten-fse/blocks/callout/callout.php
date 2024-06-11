@@ -1,6 +1,6 @@
 <?php
 /**
- * Callout Link Block Template.
+ * Callout Block Template.
  *
  * @package aten-fse
  *
@@ -33,45 +33,98 @@ else :
 	}
 
 	// Load values and assign defaults.
-	$custom_title         = get_field( 'title' );
-	$custom_image         = get_field( 'image' );
-	$teaser               = get_field( 'teaser' );
-	$referenced_post_link = get_field( 'referenced_post_link' );
+	$callout_style      = ( get_field( 'callout_style' ) ) ? get_field( 'callout_style' ) : 'vertical';
+	$callout_title      = get_field( 'callout_title' );
+	$callout_image      = ( get_field( 'callout_image' ) ) ? get_field( 'callout_image' ) : '';
+	$description        = ( get_field( 'callout_description' ) ) ? get_field( 'callout_description' ) : '';
+	$callout_link       = ( get_field( 'callout_link' ) ) ? get_field( 'callout_link' ) : '';
+	$link_the_title     = ( get_field( 'callout_link_options_link_the_callout_title' ) ) ? get_field( 'callout_link_options_link_the_callout_title' ) : false;
+	$display_the_button = ( get_field( 'callout_link_options_display_button' ) ) ? get_field( 'callout_link_options_display_button' ) : false;
+	$button_text        = '';
+	$callout_color      = '';
+	$callout_size       = '';
 
-	if ( $referenced_post_link ) {
-		$permalink          = get_permalink( $referenced_post_link );
-		$has_featured_image = has_post_thumbnail( $referenced_post_link );
+	// Setting up button link.
+	if ( $display_the_button ) {
+		$button_text = get_field( 'callout_link_options_button_text' );
 	}
-
-	$callout_title = ! empty( $custom_title ) ? $custom_title : get_the_title( $referenced_post_link );
-	$image_id      = ! empty( $custom_image ) ? $custom_image : ( $has_featured_image ? get_post_thumbnail_id( $referenced_post_link ) : '' );
-
 	?>
 
-	<div <?php echo esc_attr( $anchor ); ?> class="l-gutter callout-link-component 
-					<?php
-					if ( ! $image_id ) {
-						echo 'callout-without-image ';
-					} echo esc_attr( $class_name );
-					?>
-	">
-		<div class="callout-link-text">
-			<?php if ( $referenced_post_link ) : ?>
-				<a href="<?php echo esc_url( $permalink ); ?>">
-					<h2><?php echo esc_html( $callout_title ); ?></h2>
-				</a>
+	<?php if ( 'horizontal' === $callout_style ) : ?>
+		<div <?php echo esc_attr( $anchor ); ?> class="l-gutter callout-link-component 
+			<?php
+			if ( ! $callout_image ) {
+				echo 'callout-without-image ';
+			} echo esc_attr( $class_name );
+			?>
+		">
+			<div class="callout-link-text">
+				<?php if ( $link_the_title ) : ?>
+					<a href="<?php echo esc_url( $callout_link['url'] ); ?>" target="<?php echo esc_html( $callout_link['target'] ); ?>">
+				<?php endif; ?>
+						<h2><?php echo esc_html( $callout_title ); ?></h2>
+				<?php if ( $link_the_title ) : ?>
+					</a>
+				<?php endif; ?>
 				<?php
-				if ( $teaser ) {
+				if ( $description ) :
 					?>
-					<div class="callout-teaser"><?php echo esc_html( $teaser ); ?></div><?php } ?>
-			<?php endif; ?>
-		</div>
-
-		<?php if ( $image_id ) : ?>
-			<div class="callout-link-image">
-				<?php echo wp_get_attachment_image( $image_id, 'callout-link' ); ?>
+					<div class="callout-description"><?php echo esc_html( strip_tags( $description, '<p><a><strong><b><i><em>' ) ); ?></div>
+					<?php
+				endif;
+				?>
+				<?php
+				if ( $display_the_button ) :
+					?>
+					<div class="callout-block-link">
+						<a class="button" href="<?php echo esc_url( $callout_link['url'] ); ?>" target="<?php echo esc_attr( $callout_link['target'] ); ?>"><?php echo esc_html( $button_text ); ?></a>
+					</div>
+				<?php endif; ?>
 			</div>
-		<?php endif; ?>
-		
-	</div>
+
+			<?php if ( $callout_image ) : ?>
+				<div class="callout-link-image">
+					<?php echo wp_get_attachment_image( $callout_image, 'callout-link' ); ?>
+				</div>
+			<?php endif; ?>
+			
+		</div>
+	<?php else : ?>
+		<?php
+		$callout_color = ( get_field( 'callout_display_options_color_options' ) ) ? get_field( 'callout_display_options_color_options' ) : 'navy';
+		$callout_size  = ( get_field( 'callout_display_options_size_options' ) ) ? get_field( 'callout_display_options_size_options' ) : 'medium';
+		?>
+		<div <?php echo esc_attr( $anchor ); ?> class="<?php echo esc_attr( $class_name ); ?> <?php echo esc_attr( $callout_size ); ?>-callout-block">
+			<div class="callout-block-component <?php echo esc_attr( $callout_color ); ?> <?php echo esc_attr( $callout_size ); ?>">
+				<?php if ( $callout_image ) : ?>
+					<div class="callout-block-image">
+						<?php echo wp_get_attachment_image( $callout_image, 'callout-link' ); ?>
+					</div>
+				<?php endif; ?>
+				<div class="callout-block-title">
+					<?php if ( $link_the_title ) : ?>
+						<a href="<?php echo esc_url( $callout_link['url'] ); ?>" target="<?php echo esc_html( $callout_link['target'] ); ?>">
+					<?php endif; ?>
+							<h2><?php echo esc_html( $callout_title ); ?></h2>
+					<?php if ( $link_the_title ) : ?>
+						</a>
+					<?php endif; ?>
+				</div>
+				<?php
+				if ( $description ) :
+					?>
+					<div class="callout-block-body"><?php echo esc_html( strip_tags( $description, '<p><a><strong><b><i><em>' ) ); ?></div>
+					<?php
+				endif;
+				?>
+				<?php
+				if ( $display_the_button ) :
+					?>
+					<div class="callout-block-link">
+						<a class="button" href="<?php echo esc_url( $callout_link['url'] ); ?>" target="<?php echo esc_attr( $callout_link['target'] ); ?>"><?php echo esc_html( $button_text ); ?></a>
+					</div>
+				<?php endif; ?>
+			</div>
+		</div>
+	<?php endif; ?>
 <?php endif; ?>
