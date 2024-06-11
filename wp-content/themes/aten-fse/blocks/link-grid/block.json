@@ -1,5 +1,5 @@
 {
-  "name": "featured-link-cards",
+  "name": "link-grid",
   "title": "Featured Link Cards",
   "active": true,
   "description": "Custom block to display featured links as cards in a grid layout.",
@@ -21,7 +21,7 @@
   "align_content": "top",
   "acf": {
     "mode": "edit",
-    "renderTemplate": "featured-link-cards.php"
+    "renderTemplate": "link-grid.php"
   },
   "supports": {
     "anchor": false,
@@ -38,7 +38,7 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/featured_link_cards.svg"
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/link_grid.svg"
       }
     }
   }
