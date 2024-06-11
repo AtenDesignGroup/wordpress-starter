@@ -8,7 +8,7 @@
             "name": "displayed_posts",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "If fewer than 3 posts are selected, the remaining amount (up to 3 total) will be automatically populated by the most recently published posts.",
+            "instructions": "If fewer than the set amount of posts are selected, the remaining amount will be automatically populated by the most recently published posts.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
