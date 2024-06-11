@@ -1,6 +1,7 @@
 @use '../../../libraries/partials/partials' as *;
 
-// Callout Link styles
+/* Callout styles */
+// Horizontal Style
 .callout-link-component {
     width: 100%;
     display: flex;
@@ -42,4 +43,106 @@
         }
         }
     }
+}
+
+
+// Vertical Style
+.callout-block {
+  h2 {
+    font-weight: var(--aten-fw-bold);
+    color: var(--black);
+    font-size: var(--font-size-18);
+  }
+
+  p {
+    @include type-scale(body, 18);
+    color: var(--black);
+    margin: rem(4px) 0 0;
+  }
+
+  a.button {
+    @include btn(var(--black));
+    margin-top: rem(16px);
+  }
+
+  .cloud {
+    background-color: var(--aten-blue-light);
+  }
+
+  .gold {
+    background-color: var(--aten-yellow-light);
+  }
+
+  .navy {
+    background-color: var(--aten-blue-dark);
+
+    p,
+    h2 {
+      color: var(--white);
+    }
+  }
+
+  .large {
+    padding: rem(24px);
+    border-radius: var(--default-border-radius);
+
+    @include bp-min(tablet) {
+      padding: rem(40px) rem(40px) rem(20px);
+      border-radius: rem(4px) rem(4px) 0 0;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: bottom center;
+    }
+
+    @include bp-min(sm-desktop) {
+      padding: rem(60px) rem(60px) rem(32px);
+    }
+
+    a.button {
+      @include btn-large(var(--white));
+
+      @include bp-min(tablet) {
+        margin-top: rem(20px);
+      }
+    }
+
+    p {
+      @include bp-min(tablet) {
+        margin-top: rem(20px);
+        font-size: var(--font-size-h3);
+      }
+    }
+
+    h2 {
+      @include bp-min(tablet) {
+        font-size: var(--font-size-h2);
+      }
+    }
+  }
+
+  .small {
+    padding: rem(24px);
+    border-radius: var(--default-border-radius);
+
+    @include bp-min(tablet) {
+      padding: rem(32px);
+
+      h2 {
+        font-size: var(--font-size-h4);
+      }
+    }
+
+    @include bp-min(lg-desktop) {
+      max-width: 75%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    a.button {
+      @include btn(var(--black));
+      padding-left: 0px !important;
+      border: 0;
+      background-color: transparent;
+    }
+  }
 }
