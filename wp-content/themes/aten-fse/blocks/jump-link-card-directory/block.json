@@ -1,5 +1,5 @@
 {
-  "name": "jump-link-directory-block",
+  "name": "jump-link-card-directory",
   "title": "Jump Link Card Directory",
   "active": true,
   "description": "A block to display sections of card links with dynamically-generated jump links for each section.",
@@ -19,7 +19,7 @@
   "mode": "edit",
   "acf": {
     "mode": "edit",
-    "renderTemplate": "jump-link-directory-block.php"
+    "renderTemplate": "jump-link-card-directory.php"
   },
   "enqueue_style": "",
   "enqueue_script": "",
@@ -39,7 +39,7 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/jump-link-directory-block.svg"
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/jump_link_card_directory.svg"
       }
     }
   }

@@ -164,7 +164,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/jump-link-directory-block"
+                "value": "acf\/jump-link-card-directory"
             }
         ]
     ],

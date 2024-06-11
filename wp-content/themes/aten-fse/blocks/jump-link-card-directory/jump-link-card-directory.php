@@ -24,7 +24,7 @@ else :
 	}
 
 	// Create class attribute allowing for custom "className" and "align" values.
-	$class_name = 'jump-link-directory-block includes-jump-links';
+	$class_name = 'jump-link-card-directory includes-jump-links';
 	if ( ! empty( $block['className'] ) ) {
 		$class_name .= ' ' . $block['className'];
 	}
@@ -39,7 +39,7 @@ else :
 	if ( have_rows( 'card_sections' ) ) : ?>
 
 		<div <?php echo esc_attr( $anchor ); ?> class="<?php echo esc_attr( $class_name ); ?> l-gutter">
-			<a id="jump-link-directory-block-top-link"></a>
+			<a id="jump-link-card-directory-top-link"></a>
 			<h2>All Cards</h2>
 			<h3><span class="jump-link-cards-icon jump-link-icon notranslate" aria-hidden="true">arrow_circle_down</span>Jump to a section of cards:</h3>
 			<div class="cards-jump-link-wrapper"></div>
@@ -56,7 +56,7 @@ else :
 						?>
 					<li class="cards-section">
 						<h4 class="jump-link-card-section-heading"><?php echo esc_html( $section_title ); ?></h4>
-						<a href="#jump-link-directory-block-top-link" class="a11y-visible skip-link">Scroll back to Card List</a>
+						<a href="#jump-link-card-directory-top-link" class="a11y-visible skip-link">Scroll back to Card List</a>
 
 						<?php if ( have_rows( 'cards' ) ) : ?>
 							<ul class="jump-link-cards">
@@ -111,7 +111,7 @@ else :
 
 			</ul>
 
-			<a class="back-to-top-btn" href="#jump-link-directory-block-top-link">
+			<a class="back-to-top-btn" href="#jump-link-card-directory-top-link">
 				<span class="arrow-icon notranslate" aria-hidden="true">arrow_upward</span> Back to Top
 			</a>
 		</div>
