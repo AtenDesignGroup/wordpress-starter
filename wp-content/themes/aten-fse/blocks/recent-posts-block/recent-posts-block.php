@@ -1,6 +1,6 @@
 <?php
 /**
- * News Release Block Template.
+ * Recent Posts Block Template.
  *
  * @package aten-fse
  *
@@ -24,7 +24,7 @@ else :
 	}
 
 	// Create class attribute allowing for custom "className" and "align" values.
-	$class_name = 'news-release-block';
+	$class_name = 'recent-posts-block';
 	if ( ! empty( $block['className'] ) ) {
 		$class_name .= ' ' . $block['className'];
 	}
@@ -33,42 +33,39 @@ else :
 	}
 
 	// Load values and assign defaults.
-	$news_releases   = get_field( 'news_releases' );
-	$num_releases    = ( $news_releases ) ? count( $news_releases ) : 0;
-	$remaining_posts = 3 - $num_releases;
-	$included_posts  = array(); // Empty array to track the IDs of already included posts.
+	$displayed_posts  = get_field( 'displayed_posts' );
+	$post_count_limit = ( get_field( 'post_count_limit' ) ) ? get_field( 'post_count_limit' ) : 3;
+	$num_releases     = ( $displayed_posts ) ? count( $displayed_posts ) : 0;
+	$remaining_posts  = $post_count_limit - $num_releases;
+	$included_posts   = array(); // Empty array to track the IDs of already included posts.
 	?>
 
 	<div <?php echo esc_attr( $anchor ); ?> class="<?php echo esc_attr( $class_name ); ?>">
-		<div class="news-release-block-component">
-			<hr class="gold" />
-			<div class="news-release-block-title">
+		<div class="recent-posts-block-component">
+			<hr />
+			<div class="recent-posts-block-title">
 				<h2>News Releases</h2>
 			</div>
-			<ul class="news-release-list">
+			<ul class="recent-posts-list">
 			<?php
-			if ( $news_releases ) :
-				// Output the news releases from the repeater field.
-				while ( have_rows( 'news_releases' ) ) :
+			if ( $displayed_posts ) :
+				// Output the recent posts from the repeater field.
+				while ( have_rows( 'displayed_posts' ) ) :
 					the_row();
-					$post_object = get_sub_field( 'news_release' ); // Assuming the subfield name is 'news_release'.
+					$post_object = get_sub_field( 'displayed_post' ); // Assuming the subfield name is 'displayed_post'.
 					if ( $post_object ) {
 						$included_posts[]    = $post_object->ID; // Add post ID to the included posts array.
 						$included_post_title = get_the_title( $post_object->ID );
-						$publication_date    = get_field( 'publication_date', $post_object->ID ); // Assuming the custom publication date field name is 'publication_date'.
 
-						echo '<li class="news-item">';
-						if ( $publication_date ) {
-							echo '<p>' . esc_html( $publication_date ) . '</p>';
-						}
+						echo '<li class="displayed-post-item">';
 						echo '<a href="' . esc_url( get_permalink( $post_object->ID ) ) . '"><h3>' . esc_html( $included_post_title ) . '</h3></a>';
 						echo '</li>';
 					}
 				endwhile;
 			endif;
 
-				// Query the remaining news releases.
-				$recent_releases = new WP_Query(
+				// Query the remaining recent posts.
+				$recent_posts = new WP_Query(
 					array(
 						'post_type'      => 'news',
 						'posts_per_page' => $remaining_posts,
@@ -79,16 +76,12 @@ else :
 					)
 				);
 
-				// Output the remaining news releases from the recent releases query.
-			while ( $recent_releases->have_posts() ) {
-				$recent_releases->the_post();
+				// Output the remaining posts from the recent posts query.
+			while ( $recent_posts->have_posts() ) {
+				$recent_posts->the_post();
 				$included_post_title = get_the_title();
-				$publication_date    = get_field( 'publication_date', get_the_ID() ); // the custom publication date field name is 'publication_date'.
 
-				echo '<li class="news-item">';
-				if ( $publication_date ) {
-					echo '<p>' . esc_html( $publication_date ) . '</p>';
-				}
+				echo '<li class="displayed-post-item">';
 				echo '<a href="' . esc_url( get_permalink() ) . '"><h3>' . esc_html( $included_post_title ) . '</h3></a>';
 				echo '</li>';
 			}

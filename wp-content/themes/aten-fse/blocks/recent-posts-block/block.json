@@ -1,26 +1,25 @@
 {
-  "name": "news-release-block",
-  "title": "Recent News",
+  "name": "recent-posts-block",
+  "title": "Recent Posts",
   "active": true,
-  "description": "Custom Block to display News Releases limit to 3 News items",
+  "description": "Custom Block to display a set number of recent posts of any post type.",
   "category": "common",
   "icon": "welcome-widgets-menus",
   "keywords": [
-    "News Releases",
-    "News",
-    "News Release Block"
+    "Post",
+    "Recent",
+    "List",
+    "News"
   ],
   "post_types": [
     "page",
-    "post",
-    "tribe_event",
-    "location"
+    "post"
   ],
   "align_content": "top",
   "mode": "edit",
   "acf": {
     "mode": "edit",
-    "renderTemplate": "news-release-block.php"
+    "renderTemplate": "recent-posts-block.php"
   },
   "supports": {
     "anchor": false,
@@ -37,7 +36,7 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/news_release_block.svg"
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/recent_posts_block.svg"
       }
     }
   }

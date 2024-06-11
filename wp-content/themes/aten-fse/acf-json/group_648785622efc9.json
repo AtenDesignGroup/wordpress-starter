@@ -1,14 +1,14 @@
 {
     "key": "group_648785622efc9",
-    "title": "News Release Block",
+    "title": "Recent Posts Block",
     "fields": [
         {
             "key": "field_648785699a4ad",
-            "label": "News Releases",
-            "name": "news_releases",
+            "label": "Displayed Posts",
+            "name": "displayed_posts",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "If fewer than 3 news posts are selected, the remaining amount (up to 3 total) will be automatically populated by the most recently published news posts.",
+            "instructions": "If fewer than 3 posts are selected, the remaining amount (up to 3 total) will be automatically populated by the most recently published posts.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -23,13 +23,13 @@
             "min": 0,
             "max": 3,
             "collapsed": "",
-            "button_label": "Add News Release",
+            "button_label": "Add Displayed Post",
             "rows_per_page": 20,
             "sub_fields": [
                 {
                     "key": "field_6487859f9a4ae",
-                    "label": "News Release",
-                    "name": "news_release",
+                    "label": "Displayed Post",
+                    "name": "displayed_post",
                     "aria-label": "",
                     "type": "post_object",
                     "instructions": "",
@@ -66,7 +66,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/news-release-block"
+                "value": "acf\/recent-posts-block"
             }
         ]
     ],
