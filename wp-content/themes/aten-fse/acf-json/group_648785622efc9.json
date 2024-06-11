@@ -24,6 +24,40 @@
             "append": ""
         },
         {
+            "key": "field_666882527edd4",
+            "label": "Post Type to Display",
+            "name": "post_type_to_display",
+            "aria-label": "",
+            "type": "acfe_post_types",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "post_type": [
+                "post",
+                "page"
+            ],
+            "field_type": "select",
+            "default_value": [],
+            "return_format": "name",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 1,
+            "ajax": 0,
+            "search_placeholder": "",
+            "allow_custom": 0,
+            "choices": [],
+            "placeholder": "",
+            "layout": "",
+            "toggle": 0,
+            "other_choice": 0
+        },
+        {
             "key": "field_66687e9ed2f8a",
             "label": "Number of Displayed Posts",
             "name": "number_of_displayed_posts",
@@ -221,5 +255,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1718124687
+    "modified": 1718127647
 }
