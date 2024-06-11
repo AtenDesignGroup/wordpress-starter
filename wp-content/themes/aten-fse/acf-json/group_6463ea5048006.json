@@ -1,11 +1,11 @@
 {
     "key": "group_6463ea5048006",
-    "title": "Rotating Banner",
+    "title": "Post Carousel",
     "fields": [
         {
             "key": "field_6463ea5895c0e",
-            "label": "Banner Slides",
-            "name": "banner_slides",
+            "label": "Carousel Slides",
+            "name": "carousel_slides",
             "aria-label": "",
             "type": "repeater",
             "instructions": "",
@@ -23,7 +23,7 @@
             "min": 0,
             "max": 6,
             "collapsed": "",
-            "button_label": "Add Slide to Banner",
+            "button_label": "Add Slide to Carousel",
             "rows_per_page": 20,
             "sub_fields": [
                 {

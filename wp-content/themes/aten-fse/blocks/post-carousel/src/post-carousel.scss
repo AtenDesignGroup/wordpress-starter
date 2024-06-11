@@ -1,7 +1,7 @@
 @use '../../../libraries/partials/partials' as *;
 
 // Rotating Banner 
-.rotating-banner-block {
+.post-carousel-block {
   background-color: var(--aten-blue-light);
 
   @include bp-max(tablet) {
@@ -20,12 +20,12 @@
       transform: none;
     }
 
-    .rotating-banner-slide-content {
+    .post-carousel-slide-content {
       @include l-gutter;
     }
   }
 
-  #rotating-banner {
+  #post-carousel {
     @include bp-min(tablet) {
       width: calc(100% - rem(180px));
       margin: 0 auto;
@@ -44,7 +44,7 @@
     opacity: 1;
 
     @include bp-min(tablet) {
-      // Half of the vertical offset of #rotating-banner
+      // Half of the vertical offset of #post-carousel
       top: calc(50% - rem(10px));
 
       &.splide__arrow--prev {
@@ -57,7 +57,7 @@
     }
 
     @include bp-min(desktop) {
-      // Half of the vertical offset of #rotating-banner
+      // Half of the vertical offset of #post-carousel
       top: calc(50% - rem(34px));
     }
 
@@ -67,7 +67,7 @@
     }
   }
 
-  .rotating-banner-slide-content {
+  .post-carousel-slide-content {
     background-color: var(--white);
     border-radius: var(--default-border-radius);
     box-shadow: var(--default-box-shadow);
@@ -80,7 +80,7 @@
       margin: 0 auto;
     }
 
-    .rotating-slide-image {
+    .carousel-slide-image {
       width: 100%;
       min-height: rem(220px);
       display: flex;
@@ -109,7 +109,7 @@
       }
     }
 
-    .rotating-slide-description {
+    .carousel-slide-description {
       display: flex;
       flex-direction: column;
       justify-content: center;

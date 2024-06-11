@@ -1,8 +1,8 @@
 {
-  "name": "rotating-banner",
-  "title": "Rotating Banner",
+  "name": "post-carousel",
+  "title": "Post Carousel",
   "active": true,
-  "description": "Build a rotating banner block to display important pages within the site",
+  "description": "Displays important content within the site in an interactive rotating carousel.",
   "category": "common",
   "icon": "slides",
   "keywords": [
@@ -10,7 +10,8 @@
     "banner",
     "carousel",
     "slides",
-    "slideshow"
+    "slideshow",
+    "slider"
   ],
   "post_types": [
     "post",
@@ -22,7 +23,7 @@
   "align_content": "top",
   "acf": {
     "mode": "edit",
-    "renderTemplate": "rotating-banner.php"
+    "renderTemplate": "post-carousel.php"
   },
   "supports": {
     "anchor": false,
@@ -39,7 +40,7 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/rotating_banner_block.svg"
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/post_carousel.svg"
       }
     }
   }
