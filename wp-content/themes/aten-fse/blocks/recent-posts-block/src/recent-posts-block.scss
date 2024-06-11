@@ -1,7 +1,7 @@
 @use '../../../libraries/partials/partials' as *;
 
-// News Release block styles
-.news-release-block {
+// Recent Posts block styles
+.recent-posts-block {
   h2 {
     @include type-scale(heading, h2);
     font-weight: var(--aten-fw-bold);
