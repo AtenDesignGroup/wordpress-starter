@@ -3,26 +3,70 @@
     "title": "Recent Posts Block",
     "fields": [
         {
-            "key": "field_648785699a4ad",
-            "label": "Displayed Posts",
-            "name": "displayed_posts",
+            "key": "field_66687ee8d2f8b",
+            "label": "Block Heading",
+            "name": "block_heading",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "If fewer than the set amount of posts are selected, the remaining amount will be automatically populated by the most recently published posts.",
-            "required": 0,
+            "type": "text",
+            "instructions": "Enter the title to be displayed as an H2 above the block of recent posts.",
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "acfe_save_meta": 0,
+            "relevanssi_exclude": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_66687e9ed2f8a",
+            "label": "Number of Displayed Posts",
+            "name": "number_of_displayed_posts",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": 3,
+            "min": 1,
+            "max": "",
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_648785699a4ad",
+            "label": "Displayed Posts",
+            "name": "displayed_posts",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "If fewer than the set amount of posts are selected, the remaining amount will be automatically populated by the most recently published posts.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
             "acfe_repeater_stylised_button": 0,
             "layout": "row",
             "pagination": 0,
-            "min": 0,
-            "max": 3,
-            "collapsed": "",
+            "min": 1,
+            "max": 0,
+            "collapsed": "field_6487859f9a4ae",
             "button_label": "Add Displayed Post",
             "rows_per_page": 20,
             "sub_fields": [
@@ -40,10 +84,8 @@
                         "class": "",
                         "id": ""
                     },
-                    "acfe_save_meta": 0,
-                    "post_type": [
-                        "news"
-                    ],
+                    "relevanssi_exclude": 0,
+                    "post_type": "",
                     "post_status": "",
                     "taxonomy": "",
                     "return_format": "object",
@@ -54,11 +96,104 @@
                         "acfe_bidirectional_enabled": "0"
                     },
                     "allow_null": 0,
+                    "bidirectional": 0,
                     "ui": 1,
+                    "bidirectional_target": [],
                     "save_post_type": "",
                     "parent_repeater": "field_648785699a4ad"
                 }
             ]
+        },
+        {
+            "key": "field_66687f0ad2f8c",
+            "label": "Display \"View All\" Button",
+            "name": "display_view_all_button",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_66687f40d2f8e",
+            "label": "\"View All\" Button",
+            "name": "view_all_button",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_66687f0ad2f8c",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "layout": "table",
+            "acfe_seamless_style": 0,
+            "acfe_group_modal": 0,
+            "sub_fields": [
+                {
+                    "key": "field_66688003d2f8f",
+                    "label": "Button Text",
+                    "name": "button_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 0,
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_6668806b154a0",
+                    "label": "Button Link",
+                    "name": "button_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 0,
+                    "return_format": "array"
+                }
+            ],
+            "acfe_group_modal_close": 0,
+            "acfe_group_modal_button": "",
+            "acfe_group_modal_size": "large"
         }
     ],
     "location": [
@@ -86,5 +221,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1686925609
+    "modified": 1718124687
 }
