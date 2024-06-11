@@ -1,7 +1,7 @@
 @use '../../../libraries/partials/partials' as *;
 
 // Featured Link Cards styles
-.featured-link-cards-block {
+.link-grid-block {
   text-align: center;
 
   > img {
@@ -23,7 +23,7 @@
     @include type-scale(heading, h3);
   }
 
-  ul.featured-link-cards-wrapper {
+  ul.link-grid-wrapper {
     padding: rem(32px) 0;
     margin: 0;
     list-style-type: none;

@@ -24,7 +24,7 @@ else :
 	}
 
 	// Create class attribute allowing for custom "className" and "align" values.
-	$class_name = 'featured-link-cards-block';
+	$class_name = 'link-grid-block';
 	if ( ! empty( $block['className'] ) ) {
 		$class_name .= ' ' . $block['className'];
 	}
@@ -36,9 +36,9 @@ else :
 	$subtitle    = get_field( 'subtitle' );
 
 	// Looping through repeater for Featured Link Cards.
-	if ( have_rows( 'featured_link_cards' ) ) : ?>
+	if ( have_rows( 'link_grid_cards' ) ) : ?>
 
-		<div <?php echo esc_attr( $anchor ); ?> class="<?php echo esc_attr( $class_name ); ?> featured-link-cards-block">
+		<div <?php echo esc_attr( $anchor ); ?> class="<?php echo esc_attr( $class_name ); ?>">
 			<img role="icon" alt="" src="<?php echo esc_attr( get_stylesheet_directory_uri() ); ?>/assets/icons/acf-icons/account_balance.svg" />
 			<h2 class="h2-stylized"><?php echo esc_html( $block_title ); ?></h2>
 		<?php
@@ -49,9 +49,9 @@ else :
 		}
 		?>
 
-			<ul class="featured-link-cards-wrapper">
+			<ul class="link-grid-wrapper">
 				<?php
-				while ( have_rows( 'featured_link_cards' ) ) :
+				while ( have_rows( 'link_grid_cards' ) ) :
 					the_row();
 					// Getting the subfield values.
 					$link_icon   = get_sub_field( 'link_icon' );
@@ -62,7 +62,7 @@ else :
 					// Checking for all required fields, otherwise this throws an error.
 					if ( $link_icon && $link_title && $link_url && $description ) :
 						?>
-					<li class="featured-link-card">
+					<li class="link-grid-card">
 						<span class="link-icon notranslate" aria-hidden="true"><?php echo esc_html( $link_icon ); ?></span>
 						<div class="text-wrapper">
 							<h3>
