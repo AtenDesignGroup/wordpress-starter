@@ -33,22 +33,28 @@ else :
 	}
 
 	// Load values and assign defaults.
-	$displayed_posts  = get_field( 'displayed_posts' );
-	$post_count_limit = ( get_field( 'post_count_limit' ) ) ? get_field( 'post_count_limit' ) : 3;
-	$num_releases     = ( $displayed_posts ) ? count( $displayed_posts ) : 0;
-	$remaining_posts  = $post_count_limit - $num_releases;
-	$included_posts   = array(); // Empty array to track the IDs of already included posts.
+	$block_title       = ( get_field( 'block_heading' ) ) ? get_field( 'block_heading' ) : 'Recent Posts';
+	$queried_post_type = ( get_field( 'post_type_to_display' ) ) ? get_field( 'post_type_to_display' ) : 'post';
+	$displayed_posts   = get_field( 'displayed_posts' );
+	$post_count_limit  = ( get_field( 'number_of_displayed_posts' ) ) ? get_field( 'number_of_displayed_posts' ) : 3;
+	$num_releases      = ( $displayed_posts ) ? count( $displayed_posts ) : 0;
+	$remaining_posts   = $post_count_limit - $num_releases;
+	$included_posts    = array(); // Empty array to track the IDs of already included posts.
+	$display_view_all_button = ( get_field( 'display_view_all_button' ) ) ? get_field( 'display_view_all_button' ) : 'false';
 	?>
 
+
+	<?php
+	if ( $displayed_posts ) :
+		?>
 	<div <?php echo esc_attr( $anchor ); ?> class="<?php echo esc_attr( $class_name ); ?>">
 		<div class="recent-posts-block-component">
 			<hr />
 			<div class="recent-posts-block-title">
-				<h2>News Releases</h2>
+				<h2><?php echo esc_html( $block_title ); ?></h2>
 			</div>
 			<ul class="recent-posts-list">
-			<?php
-			if ( $displayed_posts ) :
+				<?php
 				// Output the recent posts from the repeater field.
 				while ( have_rows( 'displayed_posts' ) ) :
 					the_row();
@@ -62,37 +68,44 @@ else :
 						echo '</li>';
 					}
 				endwhile;
-			endif;
 
 				// Query the remaining recent posts.
 				$recent_posts = new WP_Query(
 					array(
-						'post_type'      => 'news',
+						'post_type'      => $queried_post_type,
 						'posts_per_page' => $remaining_posts,
 						'post__not_in'   => $included_posts, // Exclude the already included post IDs.
-						'meta_key'       => 'publication_date',
-						'orderby'        => 'meta_value_num',
-						'order'          => 'DESC',
 					)
 				);
 
 				// Output the remaining posts from the recent posts query.
-			while ( $recent_posts->have_posts() ) {
-				$recent_posts->the_post();
-				$included_post_title = get_the_title();
+				while ( $recent_posts->have_posts() ) {
+					$recent_posts->the_post();
+					$included_post_title = get_the_title();
 
-				echo '<li class="displayed-post-item">';
-				echo '<a href="' . esc_url( get_permalink() ) . '"><h3>' . esc_html( $included_post_title ) . '</h3></a>';
-				echo '</li>';
-			}
+					echo '<li class="displayed-post-item">';
+					echo '<a href="' . esc_url( get_permalink() ) . '"><h3>' . esc_html( $included_post_title ) . '</h3></a>';
+					echo '</li>';
+				}
 
 				// Restore original post data.
 				wp_reset_postdata();
-			?>
-				<li class="view-all-news">
-					<a href="/news" class="btn-large--navy">View All News Releases</a>
-				</li>
+				?>
+
+				<?php
+				if ( $display_view_all_button ) :
+					$button_text   = ( get_field( 'view_all_button_button_text' ) ) ? get_field( 'view_all_button_button_text' ) : 'View More';
+					$button_link   = get_field( 'view_all_button_button_link' );
+					$button_target = $button_link['target'] ?? '_self';
+					?>
+					<li class="view-all-posts">
+						<a href="<?php echo esc_url( $button_link['url'] ); ?>" target="<?php echo esc_attr( $button_target ); ?>">
+							<?php echo esc_html( $button_text ); ?>
+						</a>
+					</li>
+				<?php endif; ?>
 			</ul>
 		</div>
 	</div>
-<?php endif; ?>
+<?php endif;
+endif; ?>
