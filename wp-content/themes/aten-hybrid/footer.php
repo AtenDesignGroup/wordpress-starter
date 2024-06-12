@@ -25,8 +25,8 @@
 			<div class="site-logo">
                 <figure class="footer-logo wp-block-image size-full">
                     <a href="/" class="footer-logo-link">
-						<img decoding="async" loading="lazy" src="/wp-content/themes/ccc/assets/images/logos/ccc-logo-horizontal-color.svg" alt="Cost & Coverage Collective logo" class="mobile-only" />
-                        <img decoding="async" loading="lazy" src="/wp-content/themes/ccc/assets/images/footerlogo.svg" alt="Cost & Coverage Collective logo" class="tablet-up" />
+						<img decoding="async" loading="lazy" src="/wp-content/themes/aten-hybrid/assets/images/logos/logo.svg" alt="Cost & Coverage Collective logo" class="mobile-only" />
+                        <img decoding="async" loading="lazy" src="/wp-content/themes/aten-hybrid/assets/images/logos/logo.svg" alt="Cost & Coverage Collective logo" class="tablet-up" />
                     </a>
                 </figure>
 			</div><!-- .site-logo -->
@@ -53,8 +53,8 @@
 			<div class="top-arrow-wrapper">
 				<a href="#ccc-site" id="back-to-top" class="back-to-top" aria-label="Scroll back to top">
 					<icon>
-						<img src="/wp-content/themes/ccc/assets/icons/backtotop.svg" alt="arrow up icon" class="static-version">
-						<img src="/wp-content/themes/ccc/assets/icons/backtotop-hover.svg" alt="arrow up icon" class="hover-version">
+						<img src="/wp-content/themes/aten-hybrid/assets/icons/backtotop.svg" alt="arrow up icon" class="static-version">
+						<img src="/wp-content/themes/aten-hybrid/assets/icons/backtotop-hover.svg" alt="arrow up icon" class="hover-version">
 					</icon>
 				</a>
 			</div>

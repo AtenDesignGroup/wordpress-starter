@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * @file
+ * Aten Hybrid functions and definitions.
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package WordPress
+ * @subpackage Aten Hybrid
+ * @since Twenty Twenty One 1.0
+ */
+
 // Enqueue Parent Theme Styles
 function enqueue_parent_theme_styles() {
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
@@ -9,10 +20,10 @@ add_action( 'wp_enqueue_scripts', 'enqueue_parent_theme_styles' );
 /**
  * Add custom child theme styles to site.
  */
-add_action('wp_enqueue_scripts', 'ccc_enqueue_styles', 11);
-function ccc_enqueue_styles() {
+add_action('wp_enqueue_scripts', 'aten_hybrid_enqueue_styles', 11);
+function aten_hybrid_enqueue_styles() {
 	// dequeue the Twenty Twenty-One parent style
-	wp_dequeue_style( 'twenty-twenty-one-style' ); 
+	wp_dequeue_style( 'twenty-twenty-one-style' );
 
 	// Theme stylesheets
 	wp_enqueue_style( 'child-style', get_stylesheet_uri(), array(), wp_get_theme()->get('Version') );
@@ -21,7 +32,7 @@ function ccc_enqueue_styles() {
 	wp_enqueue_style('theme-fonts', '//use.typekit.net/zkj5mew.css', []);
 	wp_enqueue_style('theme-icons-outline', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined', []);
 
-	// Custom JS 
+	// Custom JS
 	wp_enqueue_script( 'utility-functions', get_stylesheet_directory_uri() . '/js/utility-functions.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'animations', get_stylesheet_directory_uri() . '/js/animations.js', array( 'jquery' ), '1.0', true );
 	wp_enqueue_script( 'accordion-block', get_stylesheet_directory_uri() . '/js/accordion-block.js', array( 'jquery' ), '1.0', true );
@@ -39,11 +50,11 @@ function ccc_enqueue_styles() {
 	wp_enqueue_script( 'video-gallery-block', get_stylesheet_directory_uri() . '/js/video-gallery-block.js', array( 'jquery' ), '1.0', true );
 }
 
-/** 
+/**
  * Theme Support setup
  */
-add_action( 'after_setup_theme', 'ccc_theme_support_settings' );
-function ccc_theme_support_settings() {
+add_action( 'after_setup_theme', 'aten_hybrid_theme_support_settings' );
+function aten_hybrid_theme_support_settings() {
 	add_theme_support( 'disable-custom-font-sizes' );
 	add_theme_support( 'disable-custom-colors' );
 	add_theme_support( 'disable-custom-gradients' );
@@ -53,24 +64,24 @@ function ccc_theme_support_settings() {
 
 add_action( 'admin_init', 'wpdocs_add_editor_styles' );
 function wpdocs_add_editor_styles() {
-  add_theme_support( 'editor-styles' );
-  add_editor_style( 'editor-style.css' );
+	add_theme_support( 'editor-styles' );
+	add_editor_style( 'editor-style.css' );
 }
 
 
 add_action('enqueue_block_editor_assets', function () {
-    // Remove editor style resets
-    wp_deregister_style('wp-reset-editor-styles');
-	
-    // Replace with our own version (WP has dependency on this slug)
-    wp_enqueue_style('wp-reset-editor-styles', get_theme_file_uri('editor-style.css'),
-    array( 'common', 'forms' ));
+	// Remove editor style resets
+	wp_deregister_style('wp-reset-editor-styles');
+
+	// Replace with our own version (WP has dependency on this slug)
+	wp_enqueue_style('wp-reset-editor-styles', get_theme_file_uri('editor-style.css'),
+		array( 'common', 'forms' ));
 }, 102);
 
 
-add_filter( 'body_class', 'ccc_body_wrapper_class' );
-function ccc_body_wrapper_class( $classes ) {
-    $classes[] = 'ccc-theme';
+add_filter( 'body_class', 'aten_hybrid_body_wrapper_class' );
+function aten_hybrid_body_wrapper_class( $classes ) {
+	$classes[] = 'aten-hybrid-theme';
 	return $classes;
 }
 
@@ -82,13 +93,13 @@ function ccc_body_wrapper_class( $classes ) {
  *
  * @return void
  */
-function ccc_widgets_init() {
+function aten_hybrid_widgets_init() {
 
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Footer Text Area', 'ccc' ),
+			'name'          => esc_html__( 'Footer Text Area', 'aten-hybrid' ),
 			'id'            => 'sidebar-2',
-			'description'   => esc_html__( 'Add widgets here to appear in your footer.', 'ccc' ),
+			'description'   => esc_html__( 'Add widgets here to appear in your footer.', 'aten-hybrid' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -96,7 +107,7 @@ function ccc_widgets_init() {
 		)
 	);
 }
-add_action( 'widgets_init', 'ccc_widgets_init' );
+add_action( 'widgets_init', 'aten_hybrid_widgets_init' );
 
 /*
  * Convert all H1 headings added via the heading block to H2
@@ -106,10 +117,10 @@ add_filter('render_block', function($block_content, $block) {
 		$block_content = str_replace('<h1', '<h2', $block_content);
 		$block_content = str_replace('</h1', '</h2', $block_content);
 	}
-  
+
 	return $block_content;
-  }, 10, 2);
-  
+}, 10, 2);
+
 /*
 * Removing H1 from all TinyMCE text editors (WYSIWYG)
 */
@@ -117,7 +128,7 @@ add_filter( 'tiny_mce_before_init', function( $settings ){
 	$settings['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6';
 	return $settings;
 } );
-  
+
 /*
  * Control what options appear in the backend editor block toolbars
  */
@@ -151,7 +162,7 @@ function acf_icon_url( $path_suffix ) {
 
 
 /**
- * Register custom blocks for the CCC theme.
+ * Register custom blocks for the Aten Hybrid theme.
  */
 add_action('init', 'register_acf_blocks');
 function register_acf_blocks() {
@@ -262,7 +273,7 @@ function disable_specific_blocks( $allowed_blocks ) {
 	unset($blocks['pmpro/login-form']);
 	unset($blocks['core/post-comments']);
 
-    // Checking for post IDs where page header should be disabled
+	// Checking for post IDs where page header should be disabled
 	$disabled_page_header_ids = array( 34, 36, 38, 40, 42 );
 	if(in_array($current_id, $disabled_page_header_ids)) {
 		// Disable page header block
@@ -301,7 +312,7 @@ function disable_specific_blocks( $allowed_blocks ) {
 			'acf/dashboard-cta-panel' => '',
 			'acf/dashboard-featured-resources' => '',
 			'acf/dashboard-hero' => '',
-			'acf/dashboard-tools' => '', 
+			'acf/dashboard-tools' => '',
 		);
 		// Intersect the dashboard block keys with the list of WP blocks
 		$dashboard_blocks = array_intersect_key($blocks, $allowed_block_keys);
@@ -309,13 +320,13 @@ function disable_specific_blocks( $allowed_blocks ) {
 		return array_keys($dashboard_blocks);
 	}
 
-		// Checking for Social Map page ID
-		$social_map_id = 42;
-		// If not on the dashboard
-		if($current_id != $social_map_id) {
-			// Then disable the social listening map block
-			unset($blocks['acf/social-listening-map']);
-		}
+	// Checking for Social Map page ID
+	$social_map_id = 42;
+	// If not on the dashboard
+	if($current_id != $social_map_id) {
+		// Then disable the social listening map block
+		unset($blocks['acf/social-listening-map']);
+	}
 
 	// Return the new list of allowed blocks.
 	return array_keys($blocks);
@@ -342,8 +353,8 @@ function disable_specific_blocks( $allowed_blocks ) {
 //	$post_type_object = get_post_type_object( 'message' );
 //	$post_type_object->template = $template;
 //}
- 
-/** 
+
+/**
  * Creating custom navigation to display with a shortcode
  */
 //add_shortcode('navigation_main_menu', 'ccc_render_main_navigation_menu');
@@ -401,22 +412,22 @@ function disable_specific_blocks( $allowed_blocks ) {
 /**
  * Hiding custom taxonomy metaboxes from the editor UI
  * Requires custom taxonomy CPT UI option "Metabox Callback" to have a value of: false
- * Currently hidden taxonomy metaboxes: 
+ * Currently hidden taxonomy metaboxes:
  * - Message Category
  * - Message Topic
  * - Research Category
  * - Research Partner
  * - Research Topic
  */
-add_filter( 'rest_prepare_taxonomy', 'ccc_remove_custom_taxonomy_metaboxes', 10, 3 );
-function ccc_remove_custom_taxonomy_metaboxes( $response, $taxonomy, $request ){
+add_filter( 'rest_prepare_taxonomy', 'aten_hybrid_remove_custom_taxonomy_metaboxes', 10, 3 );
+function aten_hybrid_remove_custom_taxonomy_metaboxes( $response, $taxonomy, $request ){
 	$context = ! empty( $request['context'] ) ? $request['context'] : 'view';
 	// Context is edit in the editor
 	if( $context === 'edit' && $taxonomy->meta_box_cb === false ){
 		$data_response = $response->get_data();
 		$data_response['visibility']['show_ui'] = false;
 		$response->set_data( $data_response );
-		}
+	}
 	return $response;
 }
 
@@ -472,7 +483,7 @@ function my_acf_save_post( $post_id ) {
 
 /**
  * Redirect all users to the user dashboard on login, unless a redirect is in place.
- * 
+ *
  * Snippet adapted from Paid Memberships Pro: https://www.paidmembershipspro.com/redirect-members/
  */
 function my_login_redirect( $redirect_to ) {
@@ -483,10 +494,10 @@ function my_login_redirect( $redirect_to ) {
 		// Redirect the user
 		return $redirect_to;
 	}
-	
+
 	// Redirecting to user dashboard if no redirect is in place
 	$redirect_to = home_url('/dashboard/');
-	
+
 	return $redirect_to;
 }
 add_filter( 'login_redirect', 'my_login_redirect', 999 );
@@ -511,13 +522,13 @@ $pmprosm_sponsored_account_levels = array(
  */
 add_action( 'pre_get_posts', 'dynamic_resource_per_page_query_parameter' );
 function dynamic_resource_per_page_query_parameter( $query ) {
-	if( !is_admin() && (is_post_type_archive('research')) && $query->is_main_query() ) {    
+	if( !is_admin() && (is_post_type_archive('research')) && $query->is_main_query() ) {
 		$research_fields = get_field('research_archive', 'option');
 		$research_per_page = ($research_fields && $research_fields['research_posts_per_page']) ? $research_fields['research_posts_per_page'] : 8;
 		$query->query_vars['posts_per_page'] = $research_per_page;
 	}
 
-	if( !is_admin() && (is_post_type_archive('message')) && $query->is_main_query() ) {    
+	if( !is_admin() && (is_post_type_archive('message')) && $query->is_main_query() ) {
 		$message_fields = get_field('message_lab_archive', 'option');
 		$message_per_page = ($message_fields && $message_fields['message_posts_per_page']) ? $message_fields['message_posts_per_page'] : 8;
 		$query->query_vars['posts_per_page'] = $message_per_page;
@@ -527,15 +538,15 @@ function dynamic_resource_per_page_query_parameter( $query ) {
 /**
  * Creating a shortcode to render the corner graphic and wrap the PMP login form
  */
-add_shortcode('ccc_custom_login', 'ccc_custom_login_shortcode');
-function ccc_custom_login_shortcode() {
+add_shortcode('aten_hybrid_custom_login', 'aten_hybrid_custom_login_shortcode');
+function aten_hybrid_custom_login_shortcode() {
 	ob_start(); ?>
 
-		<div class="ccc-login-wrap">
-			<div class="content-start-triangle"><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/content-start-triangle.svg" alt="" /></div>
-			<h1>Log in to the Cost & Coverage Collaborative Hub</h1>
-			<?php echo do_shortcode('[pmpro_login]'); ?>
-		</div>
+    <div class="ccc-login-wrap">
+        <div class="content-start-triangle"><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/content-start-triangle.svg" alt="" /></div>
+        <h1>Log in to the Cost & Coverage Collaborative Hub</h1>
+		<?php echo do_shortcode('[pmpro_login]'); ?>
+    </div>
 
 	<?php return ob_get_clean();
 }
@@ -673,115 +684,115 @@ function get_state_by_abbreviation($abbreviation) {
 			break;
 		case 'IL':
 			$state_name = 'Illinois';
-			break;	
+			break;
 		case 'IN':
 			$state_name = 'Indiana';
 			break;
 		case 'KS':
 			$state_name = 'Kansas';
-			break;		
+			break;
 		case 'KY':
 			$state_name = 'Kentucky';
 			break;
 		case 'LA':
 			$state_name = 'Louisiana';
-			break;	
+			break;
 		case 'MA':
 			$state_name = 'Massachusetts';
 			break;
 		case 'MD':
 			$state_name = 'Maryland';
-			break;		
+			break;
 		case 'ME':
 			$state_name = 'Maine';
 			break;
 		case 'MI':
 			$state_name = 'Michigan';
-			break;	
+			break;
 		case 'MN':
 			$state_name = 'Minnesota';
 			break;
 		case 'MO':
 			$state_name = 'Missouri';
-			break;		
+			break;
 		case 'MS':
 			$state_name = 'Mississippi';
 			break;
 		case 'MT':
 			$state_name = 'Montana';
-			break;	
+			break;
 		case 'NC':
 			$state_name = 'North Carolina';
 			break;
 		case 'ND':
 			$state_name = 'North Dakota';
-			break;		
+			break;
 		case 'NE':
 			$state_name = 'Nebraska';
 			break;
 		case 'NH':
 			$state_name = 'New Hampshire';
-			break;	
+			break;
 		case 'NJ':
 			$state_name = 'New Jersey';
 			break;
 		case 'NM':
 			$state_name = 'New Mexico';
-			break;		
+			break;
 		case 'NV':
 			$state_name = 'Nevada';
 			break;
 		case 'NY':
 			$state_name = 'New York';
-			break;	
+			break;
 		case 'OH':
 			$state_name = 'Ohio';
 			break;
 		case 'OK':
 			$state_name = 'Oklahoma';
-			break;		
+			break;
 		case 'OR':
 			$state_name = 'Oregon';
 			break;
 		case 'PA':
 			$state_name = 'Pennsylvania';
-			break;	
+			break;
 		case 'PR':
 			$state_name = 'Puerto Rico';
-			break;	
+			break;
 		case 'RI':
 			$state_name = 'Rhode Island';
 			break;
 		case 'SC':
 			$state_name = 'South Carolina';
-			break;		
+			break;
 		case 'SD':
 			$state_name = 'South Dakota';
 			break;
 		case 'TN':
 			$state_name = 'Tennessee';
-			break;	
+			break;
 		case 'TX':
 			$state_name = 'Texas';
 			break;
 		case 'UT':
 			$state_name = 'Utah';
-			break;		
+			break;
 		case 'VA':
 			$state_name = 'Virginia';
 			break;
 		case 'VT':
 			$state_name = 'Vermont';
-			break;	
+			break;
 		case 'WA':
 			$state_name = 'Washington';
-			break;	
+			break;
 		case 'WI':
 			$state_name = 'Wisconsin';
 			break;
 		case 'WV':
 			$state_name = 'West Virginia';
-			break;		
+			break;
 		case 'WY':
 			$state_name = 'Wyoming';
 			break;
