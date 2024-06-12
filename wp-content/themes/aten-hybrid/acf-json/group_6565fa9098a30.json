@@ -72,9 +72,9 @@
     "location": [
         [
             {
-                "param": "block",
+                "param": "post_type",
                 "operator": "==",
-                "value": "acf\/accordion-block"
+                "value": "post"
             }
         ]
     ],
@@ -87,5 +87,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1701182189
+    "modified": 1718210040
 }

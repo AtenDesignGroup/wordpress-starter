@@ -29,9 +29,9 @@
 <div class="header-wrap <?php $color_mode; ?>">
     <div class="header-logo-wrapper <?php echo $color_mode; ?>">
         <a class="logo-link" href="<?php echo $logo_link; ?>" title="Cost & Coverage Collective">
-            <img class="logo-img logo-inactive ccc-logo-desktop" id="ccc-logo-desktop-<?php echo $logo_color; ?>" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/logos/ccc-logo-horizontal-<?php echo $logo_color; ?>.svg" alt="Cost & Coverage Collective" title="Cost & Coverage Collective" />
-            <?php if($color_mode === 'light-mode') { ?><img class="logo-img logo-inactive ccc-logo-mobile" id="ccc-logo-mobile-color" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/logos/ccc-logo-mark-color.svg" alt="Cost & Coverage Collective" title="Cost & Coverage Collective" /><?php } ?>
-            <img class="logo-img logo-inactive ccc-logo-mobile" id="ccc-logo-mobile-white" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/logos/ccc-logo-mark-white.svg" alt="Cost & Coverage Collective" title="Cost & Coverage Collective" />
+            <img class="logo-img logo-inactive ccc-logo-desktop" id="ccc-logo-desktop-<?php echo $logo_color; ?>" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/logos/logo.svg" alt="Cost & Coverage Collective" title="Cost & Coverage Collective" />
+            <?php if($color_mode === 'light-mode') { ?><img class="logo-img logo-inactive ccc-logo-mobile" id="ccc-logo-mobile-color" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/logos/logo.svg" alt="Cost & Coverage Collective" title="Cost & Coverage Collective" /><?php } ?>
+            <img class="logo-img logo-inactive ccc-logo-mobile" id="ccc-logo-mobile-white" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/logos/logo.svg" alt="Cost & Coverage Collective" title="Cost & Coverage Collective" />
         </a>
     </div>
 
