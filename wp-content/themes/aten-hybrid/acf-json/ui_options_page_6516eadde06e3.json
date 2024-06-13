@@ -1,0 +1,22 @@
+{
+    "key": "ui_options_page_6516eadde06e3",
+    "title": "Legal Disclaimer",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "Legal Disclaimer",
+    "menu_slug": "legal-disclaimer",
+    "parent_slug": "none",
+    "advanced_configuration": 1,
+    "icon_url": "dashicons-testimonial",
+    "menu_title": "",
+    "position": 15,
+    "redirect": 0,
+    "description": "",
+    "update_button": "Update",
+    "updated_message": "Options Updated",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": 0,
+    "modified": 1697652768
+}

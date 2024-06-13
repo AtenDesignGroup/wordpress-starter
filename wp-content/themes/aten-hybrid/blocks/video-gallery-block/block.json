@@ -1,0 +1,46 @@
+{
+  "name": "video-gallery-block",
+  "title": "Video Gallery Block",
+  "active": true,
+  "description": "A block to build a grid image gallery with a lightbox overlay.",
+  "category": "common",
+  "icon": "format-video",
+  "keywords": [
+    "gallery",
+    "video",
+    "grid",
+    "iframe",
+    "embed"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "message",
+    "research"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "video-gallery-block.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": false,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/video-gallery.svg"
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+/* Single Resource Styling: used on both Research and Message single templates */
+body.single-research,
+body.single-message {
+    .resource-taxonomy-term-wrapper {
+        margin-top: var(--global--spacing-vertical);
+        margin-bottom: var(--global--spacing-vertical);
+    }
+
+    .related-resources-wrapper {
+        background-color: var(--black);
+
+        .related-title-wrapper {
+            display: flex;
+            flex-direction: column-reverse;
+
+            h2 {
+                color: var(--white);
+                margin: calc(var(--global--spacing-vertical) / 2) calc(var(--global--spacing-horizontal) / 2);
+
+                @include bp-min(tablet) {
+                    margin: var(--global--spacing-vertical) 0;
+                }
+
+                @include bp-min(smdesk) {
+                    margin: rem(40px) 0;
+                }
+            }
+
+            hr {
+                border: 0;
+                height: rem(4px);
+                width: 100%;
+                @include bg-gradient(90deg, var(--orange), var(--coral), var(--purple));
+
+                @include bp-min(tablet) {
+                    height: rem(8px);
+                    border-radius: rem(20px);
+                }
+            }
+
+            @include bp-min(tablet) {
+                flex-direction: column;
+            }
+        }
+
+        .archive-btn {
+            padding: var(--global--spacing-vertical) calc(var(--global--spacing-horizontal) / 2);
+
+            a {
+                @include btn-large(var(--white));
+                @include btn-with-icon;
+    
+    
+                &:after {
+                    background-image: url('../ccc/assets/icons/ui/purple/arrow_right.svg');
+                }
+    
+                &:hover,
+                &:focus {
+                    &:after {
+                        background-image: url('../ccc/assets/icons/ui/dark_purple/arrow_right.svg');
+                    }
+                }
+            }
+
+            @include bp-min(tablet) {
+                padding: calc(2 * var(--global--spacing-vertical)) 0 0;
+            }
+        } 
+
+        @include bp-min(tablet) {
+            margin: var(--global--spacing-vertical) var(--global--spacing-horizontal);
+            max-width: calc(100vw - (2 * var(--global--spacing-horiztonal)));
+            padding: rem(40px);
+            border-radius: rem(20px);
+        }
+
+        @include bp-min(smdesk) {
+            padding: rem(60px);
+        }
+    }
+}

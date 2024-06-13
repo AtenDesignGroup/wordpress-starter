@@ -1,0 +1,109 @@
+/* Dashboard CTA Panel Styling */
+#ccc-site .dashboard-cta-panel-component,
+.wp-toolbar .dashboard-cta-panel-component {
+    position: relative;
+    z-index: 3;
+
+    ul.dashboard-cta-cards {
+        @include list--unordered-flex(column, rem(20px));
+
+        li.dashboard-cta-card {
+            background-color: var(--white);
+            padding: rem(20px);
+            border-radius: rem(12px);
+            transition: all .3s ease;
+
+            h3 {
+                margin-bottom: rem(12px);
+
+                @include bp-min(tablet) {
+                    margin-bottom: rem(20px);
+                    font-size: var(--font-size-h48);
+                    line-height: var(--line-height-h48);
+                }
+
+                @include bp-min(smdesk) {
+                    font-size: var(--font-size-h32);
+                    line-height: var(--line-height-h32);
+                    margin-bottom: 0;
+                }
+            }
+
+            a {
+                @include font-label-18;
+                @include font-weight-bold;
+
+                @include bp-min(tablet) {
+                    padding: 1rem 3.75rem 1rem 1.75rem!important;
+                }
+            }
+
+            .dashboard-cta-btn-wrap {
+                @include bp-min(smdesk) {
+                    text-align: right;
+                    flex-shrink: 0;
+                }
+
+                @include bp-min(lgdesk) {
+                    text-align: left;
+                }
+            }
+
+            @include bp-min(tablet) {
+                padding: rem(40px);
+                border-radius: rem(20px);
+
+                &:hover,
+                &:focus,
+                &:focus-within {
+                    transform: scale(1.05);
+                }
+            }
+
+            @include bp-min(smdesk) {
+                padding: rem(60px);
+                display: flex;
+                align-items: center;
+                gap: rem(60px);
+            }
+
+            @include bp-min(lgdesk) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: rem(40px);
+                width: 40%;
+                padding: rem(40px);
+            }
+        }
+
+        @include bp-min(tablet) {
+            gap: rem(40px);
+        }
+
+        @include bp-min(lgdesk) {
+            flex-direction: row;
+        }
+    }
+
+    @include bp-min(tablet) {
+        margin-top: rem(40px);
+    }
+
+    @include bp-min(lgdesk) {
+        max-width: var(--responsive--alignfull-width);
+        width: auto;
+        margin-left: var(--global--spacing-horizontal);
+        margin-right: var(--global--spacing-horizontal);
+        margin-top: rem(60px);
+    }
+}
+
+.wp-block-acf-dashboard-cta-panel {
+    max-width: calc(100vw - 2 * var(--global--spacing-horizontal));
+    @include bg-gradient(90deg, var(--orange), var(--coral), var(--purple));
+
+    .dashboard-cta-btn-wrap a {
+        @include btn-large;
+        @include btn-with-icon;
+    }
+}

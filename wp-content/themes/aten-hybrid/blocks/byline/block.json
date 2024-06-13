@@ -1,0 +1,28 @@
+{
+  "name": "acf/byline",
+  "title": "Byline",
+  "description": "A custom block that adds a byline to a Resource post, including the research partner, publication date, and associated author(s).",
+  "category": "formatting",
+  "icon": "id",
+  "keywords": ["author", "byline", "info"],
+  "supports": {
+    "multiple": false
+  },
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "byline.php"
+  },
+  "post_types": [
+    "research",
+    "message"
+  ],
+  "align": "full",
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/byline.svg"
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+    "name": "acf/homepage-hero",
+    "title": "Homepage Hero",
+    "description": "A block designed to display the homepage hero panel.",
+    "category": "homepage",
+    "icon": "cover-image",
+    "keywords": ["homepage", "hero", "title", "heading", "home", "homepage"],
+    "supports": {
+      "multiple": false
+    },
+    "acf": {
+      "mode": "preview",
+      "renderTemplate": "homepage-hero.php"
+    },
+    "align": "full",
+    "example": {
+      "attributes": {
+        "mode": "preview",
+        "data": {
+          "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/homepage-hero.svg"
+        }
+      }
+    }
+  }

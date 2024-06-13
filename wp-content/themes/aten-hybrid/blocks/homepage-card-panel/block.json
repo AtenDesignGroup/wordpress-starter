@@ -1,0 +1,24 @@
+{
+    "name": "acf/homepage-card-panel",
+    "title": "Homepage Card Panel",
+    "description": "A block to display up to 3 informational cards on the homepage.",
+    "category": "homepage",
+    "icon": "table-row-before",
+    "keywords": ["card", "icon", "blurb", "about", "home", "homepage"],
+    "supports": {
+      "multiple": false
+    },
+    "acf": {
+      "mode": "preview",
+      "renderTemplate": "homepage-card-panel.php"
+    },
+    "align": "full",
+    "example": {
+      "attributes": {
+        "mode": "preview",
+        "data": {
+          "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/homepage-card-panel.svg"
+        }
+      }
+    }
+  }

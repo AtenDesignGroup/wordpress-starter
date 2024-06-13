@@ -1,0 +1,46 @@
+{
+  "name": "image-gallery-block",
+  "title": "Image Gallery Block",
+  "active": true,
+  "description": "A block to build a masonry grid image gallery with a lightbox overlay.",
+  "category": "common",
+  "icon": "schedule",
+  "keywords": [
+    "gallery",
+    "image",
+    "grid",
+    "masonry",
+    "pictures"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "message",
+    "research"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "image-gallery-block.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": false,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": false,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/image-gallery.svg"
+      }
+    }
+  }
+}

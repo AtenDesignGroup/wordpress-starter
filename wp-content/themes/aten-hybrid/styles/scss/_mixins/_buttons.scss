@@ -1,0 +1,372 @@
+@mixin btn-uppercase {
+  text-transform: uppercase;
+  letter-spacing: rem(2px);
+}
+
+// Large buttons with backgrounds
+// -----------------------------------
+
+@mixin btn-large($buttonStyle: var(--purple)) {
+  // Style defaults to purple with white text
+  $background-color: var(--purple) !default;
+  $color: var(--white) !default;
+  $hover-background: var(--dark-purple) !default;
+  $hover-color: var(--white) !default;
+
+  // White style button
+  @if $buttonStyle == var(--white) {
+    $background-color: var(--white);
+    $color: var(--purple);
+    $hover-background: var(--white);
+    $hover-color: var(--dark-purple);
+
+    &:hover,
+    &:focus {
+      text-decoration: underline!important;
+    }
+  }
+
+  background-color: $background-color;
+  border: none;
+  border-radius: rem(100px);
+  color: $color;
+  display: block;
+  font-size: var(--font-size-b18);
+  font-family: var(--font-family-franklin);
+  font-weight: var(--font-weight-semibold);
+  padding: rem(16px) rem(28px);
+  text-align: left;
+  text-decoration: none;
+  transition-property: all;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  width: fit-content;
+  text-indent: 0;
+  position: relative;
+
+  // Account for if this wraps another div
+  a {
+    color: $color;
+    text-decoration: none;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $hover-background!important;
+    color: $hover-color!important;
+    text-decoration: none;
+    transition-property: all;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:focus {
+    outline: rem(1px) solid $hover-background;
+    outline-offset: rem(4px);
+  }
+
+  @include bp-max(smdesk) {
+    padding: rem(8px) rem(20px);
+    font-size: var(--font-size-b16);
+  }
+}
+
+// Small buttons with backgrounds
+// -----------------------------------
+
+@mixin btn-small($buttonStyle: var(--purple)) {
+  // Style defaults to purple with white text
+  $background-color: var(--purple) !default;
+  $color: var(--white) !default;
+  $hover-background: var(--dark-purple) !default;
+  $hover-color: var(--white) !default;
+
+  // White style button
+  @if $buttonStyle == var(--white) {
+    $background-color: var(--white);
+    $color: var(--purple);
+    $hover-background: var(--white);
+    $hover-color: var(--dark-purple);
+
+    &:hover,
+    &:focus {
+      text-decoration: underline!important;
+    }
+  }
+
+  background-color: $background-color;
+  border: none;
+  border-radius: rem(100px);
+  color: $color;
+  display: block;
+  font-family: var(--font-family-franklin);
+  font-size: var(--font-size-b18);
+  font-weight: var(--font-weight-semibold);
+  padding: rem(16px) rem(28px);
+  text-align: left;
+  text-decoration: none;
+  transition-property: all;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  width: fit-content;
+  text-indent: 0;
+  position: relative;
+
+  // Account for if this wraps another div
+  a {
+    color: $color;
+    text-decoration: none;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $hover-background!important;
+    color: $hover-color!important;
+    text-decoration: none;
+    transition-property: all;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:focus {
+    outline: rem(1px) solid $hover-color;
+    outline-offset: rem(4px);
+  }
+
+  @include bp-max(smdesk) {
+    padding: rem(8px) rem(20px);
+    font-size: var(--font-size-b16);
+  }
+}
+
+// Buttons without backgrounds
+// -----------------------------------
+
+@mixin btn-no-bg($buttonStyle: var(--purple)) {
+  // Style defaults to purple
+  $color: var(--purple) !default;
+  $hover-color: var(--dark-purple) !default;
+  $color-arrow: var(--purple) !default;
+  $hover-arrow: var(--dark-purple) !default;
+  
+  // White style button, for use on dark backgrounds
+  @if $buttonStyle == var(--white) {
+    $color: var(--white);
+    $hover-color: var(--white);
+    $color-arrow: var(--white);
+    $hover-arrow: var(--white);
+  }
+
+  color: $color!important;
+  display: block;
+  background-color: transparent!important;
+  font-family: var(--font-family-franklin);
+  font-size: var(--font-size-b18);
+  font-weight: var(--font-weight-semibold);
+  text-align: left;
+  text-decoration: underline;
+  transition-property: all;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  width: fit-content;
+  text-indent: 0;
+  position: relative;
+  padding: rem(4px) rem(12px)!important;
+  left: rem(-12px);
+
+  @include bp-max(smdesk) {
+    font-size: var(--font-size-b16); 
+    padding: rem(4px) rem(12px);        
+  }
+
+  // Account for if this wraps another div
+  a {
+    color: $color!important;
+  }
+
+  &:hover,
+  &:focus {
+    color: $hover-color!important;
+    text-decoration: none;
+    transition-property: all;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &::after {
+      color: $hover-color;
+    }
+  }
+
+  &:focus {
+    outline: rem(1px) solid $hover-color;
+    outline-offset: rem(4px);
+  }
+}
+
+// Buttons with icons
+// -----------------------------------
+
+@mixin btn-with-icon($buttonStyle: var(--internal)) {
+  // Style defaults to internal icon
+  display: flex;
+  align-items: center;
+
+  @include bp-min(tablet) {
+      padding-right: rem(60px);           
+  }
+
+  &::after {
+    content: "";
+    background-image: url('../ccc/assets/icons/ui/white/arrow_right.svg');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: inline;
+    position: absolute;
+    width: rem(24px);
+    height: rem(24px);
+    right: rem(26px);
+    transition: all .5s ease;
+
+    @include bp-max(smdesk) {
+      width: rem(20px);
+      height: rem(20px);
+      right: rem(22px);
+    }
+  }
+
+  // External style icon
+  @if $buttonStyle == var(--external) {
+    &::after {
+      background-image: url('../ccc/assets/icons/ui/white/external.svg');
+    }
+  }
+
+  &:hover,
+  &:focus {
+    transition-property: all;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:after {
+      right: rem(20px);
+    }
+  }
+
+  @include bp-max(smdesk) {
+    padding-right: rem(48px);
+
+    &::after {
+      right: rem(22px);
+    }
+
+    &:hover,
+    &:focus {
+      &:after {
+        right: rem(18px);
+      }
+    }
+  }
+}
+
+// Download buttons
+// -----------------------------------
+
+@mixin btn-download($buttonStyle: var(--purple)) {
+  // Style defaults to purple with white text
+  $background-color: var(--purple) !default;
+  $color: var(--white) !default;
+  $hover-background: var(--dark-purple) !default;
+  $hover-color: var(--white) !default;
+
+  // Gray style button
+  @if $buttonStyle == var(--gray) {
+    $background-color: var(--pale-cloud-gray);
+    $color: var(--purple);
+    $hover-background: var(--cloud-gray);
+    $hover-color: var(--dark-purple);
+  }
+
+  background-color: $background-color;
+  border: none;
+  border-radius: rem(10px);
+  color: $color;
+  display: block;
+  font-family: var(--font-family-franklin);
+  font-size: var(--font-size-b18);
+  font-weight: var(--font-weight-semibold);
+  padding: rem(8px) rem(20px) rem(8px) rem(44px);
+  text-align: left;
+  text-decoration: none;
+  transition-property: all;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  width: fit-content;
+  text-indent: 0;
+  position: relative;
+
+  @include bp-min(tablet) {
+      padding: rem(12px) rem(32px) rem(12px) rem(60px);         
+  }
+
+  // Account for if this wraps another div
+  a {
+    color: $color;
+    text-decoration: none;
+  }
+
+  &::before {
+    color: $color;
+    content: "";
+    background-image: url('../ccc/assets/icons/ui/white/arrow_download.svg');
+    @if $buttonStyle == var(--gray) {
+      background-image: url('../ccc/assets/icons/ui/purple/arrow_download.svg');
+    }
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: inline;
+    position: absolute;
+    width: rem(24px);
+    height: rem(24px);
+    margin-right: rem(8px);
+    left: rem(26px);
+    top: 50%;
+    transform: translate(0, -50%);
+
+    @include bp-max(smdesk) {
+      width: rem(20px);
+      height: rem(20px);
+      margin-right: rem(6px);
+      left: rem(16px);
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $hover-background!important;
+    color: $hover-color!important;
+    text-decoration: underline;
+    transition-property: all;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    @if $buttonStyle == var(--gray) {
+      &::before {
+        background-image: url('../ccc/assets/icons/ui/dark_purple/arrow_download.svg');
+      }
+    }
+  }
+
+  &:focus {
+    outline: rem(1px) solid $hover-background;
+    outline-offset: rem(4px);
+  }
+
+  @include bp-max(smdesk) {
+
+    &::after {
+      margin-right: rem(4px);
+    }
+  }
+}
