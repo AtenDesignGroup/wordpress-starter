@@ -4,12 +4,10 @@
  *   This content is licensed according to the W3C Software License at
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
  *
- *   File:   tabs-manual.js
+ *   File:   tabs-block.js
  *
  *   Desc:   Tablist widget that implements ARIA Authoring Practices
  */
-
-'use strict';
 
 class TabsManual {
   constructor(groupNode) {
@@ -26,6 +24,8 @@ class TabsManual {
     for (var i = 0; i < this.tabs.length; i += 1) {
       var tab = this.tabs[i];
       var tabpanel = document.getElementById(tab.getAttribute('aria-controls'));
+      // console.log('tab: ' + tab.id);
+      // console.log('aria controls: ' + tabpanel.id);
 
       tab.tabIndex = -1;
       tab.setAttribute('aria-selected', 'false');
@@ -85,7 +85,6 @@ class TabsManual {
   }
 
   /* EVENT HANDLERS */
-
   onKeydown(event) {
     var tgt = event.currentTarget,
       flag = false;
@@ -121,17 +120,15 @@ class TabsManual {
     }
   }
 
-  // Since this example uses buttons for the tabs, the click onr also is activated
-  // with the space and enter keys
+  // Activate with Click as well as space and enter keys
   onClick(event) {
     this.setSelectedTab(event.currentTarget);
   }
 }
 
 // Initialize tablist
-
 window.addEventListener('load', function () {
-  var tablists = document.querySelectorAll('[role=tablist].manual');
+  var tablists = document.querySelectorAll('.tab-list.manual');
   for (var i = 0; i < tablists.length; i++) {
     new TabsManual(tablists[i]);
   }
