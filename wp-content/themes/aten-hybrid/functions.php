@@ -31,23 +31,6 @@ function aten_hybrid_enqueue_styles() {
 	// Add external styles
 	wp_enqueue_style('theme-fonts', '//use.typekit.net/zkj5mew.css', []);
 	wp_enqueue_style('theme-icons-outline', 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined', []);
-
-	// Custom JS
-	wp_enqueue_script( 'utility-functions', get_stylesheet_directory_uri() . '/js/utility-functions.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'animations', get_stylesheet_directory_uri() . '/js/animations.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'accordion-block', get_stylesheet_directory_uri() . '/js/accordion-block.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'button-block', get_stylesheet_directory_uri() . '/js/button-block.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'cta-block', get_stylesheet_directory_uri() . '/js/cta-block.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'image-gallery-block', get_stylesheet_directory_uri() . '/js/image-gallery-block.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'legal-disclaimer', get_stylesheet_directory_uri() . '/js/legal-disclaimer.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'login', get_stylesheet_directory_uri() . '/js/login.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'main-navigation', get_stylesheet_directory_uri() . '/js/main-navigation.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'membership-forms', get_stylesheet_directory_uri() . '/js/membership-forms.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'notification-bar', get_stylesheet_directory_uri() . '/js/notification-bar.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'pagination', get_stylesheet_directory_uri( ) . '/js/pagination.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'resource-filters', get_stylesheet_directory_uri() . '/js/resource-filters.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'social-listening-map', get_stylesheet_directory_uri( ) . '/js/social-listening-map.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script( 'video-gallery-block', get_stylesheet_directory_uri() . '/js/video-gallery-block.js', array( 'jquery' ), '1.0', true );
 }
 
 /**
