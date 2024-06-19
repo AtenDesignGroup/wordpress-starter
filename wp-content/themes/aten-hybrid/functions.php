@@ -161,27 +161,90 @@ function acf_icon_url( $path_suffix ) {
 }
 
 
+
 /**
- * Register custom blocks for the Aten Hybrid theme.
+ * Register custom blocks for Aten FSE theme.
  */
 add_action('init', 'register_acf_blocks');
-function register_acf_blocks() {
-	register_block_type(__DIR__ . '/blocks/accordion-block');
-	register_block_type(__DIR__ . '/blocks/call-to-action');
-	register_block_type(__DIR__ . '/blocks/dashboard-cta-panel');
-	register_block_type(__DIR__ . '/blocks/dashboard-featured-resources');
-	register_block_type(__DIR__ . '/blocks/dashboard-hero');
-	register_block_type(__DIR__ . '/blocks/dashboard-tools');
-	register_block_type(__DIR__ . '/blocks/homepage-about');
-	register_block_type(__DIR__ . '/blocks/homepage-card-panel');
-	register_block_type(__DIR__ . '/blocks/homepage-hero');
-	register_block_type(__DIR__ . '/blocks/image-gallery-block');
-	register_block_type(__DIR__ . '/blocks/page-header');
-	register_block_type(__DIR__ . '/blocks/pullquote');
-	register_block_type(__DIR__ . '/blocks/social-listening-map');
-	register_block_type(__DIR__ . '/blocks/taxonomy-term-block');
-	register_block_type(__DIR__ . '/blocks/video-gallery-block');
+
+/**
+ * Retrieves a list of block files from the /blocks directory.
+ *
+ * This function scans the /blocks directory and for each subdirectory,
+ * it creates an array with the block's name and the names of its CSS and
+ * JS files, if they exist.
+ *
+ * @return array
+ *   An array of associative arrays, each containing the name of a
+ *   block and the names of its CSS and JS files.
+ */
+function get_block_files() {
+  $dirs = glob(__DIR__ . '/blocks/*', GLOB_ONLYDIR);
+
+  $block_files = [];
+
+  foreach ($dirs as $dir) {
+    $block_name = pathinfo($dir, PATHINFO_BASENAME);
+    $css_file = "{$block_name}.css";
+    $js_file = "{$block_name}.js";
+
+    // Setting block name.
+    $block = ['name' => $block_name];
+
+    // If css file exists, add to the block array.
+    if (file_exists(__DIR__ . "/blocks/{$block_name}/{$css_file}")) {
+      $block['css'] = $css_file;
+    }
+    // If JS file exists, add to the block array.
+    // @todo Update attachment to provide dependencies and load requirements.
+    if (file_exists(__DIR__ . "/blocks/{$block_name}/{$js_file}")) {
+      $block['js']['src'] = get_template_directory_uri() . "/blocks/{$block_name}/{$js_file}";
+      $block['js']['deps'] = ['jquery'];
+      $block['js']['ver'] = '1.0';
+      $block['js']['in_footer'] = TRUE;
+    }
+
+    // Add block to the block files array.
+    $block_files[] = $block;
+  }
+
+  return $block_files;
 }
+
+/**
+ * Registers ACF blocks using the block files in the /blocks directory.
+ *
+ * This function uses the get_block_files function to retrieve an array
+ *  of block files.
+ * It then registers each block using acf_register_block_type, setting
+ * the block's name, CSS file (as render_template), and JS file
+ * (as enqueue_script).
+ *
+ * @return void
+ *   Registers each block using acf_register_block_type.
+ */
+function register_acf_blocks() {
+  if (class_exists('ACF')) {
+    if (function_exists('register_block_type')) {
+      $block_files = get_block_files();
+
+      foreach ($block_files as $block) {
+        register_block_type(__DIR__ . '/blocks/' . $block['name']);
+
+        // If css exists attach it.
+        if (isset($block['css'])) {
+          wp_register_style($block['name'], get_stylesheet_directory_uri() . '/blocks/' . $block['css']);
+        }
+
+        // If js exists attach it.
+        if (isset($block['js'])) {
+          wp_enqueue_script($block['name'], get_stylesheet_directory_uri() . '/blocks/' . $block['js']['src'], $block['js']['deps'], $block['js']['ver'], $block['js']['in_footer']);
+        }
+      }
+    }
+  }
+}
+
 
 /**
  * Restrict available blocks by page
@@ -256,547 +319,26 @@ function disable_specific_blocks( $allowed_blocks ) {
 	unset($blocks['core/quote']);
 	unset($blocks['core/text-columns']);
 	unset($blocks['core/verse']);
-	unset($blocks['pmpro/checkout-button']);
-	unset($blocks['pmpro/account-page']);
-	unset($blocks['pmpro/account-membership-section']);
-	unset($blocks['pmpro/account-profile-section']);
-	unset($blocks['pmpro/account-invoices-section']);
-	unset($blocks['pmpro/account-links-section']);
-	unset($blocks['pmpro/billing-page']);
-	unset($blocks['pmpro/cancel-page']);
-	unset($blocks['pmpro/checkout-page']);
-	unset($blocks['pmpro/confirmation-page']);
-	unset($blocks['pmpro/invoice-page']);
-	unset($blocks['pmpro/levels-page']);
-	unset($blocks['pmpro/membership']);
-	unset($blocks['pmpro/member-profile-edit']);
-	unset($blocks['pmpro/login-form']);
 	unset($blocks['core/post-comments']);
-
-	// Checking for post IDs where page header should be disabled
-	$disabled_page_header_ids = array( 34, 36, 38, 40, 42 );
-	if(in_array($current_id, $disabled_page_header_ids)) {
-		// Disable page header block
-		unset($blocks['acf/page-header']);
-	}
-
-	// Checking for homepage ID
-	$homepage_id = 34;
-	// If not on the homepage
-	if($current_id != $homepage_id) {
-		// Then disable all homepage-only blocks
-		unset($blocks['acf/homepage-about']);
-		unset($blocks['acf/homepage-card-panel']);
-		unset($blocks['acf/homepage-hero']);
-	} else { // If currently editing the homepage
-		// Create an array of keys with the names of the permitted Homepage blocks
-		$allowed_block_keys = array('acf/homepage-about' => '', 'acf/homepage-card-panel' => '', 'acf/homepage-hero' => '');
-		// Intersect the Homepage block keys with the list of WP blocks
-		$homepage_blocks = array_intersect_key($blocks, $allowed_block_keys);
-		// Only allow the Homepage blocks to be used on the homepage
-		return array_keys($homepage_blocks);
-	}
-
-	// Checking for dashboard page ID
-	$dashboard_id = 40;
-	// If not on the dashboard
-	if($current_id != $dashboard_id) {
-		// Then disable all dashboard-only blocks
-		unset($blocks['acf/dashboard-cta-panel']);
-		unset($blocks['acf/dashboard-featured-resources']);
-		unset($blocks['acf/dashboard-hero']);
-		unset($blocks['acf/dashboard-tools']);
-	} else { // If currently editing the dashboard
-		// Create an array of keys with the names of the permitted dashboard blocks
-		$allowed_block_keys = array(
-			'acf/dashboard-cta-panel' => '',
-			'acf/dashboard-featured-resources' => '',
-			'acf/dashboard-hero' => '',
-			'acf/dashboard-tools' => '',
-		);
-		// Intersect the dashboard block keys with the list of WP blocks
-		$dashboard_blocks = array_intersect_key($blocks, $allowed_block_keys);
-		// Only allow the dashboard blocks to be used on the dashboard page
-		return array_keys($dashboard_blocks);
-	}
-
-	// Checking for Social Map page ID
-	$social_map_id = 42;
-	// If not on the dashboard
-	if($current_id != $social_map_id) {
-		// Then disable the social listening map block
-		unset($blocks['acf/social-listening-map']);
-	}
 
 	// Return the new list of allowed blocks.
 	return array_keys($blocks);
 }
 
-///**
-// * Populating default page header block on every new page instance
-// */
-//add_action( 'init', 'ccc_page_header_default_block',20 );
-//function ccc_page_header_default_block() {
-//	$template = array(
-//	  array('acf/page-header', array(
-//		'data' => array(
-//		),
-//		'mode' => 'preview'
-//	  ))
-//	);
-//	$post_type_object = get_post_type_object( 'page' );
-//	$post_type_object->template = $template;
-//
-//	$post_type_object = get_post_type_object( 'research' );
-//	$post_type_object->template = $template;
-//
-//	$post_type_object = get_post_type_object( 'message' );
-//	$post_type_object->template = $template;
-//}
-
-/**
- * Creating custom navigation to display with a shortcode
- */
-//add_shortcode('navigation_main_menu', 'ccc_render_main_navigation_menu');
-//function ccc_render_main_navigation_menu($args = array()) {
-//	if ( !class_exists('CCC_Nav_Walker') ) {
-//		class CCC_Nav_Walker extends Walker_Nav_Menu {
-//			function start_el(&$output, $item, $depth=0, $args=[], $id=0) {
-//				$output .= "<li class='" .  implode(" ", $item->classes) . "'>";
-//				if (!(in_array("menu-item-has-children", $item->classes))) {
-//					if((in_array("current-menu-item", $item->classes))) {
-//						$output .= '<a href="' . $item->url . '" aria-current="page">';
-//					} else {
-//						$output .= '<a href="' . $item->url . '">';
-//					}
-//
-//				} else {
-//					$output .= '<button class="ccc-megamenu-button" aria-haspopup="true" aria-expanded="false">';
-//				}
-//				$output .= $item->title;
-//				if (!(in_array("menu-item-has-children", $item->classes))) {
-//					$output .= '</a>';
-//				} else {
-//					$output .= '</button>';
-//				}
-//			}
-//		}
-//	}
-//
-//	ob_start();
-//
-//        $menu_id = '';
-//        if(is_user_logged_in()) {
-//            $menu_id = 4;
-//        } else {
-//            $menu_id = 5;
-//        }
-//
-//        $menu_name = 'Main Navigation Menu';
-//        $menu_slug = 'main-nav-menu';
-//        $menu_prefixed_id = 'ccc-megamenu-' . $menu_slug;
-//
-//		register_nav_menus( array( $menu_slug => esc_html__( $menu_name, get_stylesheet() ) ) );
-//
-//		wp_nav_menu( array(
-//			'menu'			 		=> $menu_id,
-//			'container'		 		=> '',
-//			'menu_class'	 		=> 'ccc-megamenu',
-//			'menu_id'		  	    => $menu_prefixed_id,
-//			'walker' 			    => new CCC_Nav_Walker
-//		) );
-//
-//	return ob_get_clean();
-//}
-
-/**
- * Hiding custom taxonomy metaboxes from the editor UI
- * Requires custom taxonomy CPT UI option "Metabox Callback" to have a value of: false
- * Currently hidden taxonomy metaboxes:
- * - Message Category
- * - Message Topic
- * - Research Category
- * - Research Partner
- * - Research Topic
- */
-add_filter( 'rest_prepare_taxonomy', 'aten_hybrid_remove_custom_taxonomy_metaboxes', 10, 3 );
-function aten_hybrid_remove_custom_taxonomy_metaboxes( $response, $taxonomy, $request ){
-	$context = ! empty( $request['context'] ) ? $request['context'] : 'view';
-	// Context is edit in the editor
-	if( $context === 'edit' && $taxonomy->meta_box_cb === false ){
-		$data_response = $response->get_data();
-		$data_response['visibility']['show_ui'] = false;
-		$response->set_data( $data_response );
-	}
-	return $response;
-}
-
-/**
- * Updating custom taxonomy terms via ACF fields for cleaner UI
- */
-add_action('acf/save_post', 'my_acf_save_post', 5);
-function my_acf_save_post( $post_id ) {
-	// If updating the message category value
-	if( isset($_POST['acf']['field_65130c24af62d']) ) {
-		// Set the message category taxonomy from the ACF val
-		$category_id = $_POST['acf']['field_65130c24af62d'];
-		$taxonomy = 'message-category';
-		wp_set_object_terms( $post_id, intval( $category_id ), $taxonomy );
-	}
-
-	// If updating the message topics value
-	if( isset($_POST['acf']['field_65130c70af62e']) ) {
-		// Set the message topics taxonomy from the ACF val
-		$topics = $_POST['acf']['field_65130c70af62e'];
-		$topic_ids = array_map( 'intval', $topics );
-		$topic_ids = array_unique( $topic_ids );
-		$taxonomy = 'message-topic';
-		wp_set_object_terms( $post_id, $topic_ids, $taxonomy );
-	}
-
-	// If updating the research category value
-	if( isset($_POST['acf']['field_65130d5348e27']) ) {
-		// Set the research category taxonomy from the ACF val
-		$category_id = $_POST['acf']['field_65130d5348e27'];
-		$taxonomy = 'research-category';
-		wp_set_object_terms( $post_id, intval( $category_id ), $taxonomy );
-	}
-
-	// If updating the research topics value
-	if( isset($_POST['acf']['field_65130e48ef234']) ) {
-		// Set the research topics taxonomy from the ACF val
-		$topics = $_POST['acf']['field_65130e48ef234'];
-		$topic_ids = array_map( 'intval', $topics );
-		$topic_ids = array_unique( $topic_ids );
-		$taxonomy = 'research-topic';
-		wp_set_object_terms( $post_id, $topic_ids, $taxonomy );
-	}
-
-	// If updating the research partner value
-	if( isset($_POST['acf']['field_64fb4ee5a51e8']) ) {
-		// Set the research partner taxonomy from the ACF val
-		$partner_id = $_POST['acf']['field_64fb4ee5a51e8'];
-		$taxonomy = 'research-partner';
-		wp_set_object_terms( $post_id, intval( $partner_id ), $taxonomy );
-	}
-}
-
-/**
- * Redirect all users to the user dashboard on login, unless a redirect is in place.
- *
- * Snippet adapted from Paid Memberships Pro: https://www.paidmembershipspro.com/redirect-members/
- */
-function my_login_redirect( $redirect_to ) {
-	$membership_account_string = '/membership-account/';
-
-	// If there is a redirect URL and the redirect is not set to the My Account page
-	if ( ! empty( $redirect_to ) && ! str_contains($redirect_to, $membership_account_string) ) {
-		// Redirect the user
-		return $redirect_to;
-	}
-
-	// Redirecting to user dashboard if no redirect is in place
-	$redirect_to = home_url('/dashboard/');
-
-	return $redirect_to;
-}
-add_filter( 'login_redirect', 'my_login_redirect', 999 );
-
-
-/*
-Define the global array below for your main accounts and sponsored levels.
-Array keys should be the main account level.
-*/
-global $pmprosm_sponsored_account_levels;
-$pmprosm_sponsored_account_levels = array(
-	//set 25 seats at checkout
-	2 => array(  // group level ID
-		'main_level_id' => 2, //group leader level ID same as above
-		'sponsored_level_id' => array(3), //array or single id
-		'seats' => 25
-	)
-);
-
 /**
  *  Allowing control over the archive query posts_per_page based on ACF Options fields
  */
-add_action( 'pre_get_posts', 'dynamic_resource_per_page_query_parameter' );
-function dynamic_resource_per_page_query_parameter( $query ) {
-	if( !is_admin() && (is_post_type_archive('research')) && $query->is_main_query() ) {
-		$research_fields = get_field('research_archive', 'option');
-		$research_per_page = ($research_fields && $research_fields['research_posts_per_page']) ? $research_fields['research_posts_per_page'] : 8;
-		$query->query_vars['posts_per_page'] = $research_per_page;
-	}
+// add_action( 'pre_get_posts', 'dynamic_resource_per_page_query_parameter' );
+// function dynamic_resource_per_page_query_parameter( $query ) {
+// 	if( !is_admin() && (is_post_type_archive('research')) && $query->is_main_query() ) {
+// 		$research_fields = get_field('research_archive', 'option');
+// 		$research_per_page = ($research_fields && $research_fields['research_posts_per_page']) ? $research_fields['research_posts_per_page'] : 8;
+// 		$query->query_vars['posts_per_page'] = $research_per_page;
+// 	}
 
-	if( !is_admin() && (is_post_type_archive('message')) && $query->is_main_query() ) {
-		$message_fields = get_field('message_lab_archive', 'option');
-		$message_per_page = ($message_fields && $message_fields['message_posts_per_page']) ? $message_fields['message_posts_per_page'] : 8;
-		$query->query_vars['posts_per_page'] = $message_per_page;
-	}
-}
-
-/**
- * Creating a shortcode to render the corner graphic and wrap the PMP login form
- */
-add_shortcode('aten_hybrid_custom_login', 'aten_hybrid_custom_login_shortcode');
-function aten_hybrid_custom_login_shortcode() {
-	ob_start(); ?>
-
-    <div class="ccc-login-wrap">
-        <div class="content-start-triangle"><img src="<?php echo get_stylesheet_directory_uri();?>/assets/images/content-start-triangle.svg" alt="" /></div>
-        <h1>Log in to the Cost & Coverage Collaborative Hub</h1>
-		<?php echo do_shortcode('[pmpro_login]'); ?>
-    </div>
-
-	<?php return ob_get_clean();
-}
-
-function custom_pmpro_level_cost_text($level_cost, $level)
-{
-	// You can modify the level cost text here
-	// For example, you can add a currency symbol
-	$level_cost = 'Please fill out the information below and submit';
-
-	return $level_cost;
-}
-
-add_filter('pmpro_level_cost_text', 'custom_pmpro_level_cost_text', 10, 2);
-
-/*
-  Only let level Group Leaders sign up if they use a discount code.
-  Place this code in your active theme's functions.php or a custom plugin.
-*/
-function ccc_pmpro_registration_checks_require_code_to_register($pmpro_continue_registration)
-{
-	//only bother if things are okay so far
-	if(!$pmpro_continue_registration)
-		return $pmpro_continue_registration;
-
-	//level = 1 and there is no discount code, then show an error message
-	global $pmpro_level, $discount_code;
-
-	if($pmpro_level->id == 3 && empty($discount_code))
-	{
-		pmpro_setMessage("You must use a valid discount code to register for the Group Member level.", "pmpro_error");
-		return false;
-	}
-
-	return $pmpro_continue_registration;
-}
-add_filter("pmpro_registration_checks", "ccc_pmpro_registration_checks_require_code_to_register");
-
-//function get_user_pending_status() {
-//	$user_id = get_current_user_id();
-//	global $level_id; // Access $level_id from the global scope
-//	global $user_approval; // Access $user_approval from the global scope
-//
-//	$pending_status = apply_filters('pmproap_user_is_pending', false, $user_id, $level_id, $user_approval);
-//	return $pending_status;
-//}
-//
-//function display_user_pending_status_in_footer() {
-//	echo '<p>Your pending status: ' . (get_user_pending_status() ? 'Pending' : 'Not Pending') . '</p>';
-//}
-//
-//add_action('wp_footer', 'display_user_pending_status_in_footer');
-
-
-///**
-// * Function to check if a user is either an admin, or an approved member/leader of a group
-// *
-// * Returns a boolean value
-// */
-//function check_user_authentication() {
-//	$authentication_status = false;
-//
-//	if (is_user_logged_in()) {
-//		$user_id = get_current_user_id(); // Get the user's ID
-//		$user_data = get_userdata($user_id);
-//		$user_roles = $user_data->roles;
-//
-//		if (!empty($user_roles)) {
-//			// The user's role is stored in the $user_roles array. You can access it like this:
-//			$user_role = $user_roles[0]; // In case a user has multiple roles, you can choose the primary role.
-//		}
-//		$membership_level = pmpro_getMembershipLevelForUser( $user_id ); // Get the user's membership level
-//		if(in_array('administrator', $user_roles)){
-//			// User is logged in as an administrator
-//			 $authentication_status = true; // admins
-//		}
-//		elseif ( $membership_level ) {
-//			$level_id = $membership_level->id;
-//			$approval_status = get_user_meta( $user_id, 'pmpro_approval_' . $level_id, true );
-//			if ($approval_status['status'] !== 'pending') {
-//				// User is logged in and has an approved membership
-//				$authentication_status = true; // User is authenticated
-//			}
-//		}
-//	}
-//
-//	return $authentication_status;
-//}
-
-function get_state_by_abbreviation($abbreviation) {
-	$state_name = '';
-
-	switch ($abbreviation) {
-		case 'AK':
-			$state_name = 'Alaska';
-			break;
-		case 'AL':
-			$state_name = 'Alabama';
-			break;
-		case 'AR':
-			$state_name = 'Arkansas';
-			break;
-		case 'AZ':
-			$state_name = 'Arizona';
-			break;
-		case 'CA':
-			$state_name = 'California';
-			break;
-		case 'CO':
-			$state_name = 'Colorado';
-			break;
-		case 'CT':
-			$state_name = 'Connecticut';
-			break;
-		case 'DC':
-			$state_name = 'Washington, D.C.';
-			break;
-		case 'DE':
-			$state_name = 'Delaware';
-			break;
-		case 'FL':
-			$state_name = 'Florida';
-			break;
-		case 'GA':
-			$state_name = 'Georgia';
-			break;
-		case 'HI':
-			$state_name = 'Hawai\'i';
-			break;
-		case 'IA':
-			$state_name = 'Iowa';
-			break;
-		case 'ID':
-			$state_name = 'Idaho';
-			break;
-		case 'IL':
-			$state_name = 'Illinois';
-			break;
-		case 'IN':
-			$state_name = 'Indiana';
-			break;
-		case 'KS':
-			$state_name = 'Kansas';
-			break;
-		case 'KY':
-			$state_name = 'Kentucky';
-			break;
-		case 'LA':
-			$state_name = 'Louisiana';
-			break;
-		case 'MA':
-			$state_name = 'Massachusetts';
-			break;
-		case 'MD':
-			$state_name = 'Maryland';
-			break;
-		case 'ME':
-			$state_name = 'Maine';
-			break;
-		case 'MI':
-			$state_name = 'Michigan';
-			break;
-		case 'MN':
-			$state_name = 'Minnesota';
-			break;
-		case 'MO':
-			$state_name = 'Missouri';
-			break;
-		case 'MS':
-			$state_name = 'Mississippi';
-			break;
-		case 'MT':
-			$state_name = 'Montana';
-			break;
-		case 'NC':
-			$state_name = 'North Carolina';
-			break;
-		case 'ND':
-			$state_name = 'North Dakota';
-			break;
-		case 'NE':
-			$state_name = 'Nebraska';
-			break;
-		case 'NH':
-			$state_name = 'New Hampshire';
-			break;
-		case 'NJ':
-			$state_name = 'New Jersey';
-			break;
-		case 'NM':
-			$state_name = 'New Mexico';
-			break;
-		case 'NV':
-			$state_name = 'Nevada';
-			break;
-		case 'NY':
-			$state_name = 'New York';
-			break;
-		case 'OH':
-			$state_name = 'Ohio';
-			break;
-		case 'OK':
-			$state_name = 'Oklahoma';
-			break;
-		case 'OR':
-			$state_name = 'Oregon';
-			break;
-		case 'PA':
-			$state_name = 'Pennsylvania';
-			break;
-		case 'PR':
-			$state_name = 'Puerto Rico';
-			break;
-		case 'RI':
-			$state_name = 'Rhode Island';
-			break;
-		case 'SC':
-			$state_name = 'South Carolina';
-			break;
-		case 'SD':
-			$state_name = 'South Dakota';
-			break;
-		case 'TN':
-			$state_name = 'Tennessee';
-			break;
-		case 'TX':
-			$state_name = 'Texas';
-			break;
-		case 'UT':
-			$state_name = 'Utah';
-			break;
-		case 'VA':
-			$state_name = 'Virginia';
-			break;
-		case 'VT':
-			$state_name = 'Vermont';
-			break;
-		case 'WA':
-			$state_name = 'Washington';
-			break;
-		case 'WI':
-			$state_name = 'Wisconsin';
-			break;
-		case 'WV':
-			$state_name = 'West Virginia';
-			break;
-		case 'WY':
-			$state_name = 'Wyoming';
-			break;
-	}
-
-	return $state_name;
-}
+// 	if( !is_admin() && (is_post_type_archive('message')) && $query->is_main_query() ) {
+// 		$message_fields = get_field('message_lab_archive', 'option');
+// 		$message_per_page = ($message_fields && $message_fields['message_posts_per_page']) ? $message_fields['message_posts_per_page'] : 8;
+// 		$query->query_vars['posts_per_page'] = $message_per_page;
+// 	}
+// }
