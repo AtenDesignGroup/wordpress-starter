@@ -1,0 +1,235 @@
+/* Main Navigation menu styles. */
+ .header-wrap {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+
+	.header-logo-wrapper {
+		padding: rem(12px) rem(20px);
+		width: rem(102px);
+		height: rem(86px);
+		z-index: 5;
+
+		a {
+			display: block;
+			width: 100%;
+			height: 100%;
+
+			&:focus,
+			&:focus-within {
+				outline: rem(2px) solid var(--dark-purple);
+				outline-offset: rem(6px);
+				border-radius: rem(4px);
+			}
+		}
+
+		.logo-img {
+			position: absolute;
+			width: rem(62px);
+			opacity: 1;
+
+			&.logo-inactive {
+				opacity: 0;
+			}
+		}
+
+		@include bp-min(tablet) {
+			width: rem(152px);
+			height: rem(112px);
+			padding: rem(20px) rem(40px);
+
+			.logo-img {
+				width: rem(72px);
+			}
+		}
+
+		@media (min-width: 1100px) {
+			.logo-img {
+				width: rem(370px);
+				position: static;
+
+				&.logo-inactive {
+					display: none;
+				}
+			}
+		}
+
+		@include bp-min(smdesk) {
+			width: auto;
+			height: auto;
+			padding: rem(20px) rem(36px) rem(20px) rem(48px);
+		}
+
+		@include bp-min(lgdesk) {
+			padding: rem(60px) rem(60px) rem(20px);
+		}
+
+		&.dark-mode {
+			a {
+				&:focus,
+				&:focus-within {
+					outline: rem(2px) solid var(--white);
+				}
+			}
+		}
+	}
+
+	.main-nav {
+		position: relative;
+		z-index: 3;
+	}
+
+	.ccc-megamenu {
+		list-style-type: none;
+		display: flex;
+		opacity: 0;
+
+		li {
+
+			a {
+				@include font-label-14;
+				font-weight: var(--font-weight-semibold);
+				color: var(--dark-purple);
+				text-decoration: none;
+				overflow: hidden;
+				display: block;
+				position: relative;
+				padding: 0.2em 0;
+
+				&::after {
+					content: '';
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					height: rem(2px);
+					opacity: 0;
+					transition: opacity 300ms, transform 300ms;
+					opacity: 1;
+					transform: translate3d(-100%, 0, 0);
+
+					@include bp-min(smdesk) {
+						@include bg-gradient(90deg, var(--coral), var(--orange));
+					}
+				}
+
+				&:focus {
+					outline-offset: rem(4px);
+					outline: rem(1px) solid var(--purple);
+				}
+			}
+
+			&:not(.current-menu-item) {
+				a {
+					&:hover::after,
+					&:focus::after {
+						opacity: 1;
+						transform: translate3d(0, 0.2em, 0);
+						transform: translate3d(0, 0, 0);
+					}
+				}
+			}
+
+			&.current-menu-item {
+				a {
+					&::after,
+					&::after {
+						opacity: 1;
+						transform: translate3d(0, 0.2em, 0);
+						transform: translate3d(0, 0, 0);
+
+						@include bp-min(smdesk) {
+							@include bg-gradient(90deg, var(--purple), var(--dark-purple));
+						}
+					}
+				}
+			}
+		}
+
+		@include bp-min(smdesk) {
+			display: flex!important;
+			background-color: var(--pale-cloud-gray);
+			padding: rem(20px) rem(40px);
+			border-radius: 0 0 0 rem(20px);
+			flex-direction: row;
+			gap: rem(40px);
+			opacity: 1;
+
+			li {
+				opacity: 1!important;
+			}
+		}
+	}
+
+	nav.mobile-menu-wrapper {
+		> .ccc-megamenu {
+			&.transition-hidden {
+				opacity: 0!important;
+			}
+
+			// For mobile menu
+			padding: rem(94px) rem(20px) rem(32px) rem(20px);
+			background-color: var(--dark-purple);
+			position: absolute;
+			z-index: 3;
+			left: -100vw;
+			top: 0;
+			width: 100vw;
+			height: auto;
+			transform-origin: top right;
+			overflow: hidden;
+			flex-direction: column;
+			gap: rem(12px);
+			align-items: flex-start;
+
+			li {
+				a {
+					color: var(--white);
+
+					&::after {
+						background-color: var(--white);
+					}
+
+					&:focus {
+						outline: rem(1px) solid var(--white);
+					}
+				}
+			}
+
+			@include bp-min(tablet) {
+				padding: rem(120px) rem(20px) rem(32px) rem(44px);
+			}
+		}
+	 }
+
+	.ccc-mobile-toggle-button {
+		display: none;
+		padding: rem(12px) rem(20px);
+		border-radius: 0 0 0 rem(20px);
+		background-color: var(--pale-cloud-gray);
+		color: var(--dark-purple);
+		position: absolute;
+		right: 0;
+		z-index: 4;
+		border-width: 0px!important;
+
+		.menu-toggle-icon {
+			display: none;
+
+			&.active-icon {
+				display: inline-block;
+			}
+		}
+
+		.menu-text {
+			text-transform: uppercase;
+			@include font-label-14;
+			margin-left: rem(12px);
+		}
+
+		&.mobile-menu-active {
+			display: flex;
+			outline-color: var(--purple);
+		}
+	}
+}

@@ -1,0 +1,165 @@
+// Header classes
+// -----------------------------------
+h1 {
+  @include font-h1;
+}
+
+h2 {
+  @include font-h2;
+  @include font-weight-bold;
+}
+
+h3 {
+  @include font-h3;
+  @include font-weight-bold;
+}
+
+h4 {
+  @include font-h4;
+  @include font-weight-bold;
+}
+
+h5 {
+  @include font-h5;
+  @include font-weight-bold;
+}
+
+h6 {
+  @include font-h6;
+  @include font-weight-bold;
+}
+
+// Font Body classes
+// -----------------------------------
+
+.font-body-28 {
+  @include font-body-28;
+}
+
+.font-body-18 {
+  @include font-body-18;
+}
+
+.font-body-16 {
+  @include font-body-16;
+}
+
+.font-body-14 {
+  @include font-body-14;
+}
+
+// Rule
+hr {
+  border: 0;
+  border-bottom: 2px solid var(--cloud-gray);
+}
+
+p {
+  @include font-body-18;
+
+  a {
+    @include font-weight-bold;
+    color: var(--purple);
+
+    &:hover,
+    &:focus {
+      color: var(--dark-purple);
+      text-decoration: none;
+    }
+  }
+}
+
+li {
+  a {
+    @include font-weight-bold;
+    color: var(--purple);
+
+    &:hover,
+    &:focus {
+      color: var(--dark-purple);
+      text-decoration: none;
+    }
+  }
+}
+
+.entry-content > ul > li > ul,
+.entry-content > ol > li > ul {
+  margin-top: rem(12px);
+}
+
+strong {
+  @include font-weight-bold;
+}
+
+// Label classes
+// -----------------------------------
+
+.label-18 {
+  @include font-label-18;
+}
+
+.label-14 {
+  @include font-label-14;
+}
+
+// Links
+// -----------------------------------
+a {
+  @include text-link;
+
+  &.white {
+    @include text-link(var(--white));
+  }
+
+  // Support inverted text underline
+  &.inverse {
+    text-decoration: none;
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}
+
+.site a:focus:not(.wp-block-button__link):not(.wp-block-file__button),
+button:focus {
+  outline: 2px solid -webkit-focus-ring-color;
+  text-decoration: none;
+  text-decoration-skip-ink: none;
+  background: transparent;
+
+  img {
+    outline: 0px;
+  }
+}
+
+// Lists
+// ------------------
+
+.entry-content ol,
+.entry-content ul {
+  @include font-body-18;
+  text-indent: rem(4px);
+  padding-inline-start: rem(24px);
+  display: flex;
+  flex-direction: column;
+  gap: rem(12px);
+}
+
+//Visually Hidden
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+ * {
+  text-indent: 0;
+  box-sizing: border-box;
+}
+

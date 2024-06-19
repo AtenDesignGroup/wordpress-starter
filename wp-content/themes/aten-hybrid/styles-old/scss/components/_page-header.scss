@@ -1,0 +1,153 @@
+/* Page Header Component Styling */
+ .page-header-component,
+.wp-toolbar #wpcontent .page-header-component {
+    @include bg-gradient(90deg, var(--dark-purple), var(--black));
+    padding: rem(20px);
+    margin-bottom: rem(32px);
+
+    .page-header-triangle {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: auto;
+        height: 100%;
+
+        img {
+            max-height: 100%;
+        }
+
+        @include bp-min(tablet) {
+            display: block;
+        }
+
+        @include bp-min(smdesk) {
+        }
+    }
+
+    .page-header-wrapper {
+        position: relative;
+        z-index: 2;
+
+        .page-header-content {
+            h1 {
+                @include font-h1;
+                @include font-weight-bold;
+                color: var(--white);
+            }
+
+            p {
+                @include font-body-28;
+                color: var(--white);
+                margin-top: rem(12px);
+
+                @include bp-min(smdesk) {
+                    margin-top: rem(24px);
+                }
+            }
+
+            @include bp-min(tablet) {
+                background-image: url('../ccc/assets/images/line_graphic.svg');
+                background-position: center center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                padding: rem(40px);
+            }
+        }
+
+        .resource-icon-wrapper {
+            display: none;
+            position: absolute;
+            right: rem(40px);
+            bottom: rem(40px);
+            height: rem(56px);
+            width: rem(56px);
+
+            @include bp-min(tablet) {
+                display: block;
+            }
+
+            @include bp-min(smdesk) {
+                top: rem(40px);
+                bottom: auto;
+            }
+        }
+
+        a.is-style-download-purple {
+            @include btn-download(var(--purple));
+            margin-top: rem(16px);
+
+            .file-size {
+                @include font-body-14;
+                padding-left: rem(8px);
+            }
+
+            &:focus,
+            &:focus-within {
+                outline-color: var(--white);
+            }
+
+            @include bp-min(tablet) {
+                margin-top: rem(24px);
+            }
+        }
+
+        @include bp-min(tablet) {
+            @include bg-gradient(90deg, var(--dark-purple), var(--black));
+            border-radius: rem(20px);
+        }
+    }
+
+    @include bp-min(tablet) {
+        position: relative;
+        left: rem(-10px);
+        top: 0;
+        padding: rem(20px) 0 rem(60px) rem(20px);
+        margin-bottom: 0;
+        background: transparent!important;
+        width: calc(100% + rem(5px));
+        max-width: calc(100% - rem(60px));
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @include bp-min(smdesk) {
+        padding: rem(40px) 0 rem(60px) rem(40px);
+        left: rem(-20px);
+        max-width: calc(100% - rem(80px));
+    }
+
+    @include bp-min(lgdesk) {
+        padding-bottom: rem(80px);
+    }
+
+    @include bp-max(tablet) {
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: 0;
+    }
+
+    &.resource-page {
+        @include bp-min(tablet) {
+            .page-header-content {
+                a.is-style-download-purple {
+                    max-width: calc(100% - rem(140px));
+                }
+            }
+        }
+
+        @include bp-min(smdesk) {
+            .page-header-content {
+                a.is-style-download-purple {
+                    max-width: 100%;
+                }
+
+                h1,
+                p {
+                    max-width: calc(100% - rem(140px));
+                }
+            }
+        }
+    }
+}

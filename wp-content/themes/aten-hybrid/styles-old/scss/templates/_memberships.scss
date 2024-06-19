@@ -1,0 +1,600 @@
+/* Membership Page Template Styles */
+ {
+
+    .asterisk {
+        color: var(--red);
+    }
+
+    h3.required-message {
+        @include font-body-18;
+        font-style: italic;
+        margin: rem(24px) 0;
+
+        @include bp-min(tablet) {
+            margin: rem(32px) 0;
+        }
+    }
+
+    .pmpro_content_message {
+        padding: rem(20px);
+        border-radius: rem(20px);
+        background-color: var(--dark-purple);
+        color: var(--white);
+        @include font-h3;
+        @include font-weight-bold;
+
+        a {
+            @include btn-large(var(--white));
+            display: inline-block;
+            margin-top: rem(20px);
+            margin-right: rem(12px);
+        }
+
+        @include bp-min(tablet) {
+            padding: rem(40px);
+        }
+
+        @include bp-min(smdesk) {
+            padding: rem(60px);
+        }
+    }
+
+    .ccc-login-wrap {
+        position: relative;
+        background-color: var(--dark-purple);
+        width: 100%;
+        padding: rem(40px);
+        border-radius: rem(20px);
+        margin-bottom: rem(30px);
+
+        .content-start-triangle {
+            display: none;
+            position: absolute;
+            z-index: -1;
+            top: rem(-40px);
+            right: rem(-40px);
+
+            @include bp-min(smdesk) {
+                display: block;
+            }
+        }
+
+        h1 {
+            @include font-h3;
+            @include font-weight-bold;
+            color: var(--white);
+            margin-bottom: rem(28px);
+
+            @include bp-min(lgdesk) {
+                max-width: 90%;
+                margin-bottom: rem(44px);
+            }
+        }
+
+        .pmpro_lost_password-instructions {
+            color: var(--white);
+            margin-bottom: rem(28px);
+
+            @include bp-min(lgdesk) {
+                max-width: 90%;
+            }
+        }
+
+        form#loginform,
+        form#lostpasswordform,
+        form#resetpassform {
+            display: flex;
+            flex-wrap: wrap;
+
+            > *:not(.login-submit):not(.pmpro_actions_nav):not(.pmpro_submit) {
+                width: 100%;
+            }
+
+            label {
+                @include font-body-18;
+                @include font-weight-bold;
+                text-transform: none;
+                color: var(--white);
+                margin-bottom: rem(12px);
+
+                @include bp-min(lgdesk) {
+                    font-size: rem(20px);
+                    line-height: rem(30px);
+                }
+            }
+
+            input {
+                &[type="text"],
+                &[type="password"] {
+                    width: 100%!important;
+                    max-width: none;
+                    @include font-body-18;
+                    background-color: var(--dark-purple);
+                    border: rem(2px) solid var(--white);
+                    border-radius: rem(6px);
+                    margin-bottom: rem(26px);
+                    color: var(--white);
+                    padding: rem(14px) rem(10px);
+
+                    &:focus {
+                        outline: rem(2px) solid var(--white);
+                        outline-offset: 0;
+                    }
+                }
+
+                &[type="submit"] {
+                    background-color: transparent!important;
+                    border: 0px;
+                    padding: 0;
+                    margin: 0;
+                    color: var(--purple);
+                    @include font-label-18;
+                    @include font-weight-bold;
+                    letter-spacing: 0;
+                    text-transform: capitalize;
+                    outline: none!important;
+                    display: inline;
+
+                    &:hover,
+                    &:focus {
+                        color: var(--dark-purple)!important;
+                    }
+                }
+            }
+
+            .login-submit,
+            .pmpro_submit {
+                @include btn-with-icon;
+                @include btn-large(var(--white));
+                margin-top: 0!important;
+                display: flex;
+                align-items: center;
+
+                &::after {
+                    background-image: url('../ccc/assets/icons/ui/purple/arrow_right.svg');
+                    width: rem(24px);
+                    height: rem(24px);
+                    right: rem(26px);
+                    transition: all .5s ease;
+
+                    @include bp-max(smdesk) {
+                      width: rem(20px);
+                      height: rem(20px);
+                      right: rem(20px);
+                    }
+                }
+
+                &:hover,
+                &:focus,
+                &:focus-within {
+                    input {
+                        text-decoration: underline;
+                    }
+
+                    &::after {
+                        background-image: url('../ccc/assets/icons/ui/dark_purple/arrow_right.svg');
+                        right: rem(20px);
+
+                        @include bp-max(smdesk) {
+                            right: rem(16px);
+                        }
+                    }
+                }
+
+                &:focus-within {
+                    outline: rem(2px) solid var(--white);
+                    outline-offset: rem(2px);
+                }
+
+                @include bp-max(smdesk) {
+                    padding: 0.5rem 2.75rem 0.5rem 1.25rem;
+                }
+            }
+
+            .pmpro_actions_nav {
+                display: flex;
+                align-items: center;
+
+                a {
+                    @include btn-no-bg(var(--white));
+                }
+
+                @include bp-min(tablet) {
+                    margin-left: rem(40px);
+                }
+            }
+
+        }
+
+        form#lostpasswordform {
+            .pmpro_actions_nav {
+                @include bp-max(tablet) {
+                    margin-top: rem(20px);
+                }
+            }
+        }
+
+        @include bp-min(smdesk) {
+            padding: rem(60px);
+            margin-bottom: rem(60px);
+        }
+
+        @include bp-min(lgdesk) {
+            padding: rem(80px);
+            margin-bottom: rem(90px);
+        }
+    }
+
+    .pmpro_error {
+        border-color: var(--red)!important;
+        color: var(--red)!important;
+        background-color: var(--white);
+        @include font-body-16;
+        @include font-weight-bold;
+
+        &.pmpro_message {
+            margin-bottom: rem(28px);
+        }
+    }
+
+    #pmpro_account {
+        #pmpro_account-membership {
+            border: 0px;
+        }
+
+        h2 {
+            margin-bottom: rem(20px);
+        }
+    }
+
+    .pmpro_table {
+        margin-bottom: rem(20px);
+
+        * {
+            border: 0;
+        }
+
+        thead {
+            background-color: var(--dark-purple);
+
+            * {
+                color: var(--white);
+            }
+
+            th {
+                @include font-body-18;
+                @include font-weight-bold;
+                text-align: left;
+                padding: rem(16px) rem(24px);
+            }
+        }
+
+        a {
+            color: var(--purple);
+            @include font-weight-bold;
+
+            &:hover,
+            &:focus {
+                color: var(--dark-purple);
+            }
+        }
+    }
+
+    .pmpro_box > .pmpro_actionlinks {
+        color: var(--white);
+        display: flex;
+
+        a {
+            @include btn-no-bg;
+        }
+    }
+
+    .pmpro_confirmation_wrap {
+        p {
+            margin-top: rem(20px);
+            margin-bottom: rem(20px);
+        }
+
+        ul {
+            margin-top: rem(20px);
+            margin-bottom: rem(20px);
+            list-style-type: none;
+            padding: 0;
+        }
+    }
+
+    .pmpro_actions_nav {
+        a {
+            @include btn-large;
+        }
+    }
+
+    #pmpro_account-sponsored {
+        padding: rem(20px);
+        border-radius: rem(20px);
+        background-color: var(--dark-purple);
+        color: var(--white);
+        @include font-h3;
+        @include font-weight-bold;
+
+        ul {
+            margin-top: rem(20px);
+            margin-bottom: rem(20px);
+            list-style-type: none;
+            padding: 0;
+        }
+
+        a {
+            color: var(--white)!important;
+            @include font-weight-bold;
+        }
+
+        .pmpro_message {
+            background-color: var(--white);
+            border: rem(2px) solid var(--purple);
+            color: var(--dark-purple);
+            border-radius: rem(20px);
+            @include font-h4;
+            @include font-weight-bold;
+            margin-top: rem(30px);
+        }
+
+        @include bp-min(tablet) {
+            padding: rem(40px);
+        }
+
+        @include bp-min(smdesk) {
+            padding: rem(60px);
+        }
+    }
+
+    .pmpro_box {
+        border: 0px;
+    }
+
+    .pmpro_invoice_wrap {
+        h2 {
+            @include font-h3;
+            @include font-weight-bold;
+        }
+
+        hr:not(.register-form-separator) {
+            display: none;
+        }
+
+        ul {
+            margin-top: rem(20px);
+            margin-bottom: rem(20px);
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .pmpro_invoice_details {
+            margin-top: rem(30px);
+            margin-bottom: rem(30px);
+            border-top: rem(2px) solid var(--medium-gray);
+            padding-top: rem(30px);
+        }
+    }
+
+    .pmpro_alert {
+        background-color: var(--pale-cloud-gray);
+        border-color: var(--cloud-gray);
+        color: var(--dark-purple);
+    }
+
+    p.lite {
+        border-radius: rem(10px);
+        padding: rem(10px);
+        background-color: var(--pale-cloud-gray);
+        border-color: var(--cloud-gray);
+        color: var(--dark-purple);
+        margin-bottom: rem(20px);
+
+        @include bp-min(tablet) {
+            border-radius: rem(20px);
+            padding: rem(20px);
+        }
+    }
+
+    .pmpro_btn[disabled] {
+        opacity: 1;
+        background-color: var(--gray);
+        color: var(--black);
+        pointer-events: none;
+    }
+
+    .pmpro_logged_in_welcome_wrap {
+        &, * {
+            color: var(--white)!important;
+            outline-color: var(--white)!important;
+        }
+    }
+
+    #pmpro_pricing_fields {
+        position: relative;
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: rem(32px);
+        }
+
+        a {
+            @include btn-no-bg(var(--purple));
+        }
+
+        a,
+        button {
+            @include font-weight-bold;
+        }
+
+        button {
+            outline-color: var(--white)!important;
+        }
+
+        #other_discount_code:focus {
+            outline-color: var(--white)!important;
+        }
+
+        #other_discount_code_button {
+            @include btn-large(var(--white));
+        }
+
+        .pmpro_level_description_text {
+            display: flex;
+            flex-direction: column-reverse;
+
+            p {
+                @include bp-min(smdesk) {
+                    font-size: rem(20px);
+                    line-height: rem(30px);
+                }
+            }
+
+            .level-description {
+                padding: rem(20px);
+                border-radius: rem(4px);
+                @include font-body-18;
+
+                &.current-level {
+                    background-color: var(--pale-cloud-gray);
+                }
+
+                .selected-level-tag {
+                    @include font-h6;
+                    color: var(--red);
+                    @include font-weight-bold;
+                    margin-bottom: rem(14px);
+
+                    @include bp-min(tablet) {
+                        font-size: rem(16px);
+                        margin-bottom: rem(20px);
+                    }
+                }
+
+                .level-title {
+                    @include font-body-18;
+                    @include font-weight-bold;
+
+                    @include bp-min(smdesk) {
+                        font-size: rem(20px);
+                        line-height: rem(30px);
+                    }
+                }
+
+                .switch-level {
+                    margin-top: rem(20px);
+                }
+
+                @include bp-min(tablet) {
+                    padding: rem(40px);
+                    border-radius: rem(8px);
+                }
+
+                @include bp-min(smdesk) {
+                    width: 50%;
+                }
+            }
+
+            @include bp-min(smdesk) {
+                flex-direction: row-reverse;
+                margin-bottom: rem(28px);
+            }
+
+            @include bp-max(smdesk) {
+                margin-bottom: 0!important;
+            }
+        }
+    }
+
+    .pmpro-checkout {
+
+        .register-page-heading {
+            margin-right: var(--global--spacing-horizontal);
+            margin-left: var(--global--spacing-horizontal);
+
+            h1 {
+                @include font-weight-bold;
+            }
+        }
+
+        hr.register-form-separator {
+            margin: rem(32px) auto;
+
+            @include bp-min(tablet) {
+                margin: rem(52px) auto;
+            }
+        }
+
+        #pmpro_form {
+            label {
+                @include font-body-18;
+                @include font-weight-bold;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            select,
+            textarea {
+                margin-top: rem(4px);
+                margin-left: 0;
+                min-width: 100%;
+            }
+
+            small {
+                font-style: italic;
+            }
+
+            .pmpro_checkout-fields div:not(.level-description),
+            #other_discount_code_tr {
+                margin-bottom: rem(32px);
+            }
+
+            #other_discount_code_tr {
+                .registration-code-field-wrapper {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: nowrap;
+                    width: 100%;
+
+                    input {
+                        min-width: rem(1px);
+                        margin-top: 0;
+
+                        &#other_discount_code {
+                            flex-grow: 1;
+                            max-width: none;
+                        }
+
+                        &#other_discount_code_button {
+                            flex-shrink: 0;
+                            width: auto;
+                            @include btn-large(var(--purple));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #pmpro_user_fields {
+        h2 {
+            span.pmpro_checkout-h2-msg {
+                display: block;
+                @include font-body-18;
+
+                a {
+                    @include btn-no-bg;
+                    display: inline-flex;
+                    outline-offset: rem(-5px)!important;
+                    margin-left: rem(5px);
+                }
+            }
+        }
+    }
+
+    .lite {
+        color: var(--wcag-placeholder);
+    }
+}

@@ -1,0 +1,244 @@
+/* Filter Bar Styles */
+ .filter-container {
+    margin: rem(20px) auto;
+
+    .filter-icon.open {
+        display: none;
+    }
+
+    .filter-accordion-trigger {
+        @include btn-no-bg(var(--purple));
+        @include font-label-18;
+        font-family: var(--font-family-mint);
+        text-decoration: none;
+        border-width: rem(1px);
+        outline-offset: 0!important;
+        margin-left: var(--global--spacing-horizontal);
+
+        .filter-accordion-title {
+            display: flex;
+            align-items: center;
+            gap: rem(12px);
+
+            .filter-icon {
+                width: rem(22px);
+                height: auto;
+            }
+        }
+
+        @include bp-min(tablet) {
+            margin-left: 0;
+        }
+    }
+
+    form.searchandfilter {
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: rem(20px);
+            padding: 0;
+            margin: 0;
+
+            li {
+                display: flex;
+                flex-direction: column;
+                gap: rem(8px);
+                padding: 0;
+
+                label > span {
+                    padding: 0;
+                    @include font-body-18;
+                    @include font-weight-bold;
+                }
+
+                input:not([name="_sfm_customizable_message[]"]),
+                select {
+                    width: 100%;
+                    @include font-body-18;
+                    border-radius: rem(8px);
+                    border: rem(2px) solid var(--dark-purple);
+                    padding: rem(8px) rem(12px);
+                    color: var(--black);
+
+                    &:focus {
+                        outline: rem(1px) solid var(--dark-purple);
+                    }
+
+                    @include bp-min(tablet) {
+                        padding: rem(16px);
+                    }
+                }
+
+                select {
+                    background-image: url('../ccc/assets/icons/ui/purple/angle_down.svg');
+                    background-position: calc(100% - 0.75rem) center;
+                    background-size: 1.25rem;
+                    background-repeat: no-repeat;
+                    padding-right: rem(42px);
+
+                    @include bp-min(tablet) {
+                        background-size: rem(28px);
+                        background-position: calc(100% - rem(16px)) center;
+                        padding-right: rem(56px);
+                    }
+                }
+
+                &:not(.sf-field-submit) {
+                    @include bp-min(tablet) {
+                        width: calc(50% - rem(20px));
+                        gap: rem(12px);
+                    }
+
+                    @include bp-min(lgdesk) {
+                        width: calc(25% - rem(30px));
+                    }
+                }
+
+                &.sf-field-post-meta-customizable_message {
+                    background-color: var(--pale-cloud-gray);
+                    border-radius: rem(6px);
+                    padding: rem(12px) rem(16px);
+                    flex-direction: column-reverse;
+
+                    > span {
+                        @include font-body-14;
+                        font-style: italic;
+                    }
+
+                    input {
+                        width: rem(20px);
+                        height: rem(20px);
+                        border-radius: rem(3px);
+                        border: rem(2px) solid var(--dark-purple);
+                        background-color: var(--pale-cloud-gray);
+                        flex-shrink: 0;
+
+                        &:checked:after {
+                            top: rem(1px);
+                            transform: rotate(40deg);
+                            border: rem(1.5px) solid var(--dark-purple);
+                            border-top: 0;
+                            border-left: 0;
+                        }
+
+                        &:focus {
+                            outline: rem(1px) solid var(--dark-purple);
+                        }
+                    }
+
+                    label {
+                        padding-left: 0;
+                    }
+
+                    ul {
+                        li {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            width: 100%!important;
+
+                            label {
+                                @include font-body-18;
+                                @include font-weight-bold;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @include bp-min(tablet) {
+                gap: rem(40px);
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+        }
+
+        input.sf-input-text {
+            background-image: url('../ccc/assets/icons/ui/purple/search.svg');
+            background-position: rem(12px) center;
+            background-size: rem(20px);
+            background-repeat: no-repeat;
+            padding-left: rem(42px)!important;
+
+            @include bp-min(tablet) {
+                background-position: rem(16px) center;
+                background-size: rem(28px);
+                padding-left: rem(56px)!important;
+            }
+        }
+
+        #_sf_submit {
+            @include btn-large(var(--purple));
+            @include font-label-18;
+            @include font-weight-bold;
+        }
+
+        .search-filter-reset {
+            @include btn-no-bg(var(--purple));
+            border-radius: rem(100px);
+
+            &:focus {
+                outline: rem(1px) solid var(--dark-purple);
+            }
+
+            &.disabled-link {
+                cursor: not-allowed;
+                display: none;
+            }
+        }
+
+        ::placeholder {
+            color: var(--wcag-placeholder);
+            opacity: 1; /* Firefox */
+        }
+
+        ::-ms-input-placeholder { /* Edge 12 -18 */
+            color: var(--wcag-placeholder);
+        }
+
+        @include bp-min(tablet) {
+            position: relative;
+            z-index: 2;
+        }
+    }
+
+    #filter-wrapper {
+        padding: rem(20px);
+
+        @include bp-min(tablet) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    .result-count-wrapper {
+        margin-top: rem(20px);
+
+        p {
+            font-style: italic;
+        }
+
+        @include bp-min(tablet) {
+            margin-top: rem(-36px);
+            margin-bottom: rem(24px);
+            text-align: right;
+            position: relative;
+            z-index: 1;
+        }
+
+        @include bp-min(smdesk) {
+            margin-top: rem(-44px);
+            margin-bottom: rem(12px);
+        }
+    }
+
+    @include bp-min(tablet) {
+        max-width: 100rem;
+        margin: rem(40px) var(--global--spacing-horizontal);
+    }
+
+    @media (min-width: rem(1710px)) {
+        margin: rem(40px) auto;
+    }
+}

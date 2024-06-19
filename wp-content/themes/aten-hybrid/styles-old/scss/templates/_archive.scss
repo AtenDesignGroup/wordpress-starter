@@ -1,0 +1,136 @@
+/* Archive Styling */
+ .post-type-archive,
+ body.archive,
+ body.blog,
+ body.search-results {
+
+    header.page-header {
+        width: calc(100vw - (2 * var(--global--spacing-horizontal)));
+        margin-left: var(--global--spacing-horizontal);
+        margin-right: var(--global--spacing-horizontal);
+        padding: rem(20px) 0;
+        border: 0;
+        max-width: 100vw;
+
+        h1 {
+            @include bp-min(lgdesk) {
+                margin-bottom: rem(20px);
+                font-size: var(--font-size-h80);
+                line-height: var(--line-height-h80);
+            }
+        }
+
+        .archive-description {
+            margin: 0;
+
+            p {
+                @include bp-min(tablet) {
+                    @include font-body-28;
+                    margin-top: rem(12px);
+                }
+            }
+        }
+
+        @include bp-min(tablet) {
+            padding: rem(40px) 0;
+        }
+
+        @include bp-min(lgdesk) {
+            padding-top: 0;
+        }
+    }
+
+    #main {
+        position: relative;
+        padding-bottom: rem(12px);
+
+        .archive-container {
+            position: relative;
+            width: 100vw;
+            max-width: 100vw;
+            margin-left: 0;
+            position: relative;
+
+            @include bp-min(tablet) {
+                width: calc(100vw - rem(80px));
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            @include bp-min(smdesk) {
+                width: calc(100vw - rem(120px));
+            }
+
+            @include bp-min(lgdesk) {
+                width: calc(100vw - rem(120px));
+                max-width: rem(1600px);
+            }
+        }
+
+        .archive-wrap {
+            background-color: var(--black);
+            width: 100%;
+
+            h2 {
+                @include font-h3;
+                @include font-weight-bold;
+                color: var(--white);
+                max-width: rem(940px);
+            }
+
+            @include bp-min(tablet) {
+                border-radius: rem(20px);
+                padding: rem(40px);
+            }
+
+            @include bp-min(smdesk) {
+                padding: rem(60px);
+            }
+        }
+
+        .content-end-triangle {
+            position: absolute;
+            z-index: -1;
+            bottom: rem(-40px);
+            right: rem(-40px);
+            display: none;
+
+            @include bp-min(smdesk) {
+                display: block;
+            }
+        }
+
+        nav.navigation.pagination {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .featured-resource-list {
+            margin-bottom: rem(20px);
+
+            @include bp-min(tablet) {
+                margin-bottom: rem(40px);
+            }
+        }
+
+        @include bp-min(tablet) {
+            padding-top: 0;
+            padding-bottom: rem(50px);
+        }
+
+        @include bp-min(smdesk) {
+            padding-top: rem(30px);
+            padding-bottom: rem(110px);
+        }
+
+        @include bp-min(lgdesk) {
+            padding: rem(20px) 0 rem(120px);
+        }
+    }
+
+    #filter-wrapper {
+        &.collapsed {
+            height: 0;
+        }
+    }
+}
