@@ -1,11 +1,11 @@
 {
-    "key": "group_653be776117a5",
-    "title": "Dashboard Tools Cards",
+    "key": "group_64761d167eb3b",
+    "title": "Featured Link Cards",
     "fields": [
         {
-            "key": "field_653be813176bc",
-            "label": "Heading Text",
-            "name": "heading_text",
+            "key": "field_64761d1bdca3a",
+            "label": "Title",
+            "name": "title",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -16,6 +16,7 @@
                 "class": "",
                 "id": ""
             },
+            "acfe_save_meta": 0,
             "default_value": "",
             "maxlength": "",
             "placeholder": "",
@@ -23,12 +24,12 @@
             "append": ""
         },
         {
-            "key": "field_653be77615982",
-            "label": "Tool Cards",
-            "name": "tool_cards",
+            "key": "field_64761d37dca3b",
+            "label": "Subtitle",
+            "name": "subtitle",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "If no cards are added, this panel will not appear.",
+            "type": "text",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -36,18 +37,41 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
+            "acfe_save_meta": 0,
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_64761d7fdca3c",
+            "label": "Featured Link Cards",
+            "name": "featured_link_cards",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "acfe_save_meta": 0,
+            "acfe_repeater_stylised_button": 0,
+            "layout": "row",
             "pagination": 0,
             "min": 0,
-            "max": 3,
-            "collapsed": "field_653be7761729a",
-            "button_label": "Add Tool Card",
+            "max": 12,
+            "collapsed": "field_64761dc8dca3e",
+            "button_label": "Add Card",
             "rows_per_page": 20,
             "sub_fields": [
                 {
-                    "key": "field_653be7bd51a5f",
-                    "label": "Card Icon",
-                    "name": "card_icon",
+                    "key": "field_64761d9bdca3d",
+                    "label": "Link Icon",
+                    "name": "link_icon",
                     "aria-label": "",
                     "type": "icon-picker",
                     "instructions": "",
@@ -58,13 +82,14 @@
                         "class": "",
                         "id": ""
                     },
+                    "acfe_save_meta": 0,
                     "initial_value": "",
-                    "parent_repeater": "field_653be77615982"
+                    "parent_repeater": "field_64761d7fdca3c"
                 },
                 {
-                    "key": "field_653be7761729a",
-                    "label": "Card Title",
-                    "name": "card_title",
+                    "key": "field_64761dc8dca3e",
+                    "label": "Link Title",
+                    "name": "link_title",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -75,17 +100,18 @@
                         "class": "",
                         "id": ""
                     },
+                    "acfe_save_meta": 0,
                     "default_value": "",
                     "maxlength": "",
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "parent_repeater": "field_653be77615982"
+                    "parent_repeater": "field_64761d7fdca3c"
                 },
                 {
-                    "key": "field_653be7a151a5e",
-                    "label": "Card Link",
-                    "name": "card_link",
+                    "key": "field_64761dfedca3f",
+                    "label": "Link URL",
+                    "name": "link_url",
                     "aria-label": "",
                     "type": "link",
                     "instructions": "",
@@ -96,29 +122,31 @@
                         "class": "",
                         "id": ""
                     },
+                    "acfe_save_meta": 0,
                     "return_format": "array",
-                    "parent_repeater": "field_653be77615982"
+                    "parent_repeater": "field_64761d7fdca3c"
                 },
                 {
-                    "key": "field_653be7c951a60",
-                    "label": "Card Description",
-                    "name": "card_description",
+                    "key": "field_64761e0cdca40",
+                    "label": "Description",
+                    "name": "description",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
+                    "acfe_save_meta": 0,
                     "default_value": "",
                     "maxlength": "",
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "parent_repeater": "field_653be77615982"
+                    "parent_repeater": "field_64761d7fdca3c"
                 }
             ]
         }
@@ -128,18 +156,25 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/dashboard-tools"
+                "value": "acf\/featured-link-cards"
             }
         ]
     ],
     "menu_order": 0,
     "position": "normal",
     "style": "default",
-    "label_placement": "top",
+    "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1698424860
+    "acfe_display_title": "",
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": "",
+    "modified": 1685462628
 }

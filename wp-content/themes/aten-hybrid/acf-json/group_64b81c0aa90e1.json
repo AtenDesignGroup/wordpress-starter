@@ -1,14 +1,14 @@
 {
-    "key": "group_6516ddff2c77d",
-    "title": "Legal Disclaimer",
+    "key": "group_64b81c0aa90e1",
+    "title": "News Categories",
     "fields": [
         {
-            "key": "field_6516ddff0f1b0",
-            "label": "Legal Disclaimer",
-            "name": "legal_disclaimer",
+            "key": "field_64b81c10166e8",
+            "label": "Category Description",
+            "name": "category_description",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Content entered here will display as a subtitle in the hero of this news category's archive page.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,6 +16,7 @@
                 "class": "",
                 "id": ""
             },
+            "acfe_save_meta": 0,
             "default_value": "",
             "maxlength": "",
             "placeholder": "",
@@ -26,20 +27,27 @@
     "location": [
         [
             {
-                "param": "options_page",
+                "param": "taxonomy",
                 "operator": "==",
-                "value": "legal-disclaimer"
+                "value": "news_categories"
             }
         ]
     ],
     "menu_order": 0,
-    "position": "normal",
+    "position": "acf_after_title",
     "style": "default",
-    "label_placement": "top",
+    "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1696000739
+    "acfe_display_title": "",
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": "",
+    "modified": 1689787499
 }

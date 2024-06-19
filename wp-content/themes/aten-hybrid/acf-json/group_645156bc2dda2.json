@@ -1,11 +1,11 @@
 {
-    "key": "group_653be3b02e887",
-    "title": "Dashboard Hero",
+    "key": "group_645156bc2dda2",
+    "title": "Hero Component",
     "fields": [
         {
-            "key": "field_653be3b40cfbe",
-            "label": "Hero Text",
-            "name": "hero_text",
+            "key": "field_645156dd350c4",
+            "label": "Subtitle",
+            "name": "subtitle",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -28,7 +28,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/dashboard-hero"
+                "value": "all"
             }
         ]
     ],
@@ -38,8 +38,15 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": true,
+    "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1698423774
+    "acfe_display_title": "",
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": "",
+    "modified": 1684245361
 }
