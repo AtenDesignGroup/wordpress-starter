@@ -1,0 +1,1 @@
+(()=>{let e=document.documentElement;e.style.setProperty("--windowWidth",window.innerWidth+"px"),window.addEventListener("resize",function(){e.style.setProperty("--windowWidth",window.innerWidth+"px")})})();
