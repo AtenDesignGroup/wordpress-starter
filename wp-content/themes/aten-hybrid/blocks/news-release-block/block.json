@@ -1,0 +1,44 @@
+{
+  "name": "news-release-block",
+  "title": "Recent News",
+  "active": true,
+  "description": "Custom Block to display News Releases limit to 3 News items",
+  "category": "common",
+  "icon": "welcome-widgets-menus",
+  "keywords": [
+    "News Releases",
+    "News",
+    "News Release Block"
+  ],
+  "post_types": [
+    "page",
+    "post",
+    "tribe_event",
+    "location"
+  ],
+  "align_content": "top",
+  "mode": "edit",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "news-release-block.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/news_release_block.svg"
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@
 if( isset( $block['data']['preview_image'] )  ) :    /* rendering in inserter preview  */
     echo '<img src="'. $block['data']['preview_image'] .'" style="width:100%; height:auto;">';
 else :
-		
+
 	// Support custom "anchor" values.
 	$anchor = '';
 	if ( ! empty( $block['anchor'] ) ) {
@@ -26,62 +26,50 @@ else :
 	if ( ! empty( $block['className'] ) ) {
 		$class_name .= ' ' . $block['className'];
 	}
-	if ( ! empty( $block['align'] ) ) {
-		$class_name .= ' align' . $block['align'];
-	}
 
 	// Load values and assign defaults.
-    $title = get_field( 'hero_text' );
-    $additional_classes = $button_link = $button_text = $button_target = $cta_text = $cta_link = $cta_link_text = '';
-
-    $has_button = get_field( 'display_button_in_hero' );
-    if($has_button) {
-        $additional_classes .= ' with-hero-btn';
-        $button = get_field( 'hero_button' );
-        $button_link = (isset($button['button_link']['url'])) ? $button['button_link']['url'] : '';
-        $button_text = (isset($button['button_text'])) ? $button['button_text'] : '';
-        $button_link_title = (isset($button['button_link']['title'])) ? $button['button_link']['title'] : $button_text;
-        $button_target = (isset($button['button_link']['target']) && $button['button_link']['target'] === '_blank') ? '_blank' : '_self';    
-    }
-
-    $has_cta = get_field( 'display_cta_banner_beneath_hero' );
-    if($has_cta) {
-        $additional_classes .= ' with-hero-cta';
-        $cta_panel = get_field( 'homepage_cta_panel' );
-        $cta_text = (isset($cta_panel['cta_text'])) ? $cta_panel['cta_text'] : '';
-        $cta_link = (isset($cta_panel['cta_link']['url'])) ? $cta_panel['cta_link']['url'] : '';
-        $cta_link_text = (isset($cta_panel['cta_link_text'])) ? $cta_panel['cta_link_text'] : '';
-        $cta_link_title = (isset($cta_panel['cta_link']['title'])) ? $cta_panel['cta_link']['title'] : $cta_link_text;
-        $cta_link_target = (isset($cta_panel['cta_link']['target'])) ? $cta_panel['cta_link']['target'] : '_self';
-    }
+	$subtitle = get_field( 'subtitle' );
+	$link = get_field( 'link' );
+	$images = get_field('background_slider_images');
+	$size = 'full';
 
 	?>
 
-	<div class="homepage-hero-component alignfull <?php echo $additional_classes; ?>">
-		<div class="hero-text-wrap animate-fade-in">
-            <h1><?php echo strip_tags($title, '<strong>'); ?></h1>
-            <?php if($has_button): ?>
-                <div class="hero-btn-wrap">
-                    <a href="<?php echo $button_link; ?>" title="<?php echo $button_link_title; ?>" target="<?php echo $button_target; ?>">
-                        <?php echo $button_text; ?>
-                    </a>
-                </div>
-            <?php endif; ?>
-        </div>
-        <?php if($has_cta): ?>
-            <div class="hero-cta-wrap">
-                <div class="hero-cta">
-                    <div class="hero-cta-text">
-                        <h3><?php echo $cta_text; ?></h3>
-                    </div>
-                    <div class="hero-cta-btn">
-                        <a class="" href="<?php echo $cta_link; ?>" title="<?php echo $cta_link_title; ?>" target="<?php echo $cta_link_target; ?>">
-                            <?php echo $cta_link_text; ?>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
-        <div class="hero-decorative-lines"></div>
+	<div <?php echo $anchor; ?>class="<?php echo esc_attr( $class_name ); ?> homepage-hero-component">
+		<section id="homepage-image-carousel" class="splide" role="group" aria-label="A carousel of images" aria-roledescription="carousel">
+			<div class="splide__track">
+				<ul class="splide__list" id="homepage-hero-images">
+					<?php if($images) : foreach( $images as $img ): ?>
+						<li class="splide__slide homepage-hero-image">
+							<?php echo wp_get_attachment_image( $img['id'], $size ); ?>
+						</li>
+					<?php endforeach; endif; ?>
+				</ul>
+				<div id="homepage-slider-overlay"></div>
+			</div>
+
+			<div class="slide-autoplay-controls">
+				<button class="pause-toggle-button" type="button" aria-label="Pause autoplay">pause_circle</button>
+			</div>
+		</section>
+
+		<div class="homepage-hero-wrapper">
+			<div class="homepage-hero-text-content">
+				<div class="homepage-hero-title">
+					<h1>Hello <span class="to">from</span> Aten<span class="california"> Design Group </span></h1>
+				</div>
+				<div class="homepage-hero-subtitle">
+					<p><?php echo do_shortcode( '[city_hall_hours]' ); ?></p>
+					<?php if( $link ):
+						$link_target = isset($link['target']) ? $link['target'] : '_self'; ?>
+						<a class="button btn-large--white" href="<?php echo esc_url( $link['url'] ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link['title'] ); ?></a>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+
+		<div class="hero-bottom-border" aria-hidden="true" >
+			<img alt="" src="<?php echo get_template_directory_uri(); ?>/assets/img/homepage-hero-border.svg" />
+		</div>
 	</div>
 <?php endif; ?>

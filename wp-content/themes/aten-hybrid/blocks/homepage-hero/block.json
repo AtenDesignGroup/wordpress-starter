@@ -1,24 +1,43 @@
 {
-    "name": "acf/homepage-hero",
-    "title": "Homepage Hero",
-    "description": "A block designed to display the homepage hero panel.",
-    "category": "homepage",
-    "icon": "cover-image",
-    "keywords": ["homepage", "hero", "title", "heading", "home", "homepage"],
-    "supports": {
-      "multiple": false
-    },
-    "acf": {
+  "name": "homepage-hero",
+  "title": "Homepage Hero",
+  "active": true,
+  "description": "Custom block for the Aten FSE theme used to create a Homepage Hero element.",
+  "category": "common",
+  "icon": "cover-image",
+  "keywords": [
+    "homepage",
+    "hero"
+  ],
+  "post_types": [
+    "post",
+    "page"
+  ],
+  "mode": "edit",
+  "align": "",
+  "align_text": "",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "homepage-hero.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": false,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
       "mode": "preview",
-      "renderTemplate": "homepage-hero.php"
-    },
-    "align": "full",
-    "example": {
-      "attributes": {
-        "mode": "preview",
-        "data": {
-          "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/homepage-hero.svg"
-        }
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/homepage_hero.svg"
       }
     }
   }
+}
