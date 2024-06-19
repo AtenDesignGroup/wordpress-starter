@@ -1,0 +1,42 @@
+{
+  "name": "inline-contact-block",
+  "title": "Contact Information Block",
+  "active": true,
+  "description": "Custom Block to display contact information for Divisions and Departments",
+  "category": "common",
+  "icon": "location",
+  "keywords": [
+    "Division",
+    "Department",
+    "Contact"
+  ],
+  "post_types": [
+    "page"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "inline-contact-block.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "inserter": false,
+    "mode": false,
+    "multiple": false,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/inline_contact_block.png"
+      }
+    }
+  }
+}

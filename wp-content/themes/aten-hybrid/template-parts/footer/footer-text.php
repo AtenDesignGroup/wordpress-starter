@@ -3,7 +3,7 @@
  * Displays the footer text widget area.
  *
  * @package WordPress
- * @subpackage ccc
+ * @subpackage aten-hybrid
  */
 
 if ( is_active_sidebar( 'sidebar-2' ) ) : ?>

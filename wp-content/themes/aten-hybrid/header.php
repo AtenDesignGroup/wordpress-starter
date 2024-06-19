@@ -13,7 +13,7 @@
 
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?> <?php twentytwentyone_the_html_classes(); ?> id="ccc-site">
+<html <?php language_attributes(); ?> id="aten-hybrid">
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,4 +37,4 @@
 	<main id="main" class="site-main">
 		<div id="content" class="site-content">
 			<div id="primary" class="content-area">
-			
+

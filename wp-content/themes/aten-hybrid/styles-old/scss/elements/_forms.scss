@@ -1,0 +1,203 @@
+/* Form Styles */
+ .gform_wrapper,
+.wp-toolbar .gform_wrapper,
+ .pmpro_form {
+    h2.gform_title,
+    .pmpro_checkout-h2-name {
+        @include font-h3;
+        @include font-weight-bold;
+    }
+
+    h2.gform_title,
+    .gform_heading p {
+        margin-bottom: var(--global--spacing-vertical);
+    }
+
+    .gfield_required_asterisk,
+    .pmpro_asterisk {
+        color: var(--red);
+        @include font-body-18;
+    }
+
+    fieldset {
+        border: 0;
+        padding: 0;
+    }
+
+    .ginput_complex {
+        > span {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            input {
+                margin-bottom: rem(12px);
+            }
+
+            .gform-field-label--type-sub {
+                @include font-body-14;
+                font-style: italic;
+                margin-bottom: 0;
+            }
+
+            @include bp-min(tablet) {
+                display: inline-flex;
+                width: 48%;
+            }
+        }
+
+        @include bp-min(tablet) {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    legend,
+    .gform-field-label:not(.gform-field-label--type-sub),
+    .pmpro_checkout-fields label {
+        @include font-body-18;
+        @include font-weight-bold;
+    }
+
+    .gform_fields > * {
+        margin-bottom: var(--global--spacing-vertical);
+    }
+
+    input:not([type="submit"]):not([type="radio"]):not([type="checkbox"]),
+    select,
+    textarea {
+        margin-top: rem(12px);
+        width: 100%;
+        border: rem(2px) solid var(--dark-purple);
+        border-radius: rem(6px);
+        padding: rem(16px);
+        color: var(--black);
+
+        &[aria-invalid="true"] {
+            border-color: var(--red);
+        }
+
+        &:focus {
+            outline: rem(2px) solid var(--dark-purple);
+            outline-offset: 0px;
+            color: var(--black);
+        }
+    }
+
+    .gfield_radio,
+    .gfield_checkbox {
+        display: flex;
+        flex-direction: column;
+        margin-top: rem(12px);
+        gap: rem(8px);
+
+        .gchoice {
+            display: flex;
+            align-items: center;
+            gap: rem(8px);
+
+            label {
+                margin-bottom: rem(1px);
+                font-weight: var(--font-weight-regular);
+            }
+
+            input {
+                &:focus {
+                    outline: rem(2px) solid var(--dark-purple);
+                    outline-offset: 0;
+                }
+            }
+
+            input[type="radio"] {
+                border: rem(2px) solid var(--purple);
+                width: rem(24px);
+                height: rem(24px);
+
+                &::after {
+                    left: rem(3px);
+                    top: rem(3px);
+                    width: rem(14px);
+                    height: rem(14px);
+                    background-color: var(--purple);
+                }
+            }
+
+            input[type="checkbox"] {
+                border: rem(2px) solid var(--purple);
+                border-radius: rem(4px);
+                width: rem(24px);
+                height: rem(24px);
+
+                &::after {
+                    border: rem(2px) solid var(--purple);
+                    border-top: 0;
+                    border-left: 0;
+                    transform: rotate(40deg);
+                    left: rem(6px);
+                }
+            }
+        }
+    }
+
+    input[type="submit"] {
+        @include btn-large(var(--purple));
+    }
+
+    .gf_clear_complex {
+        display: none;
+    }
+
+    .gfield_description {
+        @include font-body-14;
+        font-style: italic;
+    }
+
+   .gfield_description {
+        margin-top: rem(12px);
+    }
+
+    .gfield_error legend,
+    .gfield_error .gform-field-label,
+    .gfield_error .gfield_validation_message,
+    .gfield_error .gfield_description {
+        color: var(--red);
+    }
+
+    .gform_validation_errors {
+        width: 100%;
+        border: rem(2px) solid var(--red);
+        border-radius: rem(6px);
+        margin-bottom: var(--global--spacing-vertical);
+        padding: rem(16px);
+        border-color: var(--red)!important;
+
+        h2 {
+            @include font-h4;
+            @include font-weight-bold;
+        }
+
+        .gform_validation_error_link {
+            color: var(--purple);
+
+            &:hover,
+            &:focus {
+                color: var(--black);
+            }
+        }
+    }
+
+    ::placeholder {
+        color: var(--wcag-placeholder);
+        opacity: 1; /* Firefox */
+    }
+
+    ::-ms-input-placeholder { /* Edge 12 -18 */
+        color: var(--wcag-placeholder);
+    }
+}
+
+ .pmpro_form {
+    hr:not(.register-form-separator) {
+        display: none;
+    }
+}

@@ -1,0 +1,70 @@
+/* CTA Block Component Styling */
+ .cta-component,
+.wp-toolbar .cta-component {
+    @include bg-gradient(90deg, var(--orange), var(--coral), var(--purple));
+    border-radius: rem(20px);
+    padding: rem(12px);
+
+    .cta-content {
+        display: flex;
+        flex-direction: column;
+        gap: rem(20px);
+        padding: rem(20px);
+        background-color: var(--white);
+        border-radius: rem(10px);
+
+        h2 {
+            @include font-h3;
+            @include font-weight-bold;
+        }
+
+        .cta-button {
+            &.purple {
+                @include btn-large(var(--purple));
+                @include btn-with-icon;
+            }
+
+            &.purple_no_icon {
+                @include btn-large(var(--purple));
+            }
+
+            &.white {
+                @include btn-large(var(--white));
+                @include btn-with-icon;
+            }
+
+            &.white_no_icon {
+                @include btn-large(var(--white));
+            }
+
+            &.download_gray {
+                @include btn-download(var(--gray));
+            }
+
+            &.download_purple {
+                @include btn-download(var(--purple));
+            }
+
+            @include bp-min(tablet) {
+                margin-top: rem(12px);
+            }
+        }
+
+        @include bp-min(tablet) {
+            border-radius: rem(20px);
+            padding: rem(40px);
+        }
+
+        @include bp-min(smdesk) {
+            padding: rem(60px);
+        }
+    }
+
+    @include bp-min(tablet) {
+        padding: rem(40px);
+    }
+
+    @include bp-min(smdesk) {
+        padding: rem(60px);
+    }
+}

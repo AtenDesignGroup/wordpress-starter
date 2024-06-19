@@ -2,7 +2,7 @@
   "name": "custom-pullquote",
   "title": "Pullquote",
   "active": true,
-  "description": "Custom pullquote block containing a stylized quote and citation.",
+  "description": "Custom pullquote block for the Aten FSE theme: quote, citation and image (optional)",
   "category": "common",
   "icon": "format-quote",
   "keywords": [
@@ -13,8 +13,8 @@
   "post_types": [
     "post",
     "page",
-    "message",
-    "research"
+    "news",
+    "location"
   ],
   "mode": "edit",
   "align_content": "top",
@@ -37,7 +37,7 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/pullquote_block.svg"
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/pullquote_block.svg"
       }
     }
   }

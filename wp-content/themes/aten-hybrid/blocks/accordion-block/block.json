@@ -2,7 +2,7 @@
   "name": "accordion-block",
   "title": "Accordion Block",
   "active": true,
-  "description": "A block to add an expandable accordion section with unlimited panels containing text and media.",
+  "description": "A block to add an expandable accordion section with unlimited panels containing text, media, and resource blocks.",
   "category": "common",
   "icon": "align-wide",
   "keywords": [
@@ -14,8 +14,9 @@
   "post_types": [
     "post",
     "page",
-    "message",
-    "research"
+    "news",
+    "location",
+    "tribe_events"
   ],
   "mode": "edit",
   "align_content": "top",
@@ -38,7 +39,7 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/accordion.svg"
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/accordion_block.svg"
       }
     }
   }

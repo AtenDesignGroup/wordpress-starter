@@ -1,0 +1,31 @@
+:root {
+  // Theme colors
+  --aten-blue: #0098ce;
+  --aten-blue-dark: #00659b;
+  --aten-blue-light: #40d8ec;
+  --aten-gray: #9d999d;
+  --aten-gray-dark: #261f26;
+  --aten-gray-light: #e1e0e1;
+  --aten-green: #5fa413;
+  --aten-green-dark: #417505;
+  --aten-green-light: #7ed321;
+  --aten-orange: #f29300;
+  --aten-orange-dark: #e04800;
+  --aten-purple: #6c3e6c;
+  --aten-purple-dark: #53284f;
+  --aten-purple-light: #9c5a9d;
+  --aten-red: #cc0000;
+  --aten-yellow: #fdc400;
+  --aten-yellow-light: #f9e8ac;
+  --black: #130f13;
+  --wcag-placeholder: #504b50;
+  --white: #ffffff;
+
+  // Default color intent vars
+  --default-border-ci: var(--aten-gray-dark);
+  --default-button-ci: var(--aten-purple);
+  --default-button-hover-ci: var(--aten-purple-dark);
+  --default-link-ci: var(--aten-red);
+  --default-link-hover-ci: var(--aten-orange-dark);
+  --default-text-ci: var(--black);
+}

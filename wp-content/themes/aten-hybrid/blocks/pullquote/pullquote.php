@@ -33,17 +33,24 @@ else :
 	// Load values and assign defaults.
 	$quote = get_field( 'quote' );
 	$citation = get_field( 'citation' );
+	$image = get_field( 'image' );
 
 	?>
 
 	<div <?php echo $anchor; ?>class="<?php echo esc_attr( $class_name ); ?> pullquote-component l-gutter">
 		<figure class="pullquote-text">
 			<blockquote cite="<?php echo esc_html( $citation ); ?>">
-				<span class="quotation-punctuation opening-quote">&#34;</span><?php echo $quote; ?><span class="quotation-punctuation">&#34;</span>
+				<?php echo $quote; ?>
 			</blockquote>
 			<figcaption class="pullquote-citation">
-				<cite><?php echo esc_html( $citation ); ?></cite>
+				<cite><?php echo esc_html( $citation ? '— ' . $citation : $citation ); ?></cite>
 			</figcaption>
 		</figure>
+		<?php
+			if( !empty( $image ) ): ?>
+			<div class="pullquote-image">
+				<?php echo wp_get_attachment_image( $image ); ?>
+			</div>
+		<?php endif; ?>
 	</div>
 <?php endif; ?>

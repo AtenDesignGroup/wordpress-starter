@@ -1,1 +1,0 @@
-jQuery(document).ready(function(n){n("nav.pagination").each(function(){n(this).find('.page-numbers:not(".prev"):not(".next")').wrapAll('<ol class="pagination-list">'),n(this).find(".pagination-list > *").wrap('<li class="pagination-item">'),n(this).find("span.page-numbers.current").convertElement("a"),n(this).find("a.page-numbers.current").attr("href","#")})});

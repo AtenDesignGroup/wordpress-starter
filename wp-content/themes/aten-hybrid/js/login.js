@@ -1,1 +1,0 @@
-jQuery(document).ready(function(e){e(".pmpro_actions_nav").appendTo(".ccc-login-wrap form"),e(".ccc-login-wrap hr").remove(),e(".login-remember").remove()});
