@@ -1,13 +1,7 @@
 /**
- * Custom JS for the Tabs Block
- * 
- *   This content is licensed according to the W3C Software License at
- *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
- *
- *   File:   tabs-block.js
- *
- *   Desc:   Tablist widget that implements ARIA Authoring Practices
+ * Custom JS for the Tabs block, utilizes ARIA roles and attributes for accessibility
  */
+
 
 class TabsManual {
   constructor(groupNode) {
@@ -24,8 +18,6 @@ class TabsManual {
     for (var i = 0; i < this.tabs.length; i += 1) {
       var tab = this.tabs[i];
       var tabpanel = document.getElementById(tab.getAttribute('aria-controls'));
-      // console.log('tab: ' + tab.id);
-      // console.log('aria controls: ' + tabpanel.id);
 
       tab.tabIndex = -1;
       tab.setAttribute('aria-selected', 'false');
