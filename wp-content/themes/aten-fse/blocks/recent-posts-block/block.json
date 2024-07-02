@@ -1,0 +1,43 @@
+{
+  "name": "recent-posts-block",
+  "title": "Recent Posts",
+  "active": true,
+  "description": "Custom Block to display a set number of recent posts of any post type.",
+  "category": "common",
+  "icon": "welcome-widgets-menus",
+  "keywords": [
+    "Post",
+    "Recent",
+    "List",
+    "News"
+  ],
+  "post_types": [
+    "page",
+    "post"
+  ],
+  "align_content": "top",
+  "mode": "edit",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "recent-posts-block.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/recent_posts_block.svg"
+      }
+    }
+  }
+}

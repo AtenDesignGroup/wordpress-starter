@@ -2,6 +2,8 @@
 /**
  * Pullquote Block Template.
  *
+ * @package aten-fse
+ *
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).
  * @param   bool $is_preview True during backend preview render.
@@ -11,10 +13,10 @@
  * @param   array $context The context provided to the block by the post or it's parent block.
  */
 
-if( isset( $block['data']['preview_image'] )  ) :    /* rendering in inserter preview  */
-    echo '<img src="'. $block['data']['preview_image'] .'" style="width:100%; height:auto;">';
+if ( isset( $block['data']['preview_image'] ) ) :    /* rendering in inserter preview  */
+	echo '<img src="' . esc_attr( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
 else :
-		
+
 	// Support custom "anchor" values.
 	$anchor = '';
 	if ( ! empty( $block['anchor'] ) ) {
@@ -31,23 +33,24 @@ else :
 	}
 
 	// Load values and assign defaults.
-	$quote = get_field( 'quote' );
+	$quote    = get_field( 'quote' );
 	$citation = get_field( 'citation' );
-	$image = get_field( 'image' );
+	$image    = get_field( 'image' );
 
 	?>
 
-	<div <?php echo $anchor; ?>class="<?php echo esc_attr( $class_name ); ?> pullquote-component l-gutter">
+	<div <?php echo esc_attr( $anchor ); ?>class="<?php echo esc_attr( $class_name ); ?> pullquote-component l-gutter">
 		<figure class="pullquote-text">
 			<blockquote cite="<?php echo esc_html( $citation ); ?>">
-				<?php echo $quote; ?>
+				<?php echo esc_html( $quote ); ?>
 			</blockquote>
 			<figcaption class="pullquote-citation">
 				<cite><?php echo esc_html( $citation ? '— ' . $citation : $citation ); ?></cite>
 			</figcaption>
 		</figure>
 		<?php
-			if( !empty( $image ) ): ?>
+		if ( ! empty( $image ) ) :
+			?>
 			<div class="pullquote-image">
 				<?php echo wp_get_attachment_image( $image ); ?>
 			</div>

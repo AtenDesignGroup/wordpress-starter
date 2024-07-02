@@ -2,19 +2,21 @@
 /**
  * Page Header Block Template.
  *
+ * @package aten-fse.
+ *
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).
  * @param   bool $is_preview True during backend preview render.
- * @param   int $post_id The post ID the block is rendering content against.
+ * @param   int $current_post_id The post ID the block is rendering content against.
  *          This is either the post ID currently being displayed inside a query loop,
  *          or the post ID of the post hosting this block.
  * @param   array $context The context provided to the block by the post or it's parent block.
  */
 
-if( isset( $block['data']['preview_image'] )  ) :    /* rendering in inserter preview  */
-    echo '<img src="'. $block['data']['preview_image'] .'" style="width:100%; height:auto;">';
+if ( isset( $block['data']['preview_image'] ) ) :    /* rendering in inserter preview. */
+	echo '<img src="' . esc_attr( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
 else :
-		
+
 	// Support custom "anchor" values.
 	$anchor = '';
 	if ( ! empty( $block['anchor'] ) ) {
@@ -30,78 +32,113 @@ else :
 		$class_name .= ' align' . $block['align'];
 	}
 
-	// Check if currently viewing an archive page
-	$is_archive = is_tax();
-
 	// Load values and assign defaults.
-	$post_id = get_the_ID();
-	$post_title = get_the_title( $post_id );
-	$term = '';
+	$current_post_id = get_the_ID();
+	$post_title      = get_the_title( $current_post_id );
+	$current_term    = '';
+	$is_basic_post   = ( ! is_tax() && ! is_search() && ! is_404() );
 
-	// Set defaults for no featured image
-	$header_has_image = false;
+	// Set defaults for no featured image.
+	$header_has_image     = false;
 	$header_wrapper_class = '';
-	$header_background = '';
+	$header_background    = '';
 
-	// Default publication date to empty string 
-	$publication_date = '';
+	// get Subtitle field on post.
+	$subtitle = get_field( 'page_header_subtitle', $current_post_id );
 
-	// Check for featured image, and place it as the background
-	if (has_post_thumbnail() && get_post_type($post_id) !== 'news' && !is_search()) {
-		$header_has_image = true;
+	// Check for featured image, and place it as the background.
+	if ( has_post_thumbnail() && $is_basic_post ) {
+		$header_has_image     = true;
 		$header_wrapper_class = 'header-with-image ';
-		$header_background = 'background-image: linear-gradient(to top, rgba(28, 63, 148, 1), rgba(28, 63, 148, 0)), url("' . get_the_post_thumbnail_url() . '"); ';
+		$header_background    = 'background-image: url("' . get_the_post_thumbnail_url() . '"); ';
 	}
 
-	// Check for publication date on News posts
-	if(get_post_type($post_id) === 'news' && is_single()) {
-		$publication_date = get_field( 'publication_date', $post_id );
-	}
-
-	//get Subtitle field on post
-	$subtitle = get_field( 'page_header_subtitle', $post_id );
-
-	if($is_archive) {
-		$term = get_queried_object();
-		$post_title = $term->name . ' News';
-		if( str_contains($term->name, 'News') ) {
-			$post_title = $term->name;
+	// Setting static title for Taxonomy Archives.
+	if ( is_tax() ) {
+		$current_term = get_queried_object();
+		$post_title   = $current_term->name . ' Posts';
+		if ( str_contains( $current_term->name, 'Posts' ) ) {
+			$post_title = $current_term->name;
 		}
-		$post_id = $term->term_id;
-		$subtitle = get_field( 'category_description', $term );
+		$current_post_id = $current_term->term_id;
+		$subtitle        = ( get_field( 'category_description', $current_term ) ) ? get_field( 'category_description', $current_term ) : '';
 	}
 
-	// Setting static title for search results pages
-	if(is_search()) {
+	// Setting static title for search results pages.
+	if ( is_search() ) {
 		$post_title = 'Search Results';
+	}
+
+	// Setting static title for 404 Errors.
+	if ( is_404() ) {
+		$post_title = 'Page not found';
+	}
+
+	// Building custom breadcrumbs.
+	$has_breadcrumb   = false;
+	$parent_page_link = '';
+
+	if ( has_post_parent( $current_post_id ) ) {
+		$has_breadcrumb = true;
+		// Get parent post.
+		$parent_post = get_post_parent( $current_post_id );
+		// Get parent title and link.
+		$parent_page_name = get_the_title( $parent_post );
+		$parent_page_link = get_the_permalink( $parent_post );
 	}
 
 	?>
 
 	<div class="page-header-component">
-		<?php if( $header_has_image ) : ?> 
+		<?php if ( $header_has_image ) : ?> 
 			<div class="mobile-image">
 				<?php echo wp_get_attachment_image( get_post_thumbnail_id(), 'large' ); ?>
 				<div class="mobile-image-overlay"></div>
 			</div>
-		<?php else : ?>
-			<div class="header-swishies-wrapper" aria-hidden="true"></div>
 		<?php endif; ?>
 
-		<div <?php echo $anchor; ?> class="<?php echo esc_attr( $header_wrapper_class ); echo esc_attr( $class_name ); ?>" style="<?php echo esc_attr( $header_background ); ?>">
+		<div <?php echo esc_attr( $anchor ); ?> class="
+			<?php
+			echo esc_attr( $header_wrapper_class );
+			echo esc_attr( $class_name );
+			?>
+		" style="<?php echo esc_attr( $header_background ); ?>">
 			<div class="header-content">
-				<?php if( $header_has_image ) { ?> <hr /> <?php } ?>
-				<?php if ( $publication_date ) { ?>
-					<p class="header-publication-date"><?php echo $publication_date; ?></p>
+				<?php if ( $has_breadcrumb ) { ?>
+					<nav aria-label="Breadcrumb" class="breadcrumb 
+					<?php
+					if ( $header_has_image ) {
+						echo 'with-background-image'; }
+					?>
+					">
+						<ul>
+							<li>
+								<a class="home-crumb" href="<?php echo esc_url( get_home_url() ); ?>">Home</a>
+								<span class="breadcrumb-next a11y-hidden notranslate">
+									chevron_right
+								</span>
+							</li>
+							<?php if ( $parent_page_link ) { ?>
+								<li>
+									<a class="parent-crumb" href="<?php echo esc_url( $parent_page_link ); ?>"><?php echo esc_html( $parent_page_name ); ?></a>
+									<span class="breadcrumb-next a11y-hidden notranslate">
+										chevron_right
+									</span>
+								</li>
+							<?php } ?>
+							<li>
+								<a class="current-crumb" href="javascript:void(0)" aria-disabled="true" aria-current="page">
+									<?php echo esc_html( get_the_title( $current_post_id ) ); ?>
+								</a>
+							</li>
+						</ul>
+					</nav>
 				<?php } ?>
 				<h1 class="header-text"><?php echo esc_html( $post_title ); ?></h1>
-				<div class="header-subtitle"><p><?php echo esc_html( $subtitle ); ?></p></div>
-				<?php if( !$header_has_image ) { ?> <hr /> <?php } ?>
+				<?php if ( $subtitle ) : ?>
+					<div class="header-subtitle"><p><?php echo esc_html( $subtitle ); ?></p></div>
+				<?php endif; ?>
 			</div>
 		</div>
-
-		<?php if( $header_has_image ) : ?> 
-			<img class="edge-wave" src="<?php echo get_template_directory_uri(); ?>/assets/img/header-image-wave.svg" alt="" />
-		<?php endif; ?>
 	</div>
 <?php endif; ?>

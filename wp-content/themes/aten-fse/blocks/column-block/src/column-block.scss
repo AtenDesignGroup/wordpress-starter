@@ -33,21 +33,14 @@
 
     &:nth-child(1) {
       background-color: var(--aten-gray);
-      background-image: url('../aten-fse/assets/img/column-swishies_bright-blue.svg');
     }
 
     &:nth-child(2) {
       background-color: var(--aten-orange-dark);
-      background-image: url('../aten-fse/assets/img/column-swishies_tangerine.svg');
     }
 
     &:nth-child(3) {
       background-color: var(--aten-green);
-      background-image: url('../aten-fse/assets/img/column-swishies_light-green.svg');
-    }
-
-    > .wave-border {
-      background-color: var(--white);
     }
 
     &.single-column {
@@ -58,7 +51,6 @@
       }
 
       @include bp-min(lg-desktop) {
-        background-image: url('../aten-fse/assets/img/column-swishies_bright-blue_large.svg');
         background-position: center calc(100% - rem(80px));
       }
     }
@@ -69,12 +61,6 @@
     font-size: var(--font-size-h4);
     font-weight: var(--aten-fw-bold);
     text-indent: 0;
-
-    @include bp-min(sm-desktop) {
-      // Diverges from standard h3 sizing
-      font-size: rem(24px);
-      line-height: rem(32px);
-    }
   }
 
   p {
@@ -103,12 +89,6 @@
     }
   }
 
-  ul:not(.column-layout-1) .column-block-content {
-    @include bp-min(tablet) {
-      // height: 100%;
-    }
-  }
-
   .column-block-image-wrapper {
     display: flex;
     align-items: center;
@@ -121,24 +101,6 @@
       object-fit: cover;
       width: 100%;
       height: 100%;
-    }
-  }
-
-  .wave-border {
-    display: none;
-
-    @include bp-min(tablet) {
-      display: block;
-    }
-
-    @include bp-min(lg-desktop) {
-      max-width: 100%;
-      margin: 0 auto;
-    }
-
-    &,
-    img {
-      width: 100%;
     }
   }
 

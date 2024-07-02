@@ -1,38 +1,10 @@
 @use '../../../libraries/partials/partials' as *;
 
-// Site pullquote styles
-blockquote {
-  border-left: rem(4px) solid var(--gold);
-  display: flex;
-  flex-direction: column-reverse;
-  padding: 0 0 0 rem(24px);
-  // Max-width calculated to total 788px with padding
-  max-width: rem(764px);
-  margin-left: 0;
-}
-
 .pullquote-block.pullquote-component {
-  border-left: rem(4px) solid var(--gold);
-  display: flex;
-  flex-direction: column-reverse;
-  padding: rem(12px) 0 rem(12px) rem(24px);
-  // Max-width calculated to total 788px with padding
-  max-width: rem(764px);
-
-  @include bp-min(sm-desktop) {
-    flex-direction: row;
-    padding-left: rem(40px);
-    // Max-width calculated to total 788px with padding
-    max-width: rem(748px);
-  }
 
   .pullquote-text {
     blockquote {
-      margin: 0;
-      @include type-scale(body, 20);
-      border: 0;
       display: block;
-      padding: 0;
       max-width: none;
     }
 
@@ -42,24 +14,15 @@ blockquote {
       cite {
         @include type-scale(body, 18);
         font-weight: var(--aten-fw-bold);
-        margin-bottom: 0;
         font-style: normal;
       }
     }
   }
 
   .pullquote-image {
-    height: rem(140px);
-    width: rem(120px);
     border-radius: var(--default-border-radius);
     overflow: hidden;
     flex-shrink: 0;
-    margin-bottom: rem(20px);
-
-    @include bp-min(sm-desktop) {
-      margin-bottom: 0;
-      margin-left: rem(30px);
-    }
 
     img {
       height: 100%;

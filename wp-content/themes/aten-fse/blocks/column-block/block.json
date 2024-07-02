@@ -13,10 +13,7 @@
   ],
   "post_types": [
     "post",
-    "page",
-    "news",
-    "location",
-    "tribe_events"
+    "page"
   ],
   "mode": "edit",
   "align_content": "top",

@@ -1,0 +1,48 @@
+{
+  "name": "stylized-text-block",
+  "title": "Stylized Text Block",
+  "active": true,
+  "description": "A block to allow colorful backgrounds for text fields",
+  "category": "common",
+  "icon": "megaphone",
+  "keywords": [
+    "stylized",
+    "color",
+    "background color",
+    "colorful"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "news",
+    "location",
+    "tribe_events"
+  ],
+  "mode": "edit",
+  "align": "",
+  "align_text": "",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "stylized-text-block.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/stylized_text_block.svg"
+      }
+    }
+  }
+}

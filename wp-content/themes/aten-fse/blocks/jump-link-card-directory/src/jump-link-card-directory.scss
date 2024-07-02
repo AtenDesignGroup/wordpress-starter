@@ -1,0 +1,95 @@
+@use '../../../libraries/partials/partials' as *;
+
+// Jump Link Card Directory
+.jump-link-card-directory {
+    ul {
+        list-style-type: none;
+        padding: 0;
+        text-indent: 0;
+        margin: 0;
+
+        li {
+            text-indent: 0;
+        }
+    }
+
+    .arrow-icon,
+    .jump-link-icon,
+    .jump-link-card-icon,
+    .jump-link-cards-icon {
+        @include font-material-icons;
+    }
+
+    h3 {
+        display: flex;
+        align-items: center;
+    }
+
+    ul.jump-link-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    ul.jump-link-cards {
+        display: flex;
+        flex-direction: column;
+
+        @include bp-min(tablet) {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        li.jump-link-card {
+            display: flex;
+            align-items: center;
+
+            @include bp-min(tablet) {
+                flex-direction: column;
+            }
+
+            .icon-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                @include bp-min(tablet) {
+                    position: absolute;
+                }
+            }
+        }
+
+        .jump-link-card-details {
+            a {
+                text-decoration: none;
+
+                &:hover,
+                &:focus {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    a.back-to-top-btn {
+        position: relative;
+        display: inline-block;
+
+        .arrow-icon {
+            position: absolute;
+        }
+    }
+
+    .a11y-visible.skip-link {
+        &:focus {
+            clip: auto !important;
+            clip-path: none;
+            display: block;
+            height: auto;
+            line-height: normal;
+            text-decoration: underline;
+            width: auto;
+            display: inline;
+        }
+    }
+}

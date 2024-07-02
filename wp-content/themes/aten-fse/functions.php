@@ -282,13 +282,13 @@ function get_block_files() {
 
     // If css file exists, add to the block array.
     if (file_exists(__DIR__ . "/blocks/{$block_name}/{$css_file}")) {
-      $block['css'] = $css_file;
+      $block['css'] = "/{$block_name}/{$css_file}";
     }
     // If JS file exists, add to the block array.
     // @todo Update attachment to provide dependencies and load requirements.
     if (file_exists(__DIR__ . "/blocks/{$block_name}/{$js_file}")) {
-      $block['js']['src'] = get_template_directory_uri() . "/blocks/{$block_name}/{$js_file}";
-      $block['js']['deps'] = ['jquery'];
+      $block['js']['src'] = "/{$block_name}/{$js_file}";
+      $block['js']['deps'] = ['jquery', 'utility-functions'];
       $block['js']['ver'] = '1.0';
       $block['js']['in_footer'] = TRUE;
     }
@@ -306,8 +306,8 @@ function get_block_files() {
  * This function uses the get_block_files function to retrieve an array
  *  of block files.
  * It then registers each block using acf_register_block_type, setting
- * the block's name, CSS file (as render_template), and JS file
- * (as enqueue_script).
+ * the block's name, CSS file (as wp_register_style), and JS file
+ * (as wp_register_script).
  *
  * @return void
  *   Registers each block using acf_register_block_type.
@@ -327,11 +327,48 @@ function register_acf_blocks() {
 
         // If js exists attach it.
         if (isset($block['js'])) {
-          wp_enqueue_script($block['name'], get_stylesheet_directory_uri() . '/blocks/' . $block['js']['src'], $block['js']['deps'], $block['js']['ver'], $block['js']['in_footer']);
+          wp_register_script($block['name'], get_stylesheet_directory_uri() . '/blocks/' . $block['js']['src'], $block['js']['deps'], $block['js']['ver'], true);
         }
       }
     }
   }
+}
+
+/**
+ * Conditionally enqueues block scripts and styles at runtime.
+ *
+ * This function uses the get_block_files function to retrieve an array
+ *  of block files.
+ * It then checks the node content, enqueuing the registered block styles
+ * and scripts if the block is present in the content.
+ * 
+ * @param string $content
+ *  The content of the node.
+ *
+ * @return string
+ *   The content with all present block scripts and styles enqueued.
+ */
+add_filter('the_content','adg_enqueue_block_assets_at_runtime');
+function adg_enqueue_block_assets_at_runtime($content = ""){
+  // Get all custom blocks.
+  $block_files = get_block_files();
+
+  // Loop through each custom block.
+  foreach ($block_files as $block) {
+    // Check if the block is present in the content.
+    if(has_block('acf/' . $block['name'])){
+      // Enqueue CSS.
+      if (isset($block['css'])) {
+        wp_enqueue_style($block['name']);
+      }
+      // Enqueue JS.
+      if (isset($block['js'])) {
+        wp_enqueue_script($block['name']);
+      }
+   }
+  }
+
+   return $content;
 }
 
 /*
@@ -359,7 +396,6 @@ function aten_fse_blacklist_blocks($allowed_blocks) {
  * Adding custom image sizes for custom blocks.
  */
 add_image_size('callout-link', 400, 400);
-add_image_size('location-image', 300, 240);
 
 /**
  * @return void
@@ -396,11 +432,12 @@ function get_global_js_files() {
   foreach ($files as $file) {
     // Get the file name without the extension as $name.
     $name = basename($file, '.js');
+    $file_src = str_replace('app/', '', $file);
 
     $scripts[] = [
       'name' => $name,
-      'src' => get_template_directory_uri() . '/' . $file,
-      'deps' => ['jquery'],
+      'src' => $file_src,
+      'deps' => ['jquery', 'wp-block-editor'],
       'ver' => '1.0',
       'in_footer' => TRUE,
     ];
@@ -439,34 +476,6 @@ function enqueue_custom_scripts() {
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
-
-/**
- * Control what options appear in the backend editor block toolbars.
- */
-function remove_block_toolbar_settings() {
-
-  wp_enqueue_script(
-        'remove-block-toolbar-settings',
-        get_stylesheet_directory_uri() . '/js/block-toolbar-settings.js',
-        ['wp-block-editor'],
-  );
-}
-
-add_action('enqueue_block_assets', 'remove_block_toolbar_settings');
-
-/**
- * Custom query loop for news posts
- */
-function custom_news_query_loop_variation() {
-
-  wp_enqueue_script(
-        'query-loop-variations',
-        get_stylesheet_directory_uri() . '/js/query-loop-variations.js',
-        ['wp-block-editor'],
-  );
-}
-
-add_action('enqueue_block_assets', 'custom_news_query_loop_variation');
 
 /*
  * Convert all H1 headings added via the heading block to H2

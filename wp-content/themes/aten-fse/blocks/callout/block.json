@@ -1,8 +1,8 @@
 {
-  "name": "callout-link",
-  "title": "Callout Link",
+  "name": "callout",
+  "title": "Callout Block",
   "active": true,
-  "description": "Custom block to display linked title, additional text and image (optional)",
+  "description": "Custom block to display a title, text, an optional image and link. Callout blocks can be laid out vertically or horizontally.",
   "category": "common",
   "icon": "embed-generic",
   "keywords": [
@@ -13,9 +13,7 @@
   ],
   "post_types": [
     "post",
-    "page",
-    "news",
-    "location"
+    "page"
   ],
   "mode": "edit",
   "align_content": "top",
