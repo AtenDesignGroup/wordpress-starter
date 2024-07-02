@@ -1,5 +1,5 @@
 /**
- * Custom JS for Jump Link functionality, utilized by both the All Services and Jump Link blocks
+ * Custom JS for Jump Link functionality
  */
 
 jQuery(document).ready(function ($) {
