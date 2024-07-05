@@ -1,135 +1,222 @@
 /**
- * JavaScript code to run in the front-end on posts/pages that contain this block.
- *
- * When this file is defined as the value of the `viewScript` property
- * in `block.json` it will be enqueued on the front end of the site.
- *
- * Example:
- *
- * ```js
- * {
- *   'viewScript': 'file:./view.js'
- * }
- * ```
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#view-script
+ * JavaScript code to run in the front-end on posts/pages that contain this menu.
  */
 
-jQuery(document).ready(function($){
-    $('.adg-a11y-megamenu-nav-container').prepend('<button class="adg-a11y-mobile-menu-toggle" aria-expanded="false"><span class="dashicons dashicons-no-alt" aria-hidden="true"></span><span class="dashicons dashicons-menu" aria-hidden="true"></span><span class="adg-a11y-mobile-menu-toggle-text">Menu</span></button>');
+document.addEventListener("DOMContentLoaded", function() {
+    // Set up variables for use throughout the script.
+    var menuContainer = document.querySelector('.adg-a11y-megamenu-nav-container');
+    var mobileMenuToggle = document.createElement('button');
+    mobileMenuToggle.className = 'adg-a11y-mobile-menu-toggle';
+    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    mobileMenuToggle.innerHTML = '<span class="dashicons dashicons-no-alt" aria-hidden="true"></span><span class="dashicons dashicons-menu" aria-hidden="true"></span><span class="adg-a11y-mobile-menu-toggle-text">Menu</span>';
+    menuContainer.insertAdjacentElement('afterbegin', mobileMenuToggle);
 
-    $('.adg-a11y-megamenu-button').click(function(){
-        toggleMenu($(this));
-    });
-
-    $( window ).on( "resize", function() {
-        toggleMobileMenuActivation();
-    } );
-
+    // Adjusting to mobile menu on resize and initial load.
+    window.addEventListener("resize", toggleMobileMenuActivation);
     toggleMobileMenuActivation();
 
-    $('.adg-a11y-megamenu .menu-item-type-custom a, .adg-a11y-megamenu .adg-a11y-megamenu-button, .adg-a11y-megamenu .menu-item, .adg-a11y-mobile-menu-toggle').on('keydown', function(event) {
-        event.stopImmediatePropagation();
-        let next_list_item = $(this).closest('li').next();
-        let prev_list_item = $(this).closest('li').prev();
+    // Adding toggle event listeners to all buttons in the menu.
+    var megamenuButtons = document.querySelectorAll('.adg-a11y-megamenu-button, .adg-a11y-mobile-menu-toggle');
+    for (var i = 0; i < megamenuButtons.length; i++) {
+        megamenuButtons[i].addEventListener("click", function() {
+            toggleMenu(this);
+        });
+    }
 
-        switch(event.key) {
-            case "Escape":
-                let target_button;
-                if($(this).hasClass('adg-a11y-megamenu-button')) {
-                    if($(this).attr('aria-expanded') == 'true') {
-                        target_button = $(this);
-                    } else {
-                        target_button = $(this).closest('.adg-a11y-mobile-menu-wrapper').find('.adg-a11y-mobile-menu-toggle');
-                    }
-                } else {
-                    target_button = $(this).closest('ul').siblings('button');
-                }
-                if($(target_button).attr('aria-expanded') == 'true') {
-                    toggleMenu(target_button);
-                }
-                $(target_button).focus();
-                break;
-            case "ArrowLeft":
-            case "ArrowUp":
-                event.preventDefault();
-                if(prev_list_item.length) {
-                    prev_list_item.find('a, button').focus();
-                } else {
-                    $(this).closest('ul').siblings('button').focus();
-                }
-                break;
-            case "ArrowRight":
-            case "ArrowDown":
-                event.preventDefault();
-                if($(this).hasClass('adg-a11y-mobile-menu-toggle') && ($(this).attr('aria-expanded') == 'true')) {
-                    $(this).siblings('.menu-expanded').find('li').first().find('a, button').focus();
-                } else if($(this).hasClass('adg-a11y-megamenu-button') && ($(this).attr('aria-expanded') == 'true')) {
-                    $(this).siblings('.submenu-expanded').find('li').first().find('a, button').focus();
-                } else {
-                    if(next_list_item.length) {
-                        next_list_item.find('a, button').focus();
-                    } else {
-                        $(this).closest('.menu-item-has-children').next().find('a, button').focus();
-                    }
-                }
-                break;
+    // Building keyboard navigation for the menu.
+    var menuItems = document.querySelectorAll('.adg-a11y-megamenu .menu-item-type-custom a, .adg-a11y-megamenu .adg-a11y-megamenu-button, .adg-a11y-megamenu .menu-item, .adg-a11y-mobile-menu-toggle');
+    menuItems.forEach(function(item) {
+        item.addEventListener('keydown', function(event) {
+            event.stopImmediatePropagation();
+            // Set up variables for the next and previous list items.
+            if(this.classList.contains('adg-a11y-mobile-menu-toggle')) {
+                // If the current item is the mobile menu toggle button, there are no sibling items to target.
+                var nextListItem = this.nextElementSibling;
+                var prevListItem = null;
+            } else {
+                var nextListItem = this.closest('li').nextElementSibling;
+                var prevListItem = this.closest('li').previousElementSibling;
             }
+
+            switch (event.key) {
+                // ESC key closes the current menu or submenu and focuses on the parent button.
+                case "Escape":
+                    var targetButton;
+                    if (this.classList.contains('adg-a11y-megamenu-button')) {
+                        if (this.getAttribute('aria-expanded') == 'true') {
+                            targetButton = this;
+                        }
+                        if (this.closest('.submenu-expanded')) {
+                            targetButton = this.closest('.submenu-expanded').previousElementSibling;
+                        } else {
+                            targetButton = this.closest('.adg-a11y-mobile-menu-wrapper').querySelector('.adg-a11y-mobile-menu-toggle');
+                        }
+                    } else {
+                        targetButton = this.closest('ul').previousElementSibling;
+                    }
+                    if (targetButton.getAttribute('aria-expanded') == 'true') {
+                        toggleMenu(targetButton);
+                    }
+                    targetButton.focus();
+                    break;
+                // Right arrow key moves focus to the next menu item, looping back to the first item if at the end.
+                case "ArrowRight":
+                    event.preventDefault();
+                    if (this.classList.contains('adg-a11y-megamenu-button') && (this.getAttribute('aria-expanded') == 'true')) {
+                        toggleMenu(this);
+                    }
+                    if (!this.closest('.submenu-expanded')) {
+                        if (nextListItem) {
+                            nextListItem.querySelector('a, button').focus();
+                        } else {
+                            this.closest('.adg-a11y-megamenu').querySelector('li').querySelector('a, button').focus();
+                        }
+                    } else {
+                        var openMenuButtons = this.closest('.submenu-expanded').previousElementSibling.querySelectorAll('.adg-a11y-megamenu-button.submenu-open');
+                        if (openMenuButtons.length) {
+                            openMenuButtons.forEach(function(button) {
+                                toggleMenu(button);
+                            });
+                        }
+                        if (this.closest('.adg-a11y-menu-item-level-0').nextElementSibling) {
+                            this.closest('.adg-a11y-menu-item-level-0').nextElementSibling.querySelector('a, button').focus();
+                        } else {
+                            this.closest('.adg-a11y-megamenu').querySelector('li').querySelector('a, button').focus();
+                        }
+                    }
+                    break;
+                // Left arrow key moves focus to the previous menu item, looping back to the last item if at the beginning.
+                case "ArrowLeft":
+                    event.preventDefault();
+                    if (this.classList.contains('adg-a11y-megamenu-button') && (this.getAttribute('aria-expanded') == 'true')) {
+                        toggleMenu(this);
+                    }
+                    if (!this.closest('.submenu-expanded')) {
+                        if (prevListItem) {
+                            prevListItem.querySelector('a, button').focus();
+                        } else {
+                            this.closest('.adg-a11y-megamenu').lastElementChild.querySelector('a, button').focus();
+                        }
+                    } else {
+                        var openMenuButtons = this.closest('.submenu-expanded').previousElementSibling.querySelectorAll('.adg-a11y-megamenu-button.submenu-open');
+                        if (openMenuButtons.length) {
+                            openMenuButtons.forEach(function(button) {
+                                toggleMenu(button);
+                            });
+                        }
+                        if (this.closest('.adg-a11y-menu-item-level-0').previousElementSibling) {
+                            this.closest('.adg-a11y-menu-item-level-0').previousElementSibling.querySelector('a, button').focus();
+                        } else {
+                            this.closest('.adg-a11y-megamenu').lastElementChild.querySelector('a, button').focus();
+                        }
+                    }
+                    break;
+                // Up arrow key moves focus to the previous menu item if in a submenu, looping back to the last item if at the beginning.
+                case "ArrowUp":
+                    event.preventDefault();
+                    if (this.closest('.submenu-expanded') && prevListItem) {
+                        prevListItem.querySelector('a, button').focus();
+                    } else {
+                        this.closest('.submenu-expanded').lastElementChild.querySelector('a, button').focus();
+                    }
+                    break;
+                // Down arrow key opens submenus and mobile menus, focusing on the first menu item. 
+                // If in a submenu, down arrow key moves focus to the next menu item, looping back to the first item if at the end.
+                case "ArrowDown":
+                    event.preventDefault();
+                    // If the current item is the mobile menu toggle button, open the menu and focus on the first item.
+                    if (this.classList.contains('adg-a11y-mobile-menu-toggle')) {
+                        if (this.getAttribute('aria-expanded') == 'false') {
+                            toggleMenu(this);
+                        }
+                        this.nextElementSibling.querySelector('li').querySelector('a, button').focus();
+                    } else if (this.classList.contains('adg-a11y-megamenu-button')) {
+                        // If the current item is a submenu toggle button, open the menu and focus on the first item.
+                        if (this.getAttribute('aria-expanded') == 'false') {
+                            toggleMenu(this);
+                        }
+                        this.nextElementSibling.querySelector('li').querySelector('a, button').focus();
+                    } else {
+                        if (this.closest('.submenu-expanded') && nextListItem) {
+                            nextListItem.querySelector('a, button').focus();
+                        } else {
+                            this.closest('.submenu-expanded').querySelector('li:first-child').querySelector('a, button').focus();
+                        }
+                    }
+                    break;
+                // Tab key closes the currently open submenu and moves focus to the next menu item.
+                case "Tab":
+                    // If reverse-tabbing out of a submenu, close the submenu and move focus to the parent menu item.
+                    if (event.shiftKey) {
+                        if (!prevListItem && this.closest('li').classList.contains('adg-a11y-menu-item-level-1')) {
+                            toggleMenu(this.closest('.adg-a11y-menu-item-level-0').querySelector('a, button'));
+                        }
+                    } else if (!nextListItem && !event.shiftKey) {
+                        // If tabbing past the last item of a submenu, close the submenu and move focus to the next main-level menu item.
+                        toggleMenu(this.closest('.adg-a11y-menu-item-level-0').querySelector('a, button'));
+                    }
+                    break;
+            }
+        });
     });
 
-    $('.adg-a11y-mobile-menu-toggle').click(function(){
-        toggleMenu($(this));
-    });
-
+    
+    /**
+     * Toggles the activation of the mobile menu based on the window width.
+     * Breakpoint is pulled from block settings as a data attribute.
+     */
     function toggleMobileMenuActivation() {
-        // Get viewport width and mobile breakpoint from block settings
-        let viewport_width = $( window ).width();
-        let mobile_breakpoint = $('nav.adg-a11y-megamenu-wrap').data('mobile-breakpoint');
-
-        // If the viewport is smaller or equal to the mobile breakpoint
-        if(viewport_width <= mobile_breakpoint) {
-            // Add mobile classes to menu and menu wrapper
-            $('.adg-a11y-mobile-menu-toggle').addClass('adg-a11y-mobile-menu-active');
-            $('.adg-a11y-mobile-menu-toggle').closest('nav').addClass('adg-a11y-mobile-menu-wrapper');
-        } else { // If the viewport is larger than the mobile breakpoint
-            // Remove mobile classes if present
-            if($('.adg-a11y-mobile-menu-toggle').hasClass('adg-a11y-mobile-menu-active')) {
-                $('.adg-a11y-mobile-menu-toggle.adg-a11y-mobile-menu-active').removeClass('adg-a11y-mobile-menu-active');
-                $('.adg-a11y-mobile-menu-toggle').closest('nav').removeClass('adg-a11y-mobile-menu-wrapper');
+        var mobileBreakpoint = document.querySelector('.adg-a11y-megamenu-wrap').dataset.mobileBreakpoint;
+        var menuToggle = document.querySelector('.adg-a11y-mobile-menu-toggle');
+        if (window.matchMedia("(max-width: " + mobileBreakpoint + "px)").matches) {
+            menuToggle.classList.add("adg-a11y-mobile-menu-active");
+            menuToggle.closest('nav').classList.add('adg-a11y-mobile-menu-wrapper');
+        } else {
+            if (menuToggle.classList.contains('adg-a11y-mobile-menu-active')) {
+                menuToggle.classList.remove("adg-a11y-mobile-menu-active");
+                menuToggle.closest('nav').classList.remove('adg-a11y-mobile-menu-wrapper');
             }
         }
     }
 
-    function toggleMenu(trigger_button) {
-        // If expanding the mobile menu
-        if($(trigger_button).hasClass('adg-a11y-mobile-menu-toggle')) {
-            if($(trigger_button).attr('aria-expanded') == 'true') {
-                $(trigger_button).siblings('ul.adg-a11y-megamenu').removeClass('menu-expanded');
-                $(trigger_button).attr('aria-expanded', 'false');
-                $(trigger_button).find('.dashicons-no-alt').removeClass('active-icon');
-                $(trigger_button).find('.dashicons-menu').addClass('active-icon');
+    /**
+     * Toggles the menu open or closed based on the provided trigger button.
+     * @param {HTMLElement} triggerButton - The button element that triggers the menu toggle.
+     */
+    function toggleMenu(triggerButton) {
+        // Mobile menu toggle actions.
+        if (triggerButton.classList.contains('adg-a11y-mobile-menu-toggle')) {
+            if (triggerButton.getAttribute('aria-expanded') == 'true') {
+                triggerButton.nextElementSibling.classList.remove('menu-expanded');
+                triggerButton.setAttribute('aria-expanded', 'false');
+                triggerButton.querySelector('.dashicons-no-alt').classList.remove('active-icon');
+                triggerButton.querySelector('.dashicons-menu').classList.add('active-icon');
             } else {
-                $(trigger_button).siblings('ul.adg-a11y-megamenu').addClass('menu-expanded');
-                $(trigger_button).attr('aria-expanded', 'true');
-                $(trigger_button).find('.dashicons-no-alt').addClass('active-icon');
-                $(trigger_button).find('.dashicons-menu').removeClass('active-icon');
+                triggerButton.nextElementSibling.classList.add('menu-expanded');
+                triggerButton.setAttribute('aria-expanded', 'true');
+                triggerButton.querySelector('.dashicons-no-alt').classList.add('active-icon');
+                triggerButton.querySelector('.dashicons-menu').classList.remove('active-icon');
             }
-        } else { // If expanding a submenu
-            let target_sub_menu = $(trigger_button).siblings('.sub-menu');
-            if($(trigger_button).hasClass('submenu-open')) {
-                $(trigger_button).attr('aria-expanded','false');
-                $(target_sub_menu).removeClass('submenu-expanded');
+        } else {
+            // Submenu toggle actions.
+            var targetSubMenu = triggerButton.nextElementSibling;
+            if (triggerButton.classList.contains('submenu-open')) {
+                triggerButton.setAttribute('aria-expanded', 'false');
+                targetSubMenu.classList.remove('submenu-expanded');
             } else {
-                $('.adg-a11y-megamenu-button.submenu-open').each(function(){
-                    $(this).attr('aria-expanded','false');
-                    $(this).removeClass('submenu-open');
-                    $(this).siblings('.sub-menu').removeClass('submenu-expanded');
-                });
-                $(trigger_button).attr('aria-expanded','true');
-                $(target_sub_menu).addClass('submenu-expanded');
+                if (!triggerButton.closest('.submenu-expanded')) {
+                    document.querySelectorAll('.adg-a11y-megamenu-button.submenu-open').forEach(function(button) {
+                        button.setAttribute('aria-expanded','false');
+                        button.classList.remove('submenu-open');
+                        button.parentElement.querySelectorAll('.sub-menu').forEach(function(sibling){
+                            sibling.classList.remove('submenu-expanded');
+                        });
+                    });
+                }
+                triggerButton.setAttribute('aria-expanded', 'true');
+                targetSubMenu.classList.add('submenu-expanded');
             }
-
-            $(trigger_button).toggleClass('submenu-open');
+            triggerButton.classList.toggle('submenu-open');
         }
     }
 });

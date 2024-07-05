@@ -437,7 +437,7 @@ function get_global_js_files() {
     $scripts[] = [
       'name' => $name,
       'src' => $file_src,
-      'deps' => ['jquery', 'wp-block-editor'],
+      'deps' => ['jquery', 'wp-block-editor', 'utility-functions'],
       'ver' => '1.0',
       'in_footer' => TRUE,
     ];
@@ -461,6 +461,7 @@ function get_global_js_files() {
  * @see wp_enqueue_script
  */
 function enqueue_custom_scripts() {
+  wp_enqueue_script('utility-functions', get_stylesheet_directory_uri() . '/dist/js/editor/utility-functions.js', ['jquery'], '2.4.16', TRUE);
 
   $scripts = get_global_js_files();
 
