@@ -1,7 +1,7 @@
 # wordpress-starter
 This repository provides a starting point for FSE supported themes &amp; block plugins for WP sites.
 
-##Login via CLI
+## Login via CLI
 - Login locally through lando install [WP-CLI Login Command](https://github.com/aaemnnosttv/wp-cli-login-command)
 - Activate the plugin if not already active
 
@@ -17,7 +17,7 @@ terminus wp [SITE].[ENV] -- user create [USERNAME] [NAME]@atendesigngroup.com --
 
 For sites on WPEngine/Kinsta you will need to SSH into the site as they also come with WP CLI installed on the server. 
 
-#FAQ
+# FAQ
 
 If you run into an issue with the homepage loading but no other pages add .htcaccess to the root of the project with these lines:
 ```
