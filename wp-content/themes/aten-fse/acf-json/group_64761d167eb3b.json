@@ -1,6 +1,6 @@
 {
     "key": "group_64761d167eb3b",
-    "title": "Featured Link Cards",
+    "title": "Link Grid",
     "fields": [
         {
             "key": "field_64761d1bdca3a",
@@ -46,8 +46,8 @@
         },
         {
             "key": "field_64761d7fdca3c",
-            "label": "Featured Link Cards",
-            "name": "featured_link_cards",
+            "label": "Link Grid Cards",
+            "name": "link_grid_cards",
             "aria-label": "",
             "type": "repeater",
             "instructions": "",
@@ -156,7 +156,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/featured-link-cards"
+                "value": "acf\/link-grid"
             }
         ]
     ],

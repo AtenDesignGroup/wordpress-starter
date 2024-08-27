@@ -1,0 +1,43 @@
+{
+  "name": "tabs-block",
+  "title": "Tabs Block",
+  "active": true,
+  "description": "A block to add a collection of tabs with unlimited tabs containing text and media content.",
+  "category": "common",
+  "icon": "table-row-after",
+  "keywords": [
+    "tab",
+    "tabs",
+    "panel",
+    "content"
+  ],
+  "post_types": [
+    "post",
+    "page"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "tabs-block.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/tabs_block.svg"
+      }
+    }
+  }
+}

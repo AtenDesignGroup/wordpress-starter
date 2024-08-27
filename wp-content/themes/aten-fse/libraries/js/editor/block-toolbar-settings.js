@@ -1,21 +1,18 @@
 wp.domReady(() => {
-  wp.data
-    .dispatch('core/edit-post')
-    .removeEditorPanel('taxonomy-panel-news_categories');
 
   /**
    * Rich Text Component Customizations
    */
   // Removing additional buttons from richText blocks, only allowing bold, italics, and links
-  wp.richText.unregisterFormatType('core/text-color');
-  wp.richText.unregisterFormatType('core/code');
-  wp.richText.unregisterFormatType('core/keyboard');
-  wp.richText.unregisterFormatType('core/image');
-  wp.richText.unregisterFormatType('core/keyboard');
-  wp.richText.unregisterFormatType('core/superscript');
-  wp.richText.unregisterFormatType('core/subscript');
-  wp.richText.unregisterFormatType('core/underline');
-  wp.richText.unregisterFormatType('core/strikethrough');
+  // wp.richText.unregisterFormatType('core/text-color');
+  // wp.richText.unregisterFormatType('core/code');
+  // wp.richText.unregisterFormatType('core/keyboard');
+  // wp.richText.unregisterFormatType('core/image');
+  // wp.richText.unregisterFormatType('core/keyboard');
+  // wp.richText.unregisterFormatType('core/superscript');
+  // wp.richText.unregisterFormatType('core/subscript');
+  // wp.richText.unregisterFormatType('core/underline');
+  // wp.richText.unregisterFormatType('core/strikethrough');
 
   /**
    * Table Block Customizations
@@ -98,9 +95,9 @@ wp.domReady(() => {
     label: 'Inline Large - Blue',
   });
 
-  tinymce.init({
-    selector: 'textarea',
-    toolbar: 'fontsize',
-    font_size_formats: '16px 18px 20px',
-  });
+  // tinymce.init({
+  //   selector: 'textarea',
+  //   toolbar: 'fontsize',
+  //   font_size_formats: '16px 18px 20px',
+  // });
 });

@@ -1,11 +1,11 @@
 {
     "key": "group_649a03b06930f",
-    "title": "All Services Block",
+    "title": "Jump Link Card Directory",
     "fields": [
         {
             "key": "field_649a03b756482",
-            "label": "Services Sections",
-            "name": "services_sections",
+            "label": "Card Sections",
+            "name": "card_sections",
             "aria-label": "",
             "type": "repeater",
             "instructions": "",
@@ -23,7 +23,7 @@
             "min": 0,
             "max": 0,
             "collapsed": "field_649a040556483",
-            "button_label": "Add Services Section",
+            "button_label": "Add Card Section",
             "rows_per_page": 20,
             "sub_fields": [
                 {
@@ -50,8 +50,8 @@
                 },
                 {
                     "key": "field_649a042a56484",
-                    "label": "Services",
-                    "name": "services",
+                    "label": "Cards",
+                    "name": "cards",
                     "aria-label": "",
                     "type": "repeater",
                     "instructions": "",
@@ -69,13 +69,13 @@
                     "min": 0,
                     "max": 0,
                     "collapsed": "field_649a043456485",
-                    "button_label": "Add Service",
+                    "button_label": "Add Card",
                     "rows_per_page": 20,
                     "sub_fields": [
                         {
                             "key": "field_649a043456485",
-                            "label": "Service Title",
-                            "name": "service_title",
+                            "label": "Card Title",
+                            "name": "jump_link_card_title",
                             "aria-label": "",
                             "type": "text",
                             "instructions": "",
@@ -96,8 +96,8 @@
                         },
                         {
                             "key": "field_649a04be56486",
-                            "label": "Service Link",
-                            "name": "service_link",
+                            "label": "Card Link",
+                            "name": "jump_link_card_link",
                             "aria-label": "",
                             "type": "link",
                             "instructions": "",
@@ -114,8 +114,8 @@
                         },
                         {
                             "key": "field_649a04f456487",
-                            "label": "Service Icon",
-                            "name": "service_icon",
+                            "label": "Card Icon",
+                            "name": "jump_link_card_icon",
                             "aria-label": "",
                             "type": "icon-picker",
                             "instructions": "",
@@ -132,8 +132,8 @@
                         },
                         {
                             "key": "field_649a050456488",
-                            "label": "Service Description",
-                            "name": "service_description",
+                            "label": "Card Description",
+                            "name": "jump_link_card_description",
                             "aria-label": "",
                             "type": "textarea",
                             "instructions": "",
@@ -164,7 +164,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/all-services-block"
+                "value": "acf\/jump-link-card-directory"
             }
         ]
     ],

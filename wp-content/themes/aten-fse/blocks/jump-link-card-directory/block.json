@@ -1,0 +1,47 @@
+{
+  "name": "jump-link-card-directory",
+  "title": "Jump Link Card Directory",
+  "active": true,
+  "description": "A block to display sections of card links with dynamically-generated jump links for each section.",
+  "category": "common",
+  "icon": "media-spreadsheet",
+  "keywords": [
+    "cards",
+    "jump",
+    "link",
+    "cta",
+    "directory"
+  ],
+  "post_types": [
+    "page",
+    "post"
+  ],
+  "mode": "edit",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "jump-link-card-directory.php"
+  },
+  "enqueue_style": "",
+  "enqueue_script": "",
+  "enqueue_assets": "",
+  "supports": {
+    "anchor": false,
+    "align": false,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/jump_link_card_directory.svg"
+      }
+    }
+  }
+
+}

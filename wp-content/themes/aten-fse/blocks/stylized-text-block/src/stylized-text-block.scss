@@ -1,0 +1,37 @@
+@use '../../../libraries/partials/partials' as *;
+
+// Stylized Text Block styling
+.stylized-text-block {
+  @include bp-max(tablet) {
+    width: 100vw;
+  }
+
+  .stylized-text-block-component {
+    width: 100%;
+  }
+
+  .stylized-text-block-content {
+    iframe {
+      display: block;
+      max-width: 100%;
+    }
+
+    p {
+      &.paragraph-large {
+        @include type-scale(body, 20);
+      }
+
+      &.paragraph-regular {
+        @include type-scale(body, 18);
+      }
+
+      &.paragraph-small {
+        @include type-scale(body, 16);
+      }
+    }
+  }
+
+  .resources-block-wrapper ul {
+    margin: 0;
+  }
+}

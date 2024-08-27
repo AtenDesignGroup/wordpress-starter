@@ -1,0 +1,47 @@
+{
+  "name": "post-carousel",
+  "title": "Post Carousel",
+  "active": true,
+  "description": "Displays important content within the site in an interactive rotating carousel.",
+  "category": "common",
+  "icon": "slides",
+  "keywords": [
+    "rotating banner",
+    "banner",
+    "carousel",
+    "slides",
+    "slideshow",
+    "slider"
+  ],
+  "post_types": [
+    "post",
+    "page"
+  ],
+  "mode": "edit",
+  "align": "",
+  "align_text": "",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "post-carousel.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/post_carousel.svg"
+      }
+    }
+  }
+}

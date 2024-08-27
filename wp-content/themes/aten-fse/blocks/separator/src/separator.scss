@@ -19,18 +19,6 @@
   &.gold-line,
   &.grey-line {
     max-width: 100%;
-    margin-top: rem(36px);
-    margin-bottom: rem(36px);
-
-    @include bp-min(tablet) {
-      margin-top: rem(44px);
-      margin-bottom: rem(44px);
-    }
-
-    @include bp-min(desktop) {
-      margin-top: rem(52px);
-      margin-bottom: rem(52px);
-    }
   }
 
   &.gold-line {
@@ -38,7 +26,6 @@
       max-width: none;
       width: calc(100% + rem(120px));
       position: relative;
-      left: rem(-60px);
     }
   }
 
@@ -49,10 +36,5 @@
     background-image: url('/wp-content/themes/aten-fse/assets/img/gold-wave.svg');
     background-size: contain;
     background-position: center center;
-
-    @include bp-min(tablet) {
-      width: rem(280px);
-      height: rem(28px);
-    }
   }
 }
