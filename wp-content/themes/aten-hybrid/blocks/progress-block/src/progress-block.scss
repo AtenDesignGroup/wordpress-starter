@@ -2,12 +2,12 @@
 
 // Progress Block styles
 .progress-block.l-full {
+  background-color: var(--aten-blue-light);
+  padding: rem(20px) rem(15px) rem(56px);
+
   &::before {
     background-color: var(--transparent);
   }
-
-  background-color: var(--aten-blue-light);
-  padding: rem(20px) rem(15px) rem(56px);
 
   @include bp-min(tablet) {
     background-image: url('../aten-hybrid/assets/img/progress-swishies.svg');

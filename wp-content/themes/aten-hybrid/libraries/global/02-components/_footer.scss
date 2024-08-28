@@ -147,11 +147,11 @@ footer {
   }
 
   ul {
-    @include list--no-bullets;
     display: flex;
     flex-flow: column;
     min-width: rem(280px);
     gap: rem(8px);
+    @include list--no-bullets;
     li {
       a {
         @include type-scale(body, 18);
@@ -257,10 +257,10 @@ footer {
 
 // Footer social menu
 .footer-social ul {
-  @include list--no-bullets;
   display: flex;
   flex-flow: row wrap;
   gap: rem(32px);
+  @include list--no-bullets;
 
   li.social-item {
     a:hover,
@@ -286,10 +286,10 @@ footer {
   }
 
   ul {
-    @include list--no-bullets;
     display: flex;
     flex-flow: column;
     gap: rem(8px);
+    @include list--no-bullets;
 
     @include bp-min(tablet) {
       flex-flow: row;

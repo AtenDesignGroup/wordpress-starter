@@ -15,8 +15,8 @@
   }
 
   a.button {
-    @include btn(var(--black));
     margin-top: rem(16px);
+    @include btn(var(--black));
   }
 
   .cloud {
@@ -115,16 +115,16 @@
     }
 
     a.button {
-      @include btn(var(--black));
       padding-left: 0px !important;
       border: 0;
       background-color: transparent;
+      @include btn(var(--black));
     }
 
     &.navy {
       a.button {
-        @include btn(var(--white));
         padding-left: 0px !important;
+        @include btn(var(--white));
       }
     }
   }
