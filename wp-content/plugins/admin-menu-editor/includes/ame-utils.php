@@ -286,6 +286,58 @@ class ameUtils {
 
 		return $omitResponseBody;
 	}
+
+	/**
+	 * Pass through the selected actor from the request to the new query parameters.
+	 *
+	 * @param array $outputQueryParams Array of query params, usually for a redirect URL.
+	 * @param array|null $inputRequestParams Array of form fields from the current request. Defaults to $_POST.
+	 * @param array|null $queryParameterName Name of the input field/parameter to use.
+	 * @return array Modified $outputQueryParams.
+	 */
+	public static function withSelectedActor(
+		$outputQueryParams,
+		$inputRequestParams = null,
+		$queryParameterName = 'selected_actor'
+	) {
+		if ( $inputRequestParams === null ) {
+			//This is a utility method; the caller is responsible for nonce verification.
+			//phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$inputRequestParams = $_POST;
+		}
+
+		if ( !isset($inputRequestParams[$queryParameterName]) ) {
+			return $outputQueryParams;
+		}
+
+		$selectedActor = $inputRequestParams[$queryParameterName];
+
+		//Basic actor ID validation.
+		$isValid =
+			is_string($selectedActor)
+			&& (strlen($selectedActor) <= 200)
+			&& (
+				($selectedActor === 'special:super_admin')
+				|| preg_match('/^(role|user):[a-z0-9_]+$/i', $selectedActor)
+			);
+
+		if ( $isValid ) {
+			$outputQueryParams['selected_actor'] = $selectedActor;
+		}
+
+		return $outputQueryParams;
+	}
+
+	/**
+	 * Check if a string starts with a specific substring.
+	 *
+	 * @param string $haystack
+	 * @param string $needle
+	 * @return bool
+	 */
+	public static function stringStartsWith($haystack, $needle) {
+		return (substr($haystack, 0, strlen($needle)) === $needle);
+	}
 }
 
 /**

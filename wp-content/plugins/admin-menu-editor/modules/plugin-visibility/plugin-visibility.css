@@ -1,3 +1,7 @@
+#ame-plugin-visibility-editor .plugins {
+  margin-top: 2px;
+}
+
 /*
  Plugin visibility module
  ------------------------
@@ -42,7 +46,7 @@
 .ame-pv-save-form {
   float: right;
   margin-top: 5px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 #ws_actor_selector_container {

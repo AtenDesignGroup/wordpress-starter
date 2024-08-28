@@ -151,6 +151,7 @@ abstract class ameMenuItem {
 			'url' => '',
 			'embedded_page_id' => 0,
 			'embedded_page_blog_id' => function_exists('get_current_blog_id') ? get_current_blog_id() : 1,
+			'local_id' => '',
 		);
 
 		return $basic_defaults;

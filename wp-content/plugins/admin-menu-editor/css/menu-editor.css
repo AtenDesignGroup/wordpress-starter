@@ -1,27 +1,21 @@
-@charset "UTF-8";
 /* Admin Menu Editor CSS file */
 .ame-input-group {
   display: flex;
-  flex-wrap: wrap;
-}
-.ame-input-group .ame-input-group-secondary, .ame-input-group > :not(:first-child) {
-  margin-left: -1px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.ame-input-group > :not(:last-child) {
-  margin-right: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
+  flex-wrap: wrap; }
+  .ame-input-group .ame-input-group-secondary, .ame-input-group > :not(:first-child) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
+  .ame-input-group > :not(:last-child) {
+    margin-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
 
 #ws_menu_editor {
-  min-width: 780px;
-}
+  min-width: 780px; }
 
 .ame-is-free-version #ws_menu_editor {
-  margin-top: 9px;
-}
+  margin-top: 9px; }
 
 .ws_main_container {
   margin: 2px;
@@ -33,54 +27,48 @@
   background-color: #FFFFFF;
   border-radius: 0px;
   -moz-border-radius: 0px;
-  -webkit-border-radius: 0px;
-}
+  -webkit-border-radius: 0px; }
 
 .ws_box {
   min-height: 30px;
   width: 100%;
-  margin: 0;
-}
+  margin: 0; }
 
 .ws_basic_container {
   float: left;
-  display: block;
-}
+  display: block; }
 
 .ws_dropzone {
   display: block;
   box-sizing: border-box;
   margin: 2px 6px;
   border: 3px none #b4b9be;
-  height: 31px;
-}
+  height: 31px; }
 
 .ws_dropzone_active,
 .ws_dropzone_hover,
 .ws_top_to_submenu_drop_hover .ws_dropzone {
-  border-style: dashed;
-}
+  border-style: dashed; }
 
 .ws_dropzone_hover,
 .ws_top_to_submenu_drop_hover .ws_dropzone {
-  border-width: 1px;
-}
+  border-width: 1px; }
+
+.ws_invalid_item_drop_target {
+  outline: 2px solid red; }
 
 /*************************************************
                      Actor UI
  *************************************************/
 #ws_actor_selector li:after {
-  content: "| ";
-}
+  content: '| '; }
 
 #ws_actor_selector li:last-child:after {
-  content: "";
-}
+  content: ''; }
 
 #ws_actor_selector li a {
   display: inline-block;
-  text-align: center;
-}
+  text-align: center; }
 #ws_actor_selector li a::before {
   display: block;
   content: attr(data-text);
@@ -88,108 +76,90 @@
   height: 1px;
   overflow: hidden;
   visibility: hidden;
-  margin-bottom: -1px;
-}
+  margin-bottom: -1px; }
 
 #ws_actor_selector {
-  margin-top: 6px;
-}
+  margin-top: 6px; }
 
 /**
  * The checkbox that lets the user show/hide a menu for the currently selected actor.
  */
 #ws_menu_editor .ws_actor_access_checkbox,
-#ws_menu_editor input[type=checkbox].ws_actor_access_checkbox {
+#ws_menu_editor input[type="checkbox"].ws_actor_access_checkbox {
   margin-right: 2px;
   margin-left: 2px;
   margin-top: 1px;
-  vertical-align: text-top;
-}
-#ws_menu_editor .ws_actor_access_checkbox:indeterminate:before,
-#ws_menu_editor input[type=checkbox].ws_actor_access_checkbox:indeterminate:before {
-  content: "■";
-  color: #1e8cbe;
-  margin: -3px 0 0 -1px;
-  font: 400 14px/1 dashicons;
-  float: left;
-  display: inline-block;
-  vertical-align: middle;
-  width: 16px;
-  -webkit-font-smoothing: antialiased;
-}
-@media screen and (max-width: 782px) {
+  vertical-align: text-top; }
   #ws_menu_editor .ws_actor_access_checkbox:indeterminate:before,
-#ws_menu_editor input[type=checkbox].ws_actor_access_checkbox:indeterminate:before {
-    height: 1.5625rem;
-    width: 1.5625rem;
-    line-height: 1.5625rem;
-    margin: -1px;
-    font-size: 18px;
-    font-family: unset;
-    font-weight: normal;
-  }
-}
+  #ws_menu_editor input[type="checkbox"].ws_actor_access_checkbox:indeterminate:before {
+    content: '\25a0';
+    color: #1e8cbe;
+    margin: -3px 0 0 -1px;
+    font: 400 14px/1 dashicons;
+    float: left;
+    display: inline-block;
+    vertical-align: middle;
+    width: 16px;
+    -webkit-font-smoothing: antialiased; }
+  @media screen and (max-width: 782px) {
+    #ws_menu_editor .ws_actor_access_checkbox:indeterminate:before,
+    #ws_menu_editor input[type="checkbox"].ws_actor_access_checkbox:indeterminate:before {
+      height: 1.5625rem;
+      width: 1.5625rem;
+      line-height: 1.5625rem;
+      margin: -1px;
+      font-size: 18px;
+      font-family: unset;
+      font-weight: normal; } }
 
 @media screen and (max-width: 782px) {
-  #ws_menu_editor input[type=checkbox].ws_actor_access_checkbox:indeterminate:before {
+  #ws_menu_editor input[type="checkbox"].ws_actor_access_checkbox:indeterminate:before {
     margin: -6px 0 0 1px;
-    font: 400 26px/1 dashicons;
-  }
-}
+    font: 400 26px/1 dashicons; } }
 /* The checkbox is only visible when viewing the menu configuration for a specific actor. */
 #ws_menu_editor .ws_actor_access_checkbox {
-  display: none;
-}
+  display: none; }
 
 #ws_menu_editor.ws_is_actor_view .ws_actor_access_checkbox {
-  display: inline-block;
-}
+  display: inline-block; }
 
 /* Gray-out items inaccessible to the currently selected actor */
 .ws_is_actor_view .ws_container.ws_is_hidden_for_actor {
-  background-color: #F9F9F9;
-}
+  background-color: #F9F9F9; }
 
 .ws_is_actor_view .ws_is_hidden_for_actor .ws_item_title {
-  color: #777;
-}
+  color: #777; }
 
 /*
  * The sidebar
  */
 #ws_editor_sidebar {
   width: auto;
-  padding: 2px;
-}
+  padding: 2px; }
 
 #ws_menu_editor .ws_main_button {
   clear: both;
   display: block;
   margin: 4px;
-  width: 130px;
-}
+  width: 130px; }
 
 #ws_menu_editor #ws_save_menu {
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 #ws_menu_editor #ws_toggle_editor_layout {
-  display: none;
-}
+  display: none; }
 
 #ws_menu_editor .ws_sidebar_button_separator {
   display: block;
   height: 4px;
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 /*
  * Page heading and tabs
  */
 #ws_ame_editor_heading {
-  float: left;
-}
+  float: left; }
 
 /*
  * Menu components and widgets
@@ -198,28 +168,23 @@
   display: block;
   width: 296px;
   padding: 3px;
-  margin: 2px 0 2px 6px;
-}
-body.rtl .ws_container {
-  margin-right: 6px;
-  margin-left: 0;
-}
+  margin: 2px 0 2px 6px; }
+  body.rtl .ws_container {
+    margin-right: 6px;
+    margin-left: 0; }
 
 .ws_submenu {
-  min-height: 2em;
-}
+  min-height: 2em; }
 
 .ws_item_head {
-  padding: 0;
-}
+  padding: 0; }
 
 .ws_item_title {
   display: inline-block;
   padding: 2px;
   cursor: default;
   font-size: 13px;
-  line-height: 18px;
-}
+  line-height: 18px; }
 
 .ws_edit_link {
   float: right;
@@ -231,23 +196,19 @@ body.rtl .ws_container {
   border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  text-decoration: none;
-}
+  text-decoration: none; }
 
 .ws_menu_drop_hover {
-  background-color: #43b529 !important;
-}
+  background-color: #43b529 !important; }
 
 .ws_container.ui-sortable-helper * {
-  cursor: move !important;
-}
+  cursor: move !important; }
 
 .ws_container.ws_sortable_placeholder {
   outline: 1px dashed #b4b9be;
   outline-offset: -1px;
   background: none;
-  border-color: transparent;
-}
+  border-color: transparent; }
 
 /*
   If you ever want to apply a right-arrow style to the currently selected menu item,
@@ -282,8 +243,7 @@ body.rtl .ws_container {
  * of CSS triangles.
  */
 .ws_container {
-  position: relative;
-}
+  position: relative; }
 
 .ws_menu.ws_active::after {
   content: "";
@@ -293,13 +253,11 @@ body.rtl .ws_container {
   top: -1px;
   width: 19px;
   height: 30px;
-  background: transparent url("../images/submenu-tip.png") no-repeat center;
-}
+  background: transparent url("../images/submenu-tip.png") no-repeat center; }
 
 .ws_container.ws_menu_separator.ws_active::after,
 .ws_container.ui-sortable-helper::after {
-  background-image: none;
-}
+  background-image: none; }
 
 /****************************************
     Per-menu settings fields & panels
@@ -312,38 +270,32 @@ body.rtl .ws_container {
   -moz-border-radius: 2px;
   -moz-border-radius-topright: 0;
   -webkit-border-radius: 2px;
-  -webkit-border-top-right-radius: 0;
-}
+  -webkit-border-top-right-radius: 0; }
 
 .ws_edit_panel {
   margin: 0;
   padding: 0;
-  border: none;
-}
+  border: none; }
 
 .ws_edit_field {
   margin-bottom: 6px;
-  min-height: 45px;
-}
-.ws_edit_field:after {
-  visibility: hidden;
-  display: block;
-  height: 0;
-  font-size: 0;
-  content: " ";
-  clear: both;
-}
+  min-height: 45px; }
+  .ws_edit_field:after {
+    visibility: hidden;
+    display: block;
+    height: 0;
+    font-size: 0;
+    content: " ";
+    clear: both; }
 
 .ws_edit_field-custom {
-  margin-top: 10px;
-}
+  margin-top: 10px; }
 
 .ws_edit_field.ws_no_field_caption {
   margin-top: 10px;
   padding-left: 1px;
   height: 25px;
-  min-height: 25px;
-}
+  min-height: 25px; }
 
 /*
  * Group headings
@@ -353,12 +305,10 @@ body.rtl .ws_container {
   min-height: 0;
   padding-top: 0;
   background: #ccc;
-  margin: 8px -4px 5px;
-}
-.ws_edit_field.ws_field_group_heading span {
-  display: none;
-  font-weight: bold;
-}
+  margin: 8px -4px 5px; }
+  .ws_edit_field.ws_field_group_heading span {
+    display: none;
+    font-weight: bold; }
 
 /* The reset-to-default button */
 .ws_reset_button {
@@ -371,31 +321,25 @@ body.rtl .ws_container {
   width: 16px;
   height: 16px;
   vertical-align: top;
-  background: url("../images/pencil_delete_gray.png") no-repeat center;
-}
-.ame-is-wp53-plus .ws_reset_button {
-  margin-top: 5px;
-}
+  background: url("../images/pencil_delete_gray.png") no-repeat center; }
+  .ame-is-wp53-plus .ws_reset_button {
+    margin-top: 5px; }
 
 .ws_reset_button:hover {
-  background-image: url("../images/pencil_delete.png");
-}
+  background-image: url("../images/pencil_delete.png"); }
 
 .ws_input_default input,
 .ws_input_default select,
 .ws_input_default .ws_color_scheme_display {
-  color: gray;
-}
+  color: gray; }
 
 /* No reset button for fields set to the default value and fields without a default value */
 .ws_input_default .ws_reset_button,
 .ws_has_no_default .ws_reset_button {
-  visibility: hidden;
-}
+  visibility: hidden; }
 
 /* The input box in each field editor */
-#ws_menu_editor .ws_editbox input[type=text],
-#ws_menu_editor .ws_editbox select {
+#ws_menu_editor .ws_editbox input[type="text"], #ws_menu_editor .ws_editbox select {
   display: block;
   float: left;
   width: 254px;
@@ -403,29 +347,23 @@ body.rtl .ws_container {
   font-size: 12px;
   line-height: 17px;
   padding-top: 3px;
-  padding-bottom: 3px;
-}
-.ame-is-wp53-plus #ws_menu_editor .ws_editbox input[type=text],
-.ame-is-wp53-plus #ws_menu_editor .ws_editbox select {
-  height: 28px;
-  margin-top: 1px;
-}
+  padding-bottom: 3px; }
+  .ame-is-wp53-plus #ws_menu_editor .ws_editbox input[type="text"],
+  .ame-is-wp53-plus #ws_menu_editor .ws_editbox select {
+    height: 28px;
+    margin-top: 1px; }
 
 #ws_menu_editor .ws_edit_field label {
   display: block;
-  float: left;
-}
+  float: left; }
 
-#ws_menu_editor .ws_edit_field-custom input[type=checkbox] {
-  margin-top: 0;
-}
+#ws_menu_editor .ws_edit_field-custom input[type="checkbox"] {
+  margin-top: 0; }
 
-#ws_menu_editor input[type=text].ws_field_value {
-  min-height: 25px;
-}
-.ame-is-wp53-plus #ws_menu_editor input[type=text].ws_field_value {
-  min-height: 28px;
-}
+#ws_menu_editor input[type="text"].ws_field_value {
+  min-height: 25px; }
+  .ame-is-wp53-plus #ws_menu_editor input[type="text"].ws_field_value {
+    min-height: 28px; }
 
 /* Dropdown button for combo-box fields */
 #ws_menu_editor .ws_dropdown_button,
@@ -445,8 +383,7 @@ body.rtl .ws_container {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
+  border-bottom-left-radius: 0; }
 
 .ame-is-wp53-plus #ws_menu_editor .ws_dropdown_button,
 #ws_menu_access_editor.ame-is-wp53-plus .ws_dropdown_button {
@@ -456,26 +393,21 @@ body.rtl .ws_container {
   border-left-style: none;
   font-size: 16px !important;
   line-height: 24px;
-  color: #555;
-}
-.ame-is-wp53-plus #ws_menu_editor .ws_dropdown_button:hover,
-#ws_menu_access_editor.ame-is-wp53-plus .ws_dropdown_button:hover {
-  color: #23282d;
-}
+  color: #555; }
+  .ame-is-wp53-plus #ws_menu_editor .ws_dropdown_button:hover,
+  #ws_menu_access_editor.ame-is-wp53-plus .ws_dropdown_button:hover {
+    color: #23282d; }
 
 #ws_menu_access_editor .ws_dropdown_button {
   display: inline-block;
-  height: 27px;
-}
+  height: 27px; }
 
 #ws_menu_access_editor.ame-is-wp53-plus .ws_dropdown_button {
-  height: 30px;
-}
+  height: 30px; }
 
 #ws_menu_editor .ws_dropdown_button {
   display: block;
-  float: left;
-}
+  float: left; }
 
 /* 
 The appearance and size of combo-box fields need to be changed
@@ -486,51 +418,42 @@ to accommodate the drop-down button.
   margin-right: 0;
   border-right: 0;
   border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
+  border-bottom-right-radius: 0; }
 
 #ws_menu_access_editor input.ws_has_dropdown {
   width: 90%;
   box-sizing: border-box;
   height: 27px;
-  margin-top: 1px;
-}
+  margin-top: 1px; }
 
 #ws_menu_access_editor.ame-is-wp53-plus input.ws_has_dropdown {
-  height: 30px;
-}
+  height: 30px; }
 
 #ws_menu_editor .ws_has_dropdown input.ws_field_value {
-  width: 229px;
-}
+  width: 229px; }
 
 /* Unlike others, this field is just a single checkbox, so it has a smaller height */
 #ws_menu_editor .ws_edit_field-custom {
-  height: 16px;
-}
+  height: 16px; }
 
 /*
  * "Show/hide advanced fields" 
  */
 .ws_toggle_container {
   text-align: right;
-  margin-right: 27px;
-}
+  margin-right: 27px; }
 
 .ws_toggle_advanced_fields {
   color: #6087CB;
   text-decoration: none;
-  font-size: 0.85em;
-}
+  font-size: 0.85em; }
 
 .ws_toggle_advanced_fields:visited, .ws_toggle_advanced_fields:active {
-  color: #6087CB;
-}
+  color: #6087CB; }
 
 .ws_toggle_advanced_fields:hover {
   color: #d54e21;
-  text-decoration: underline;
-}
+  text-decoration: underline; }
 
 /************************************
             Menu flags
@@ -538,8 +461,7 @@ to accommodate the drop-down button.
 .ws_flag_container {
   float: right;
   margin-right: 4px;
-  padding-top: 2px;
-}
+  padding-top: 2px; }
 
 .ws_flag {
   display: block;
@@ -547,29 +469,24 @@ to accommodate the drop-down button.
   width: 16px;
   height: 16px;
   margin-left: 4px;
-  background-repeat: no-repeat;
-}
+  background-repeat: no-repeat; }
 
 /* user-created items */
 .ws_custom_flag {
-  background-image: url("../images/page-add.png");
-}
+  background-image: url("../images/page-add.png"); }
 
 /* unused items - those that are in the default menu but not in the custom one */
 .ws_unused_flag {
   background-image: url("../images/new-menu-badge.png");
-  width: 31px;
-}
+  width: 31px; }
 
 /* hidden items */
 .ws_hidden_flag {
-  background-image: url("../images/page-invisible.png");
-}
+  background-image: url("../images/page-invisible.png"); }
 
 /* items with custom permissions for the selected actor */
 .ws_custom_actor_permissions_flag {
-  font: 16px/1 "dashicons";
-}
+  font: 16px/1 'dashicons'; }
 
 .ws_custom_actor_permissions_flag::before {
   /*content: "\f160";*/
@@ -579,23 +496,20 @@ to accommodate the drop-down button.
   color: black;
   filter: alpha(opacity=25);
   /*IE 5-7*/
-  opacity: 0.25;
-}
+  opacity: 0.25; }
 
 /* Hidden from everyone except the current user and Super Admin. */
 .ws_hidden_from_others_flag {
-  background-image: url("../images/font-awesome/eye-slash.png");
-}
+  background-image: url("../images/font-awesome/eye-slash.png"); }
 
 /* Item visibility can't be determined because it depends on a meta capability. */
 .ws_uncertain_meta_cap_flag::before {
-  font: 16px/1 "dashicons";
+  font: 16px/1 'dashicons';
   content: "\f348";
   color: black;
   filter: alpha(opacity=25);
   /*IE 5-7*/
-  opacity: 0.25;
-}
+  opacity: 0.25; }
 
 /* These classes could be used to apply different styles to items depending on their flags */
 /************************************
@@ -611,8 +525,7 @@ to accommodate the drop-down button.
   position: sticky;
   top: var(--wp-admin--admin-bar--height, 32px);
   background-color: white;
-  z-index: 5;
-}
+  z-index: 5; }
 
 .ws_button {
   display: block;
@@ -627,45 +540,36 @@ to accommodate the drop-down button.
   height: 16px;
   border-radius: 3px;
   -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-}
-.ws_button img {
-  vertical-align: top;
-}
+  -webkit-border-radius: 3px; }
+  .ws_button img {
+    vertical-align: top; }
 
 a.ws_button:hover {
   background-color: #d0e0ff;
-  border-color: #9090c0;
-}
+  border-color: #9090c0; }
 
 .ws_button.ws_button_disabled {
-  border-color: #ccc;
-}
+  border-color: #ccc; }
 
 a.ws_button.ws_button_disabled:hover {
   background-color: white;
-  border: 1px solid #ccc;
-}
+  border: 1px solid #ccc; }
 
 .ws_button_disabled img {
   filter: grayscale(1);
   -webkit-filter: grayscale(1);
-  opacity: 0.65;
-}
+  opacity: 0.65; }
 
 .ws_separator {
   float: left;
-  width: 5px;
-}
+  width: 5px; }
 
 #ws_toggle_toolbar, .ws_toggle_toolbar_button {
-  margin-right: 0;
-}
+  margin-right: 0; }
 
 .ws_is_sticky_toolbar {
   border-bottom: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
 
 /************************************
        Capability selector
@@ -676,19 +580,16 @@ select.ws_dropdown {
   z-index: 1002;
   position: absolute;
   display: none;
-  font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
-  font-size: 12px;
-}
+  font-family: "Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
+  font-size: 12px; }
 
 select.ws_dropdown option {
-  font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
+  font-family: "Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
   font-size: 12px;
-  padding: 3px;
-}
+  padding: 3px; }
 
 select.ws_dropdown optgroup option {
-  padding-left: 10px;
-}
+  padding-left: 10px; }
 
 /************************************
            Tabs (small)
@@ -698,33 +599,27 @@ select.ws_dropdown optgroup option {
 .ws_tool_tab_nav {
   list-style: outside none none;
   padding: 0;
-  margin: 0 0 0 6px;
-}
-.ws_tool_tab_nav li {
-  display: inline-block;
-  border: 1px solid transparent;
-  border-bottom-width: 0;
-  padding: 3px 5px 5px;
-  line-height: 1.35em;
-  margin-bottom: 0;
-}
-.ws_tool_tab_nav li.ui-tabs-active {
-  border-color: #dfdfdf;
-  border-bottom-color: #FDFDFD;
-  background: #FDFDFD none;
-}
-.ws_tool_tab_nav a {
-  text-decoration: none;
-}
-.ws_tool_tab_nav li.ui-tabs-active a {
-  color: #32373C;
-}
+  margin: 0 0 0 6px; }
+  .ws_tool_tab_nav li {
+    display: inline-block;
+    border: 1px solid transparent;
+    border-bottom-width: 0;
+    padding: 3px 5px 5px;
+    line-height: 1.35em;
+    margin-bottom: 0; }
+  .ws_tool_tab_nav li.ui-tabs-active {
+    border-color: #dfdfdf;
+    border-bottom-color: #FDFDFD;
+    background: #FDFDFD none; }
+  .ws_tool_tab_nav a {
+    text-decoration: none; }
+  .ws_tool_tab_nav li.ui-tabs-active a {
+    color: #32373C; }
 
 .ws_tool_tab {
   border-top: 1px solid #DFDFDF;
   margin-top: -1px;
-  background-color: #FDFDFD;
-}
+  background-color: #FDFDFD; }
 
 /************************************
            Icon selector
@@ -736,20 +631,16 @@ select.ws_dropdown optgroup option {
   width: 216px;
   padding: 4px 0 0 0;
   position: absolute;
-  z-index: 6;
-}
+  z-index: 6; }
 
 #ws_icon_selector.ws_with_more_icons {
-  width: 570px;
-}
+  width: 570px; }
 
 #ws_icon_selector .ws_icon_extra {
-  display: none;
-}
+  display: none; }
 
 #ws_icon_selector.ws_with_more_icons .ws_icon_extra {
-  display: inline-block;
-}
+  display: inline-block; }
 
 #ws_icon_selector .ws_icon_option {
   float: left;
@@ -764,8 +655,7 @@ select.ws_dropdown optgroup option {
   background-image: -webkit-linear-gradient(top, #fefefe, #f4f4f4);
   background-image: -moz-linear-gradient(top, #fefefe, #f4f4f4);
   background-image: -o-linear-gradient(top, #fefefe, #f4f4f4);
-  background-image: linear-gradient(to bottom, #fefefe, #f4f4f4);
-}
+  background-image: linear-gradient(to bottom, #fefefe, #f4f4f4); }
 
 #ws_icon_selector .ws_icon_option:hover {
   /* Gradients and colours cribbed from WP 3.5.1 button styles */
@@ -776,43 +666,36 @@ select.ws_dropdown optgroup option {
   background-image: -moz-linear-gradient(top, #fff, #f3f3f3);
   background-image: -ms-linear-gradient(top, #fff, #f3f3f3);
   background-image: -o-linear-gradient(top, #fff, #f3f3f3);
-  background-image: linear-gradient(to bottom, #fff, #f3f3f3);
-}
+  background-image: linear-gradient(to bottom, #fff, #f3f3f3); }
 
 #ws_icon_selector .ws_icon_option.ws_selected_icon {
   border-color: green;
   background-color: #deffca;
-  background-image: none;
-}
+  background-image: none; }
 
 #ws_icon_selector .ws_icon_option .ws_icon_image {
   float: none;
   margin: 0;
-  padding: 0;
-}
-#ws_icon_selector .ws_icon_option .ws_icon_image:before {
-  color: #85888c;
-  display: inline-block;
-}
+  padding: 0; }
+  #ws_icon_selector .ws_icon_option .ws_icon_image:before {
+    color: #85888c;
+    display: inline-block; }
 
 #ws_icon_selector .ws_icon_option .ws_icon_image.dashicons {
   width: 20px;
   height: 20px;
-  padding: 5px;
-}
+  padding: 5px; }
 
 #ws_icon_selector .ws_icon_option img {
   display: inline-block;
   margin: 0;
   padding: 7px;
   width: 16px;
-  height: 16px;
-}
+  height: 16px; }
 
 #ws_menu_editor .ws_edit_field-icon_url input.ws_field_value {
   width: 220px;
-  margin-right: 5px;
-}
+  margin-right: 5px; }
 
 /* The icon button that displays the pop-up icon selector. */
 #ws_menu_editor .ws_select_icon {
@@ -822,61 +705,49 @@ select.ws_dropdown optgroup option {
   box-sizing: border-box;
   height: 25px;
   min-height: 25px;
-  min-width: 26px;
-}
-.ame-is-wp53-plus #ws_menu_editor .ws_select_icon {
-  height: 28px;
-  min-height: 28px;
-  margin-top: 1px;
-}
+  min-width: 26px; }
+  .ame-is-wp53-plus #ws_menu_editor .ws_select_icon {
+    height: 28px;
+    min-height: 28px;
+    margin-top: 1px; }
 
 .ws_select_icon .ws_icon_image {
   color: #85888c;
-  padding: 3px;
-}
-.ws_select_icon .ws_icon_image.dashicons {
-  padding: 3px 2px;
-}
-.ws_select_icon .ws_icon_image.dashicons:before {
-  width: 20px;
-}
+  padding: 3px; }
+  .ws_select_icon .ws_icon_image.dashicons {
+    padding: 3px 2px; }
+    .ws_select_icon .ws_icon_image.dashicons:before {
+      width: 20px; }
 
 /* Current icon node (image version) */
 .ws_select_icon img {
   margin: 0;
   padding: 4px;
   width: 16px;
-  height: 16px;
-}
+  height: 16px; }
 
 #ws_icon_selector .ws_tool_tab_nav {
   display: inline-block;
   margin-top: 2px;
-  position: relative;
-}
-#ws_icon_selector .ws_tool_tab_nav li {
-  padding: 4px 10px 11px;
-}
+  position: relative; }
+  #ws_icon_selector .ws_tool_tab_nav li {
+    padding: 4px 10px 11px; }
 #ws_icon_selector .ws_tool_tab {
   padding: 0 4px 2px;
   max-height: 324px;
-  overflow-y: auto;
-}
+  overflow-y: auto; }
 #ws_icon_selector .ws_icon_search_bar {
   margin: 0 0 0 2px;
   position: sticky;
   top: 0;
   background-color: #FDFDFD;
-  padding: 4px 0;
-}
+  padding: 4px 0; }
 #ws_icon_selector .ws_no_matching_icons {
   margin-left: 2px;
-  padding: 4px 0;
-}
+  padding: 4px 0; }
 
 #ws_choose_icon_from_media {
-  margin: 2px;
-}
+  margin: 2px; }
 
 /************************************
       Embedded page selector
@@ -888,14 +759,12 @@ select.ws_dropdown optgroup option {
   border-radius: 3px;
   background-color: white;
   box-sizing: border-box;
-  position: absolute;
-}
+  position: absolute; }
 
 .ws_page_selector_tab_nav {
   list-style: outside none none;
   padding: 0;
-  margin: 0 0 0 6px;
-}
+  margin: 0 0 0 6px; }
 
 .ws_page_selector_tab_nav li {
   display: inline-block;
@@ -903,22 +772,18 @@ select.ws_dropdown optgroup option {
   border-bottom-width: 0;
   padding: 3px 5px 5px;
   line-height: 1.35em;
-  margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
 .ws_page_selector_tab_nav a {
-  text-decoration: none;
-}
+  text-decoration: none; }
 
 .ws_page_selector_tab_nav li.ui-tabs-active {
   border-color: #dfdfdf;
   background-color: #FDFDFD;
-  border-bottom-color: #FDFDFD;
-}
+  border-bottom-color: #FDFDFD; }
 
 .ws_page_selector_tab_nav li.ui-tabs-active a {
-  color: #32373C;
-}
+  color: #32373C; }
 
 .ws_page_selector_tab {
   border-top: 1px solid #DFDFDF;
@@ -927,33 +792,28 @@ select.ws_dropdown optgroup option {
   margin-top: -1px;
   background-color: #FDFDFD;
   border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
+  border-bottom-right-radius: 3px; }
 
 #ws_current_site_pages {
   width: 100%;
   min-height: 150px;
   max-height: 300px;
   margin-left: 0;
-  margin-right: 0;
-}
+  margin-right: 0; }
 
 #ws_embedded_page_selector input {
   box-sizing: border-box;
-  max-width: 100%;
-}
+  max-width: 100%; }
 
 #ws_custom_embedded_page_tab p:first-child {
-  margin-top: 0;
-}
+  margin-top: 0; }
 
 /*
  Make the "Page" field look editable. It is read-only because the user can't change it directly (they have to use
  the dropdown), but we don't want it to be greyed-out.
 */
 #ws_menu_editor .ws_edit_field-embedded_page_id input.ws_field_value {
-  background-color: white;
-}
+  background-color: white; }
 
 /************************************
            Menu color picker
@@ -971,21 +831,18 @@ select.ws_dropdown optgroup option {
   border: 1px solid #ddd;
   background: white;
   cursor: pointer;
-  line-height: 20px;
-}
-.ame-is-wp53-plus .ws_color_scheme_display {
-  border-color: #7e8993;
-  border-radius: 4px;
-  margin-top: 1px;
-  margin-bottom: 1px;
-  padding: 3px 8px;
-  height: 28px;
-  line-height: 20px;
-}
+  line-height: 20px; }
+  .ame-is-wp53-plus .ws_color_scheme_display {
+    border-color: #7e8993;
+    border-radius: 4px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding: 3px 8px;
+    height: 28px;
+    line-height: 20px; }
 
 .ws_open_color_editor {
-  width: 58px;
-}
+  width: 58px; }
 
 .ws_color_display_item {
   display: inline-block;
@@ -993,19 +850,16 @@ select.ws_dropdown optgroup option {
   height: 18px;
   margin-right: 4px;
   border: 1px solid #ccc;
-  border-radius: 3px;
-}
+  border-radius: 3px; }
 
 .ws_color_display_item:last-child {
-  margin-right: 0;
-}
+  margin-right: 0; }
 
 /************************************
            Export and import
 *************************************/
 #export_dialog, #import_dialog {
-  display: none;
-}
+  display: none; }
 
 .ui-widget-overlay {
   background-color: black;
@@ -1014,16 +868,14 @@ select.ws_dropdown optgroup option {
   top: 0;
   right: 0;
   bottom: 0;
-  opacity: 0.7;
-  -moz-opacity: 0.7;
+  opacity: 0.70;
+  -moz-opacity: 0.70;
   filter: alpha(opacity=70);
   width: 100%;
-  height: 100%;
-}
+  height: 100%; }
 
 .ui-front {
-  z-index: 10000;
-}
+  z-index: 10000; }
 
 .settings_page_menu_editor .ui-dialog {
   background: white;
@@ -1031,24 +883,21 @@ select.ws_dropdown optgroup option {
   padding: 0;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  border-radius: 5px;
-}
-.settings_page_menu_editor .ui-dialog .ui-dialog-content {
-  padding: 8px 8px 8px 8px;
-  font-size: 1.1em;
-}
-.settings_page_menu_editor .ui-dialog .ame-scrollable-dialog-content {
-  max-height: 500px;
-  overflow-y: auto;
-  padding-top: 0.5em;
-}
+  border-radius: 5px; }
+  .settings_page_menu_editor .ui-dialog .ui-dialog-content {
+    padding: 8px 8px 8px 8px;
+    font-size: 1.1em; }
+  .settings_page_menu_editor .ui-dialog .ame-scrollable-dialog-content {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-top: 0.5em; }
 .settings_page_menu_editor .ui-dialog-titlebar {
   display: block;
   height: 22px;
   margin: 0;
   padding: 4px 4px 4px 8px;
   background-color: #86A7E3;
-  font-size: 1em;
+  font-size: 1.0em;
   line-height: 22px;
   -webkit-border-top-left-radius: 4px;
   -webkit-border-top-right-radius: 4px;
@@ -1056,12 +905,10 @@ select.ws_dropdown optgroup option {
   -moz-border-radius-topright: 4px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  border-bottom: 1px solid #809fd9;
-}
+  border-bottom: 1px solid #809fd9; }
 .settings_page_menu_editor .ui-dialog-title {
   color: white;
-  font-weight: bold;
-}
+  font-weight: bold; }
 .settings_page_menu_editor .ui-button.ui-dialog-titlebar-close {
   background: #86A7E3 url(../images/x.png) no-repeat center;
   width: 22px;
@@ -1071,110 +918,87 @@ select.ws_dropdown optgroup option {
   color: white;
   border-radius: 3px;
   -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-}
+  -webkit-border-radius: 3px; }
 .settings_page_menu_editor .ui-dialog-titlebar-close:hover {
   /*background-image: url(../images/x-light.png);*/
-  background-color: #a6c2f5;
-}
+  background-color: #a6c2f5; }
+
 #export_dialog .ws_dialog_panel {
-  height: 50px;
-}
+  height: 50px; }
 
 #import_dialog .ws_dialog_panel {
-  height: 64px;
-}
+  height: 64px; }
 
 .ws_dialog_panel .ame-fixed-label-text {
   display: inline-block;
-  min-width: 6em;
-}
+  min-width: 6em; }
 .ws_dialog_panel .ame-inline-select-with-input {
-  vertical-align: baseline;
-}
+  vertical-align: baseline; }
 .ws_dialog_panel .ame-box-side-sizes {
   display: flex;
   flex-wrap: wrap;
-  max-width: 800px;
-}
-.ws_dialog_panel .ame-box-side-sizes .ame-fixed-label-text {
-  min-width: 4em;
-}
-.ws_dialog_panel .ame-box-side-sizes label {
-  margin-right: 2.5em;
-}
-.ws_dialog_panel .ame-box-side-sizes input {
-  margin-bottom: 0.4em;
-}
-.ws_dialog_panel .ame-box-side-sizes input[type=number] {
-  width: 6em;
-}
+  max-width: 800px; }
+  .ws_dialog_panel .ame-box-side-sizes .ame-fixed-label-text {
+    min-width: 4em; }
+  .ws_dialog_panel .ame-box-side-sizes label {
+    margin-right: 2.5em; }
+  .ws_dialog_panel .ame-box-side-sizes input {
+    margin-bottom: 0.4em; }
+  .ws_dialog_panel .ame-box-side-sizes input[type=number] {
+    width: 6em; }
 
 .ame-flexbox-break {
   flex-basis: 100%;
-  height: 0;
-}
+  height: 0; }
 
 .ws_dialog_buttons {
   text-align: right;
   margin-top: 20px;
   margin-bottom: 1px;
-  clear: both;
-}
+  clear: both; }
 
 .ws_dialog_buttons .button-primary {
   display: block;
   float: left;
   margin-top: 0;
-  min-width: 8em;
-}
+  min-width: 8em; }
 
 .ws_dialog_buttons .button {
-  margin-top: 0;
-}
+  margin-top: 0; }
 
 .ws_dialog_buttons.ame-vertical-button-list {
-  text-align: left;
-}
+  text-align: left; }
 
 .ws_dialog_buttons.ame-vertical-button-list .button-primary {
-  float: none;
-}
+  float: none; }
 
 .ws_dialog_buttons.ame-vertical-button-list .button {
   width: 100%;
   text-align: left;
-  margin-bottom: 10px;
-}
+  margin-bottom: 10px; }
 
 .ws_dialog_buttons.ame-vertical-button-list .button:last-child {
-  margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
 #import_file_selector {
   display: block;
   width: 286px;
-  margin: 6px auto 12px;
-}
+  margin: 6px auto 12px; }
 
 #ws_start_import {
-  min-width: 100px;
-}
+  min-width: 100px; }
 
 #import_complete_notice {
   text-align: center;
   font-size: large;
-  padding-top: 25px;
-}
+  padding-top: 25px; }
 
 #ws_import_error_response {
-  width: 100%;
-}
+  width: 100%; }
 
 .ws_dont_show_again {
   display: inline-block;
-  margin-top: 1em;
-}
+  margin-top: 1em; }
 
 /************************************
         Menu access editor
@@ -1182,61 +1006,50 @@ select.ws_dropdown optgroup option {
 /* The launch button */
 #ws_menu_editor .ws_edit_field-access_level input.ws_field_value {
   width: 190px;
-  margin-right: 5px;
-}
+  margin-right: 5px; }
 
 .ws_launch_access_editor {
   min-width: 40px;
-  width: 58px;
-}
+  width: 58px; }
 
 #ws_menu_access_editor {
   width: 400px;
-  display: none;
-}
+  display: none; }
 
 .ws_dialog_subpanel {
-  margin-bottom: 1em;
-}
-.ws_dialog_subpanel fieldset p {
-  margin-top: 0;
-  margin-bottom: 4px;
-}
+  margin-bottom: 1em; }
+  .ws_dialog_subpanel fieldset p {
+    margin-top: 0;
+    margin-bottom: 4px; }
 
 .ws-ame-dialog-subheading {
   display: block;
   font-weight: 600;
   font-size: 1em;
-  margin: 0 0 0.2em 0;
-}
+  margin: 0 0 0.2em 0; }
 
 #ws_menu_access_editor .ws_column_access,
 #ws_menu_access_editor .ws_ext_action_check_column {
   text-align: center;
   width: 1em;
-  padding-right: 0;
-}
+  padding-right: 0; }
 
 #ws_menu_access_editor .ws_column_access input,
 #ws_menu_access_editor .ws_ext_action_check_column input {
-  margin-right: 0;
-}
+  margin-right: 0; }
 
 #ws_menu_access_editor .ws_column_role {
-  white-space: nowrap;
-}
+  white-space: nowrap; }
 
 #ws_role_table_body_container {
   /*max-height: 400px;
   overflow: auto;*/
   overflow: hidden;
-  margin-right: -1px;
-}
+  margin-right: -1px; }
 
 .ws_role_table_body {
   margin-top: 2px;
-  max-width: 354px;
-}
+  max-width: 354px; }
 
 .ws_has_separate_header .ws_role_table_header {
   border-bottom: none;
@@ -1245,8 +1058,7 @@ select.ws_dropdown optgroup option {
   -webkit-border-bottom-left-radius: 0;
   -webkit-border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
+  border-bottom-right-radius: 0; }
 
 .ws_has_separate_header .ws_role_table_body {
   border-top: none;
@@ -1256,22 +1068,18 @@ select.ws_dropdown optgroup option {
   -webkit-border-top-left-radius: 0;
   -webkit-border-top-right-radius: 0;
   border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
+  border-top-right-radius: 0; }
 
 .ws_role_id {
-  display: none;
-}
+  display: none; }
 
 #ws_extra_capability {
-  width: 100%;
-}
+  width: 100%; }
 
 #ws_role_access_container {
   position: relative;
   max-height: 430px;
-  overflow: auto;
-}
+  overflow: auto; }
 
 #ws_role_access_overlay {
   width: 100%;
@@ -1281,8 +1089,7 @@ select.ws_dropdown optgroup option {
   background: white;
   filter: alpha(opacity=60);
   opacity: 0.6;
-  -moz-opacity: 0.6;
-}
+  -moz-opacity: 0.6; }
 
 #ws_role_access_overlay_content {
   position: absolute;
@@ -1293,18 +1100,15 @@ select.ws_dropdown optgroup option {
   padding: 8px;
   border: 2px solid silver;
   border-radius: 5px;
-  color: #555;
-}
+  color: #555; }
 
 #ws_menu_access_editor div.error {
   margin-left: 0;
   margin-right: 0;
-  margin-bottom: 5px;
-}
+  margin-bottom: 5px; }
 
 #ws_hardcoded_role_error {
-  display: none;
-}
+  display: none; }
 
 /*--------------------------------------------*
         The CPT/taxonomy permissions panel
@@ -1313,100 +1117,74 @@ select.ws_dropdown optgroup option {
  * When there are CPT/taxonomy permissions available, the appearance of the role list changes a bit.
  */
 .ws_has_extended_permissions {
-  /* The role or actor whose CPT/taxonomy permissions are currently expanded. */
-}
-.ws_has_extended_permissions .ws_role_table_body .ws_column_role {
-  cursor: pointer;
-}
-.ws_has_extended_permissions .ws_role_table_body .ws_column_selected_role_tip {
-  display: table-cell;
-}
-.ws_has_extended_permissions .ws_role_table_body tr:hover {
-  background: #EAF2FA;
-}
-.ws_has_extended_permissions .ws_role_table_body td {
-  border-top: 1px solid #f1f1f1;
-}
-.ws_has_extended_permissions .ws_role_table_body tr:first-child td {
-  border-top-width: 0;
-}
-.ws_has_extended_permissions .ws_role_table_body tr.ws_cpt_selected_role {
-  background-color: #dddddd;
-}
-.ws_has_extended_permissions .ws_role_table_body tr.ws_cpt_selected_role .ws_column_role {
-  font-weight: bold;
-}
-.ws_has_extended_permissions .ws_role_table_body tr.ws_cpt_selected_role .ws_cpt_selected_role_tip {
-  visibility: visible;
-}
-.ws_has_extended_permissions .ws_role_table_body tr.ws_cpt_selected_role td {
-  color: #222;
-}
+  /* The role or actor whose CPT/taxonomy permissions are currently expanded. */ }
+  .ws_has_extended_permissions .ws_role_table_body .ws_column_role {
+    cursor: pointer; }
+  .ws_has_extended_permissions .ws_role_table_body .ws_column_selected_role_tip {
+    display: table-cell; }
+  .ws_has_extended_permissions .ws_role_table_body tr:hover {
+    background: #EAF2FA; }
+  .ws_has_extended_permissions .ws_role_table_body td {
+    border-top: 1px solid #f1f1f1; }
+  .ws_has_extended_permissions .ws_role_table_body tr:first-child td {
+    border-top-width: 0; }
+  .ws_has_extended_permissions .ws_role_table_body tr.ws_cpt_selected_role {
+    background-color: #dddddd; }
+    .ws_has_extended_permissions .ws_role_table_body tr.ws_cpt_selected_role .ws_column_role {
+      font-weight: bold; }
+    .ws_has_extended_permissions .ws_role_table_body tr.ws_cpt_selected_role .ws_cpt_selected_role_tip {
+      visibility: visible; }
+    .ws_has_extended_permissions .ws_role_table_body tr.ws_cpt_selected_role td {
+      color: #222; }
 
 #ws_ext_permissions_container {
   float: left;
   width: 352px;
-  padding: 0 9px 0 0;
-}
+  padding: 0 9px 0 0; }
 
 #ws_ext_permissions_container_caption {
   padding-left: 15px;
   max-width: 352px;
   position: relative;
-  white-space: nowrap;
-}
+  white-space: nowrap; }
 
 #ws_ext_permissions_container .ws_ext_permissions_table {
-  margin-top: 2px;
-}
-#ws_ext_permissions_container .ws_ext_permissions_table tr td:first-child {
-  padding-left: 15px;
-}
-#ws_ext_permissions_container .ws_ext_permissions_table .ws_ext_group_title {
-  padding-bottom: 0;
-  font-weight: bold;
-}
-#ws_ext_permissions_container .ws_ext_permissions_table .ws_ext_action_check_column,
-#ws_ext_permissions_container .ws_ext_permissions_table .ws_ext_action_name_column {
-  padding-top: 3px;
-  padding-bottom: 3px;
-}
-#ws_ext_permissions_container .ws_ext_permissions_table tr.ws_ext_padding_row td {
-  padding: 0 0 0 0;
-  height: 1px;
-}
-#ws_ext_permissions_container .ws_ext_permissions_table .ws_same_as_required_cap {
-  text-decoration: underline;
-}
-#ws_ext_permissions_container .ws_ext_permissions_table .ws_ext_has_custom_setting label.ws_ext_action_name::after {
-  content: " *";
-}
+  margin-top: 2px; }
+  #ws_ext_permissions_container .ws_ext_permissions_table tr td:first-child {
+    padding-left: 15px; }
+  #ws_ext_permissions_container .ws_ext_permissions_table .ws_ext_group_title {
+    padding-bottom: 0;
+    font-weight: bold; }
+  #ws_ext_permissions_container .ws_ext_permissions_table .ws_ext_action_check_column,
+  #ws_ext_permissions_container .ws_ext_permissions_table .ws_ext_action_name_column {
+    padding-top: 3px;
+    padding-bottom: 3px; }
+  #ws_ext_permissions_container .ws_ext_permissions_table tr.ws_ext_padding_row td {
+    padding: 0 0 0 0;
+    height: 1px; }
+  #ws_ext_permissions_container .ws_ext_permissions_table .ws_same_as_required_cap {
+    text-decoration: underline; }
+  #ws_ext_permissions_container .ws_ext_permissions_table .ws_ext_has_custom_setting label.ws_ext_action_name::after {
+    content: " *"; }
 
 #ws_ext_permissions_container #ws_ext_toggle_capability_names {
   cursor: pointer;
   position: absolute;
   right: 0;
-  color: #0073aa;
-}
+  color: #0073aa; }
 #ws_ext_permissions_container.ws_ext_readable_names_enabled #ws_ext_toggle_capability_names {
-  color: #b4b9be;
-}
+  color: #b4b9be; }
 #ws_ext_permissions_container .ws_ext_readable_name {
-  display: none;
-}
+  display: none; }
 #ws_ext_permissions_container .ws_ext_capability {
-  display: inline;
-}
+  display: inline; }
 #ws_ext_permissions_container.ws_ext_readable_names_enabled .ws_ext_readable_name {
-  display: inline;
-}
+  display: inline; }
 #ws_ext_permissions_container.ws_ext_readable_names_enabled .ws_ext_capability {
-  display: none;
-}
+  display: none; }
 
 #ws_ext_permissions_container #ws_taxonomy_permissions_table tr:first-child td {
-  padding-top: 8px;
-}
+  padding-top: 8px; }
 
 /* The "selected role" indicator. */
 .ws_cpt_selected_role_tip {
@@ -1419,8 +1197,7 @@ select.ws_dropdown optgroup option {
   right: 0;
   background: white;
   transform: translate(1px, 0) rotate(-45deg);
-  transform-origin: top right;
-}
+  transform-origin: top right; }
 
 .ws_role_table_body .ws_column_selected_role_tip {
   display: none;
@@ -1430,12 +1207,10 @@ select.ws_dropdown optgroup option {
   text-align: right;
   overflow: visible;
   position: relative;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .ws_ame_breadcrumb_separator {
-  color: #999;
-}
+  color: #999; }
 
 #ws_menu_editor .ws_ext_permissions_indicator {
   font-size: 16px;
@@ -1444,180 +1219,146 @@ select.ws_dropdown optgroup option {
   visibility: hidden;
   vertical-align: bottom;
   cursor: pointer;
-  color: #4aa100;
-}
+  color: #4aa100; }
 
 #ws_menu_editor.ws_is_actor_view .ws_ext_permissions_indicator {
-  visibility: visible;
-}
+  visibility: visible; }
 
 /************************************
         Visible users dialog
 *************************************/
 #ws_visible_users_dialog {
   background: white;
-  padding: 8px;
-}
+  padding: 8px; }
 
 #ws_user_selection_panels {
-  min-width: 710px;
-}
-#ws_user_selection_panels .ws_user_selection_panel {
-  display: block;
-  float: left;
-  position: relative;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 350px;
-  height: 400px;
-  border: 1px solid #e5e5e5;
-  margin-right: 10px;
-  padding: 10px;
-}
-#ws_user_selection_panels #ws_user_selection_target_panel {
-  margin-right: 0;
-}
-#ws_user_selection_panels #ws_available_user_query {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 100%;
-  max-height: 28px;
-}
-#ws_user_selection_panels .ws_user_list_wrapper {
-  position: absolute;
-  top: 50px;
-  left: 10px;
-  right: 10px;
-  height: 338px;
-  overflow-x: auto;
-  overflow-y: auto;
-}
-#ws_user_selection_panels .ws_user_selection_list {
-  min-height: 20px;
-  border-width: 0;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-#ws_user_selection_panels .ws_user_selection_list .ws_user_action_column {
-  width: 20px;
-  text-align: center;
-  padding-top: 9px;
-  padding-bottom: 0;
-}
-#ws_user_selection_panels .ws_user_selection_list .ws_user_action_button {
-  cursor: pointer;
-  color: #b4b9be;
-}
-#ws_user_selection_panels .ws_user_selection_list .ws_user_username_column {
-  padding-left: 0;
-}
-#ws_user_selection_panels .ws_user_selection_list .ws_user_display_name_column {
-  white-space: nowrap;
-}
-#ws_user_selection_panels #ws_available_users tr {
-  cursor: pointer;
-}
-#ws_user_selection_panels #ws_available_users tr:hover, #ws_user_selection_panels #ws_available_users tr.ws_user_best_match {
-  background-color: #eaf2fa;
-}
-#ws_user_selection_panels #ws_available_users tr:hover .ws_user_action_button {
-  color: #7ad03a;
-}
-#ws_user_selection_panels #ws_selected_users .ws_user_action_button::before {
-  content: "\f158";
-}
-#ws_user_selection_panels #ws_selected_users .ws_user_action_button:hover {
-  color: #dd3d36;
-}
-#ws_user_selection_panels #ws_selected_users .ws_user_action_column {
-  padding-left: 6px;
-}
-#ws_user_selection_panels #ws_selected_users .ws_user_display_name_column {
-  display: none;
-}
-#ws_user_selection_panels #ws_selected_users tr.ws_user_must_be_selected .ws_user_action_button {
-  display: none;
-}
-#ws_user_selection_panels #ws_selected_users_caption {
-  font-size: 14px;
-  line-height: 1.4em;
-  padding: 7px 10px;
-  color: #555;
-  font-weight: 600;
-}
-#ws_user_selection_panels::after {
-  display: block;
-  height: 1px;
-  visibility: hidden;
-  content: " ";
-  clear: both;
-}
+  min-width: 710px; }
+  #ws_user_selection_panels .ws_user_selection_panel {
+    display: block;
+    float: left;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 350px;
+    height: 400px;
+    border: 1px solid #e5e5e5;
+    margin-right: 10px;
+    padding: 10px; }
+  #ws_user_selection_panels #ws_user_selection_target_panel {
+    margin-right: 0; }
+  #ws_user_selection_panels #ws_available_user_query {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    max-height: 28px; }
+  #ws_user_selection_panels .ws_user_list_wrapper {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    right: 10px;
+    height: 338px;
+    overflow-x: auto;
+    overflow-y: auto; }
+  #ws_user_selection_panels .ws_user_selection_list {
+    min-height: 20px;
+    border-width: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; }
+    #ws_user_selection_panels .ws_user_selection_list .ws_user_action_column {
+      width: 20px;
+      text-align: center;
+      padding-top: 9px;
+      padding-bottom: 0; }
+    #ws_user_selection_panels .ws_user_selection_list .ws_user_action_button {
+      cursor: pointer;
+      color: #b4b9be; }
+    #ws_user_selection_panels .ws_user_selection_list .ws_user_username_column {
+      padding-left: 0; }
+    #ws_user_selection_panels .ws_user_selection_list .ws_user_display_name_column {
+      white-space: nowrap; }
+  #ws_user_selection_panels #ws_available_users tr {
+    cursor: pointer; }
+  #ws_user_selection_panels #ws_available_users tr:hover, #ws_user_selection_panels #ws_available_users tr.ws_user_best_match {
+    background-color: #eaf2fa; }
+  #ws_user_selection_panels #ws_available_users tr:hover .ws_user_action_button {
+    color: #7ad03a; }
+  #ws_user_selection_panels #ws_selected_users .ws_user_action_button::before {
+    content: "\f158"; }
+  #ws_user_selection_panels #ws_selected_users .ws_user_action_button:hover {
+    color: #dd3d36; }
+  #ws_user_selection_panels #ws_selected_users .ws_user_action_column {
+    padding-left: 6px; }
+  #ws_user_selection_panels #ws_selected_users .ws_user_display_name_column {
+    display: none; }
+  #ws_user_selection_panels #ws_selected_users tr.ws_user_must_be_selected .ws_user_action_button {
+    display: none; }
+  #ws_user_selection_panels #ws_selected_users_caption {
+    font-size: 14px;
+    line-height: 1.4em;
+    padding: 7px 10px;
+    color: #555;
+    font-weight: 600; }
+  #ws_user_selection_panels::after {
+    display: block;
+    height: 1px;
+    visibility: hidden;
+    content: ' ';
+    clear: both; }
 
 #ws_loading_users_indicator {
   position: absolute;
   right: 10px;
   bottom: 10px;
   margin-right: 0;
-  margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
 /************************************
         Menu deletion error
 *************************************/
 #ws-ame-menu-deletion-error {
-  max-width: 400px;
-}
+  max-width: 400px; }
 
 /************************************
         Tooltips and hints
 *************************************/
 .ws_tooltip_trigger, .ws_field_tooltip_trigger {
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .ws_tooltip_content_list {
   list-style: disc;
   margin-left: 1em;
-  margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
 .ws_tooltip_node {
   font-size: 13px;
   line-height: 1.3;
   border-radius: 3px;
-  max-width: 300px;
-}
+  max-width: 300px; }
 
 .ws_field_tooltip_trigger .dashicons {
   font-size: 16px;
   height: 16px;
-  vertical-align: bottom;
-}
+  vertical-align: bottom; }
 
 .ws_field_tooltip_trigger {
-  color: #a1a1a1;
-}
+  color: #a1a1a1; }
 
 #ws_plugin_settings_form .ws_tooltip_trigger .dashicons {
-  font-size: 18px;
-}
+  font-size: 18px; }
 
 .ws_ame_custom_postbox .ws_tooltip_trigger .dashicons, .postbox .ws_tooltip_trigger .dashicons, .ws-ame-postbox .ws_tooltip_trigger .dashicons {
   font-size: 18px;
   height: 18px;
-  vertical-align: bottom;
-}
+  vertical-align: bottom; }
 
 .ws_tooltip_trigger.ame-warning-tooltip {
-  color: orange;
-}
+  color: orange; }
 
 .ws_wide_tooltip {
-  max-width: 450px;
-}
+  max-width: 450px; }
 
 .ws_hint {
   background: #FFFFE0;
@@ -1625,8 +1366,7 @@ select.ws_dropdown optgroup option {
   margin-bottom: 0.5em;
   border-radius: 3px;
   position: relative;
-  padding-right: 20px;
-}
+  padding-right: 22px; }
 
 .ws_hint_close {
   border: 1px solid #E6DB55;
@@ -1640,43 +1380,34 @@ select.ws_dropdown optgroup option {
   border-radius: 3px;
   position: absolute;
   right: 0;
-  top: 0;
-}
+  top: 0; }
 
 .ws_hint_close:hover {
   background-color: #ffef4c;
   border-color: #e0b900;
-  color: black;
-}
+  color: black; }
 
 .ws_hint_content {
-  padding: 0.4em 0 0.4em 0.4em;
-}
+  padding: 0.4em 0 0.4em 0.4em; }
 
 .ws_hint_content ul {
   list-style: disc;
   list-style-position: inside;
-  margin-left: 0.5em;
-}
+  margin-left: 0.5em; }
 
 .ws_ame_doc_box .hndle, .ws_ame_custom_postbox .hndle {
   cursor: default !important;
-  border-bottom: 1px solid #ccd0d4;
-}
+  border-bottom: 1px solid #ccd0d4; }
 .ws_ame_doc_box .handlediv, .ws_ame_custom_postbox .handlediv {
   display: block;
-  float: right;
-}
+  float: right; }
 .ws_ame_doc_box .inside, .ws_ame_custom_postbox .inside {
-  margin-bottom: 0;
-}
+  margin-bottom: 0; }
 .ws_ame_doc_box ul, .ws_ame_custom_postbox ul {
   list-style: disc outside;
-  margin-left: 1em;
-}
+  margin-left: 1em; }
 .ws_ame_doc_box li > ul, .ws_ame_custom_postbox li > ul {
-  margin-top: 6px;
-}
+  margin-top: 6px; }
 .ws_ame_doc_box .button-link .toggle-indicator::before, .ws_ame_custom_postbox .button-link .toggle-indicator::before {
   margin-top: 4px;
   width: 20px;
@@ -1688,40 +1419,32 @@ select.ws_dropdown optgroup option {
   font: normal 20px/1 dashicons;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-decoration: none !important;
-}
+  text-decoration: none !important; }
 .ws_ame_doc_box.closed .button-link .toggle-indicator::before, .ws_ame_custom_postbox.closed .button-link .toggle-indicator::before {
-  content: "\f140";
-}
+  content: "\f140"; }
 
 .ws_basic_container .ws_ame_custom_postbox {
   margin-left: 2px;
-  margin-right: 2px;
-}
+  margin-right: 2px; }
 
 .ws_ame_custom_postbox .ame-tutorial-list {
-  margin: 0;
-}
-.ws_ame_custom_postbox .ame-tutorial-list a {
-  text-decoration: none;
-  display: block;
-  padding: 4px;
-}
-.ws_ame_custom_postbox .ame-tutorial-list ul {
-  margin-left: 1em;
-}
-.ws_ame_custom_postbox .ame-tutorial-list li {
-  display: block;
-  margin: 0;
-  list-style: none;
-}
+  margin: 0; }
+  .ws_ame_custom_postbox .ame-tutorial-list a {
+    text-decoration: none;
+    display: block;
+    padding: 4px; }
+  .ws_ame_custom_postbox .ame-tutorial-list ul {
+    margin-left: 1em; }
+  .ws_ame_custom_postbox .ame-tutorial-list li {
+    display: block;
+    margin: 0;
+    list-style: none; }
 
 /************************************
       Copy Permissions dialog
 *************************************/
 #ws-ame-copy-permissions-dialog select {
-  min-width: 280px;
-}
+  min-width: 280px; }
 
 /*********************************************
       Capability suggestions and preview
@@ -1733,25 +1456,19 @@ select.ws_dropdown optgroup option {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
   background: #fff;
   border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-#ws_capability_suggestions #ws_previewed_caps {
-  margin-top: 0;
-  margin-bottom: 6px;
-}
-#ws_capability_suggestions td, #ws_capability_suggestions th {
-  padding-top: 3px;
-  padding-bottom: 3px;
-}
-#ws_capability_suggestions tr.ws_preview_has_access .ws_ame_role_name {
-  background-color: lightgreen;
-}
-#ws_capability_suggestions .ws_ame_suggested_capability {
-  cursor: pointer;
-}
-#ws_capability_suggestions .ws_ame_suggested_capability:hover {
-  background-color: #d0f2d0;
-}
+  border-bottom-right-radius: 3px; }
+  #ws_capability_suggestions #ws_previewed_caps {
+    margin-top: 0;
+    margin-bottom: 6px; }
+  #ws_capability_suggestions td, #ws_capability_suggestions th {
+    padding-top: 3px;
+    padding-bottom: 3px; }
+  #ws_capability_suggestions tr.ws_preview_has_access .ws_ame_role_name {
+    background-color: lightgreen; }
+  #ws_capability_suggestions .ws_ame_suggested_capability {
+    cursor: pointer; }
+    #ws_capability_suggestions .ws_ame_suggested_capability:hover {
+      background-color: #d0f2d0; }
 
 /*********************************************
       Settings page stuff
@@ -1759,113 +1476,95 @@ select.ws_dropdown optgroup option {
 #ws_plugin_settings_form figure {
   margin-left: 0;
   margin-top: 0;
-  margin-bottom: 1em;
-}
+  margin-bottom: 1em; }
 
 .ame-available-add-ons tr:first-of-type td {
   margin-top: 0;
-  padding-top: 0;
-}
+  padding-top: 0; }
 .ame-available-add-ons td {
   padding-top: 10px;
-  padding-bottom: 10px;
-}
+  padding-bottom: 10px; }
 .ame-available-add-ons .ame-add-on-heading {
-  padding-left: 0;
-}
+  padding-left: 0; }
 
 .ame-add-on-name {
-  font-weight: 600;
-}
+  font-weight: 600; }
 
 .ame-add-on-details-link::after {
   /*content: " \f504";
-  font-family: dashicons, sans-serif;*/
-}
+  font-family: dashicons, sans-serif;*/ }
 
 /*********************************************
       WordPress 5.3+ consistent styles
 **********************************************/
-.ame-is-wp53-plus .ws_edit_field input[type=button] {
-  margin-top: 1px;
-}
+.ame-is-wp53-plus .ws_edit_field input[type="button"] {
+  margin-top: 1px; }
 
 /*********************************************
       CSS border style selector
 **********************************************/
 .ame-css-border-styles .ame-fixed-label-text {
-  min-width: 5em;
-}
+  min-width: 5em; }
 .ame-css-border-styles .ame-border-sample-container {
   display: inline-block;
   vertical-align: top;
-  min-height: 28px;
-}
+  min-height: 28px; }
 .ame-css-border-styles .ame-border-sample {
   display: inline-block;
   width: 14em;
-  border-top: 0.3em solid #444;
-}
+  border-top: 0.3em solid #444; }
 
 .ws_ame_has_unsaved_changes #ws_save_menu {
-  position: relative;
-}
-.ws_ame_has_unsaved_changes #ws_save_menu:before {
-  content: "";
-  position: absolute;
-  top: 1px;
-  right: 1px;
-  --ame-me-calc-indicator-size: calc(9px + (var(--ame-ds-btn-radius-tr, 3px) - 3px) / 2);
-  width: var(--ame-me-calc-indicator-size, 9px);
-  height: var(--ame-me-calc-indicator-size, 9px);
-  background: #00e93c;
-  border-top-right-radius: calc(var(--ame-ds-btn-radius-tr, 3px) - 1px);
-  clip-path: polygon(0 0, 100% 0, 100% 100%);
-}
+  position: relative; }
+  .ws_ame_has_unsaved_changes #ws_save_menu:before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    --ame-me-calc-indicator-size: calc(9px + (var(--ame-ds-btn-radius-tr, 3px) - 3px) / 2);
+    width: var(--ame-me-calc-indicator-size, 9px);
+    height: var(--ame-me-calc-indicator-size, 9px);
+    background: #00e93c;
+    border-top-right-radius: calc(var(--ame-ds-btn-radius-tr, 3px) - 1px);
+    clip-path: polygon(0 0, 100% 0, 100% 100%); }
 
 /*********************************************
       Miscellaneous
 **********************************************/
 #ws_sidebar_pro_ad {
   min-width: 225px;
+  max-width: 300px;
   margin-top: 5px;
   margin-left: 3px;
   position: fixed;
   right: 20px;
   bottom: 40px;
-  z-index: 100;
-}
-#ws_sidebar_pro_ad .dashicons {
-  font-size: 15px;
-  width: unset;
-  height: unset;
-}
-#ws_sidebar_pro_ad.ame-tgc-sidebar-ad {
-  max-width: 280px;
-}
+  z-index: 100; }
+  #ws_sidebar_pro_ad .dashicons {
+    font-size: 15px;
+    width: unset;
+    height: unset; }
+  #ws_sidebar_pro_ad.ame-tgc-sidebar-ad {
+    max-width: 280px; }
 
 .ws-ame-icon-radio-button-group > label {
   display: inline-block;
   padding: 8px;
   border: 1px solid #ccd0d4;
   border-radius: 2px;
-  margin-right: 0.5em;
-}
+  margin-right: 0.5em; }
 
 span.description {
   color: #666;
-  font-style: italic;
-}
+  font-style: italic; }
 
 .wrap :target {
   background-color: rgba(255, 245, 100, 0.7);
-  outline: 3px solid rgba(250, 220, 75, 0.7);
-}
+  outline: 3px solid rgba(250, 220, 75, 0.7); }
 
 .test-wrap {
   background-color: #444444;
-  padding: 30px;
-}
+  padding: 30px; }
 
 .test-container {
   width: 400px;
@@ -1873,39 +1572,33 @@ span.description {
   background-color: white;
   border: 1px solid black;
   border-radius: 10px;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .test-header {
   background-color: #67d6ff;
   padding: 6px;
   border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
+  border-top-right-radius: 8px; }
 
 .test-content {
-  padding: 8px;
-}
+  padding: 8px; }
 
 /*********************************************
       "Test access" dialog
 **********************************************/
 #ws_ame_test_access_screen {
   display: none;
-  background: #fcfcfc;
-}
+  background: #fcfcfc; }
 
 #ws_ame_test_inputs {
-  padding-bottom: 16px;
-}
+  padding-bottom: 16px; }
 
 .ws_ame_test_input {
   display: block;
   float: left;
   width: 100%;
   margin: 2px 0;
-  box-sizing: content-box;
-}
+  box-sizing: content-box; }
 
 .ws_ame_test_input_name {
   display: block;
@@ -1914,8 +1607,7 @@ span.description {
   margin-right: 4%;
   text-align: right;
   padding-top: 6px;
-  line-height: 16px;
-}
+  line-height: 16px; }
 
 .ws_ame_test_input_value {
   display: block;
@@ -1923,33 +1615,28 @@ span.description {
   width: 60%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 #ws_ame_test_actions {
   float: left;
   width: 100%;
-  margin-top: 1em;
-}
+  margin-top: 1em; }
 
 #ws_ame_test_button_container {
   width: 35%;
   margin-right: 4%;
   float: left;
-  text-align: right;
-}
+  text-align: right; }
 
 #ws_ame_test_progress {
   display: none;
   width: 60%;
-  float: right;
-}
-#ws_ame_test_progress .spinner {
-  float: none;
-  vertical-align: bottom;
-  margin-left: 0;
-  margin-right: 4px;
-}
+  float: right; }
+  #ws_ame_test_progress .spinner {
+    float: none;
+    vertical-align: bottom;
+    margin-left: 0;
+    margin-right: 4px; }
 
 #ws_ame_test_access_body {
   width: 100%;
@@ -1957,15 +1644,13 @@ span.description {
   border: 1px solid #ddd;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
-  border-radius: 3px;
-}
+  border-radius: 3px; }
 
 #ws_ame_test_frame_container {
   margin-right: 250px;
   background: white;
   min-height: 500px;
-  position: relative;
-}
+  position: relative; }
 
 #ws_ame_test_access_frame {
   -webkit-box-sizing: border-box;
@@ -1976,8 +1661,7 @@ span.description {
   min-height: 500px;
   border: none;
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 #ws_ame_test_access_sidebar {
   -webkit-box-sizing: border-box;
@@ -1990,32 +1674,26 @@ span.description {
   width: 250px;
   padding: 16px 24px;
   background-color: #f3f3f3;
-  border-left: 1px solid #ddd;
-}
-#ws_ame_test_access_sidebar h4:first-of-type {
-  margin-top: 0;
-}
+  border-left: 1px solid #ddd; }
+  #ws_ame_test_access_sidebar h4:first-of-type {
+    margin-top: 0; }
 
 #ws_ame_test_frame_placeholder {
   display: block;
-  padding: 16px 24px;
-}
+  padding: 16px 24px; }
 
 #ws_ame_test_output {
-  display: none;
-}
+  display: none; }
 
 /***************************************
 		Tabs on the settings page
  ***************************************/
 .wrap.ws-ame-too-many-tabs .ws-ame-nav-tab-list.nav-tab-wrapper {
-  border-bottom-color: transparent;
-}
+  border-bottom-color: transparent; }
 .wrap.ws-ame-too-many-tabs .ws-ame-nav-tab-list .nav-tab {
   border-bottom: 1px solid #c3c4c7;
   margin-bottom: 10px;
-  margin-top: 0;
-}
+  margin-top: 0; }
 
 /* Spacing between the page heading and the tab list.
 
@@ -2023,17 +1701,14 @@ Normally, this is handled by .nav-tab styles, but WordPress changes the margins 
 and the tabs end up without a left margin. Let's put that margin on the heading instead and remove it
 from the first tab. */
 #ws_ame_editor_heading {
-  margin-right: 0.305em;
-}
+  margin-right: 0.305em; }
 
 .ws-ame-nav-tab-list a.nav-tab:first-of-type {
-  margin-left: 0;
-}
+  margin-left: 0; }
 
 /* When in "too many tabs" mode, there's too much space between the bottom of the tab list and the rest
 of the page. I haven't found a good way to change the margins of just the last row, so here's a partial fix. */
 .ws-ame-too-many-tabs #ws_actor_selector {
-  margin-top: 0;
-}
+  margin-top: 0; }
 
 /*# sourceMappingURL=menu-editor.css.map */

@@ -7,10 +7,10 @@ class ameAdminCss extends ameModule {
 	public function enqueueTabScripts() {
 		parent::enqueueTabScripts();
 
-		$menuConfig = $this->menuEditor->get_active_admin_menu();
+		$tree = $this->menuEditor->get_active_admin_menu_tree();
 
 		//We really only need a couple of menu properties for this feature, like the titles and URLs.
-		$items = array_values(array_map(array($this, 'getRelevantMenuProperties'), $menuConfig['tree']));
+		$items = array_values(array_map(array($this, 'getRelevantMenuProperties'), $tree));
 	}
 
 	private function getRelevantMenuProperties($menuItem) {

@@ -1,5 +1,12 @@
-
-.rmlicon-collection:before { content: '\e800'; } /* '' */
-.rmlicon-gallery:before { content: '\e801'; } /* '' */
-.rmlicon-share:before { content: '\e802'; } /* '' */
-.rmlicon-archive:before { content: '\e803'; } /* '' */
+.rmlicon-collection:before {
+    content: "\e800";
+} /* '' */
+.rmlicon-gallery:before {
+    content: "\e801";
+} /* '' */
+.rmlicon-share:before {
+    content: "\e802";
+} /* '' */
+.rmlicon-archive:before {
+    content: "\e803";
+} /* '' */

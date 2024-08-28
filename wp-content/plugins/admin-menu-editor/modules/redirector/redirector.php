@@ -26,7 +26,7 @@ class Module extends amePersistentModule {
 
 	const PRELOADED_USER_LIMIT = 50;
 	const SEARCH_USER_LIMIT = 30;
-	protected static $desiredUserFields = array('ID', 'display_name', 'user_login');
+	protected static $desiredUserFields = ['ID', 'display_name', 'user_login'];
 
 	protected $tabSlug = 'redirects';
 	protected $tabTitle = 'Redirects';
@@ -72,8 +72,8 @@ class Module extends amePersistentModule {
 			$this->searchUsersAction = ajaw_v1_CreateAction('ws-ame-rui-search-users')
 				->requiredParam('term')
 				->method('get')
-				->permissionCallback(array($this, 'userCanSearchUsers'))
-				->handler(array($this, 'ajaxSearchUsers'))
+				->permissionCallback([$this, 'userCanSearchUsers'])
+				->handler([$this, 'ajaxSearchUsers'])
 				->register();
 
 			add_action('admin_menu_editor-load_tab-' . $this->tabSlug, [$this, 'addContextualHelp']);
@@ -330,9 +330,9 @@ class Module extends amePersistentModule {
 		$flattenedRedirects = $this->getRedirects()->flatten();
 
 		$usableMenuItems = [];
-		$adminMenu = $this->menuEditor->get_active_admin_menu();
-		if ( !empty($adminMenu['tree']) ) {
-			$extractor = new MenuExtractor($adminMenu['tree']);
+		$adminMenuTree = $this->menuEditor->get_active_admin_menu_tree();
+		if ( !empty($adminMenuTree) ) {
+			$extractor = new MenuExtractor($adminMenuTree);
 			$usableMenuItems = $extractor->getUsableItems();
 		}
 
@@ -346,6 +346,18 @@ class Module extends amePersistentModule {
 		}
 
 		list($loadedUsers, $hasMoreUsers) = $this->preloadUsers($flattenedRedirects);
+
+		//Optionally, discard redirects associated with roles or users that no longer exist.
+		if ( $this->menuEditor->get_plugin_option('delete_orphan_actor_settings') ) {
+			$cleaner = new \ameActorAccessCleaner();
+			$flattenedRedirects = array_filter($flattenedRedirects, function ($details) use ($cleaner) {
+				return $cleaner->tryActorExists($details['actorId'], true);
+			});
+
+			//Reindex the array. If filtering removed some elements, the array keys can be sparse,
+			//which would cause it to be serialized as an object instead of an array.
+			$flattenedRedirects = array_values($flattenedRedirects);
+		}
 
 		$scriptData = [
 			'redirects'       => $flattenedRedirects,
@@ -378,7 +390,7 @@ class Module extends amePersistentModule {
 		);
 	}
 
-	public function handleSettingsForm($post = array()) {
+	public function handleSettingsForm($post = []) {
 		parent::handleSettingsForm($post);
 
 		$submittedSettings = json_decode($post['settings'], true);

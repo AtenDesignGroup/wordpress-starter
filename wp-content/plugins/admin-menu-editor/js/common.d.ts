@@ -35,7 +35,7 @@ interface JQuery {
  * Partial type definition for the WordPress "wp" global.
  * Sure would be nice if WordPress provided this.
  */
-declare const wp: {
+interface AmePartialWpGlobal {
 	codeEditor: {
 		//See /wp-admin/js/code-editor.js for basic method documentation.
 		initialize: (textarea: string|JQuery|Element, options: object) => any;
@@ -62,7 +62,9 @@ declare const wp: {
 		applyFilters: (filterName: string, value: unknown, ...args: unknown[]) => unknown;
 		doAction: (actionName: string, ...args: unknown[]) => void;
 	};
-};
+}
+
+declare const wp: AmePartialWpGlobal;
 
 /**
  * Incomplete type definition for the settings object that can be passed to wp.editor.initialize().

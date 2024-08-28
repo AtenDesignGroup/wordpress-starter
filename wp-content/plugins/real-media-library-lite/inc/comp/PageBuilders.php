@@ -63,6 +63,10 @@ class PageBuilders
             $this->diviBuilder();
         }
         $this->themify();
+        // BeBuilder
+        \add_action('mfn_header_enqueue', function () {
+            $this->getCore()->getAssets()->enqueue_scripts_and_styles('mfn_header_enqueue');
+        });
     }
     /**
      * Divi Page Builder

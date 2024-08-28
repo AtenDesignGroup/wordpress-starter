@@ -86,25 +86,25 @@ msgid "Your uploads can say more than a thousand words. Unfortunately, search en
 msgstr ""
 
 #: Service.php:162
-#: Service.php:281
+#: Service.php:276
 msgid "No such plugin slug available."
 msgstr ""
 
-#: Service.php:217
+#: Service.php:214
 msgid "The abstract implementation for your slug could not be found."
 msgstr ""
 
-#: Service.php:274
+#: Service.php:269
 msgid "You must agree to our privacy policy to continue."
 msgstr ""
 
 #. translators:
-#: view/Options.php:50
+#: view/Options.php:48
 msgid "Products of %s"
 msgstr ""
 
 #. translators:
-#: view/Options.php:72
+#: view/Options.php:70
 msgid "Show advertising for not yet installed %s products in the WordPress backend"
 msgstr ""
 
@@ -113,59 +113,65 @@ msgid "Learn more about this plugin"
 msgstr ""
 
 #: WelcomePage.php:66
-#: WelcomePage.php:164
+#: WelcomePage.php:160
 msgid "Support"
 msgstr ""
 
 #: WelcomePage.php:71
-#: WelcomePage.php:167
+#: WelcomePage.php:163
 msgid "Rate plugin"
 msgstr ""
 
-#: WelcomePage.php:156
+#: WelcomePage.php:152
 msgid "Version"
 msgstr ""
 
-#: WelcomePage.php:161
+#: WelcomePage.php:157
 msgid "Info"
 msgstr ""
 
-#: WelcomePage.php:175
+#: WelcomePage.php:171
 msgid "Key feature"
 msgid_plural "Key features"
 msgstr[0] ""
 msgstr[1] ""
 
-#: WelcomePage.php:183
+#: WelcomePage.php:179
 msgid "Newsletter"
 msgstr ""
 
-#: WelcomePage.php:186
+#: WelcomePage.php:182
 msgid "Receive the latest news about devowl.io WordPress plugins directly in your inbox"
 msgstr ""
 
-#: WelcomePage.php:190
+#: WelcomePage.php:186
 msgid "Enter your email..."
 msgstr ""
 
 #. translators:
-#: WelcomePage.php:198
+#: WelcomePage.php:194
 msgctxt "legal-text"
-msgid "I want to receive WordPress news from devowl.io via email and agree to the <a %s>privacy policy</a>."
+msgid "I hereby consent to the processing of my data by devowl.io GmbH for the purpose of sending the newsletter. The consent can be revoked at any time with effect for the future by clicking on the \"Unsubscribe\" button or by e-mail."
 msgstr ""
 
-#: WelcomePage.php:203
+#. translators:
+#: WelcomePage.php:206
+msgctxt "legal-text"
+msgid "Information on the processing of your personal data can be found in our <a %s>privacy policy</a>."
+msgstr ""
+
+#: WelcomePage.php:211
 msgid "https://devowl.io/privacy-policy/"
 msgstr ""
 
-#: WelcomePage.php:210
+#: WelcomePage.php:216
 msgid "Subscribe"
 msgstr ""
 
-#: WelcomePage.php:284
+#: WelcomePage.php:290
 msgid "Additional plugins by devowl.io"
 msgstr ""
 
-#: WelcomePage.php:357
+#: WelcomePage.php:363
 msgid "Available in"
 msgstr ""

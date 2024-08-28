@@ -82,7 +82,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-### yahnis-elsts/plugin-update-checker (Version dev-master | 5f251be)
+### yahnis-elsts/plugin-update-checker (Version v5.4 | e8e53e6)
 A custom update checker for WordPress plugins and themes. Useful if you can't host your plugin in the official WP repository but still want it to support automatic updates.
 Homepage: https://github.com/YahnisElsts/plugin-update-checker/
 Licenses Used: MIT

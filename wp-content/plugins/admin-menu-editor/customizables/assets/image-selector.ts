@@ -415,7 +415,9 @@ namespace AmeImageSelectorApi {
 					//Accept only HTTP(S).
 					((url.protocol === "http:") || (url.protocol === "https:"))
 					//An image URL will usually have a path that's not just "/".
-					&& (url.pathname.length > 1)
+					//In rare cases, it might be a root URL, but then it should have a query string.
+					//(URL.search includes the "?" character, so we need to check for a length > 1.)
+					&& ((url.pathname.length > 1) || (url.search.length > 1))
 				);
 			} catch (e) {
 				return false;

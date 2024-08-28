@@ -21,6 +21,8 @@ interface IAmeActor {
 	getDisplayName(): string;
 
 	isUser(): this is IAmeUser;
+
+	hasOwnCap(capability: string): boolean | null;
 }
 
 interface IAmeUser extends IAmeActor {
@@ -232,6 +234,7 @@ class AmeActorManager implements AmeActorManagerInterface {
 
 	private roles: { [roleId: string]: AmeRole } = {};
 	private users: { [userLogin: string]: AmeUser } = {};
+	private specialActors: { [actorId: string]: IAmeActor } = {};
 	private grantedCapabilities: AmeGrantedCapabilityMap = {};
 
 	public readonly isMultisite: boolean = false;
@@ -307,7 +310,7 @@ class AmeActorManager implements AmeActorManagerInterface {
 		return true;
 	}
 
-	getActor(actorId: string): AmeBaseActor | null {
+	getActor(actorId: string): IAmeActor | null {
 		if (actorId === AmeSuperAdmin.permanentActorId) {
 			return this.superAdmin;
 		}
@@ -320,6 +323,8 @@ class AmeActorManager implements AmeActorManagerInterface {
 			return this.roles.hasOwnProperty(actorKey) ? this.roles[actorKey] : null;
 		} else if (actorType === 'user') {
 			return this.users.hasOwnProperty(actorKey) ? this.users[actorKey] : null;
+		} else if (this.specialActors.hasOwnProperty(actorId)) {
+			return this.specialActors[actorId];
 		}
 
 		throw {
@@ -446,6 +451,13 @@ class AmeActorManager implements AmeActorManagerInterface {
 			return 'edit_posts';
 		}
 		return capability;
+	}
+
+	addSpecialActor(actor: IAmeActor) {
+		if (actor.getId() === AmeSuperAdmin.permanentActorId) {
+			throw 'The Super Admin actor is immutable and cannot be replaced.';
+		}
+		this.specialActors[actor.getId()] = actor;
 	}
 
 	/* -------------------------------

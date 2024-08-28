@@ -29,9 +29,6 @@ class MenuConfigurationWrapper extends LazyArrayStorage implements StorageInterf
 	}
 
 	protected function storeData($newData) {
-		//Caution: Currently, the underlying implementation doesn't support configs
-		//without a "tree" key. This may need to be changed to allow configurations
-		//that only specify menu styles, not menu items.
 		$this->menuEditor->set_custom_menu($newData, $this->menuConfigId);
 	}
 
