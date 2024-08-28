@@ -410,9 +410,7 @@ function loadMenuConfiguration(adminMenu) {
 		this.level = level;
 		this.usesSubmenuContainers = (this.level > 1);
 
-		let isNewContainer = false;
 		if ((typeof container === 'undefined') || (container === null)) {
-			isNewContainer = true;
 			container = $('#ame-submenu-column-template').first().clone();
 			container.attr('id', '');
 			container.find('.ws_box').first().attr('id', '');
@@ -448,63 +446,20 @@ function loadMenuConfiguration(adminMenu) {
 			);
 			return false;
 		});
-
-		if (isNewContainer && (this.dropZone.length > 0)) {
-			this.container.closest('.ws_main_container').droppable({
-				'hoverClass' : 'ws_top_to_submenu_drop_hover',
-
-				'accept' : (function(thing) {
-					const visibleSubmenu = self.getVisibleItemList();
-					if (!visibleSubmenu || (visibleSubmenu.length < 1)) {
-						return false; //Can't drop anything on a non-existent submenu.
-					}
-
-					function isParentOf(menuItem, something) {
-						const parent = getParentMenuNode(something)
-						if (menuItem.is(parent)) {
-							return true;
-						} else if (parent.length > 0) {
-							return isParentOf(menuItem, parent);
-						}
-						return false;
-					}
-
-					const thingContainer = thing.closest('.ws_main_container');
-					return (
-						//It must actually be a menu item.
-						thing.hasClass('ws_container')
-
-						//Accept only menus from other columns.
-						&& !self.container.is(thingContainer)
-
-						//Prevent users from dropping a parent menu on one of its own sub-menus.
-						&& !isParentOf(thing, visibleSubmenu)
-					);
-				}),
-
-				'drop' : (function(event, ui){
-					const droppedItemData = readItemState(ui.draggable);
-					self.pasteItem(droppedItemData, null);
-					if ( !event.ctrlKey ) {
-						self.destroyItem(ui.draggable);
-					}
-				})
-			});
-		}
 	}
 
 	/**
 	 * Create editor widgets for a menu item and its submenus.
 	 *
 	 * @param {Object} itemData An object containing menu data.
-	 * @param {JQuery|null} [afterNode] Insert the widget after this node. If it's NULL, the widget
-	 *  will be added to the end fo the list.
+	 * @param {JQuery|null|number} [insertPosition] Insert the widget after this node. If it's NULL, the widget
+	 *  will be added to the end fo the list. If it's -1, the widget will be added to the beginning.
 	 * @param {JQuery} [itemList] The container where to insert the widget. Defaults to the currently
 	 *  visible item list. For columns that don't use submenu containers, it's always the menuBox.
 	 * @return {Object} Object with two fields - 'menu' and 'submenu' - containing the jQuery objects
 	 *  of the created widgets.
 	 */
-	AmeEditorColumn.prototype.outputItem = function(itemData, afterNode, itemList) {
+	AmeEditorColumn.prototype.outputItem = function(itemData, insertPosition, itemList) {
 		if (!itemList) {
 			itemList = this.getVisibleItemList();
 		}
@@ -514,11 +469,16 @@ function loadMenuConfiguration(adminMenu) {
 		const isTopLevel = this.level <= 1;
 		const $item = buildMenuItem(itemData, isTopLevel);
 
-		if ((typeof afterNode !== 'undefined') && (afterNode !== null)) {
-			//phpcs:ignore WordPressVIPMinimum.JS.HTMLExecutingFunctions -- buildMenuItem() should be safe.
-			$(afterNode).after($item);
-		} else {
+		if (typeof insertPosition === 'undefined') {
+			insertPosition = null;
+		}
+		if (insertPosition === null) {
 			$item.appendTo(itemList);
+		} else if (insertPosition === -1) {
+			$item.prependTo(itemList);
+		} else {
+			//phpcs:ignore WordPressVIPMinimum.JS.HTMLExecutingFunctions -- buildMenuItem() should be safe.
+			$(insertPosition).after($item);
 		}
 
 		const children = (typeof itemData.items !== 'undefined') ? itemData.items : [];
@@ -575,14 +535,15 @@ function loadMenuConfiguration(adminMenu) {
 	 * Paste a menu item in this column.
 	 *
 	 * @param {Object} item
-	 * @param {JQuery|null} [afterItem] Defaults to the current selection. Set to NULL to paste at the end of the list.
+	 * @param {JQuery|null|number} [insertPosition] Defaults to inserting the item below the current selection.
+	 *  Set to NULL to paste at the end of the list, or -1 to paste at the beginning.
 	 * @param {JQuery} [itemList]
 	 */
-	AmeEditorColumn.prototype.pasteItem = function(item, afterItem, itemList) {
-		if (typeof afterItem === 'undefined') {
-			afterItem = this.getSelectedItem();
-			if (afterItem.length < 1) {
-				afterItem = null;
+	AmeEditorColumn.prototype.pasteItem = function (item, insertPosition, itemList) {
+		if (typeof insertPosition === 'undefined') {
+			insertPosition = this.getSelectedItem();
+			if (insertPosition.length < 1) {
+				insertPosition = null;
 			}
 		}
 
@@ -614,7 +575,7 @@ function loadMenuConfiguration(adminMenu) {
 			}
 		}
 
-		const result = this.outputItem(item, afterItem, itemList);
+		const result = this.outputItem(item, insertPosition, itemList);
 
 		if (this.level > 1) {
 			updateParentAccessUi(itemList);
@@ -802,6 +763,27 @@ function loadMenuConfiguration(adminMenu) {
 			this.selectionHasChanged();
 		}
 	};
+
+	/**
+	 * Check if this column can accept a menu item that's being dragged/moved to it.
+	 *
+	 * @param {JQuery} $itemNode
+	 * @returns {boolean}
+	 */
+	AmeEditorColumn.prototype.canAcceptItem = function($itemNode) {
+		const visibleSubmenu = this.getVisibleItemList();
+		if (!visibleSubmenu || (visibleSubmenu.length < 1)) {
+			return false; //Can't move anything to a non-existent submenu.
+		}
+
+		return (
+			//It must actually be a menu item.
+			$itemNode.hasClass('ws_container')
+
+			//Prevent users from dropping a parent menu on one of its own sub-menus.
+			&& !isParentMenuNodeOf($itemNode, visibleSubmenu)
+		);
+	}
 
 	/**
 	 * Remove all items and item lists from this column.
@@ -1015,9 +997,9 @@ function loadMenuConfiguration(adminMenu) {
 		};
 
 		/**
-		 * Get the column that contains a specific item.
+		 * Get the column that contains a specific menu item or element.
 		 *
-		 * @param  {JQuery} container Menu item container.
+		 * @param  {JQuery} container Menu item container, or another element that's inside a column.
 		 * @return {AmeEditorColumn|null}
 		 */
 		this.getItemColumn = function(container) {
@@ -1110,6 +1092,7 @@ function outputTopMenu(menu, afterNode){
  */
 function buildMenuItem(itemData, isTopLevel) {
 	isTopLevel = (typeof isTopLevel === 'undefined') ? false : isTopLevel;
+	const canHaveSubmenuItems = isTopLevel && !itemData.separator;
 
 	//Create the menu HTML
 	var item = $('<div></div>')
@@ -1151,7 +1134,7 @@ function buildMenuItem(itemData, isTopLevel) {
 		setMenuFlag(item, flags[i], getFieldValue(itemData, flags[i], false));
 	}
 
-	if ( isTopLevel && !itemData.separator ){
+	if ( canHaveSubmenuItems ){
 		//Allow the user to drag menu items to top-level menus
 		item.droppable({
 			'hoverClass' : 'ws_menu_drop_hover',
@@ -1922,6 +1905,23 @@ function getParentMenuNode(containerNode) {
 }
 
 /**
+ * Check if a menu item is the parent of another item or a submenu list.
+ *
+ * @param {JQuery} menuItem
+ * @param {JQuery} something
+ * @returns {boolean}
+ */
+function isParentMenuNodeOf(menuItem, something) {
+	const parent = getParentMenuNode(something)
+	if (menuItem.is(parent)) {
+		return true;
+	} else if (parent.length > 0) {
+		return isParentMenuNodeOf(menuItem, parent);
+	}
+	return false;
+}
+
+/**
  * Get all submenu items of a menu item.
  *
  * @param {JQuery} containerNode
@@ -2256,6 +2256,8 @@ function makeBoxSortable(menuBox){
 		placeholder: 'ws_container ws_sortable_placeholder',
 		forcePlaceholderSize: true,
 
+		connectWith: '.ws_submenu',
+
 		stop: function(even, ui) {
 			//Fix incorrect item overlap caused by jQuery.sortable applying the initial z-index as an inline style.
 			ui.item.css('z-index', '');
@@ -2263,6 +2265,62 @@ function makeBoxSortable(menuBox){
 			//Fix submenu container height. It should be tall enough to reach the selected parent menu.
 			if (ui.item.hasClass('ws_menu') && ui.item.hasClass('ws_active')) {
 				AmeEditorApi.updateSubmenuBoxHeight(ui.item);
+			}
+		},
+
+		over: function(event, ui) {
+			//Provide visual feedback if the user drags an unacceptable item over the list.
+			const $list = $(this);
+			const targetColumn = menuPresenter.getItemColumn($list);
+			if (!targetColumn) {
+				return;
+			}
+
+			$list.closest('.ws_main_container').toggleClass(
+				'ws_invalid_item_drop_target',
+				!targetColumn.canAcceptItem(ui.item)
+			);
+		},
+
+		out: function() {
+			$(this).closest('.ws_main_container').removeClass('ws_invalid_item_drop_target');
+		},
+
+		receive: function(event, ui) {
+			//Receive a menu item from another column.
+			const $sender = $(ui.sender);
+
+			const $itemNode = ui.item;
+			const targetColumn = menuPresenter.getItemColumn($itemNode);
+			const sourceColumn = menuPresenter.getItemColumn($sender);
+
+			if (!targetColumn || !sourceColumn)  {
+				$sender.sortable('cancel');
+				return;
+			}
+			if (!targetColumn.canAcceptItem($itemNode)) {
+				$sender.sortable('cancel');
+				return;
+			}
+
+			//The way that inter-column drag & drop actually works is that we copy the item
+			//to the target column and then delete the original item. This way all the internal
+			//data structures are updated correctly.
+
+			//Remember where the item was dropped in the target column.
+			const $previousItem = $itemNode.prev('.ws_container');
+
+			//Move the original item back.
+			$sender.sortable('cancel');
+
+			//Copy & paste the item to the target column.
+			const droppedItemData = readItemState($itemNode);
+			targetColumn.pasteItem(droppedItemData, ($previousItem.length > 0) ? $previousItem : -1);
+
+			//Delete the original. Optionally, the user can hold Ctrl to avoid this
+			//(i.e. to copy the item instead of moving it).
+			if ( !event.ctrlKey ) {
+				sourceColumn.destroyItem($itemNode);
 			}
 		}
 	});
@@ -2400,6 +2458,33 @@ function readMenuTreeState(){
 		tree[filename] = menu;
 		itemsByFilename[filename] = containerNode;
 	});
+
+	// Ensure items that need auto-generated slugs have unique IDs. The IDs only
+	// need to be unique within the same menu configuration, not globally.
+	let localIdCounter = 0;
+	const usedLocalIds = {};
+	function ensureUniqueIdIfNeeded(menuItem) {
+		// Recurse into children.
+		if (menuItem.items) {
+			_.forEach(menuItem.items, ensureUniqueIdIfNeeded);
+		}
+
+		const needsUniqueId = (menuItem.template_id === wsEditorData.embeddedPageTemplateId)
+			|| (menuItem.open_in === 'iframe');
+		const currentLocalId = (typeof menuItem.local_id === 'string') ? menuItem.local_id : '';
+
+		// Assign a new ID if the item needs one and doesn't have it, or if the current ID
+		// is a duplicate. IDs can get duplicated if the user copies and pastes items.
+		if ((needsUniqueId && (currentLocalId === '')) || usedLocalIds.hasOwnProperty(currentLocalId)) {
+			menuItem.local_id = randomMenuId(localIdCounter + 'C', 8);
+		}
+
+		if (typeof menuItem.local_id === 'string') {
+			usedLocalIds[menuItem.local_id] = true;
+			localIdCounter++;
+		}
+	}
+	_.forEach(tree, ensureUniqueIdIfNeeded);
 
 	AmeCapabilityManager.pruneGrantedUserCapabilities();
 
@@ -4450,10 +4535,7 @@ function ameOnDomReady() {
 	//Toggle all menus for the currently selected actor
 	menuEditorNode.on(
 		'adminMenuEditor:action-toggle-all',
-		/**
-		 * @param event
-		 */
-		function(event) {
+		function() {
 			if ( actorSelectorWidget.selectedActor === null ) {
 				alert("This button enables/disables all menus for the selected role. To use it, click a role and then click this button again.");
 				return;
@@ -4485,12 +4567,7 @@ function ameOnDomReady() {
 	//The "Copy permissions" toolbar button.
 	menuEditorNode.on(
 		'adminMenuEditor:action-copy-permissions',
-		/**
-		 * @param event
-		 * @param {JQuery|null} selectedItem
-		 * @param {AmeEditorColumn} column
-		 */
-		function(event, selectedItem, column) {
+		function() {
 			const previousSource = sourceActorList.val();
 
 			//Populate source/destination lists.
@@ -4662,10 +4739,7 @@ function ameOnDomReady() {
 	//Toggle the second row of toolbar buttons.
 	menuEditorNode.on(
 		'adminMenuEditor:action-toggle-toolbar',
-		/**
-		 * @param event
-		 */
-		function(event) {
+		function() {
 			let visible = menuEditorNode.find('.ws_second_toolbar_row').toggle().is(':visible');
 			if (typeof $['cookie'] !== 'undefined') {
 				$.cookie('ame-show-second-toolbar', visible ? '1' : '0', {expires: 90});
@@ -4980,50 +5054,48 @@ function ameOnDomReady() {
 	                 Drag & drop items between menu levels
 	 *************************************************************************/
 
-	if (wsEditorData.wsMenuEditorPro) {
-		//Allow the user to drag sub-menu items to the top level.
-		$('#ws_top_menu_dropzone').droppable({
-			'hoverClass' : 'ws_dropzone_hover',
-			'activeClass' : 'ws_dropzone_active',
+	//Allow the user to drag sub-menu items to the top level.
+	$('#ws_top_menu_dropzone').droppable({
+		'hoverClass' : 'ws_dropzone_hover',
+		'activeClass' : 'ws_dropzone_active',
 
-			'accept' : (function(thing){
-				return thing.hasClass('ws_item');
-			}),
+		'accept' : (function(thing){
+			return thing.hasClass('ws_item');
+		}),
 
-			'drop' : (function(event, ui){
-				const firstColumn = menuPresenter.getColumnImmediate(1);
-				if (!firstColumn) {
-					return;
-				}
-				const nextColumn = menuPresenter.getColumnImmediate(firstColumn.level + 1);
+		'drop' : (function(event, ui){
+			const firstColumn = menuPresenter.getColumnImmediate(1);
+			if (!firstColumn) {
+				return;
+			}
+			const nextColumn = menuPresenter.getColumnImmediate(firstColumn.level + 1);
 
-				const droppedItemData = readItemState(ui.draggable);
-				const newItemNodes = firstColumn.pasteItem(droppedItemData, null);
+			const droppedItemData = readItemState(ui.draggable);
+			const newItemNodes = firstColumn.pasteItem(droppedItemData, null);
 
-				//If the item was originally a top level menu, also move its original submenu items.
-				if ((getFieldValue(droppedItemData, 'parent') === null) && (newItemNodes.submenu)) {
-					const droppedItemFile = getFieldValue(droppedItemData, 'file');
-					const nearbyItems = $(ui.draggable).siblings('.ws_item');
-					nearbyItems.each(function() {
-						const containerNode = $(this),
-							submenuItem = containerNode.data('menu_item');
+			//If the item was originally a top level menu, also move its original submenu items.
+			if ((getFieldValue(droppedItemData, 'parent') === null) && (newItemNodes.submenu)) {
+				const droppedItemFile = getFieldValue(droppedItemData, 'file');
+				const nearbyItems = $(ui.draggable).siblings('.ws_item');
+				nearbyItems.each(function() {
+					const containerNode = $(this),
+						submenuItem = containerNode.data('menu_item');
 
-						//Was this item originally a child of the dragged menu?
-						if (getFieldValue(submenuItem, 'parent') === droppedItemFile) {
-							nextColumn.pasteItem(submenuItem, null, newItemNodes.submenu);
-							if ( !event.ctrlKey ) {
-								menuPresenter.destroyItem(containerNode);
-							}
+					//Was this item originally a child of the dragged menu?
+					if (getFieldValue(submenuItem, 'parent') === droppedItemFile) {
+						nextColumn.pasteItem(submenuItem, null, newItemNodes.submenu);
+						if ( !event.ctrlKey ) {
+							menuPresenter.destroyItem(containerNode);
 						}
-					});
-				}
+					}
+				});
+			}
 
-				if ( !event.ctrlKey ) {
-					menuPresenter.destroyItem(ui.draggable);
-				}
-			})
-		});
-	}
+			if ( !event.ctrlKey ) {
+				menuPresenter.destroyItem(ui.draggable);
+			}
+		})
+	});
 
 	/******************************************************************
 	                 Component visibility settings
@@ -5577,8 +5649,7 @@ function ameOnDomReady() {
 		testProgressText.text('Sending menu settings...');
 
 		var selectedOption = testMenuItemList.find('option:selected').first(),
-			selectedMenu = selectedOption.data('menu_item'),
-			menuUrl = selectedOption.val();
+			selectedMenu = selectedOption.data('menu_item');
 
 		$.ajax(
 			wsEditorData.adminAjaxUrl,
@@ -5717,6 +5788,10 @@ function ameOnDomReady() {
 
 		const editorToolbars = document.querySelectorAll('.ws_main_container .ws_toolbar');
 		for (const toolbar of editorToolbars) {
+			//Skip the toolbar that's inside the template column.
+			if (toolbar.closest && (toolbar.closest('#ame-submenu-column-template') !== null)) {
+				continue;
+			}
 			observer.observe(toolbar);
 		}
 	}

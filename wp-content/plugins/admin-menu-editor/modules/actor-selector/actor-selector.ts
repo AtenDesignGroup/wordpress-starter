@@ -38,6 +38,7 @@ class AmeActorSelector {
 	private readonly allOptionEnabled: boolean = true;
 
 	private cachedVisibleActors: IAmeActor[]|null = null;
+	private specialActors: IAmeActor[] = [];
 
 	private selectorNode: JQuery|null = null;
 	private isDomInitStarted: boolean = false;
@@ -257,6 +258,12 @@ class AmeActorSelector {
 		const _ = AmeActorSelector._;
 		let actors: IAmeActor[] = [];
 
+		//Include special actors, if any. Note that these must also be added to the actor manager;
+		//the actor selector doesn't do that automatically.
+		_.forEach(this.specialActors, function (actor: IAmeActor) {
+			actors.push(actor);
+		});
+
 		//Include all roles.
 		//Idea: Sort roles either alphabetically or by typical privilege level (admin, editor, author, ...).
 		_.forEach(this.actorManager.getRoles(), function (role: IAmeActor) {
@@ -286,6 +293,10 @@ class AmeActorSelector {
 
 		this.cachedVisibleActors = actors;
 		return actors;
+	}
+
+	addSpecialActor(actor: IAmeActor) {
+		this.specialActors.push(actor);
 	}
 
 	private saveVisibleUsers() {
@@ -364,5 +375,23 @@ class AmeActorSelector {
 			}
 		});
 		return publicObservable;
+	}
+
+	/**
+	 * Select an actor based on the "selected_actor" URL parameter.
+	 *
+	 * Does nothing if the parameter is not set or the actor ID is invalid.
+	 */
+	setSelectedActorFromUrl() {
+		if (!URLSearchParams) {
+			return;
+		}
+
+		//Select an actor based on the "selected_actor" URL parameter.
+		const urlParams = new URLSearchParams(window.location.search);
+		const selectedActor = urlParams.get('selected_actor');
+		if (selectedActor !== null) {
+			this.setSelectedActor(selectedActor);
+		}
 	}
 }

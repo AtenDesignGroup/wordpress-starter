@@ -121,6 +121,7 @@ class AmeActorManager {
     constructor(roles, users, isMultisite = false, suspectedMetaCaps = {}) {
         this.roles = {};
         this.users = {};
+        this.specialActors = {};
         this.grantedCapabilities = {};
         this.isMultisite = false;
         this.exclusiveSuperAdminCapabilities = {};
@@ -176,6 +177,9 @@ class AmeActorManager {
         }
         else if (actorType === 'user') {
             return this.users.hasOwnProperty(actorKey) ? this.users[actorKey] : null;
+        }
+        else if (this.specialActors.hasOwnProperty(actorId)) {
+            return this.specialActors[actorId];
         }
         throw {
             name: 'InvalidActorException',
@@ -287,6 +291,12 @@ class AmeActorManager {
             return 'edit_posts';
         }
         return capability;
+    }
+    addSpecialActor(actor) {
+        if (actor.getId() === AmeSuperAdmin.permanentActorId) {
+            throw 'The Super Admin actor is immutable and cannot be replaced.';
+        }
+        this.specialActors[actor.getId()] = actor;
     }
     /* -------------------------------
      * Roles

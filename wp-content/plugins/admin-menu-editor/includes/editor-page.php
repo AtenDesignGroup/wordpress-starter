@@ -233,6 +233,7 @@ function ame_register_sort_buttons($toolbar) {
 		<div id='ws_menu_box' class="ws_box">
 		</div>
 
+		<div id="ws_top_menu_dropzone" class="ws_dropzone"> </div>
 		<?php do_action('admin_menu_editor-container', 'menu'); ?>
 	</div>
 
@@ -434,13 +435,27 @@ function ame_register_sort_buttons($toolbar) {
 		$hint_id = 'ws_sidebar_pro_ad';
 		$show_pro_benefits = !apply_filters('admin_menu_editor_is_pro', false) && (!isset($editor_data['show_hints'][$hint_id]) || $editor_data['show_hints'][$hint_id]);
 
-		if ( $show_pro_benefits ):
-			//Decide whether to show the Pro version link, or a link to the free online tool
-			//that is based on the Pro version.
+		if ( $show_pro_benefits):
+			//Decide whether to show the Pro version link, or a link to one of our other WP tools.
 			$hash_value = hexdec(substr(md5(get_site_url()), 0, 5)) % 100;
-			$pro_probability = 80;
 
-			if ($hash_value >= (100 - $pro_probability)):
+			//Pick one option proportionally to the weights. Weights should add up to 100.
+			$sidebar_ad_weights = [
+				'pro'                 => 80,
+				'adminNoticesBoss'    => 18,
+				'adminThemeGenerator' => 2,
+			];
+			$chosen_ad = array_keys($sidebar_ad_weights)[0];
+			$cumulative_weight = 0;
+			foreach ($sidebar_ad_weights as $ad => $weight) {
+				$cumulative_weight += $weight;
+				$chosen_ad = $ad;
+				if ($hash_value < $cumulative_weight) {
+					break;
+				}
+			}
+
+			if ($chosen_ad === 'pro'):
 				$benefit_variations = array(
 					'Hide dashboard widgets.',
 					'More menu icons.',
@@ -472,7 +487,7 @@ function ame_register_sort_buttons($toolbar) {
 					</div>
 				</div>
 			<?php
-			else:
+			elseif ($chosen_ad === 'adminThemeGenerator'):
 				?>
 				<div class="clear"></div>
 
@@ -493,6 +508,26 @@ function ame_register_sort_buttons($toolbar) {
 						</ul>
 						<a href="<?php echo esc_url('https://adminthemegenerator.com/'); ?>" target="_blank">
 							AdminThemeGenerator.com<span class="dashicons dashicons-external"></span>
+						</a>
+					</div>
+				</div>
+			<?php
+			elseif ($chosen_ad === 'adminNoticesBoss'):
+				?>
+				<div class="clear"></div>
+
+				<div class="ws_hint ame-anb-sidebar-ad" id="<?php echo esc_attr($hint_id); ?>">
+					<div class="ws_hint_close" title="Close">x</div>
+					<div class="ws_hint_content">
+						<strong><span>Check out my other plugin: </span>Admin Notices Boss</strong>
+						<ul>
+							<li>Hide individual admin notices permanently.</li>
+							<li>Move notices to an unobtrusive panel.</li>
+							<li>Hide notices for specific roles or users.</li>
+							<li>Hide notices based on type (warning, info, etc).</li>
+						</ul>
+						<a href="<?php echo esc_url('https://adminnoticesboss.com/'); ?>" target="_blank">
+							AdminNoticesBoss.com<span class="dashicons dashicons-external"></span>
 						</a>
 					</div>
 				</div>

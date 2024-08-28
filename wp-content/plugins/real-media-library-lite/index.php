@@ -8,7 +8,7 @@
  * Description:     Organize uploaded media in folders, collections and galleries: A file manager for WordPress. Media management made easy!
  * Author:          devowl.io
  * Author URI:      https://devowl.io
- * Version:                                              4.22.8
+ * Version:                                                            4.22.22
  * Text Domain:     real-media-library
  * Domain Path:     /languages
  */
@@ -28,8 +28,8 @@ define('RML_PATH', dirname(RML_FILE));
 define('RML_ROOT_SLUG', 'devowl-wp');
 define('RML_SLUG', basename(RML_PATH));
 define('RML_INC', RML_PATH . '/inc/');
-define('RML_MIN_PHP', '7.4.0'); // Minimum of PHP 5.3 required for autoloading and namespacing
-define('RML_MIN_WP', '5.8.0'); // Minimum of WordPress 5.2 required
+define('RML_MIN_PHP', '7.4.0');
+define('RML_MIN_WP', '5.9.0');
 define('RML_NS', 'MatthiasWeb\\RealMediaLibrary');
 define('RML_DB_PREFIX', 'realmedialibrary'); // The table name prefix wp_{prefix}
 define('RML_OPT_PREFIX', 'rml'); // The option name prefix in wp_options

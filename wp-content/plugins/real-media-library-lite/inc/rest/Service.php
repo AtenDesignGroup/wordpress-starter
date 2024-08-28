@@ -52,7 +52,6 @@ class Service implements IOverrideService
      * @return WP_REST_Response|WP_Error
      *
      * @api {get} /realmedialibrary/v1/tree Get the full categories tree
-     * @apiParam {string} [currentUrl] The current url to detect the active item
      * @apiName GetTree
      * @apiGroup Tree
      * @apiVersion 1.0.0
@@ -60,7 +59,6 @@ class Service implements IOverrideService
      */
     public function routeTree($request)
     {
-        $currentUrl = $request->get_param('currentUrl');
         // Receive structure
         $structure = Structure::getInstance();
         return new WP_REST_Response(['tree' => $structure->getPlainTree(), 'slugs' => $structure->getView()->namesSlugArray(), 'cntAll' => $structure->getCntAttachments(), 'cntRoot' => $structure->getCntRoot()]);

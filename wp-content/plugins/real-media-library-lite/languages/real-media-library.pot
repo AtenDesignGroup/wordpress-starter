@@ -76,15 +76,15 @@ msgstr ""
 msgid "The given folder was not found."
 msgstr ""
 
-#: inc/Assets.php:247
+#: inc/Assets.php:220
 msgid "https://devowl.io/"
 msgstr ""
 
-#: inc/Assets.php:249
+#: inc/Assets.php:222
 msgid "Complementary Plugins"
 msgstr ""
 
-#: inc/Assets.php:267
+#: inc/Assets.php:240
 msgid ""
 "\n"
 "\n"
@@ -233,11 +233,11 @@ msgid "PolyLang: Automatically move translations"
 msgstr ""
 
 #: inc/comp/PolyLang.php:76
-#: inc/comp/WPML.php:334
+#: inc/comp/WPML.php:332
 msgid "If you move a file, the corresponding translated file will also be moved."
 msgstr ""
 
-#: inc/comp/WPML.php:317
+#: inc/comp/WPML.php:315
 msgid "WPML: Automatically move translations"
 msgstr ""
 
@@ -445,11 +445,11 @@ msgstr ""
 msgid "Fetch only media in a folder by folder id."
 msgstr ""
 
-#: inc/rest/Service.php:203
+#: inc/rest/Service.php:198
 msgid "Forbidden"
 msgstr ""
 
-#: inc/rest/Service.php:208
+#: inc/rest/Service.php:203
 msgid "Real Media Library is not active for the current user."
 msgstr ""
 
@@ -1113,28 +1113,28 @@ msgstr ""
 msgid "Reset names, slugs and absolute pathes"
 msgstr ""
 
-#: inc/view/Options.php:136
+#: inc/view/Options.php:134
 msgid "Wipe attachment relations"
 msgstr ""
 
-#: inc/view/Options.php:139
+#: inc/view/Options.php:137
 msgid "Wipe all"
 msgstr ""
 
-#: inc/view/Options.php:148
+#: inc/view/Options.php:146
 msgid "Reset count"
 msgstr ""
 
-#: inc/view/Options.php:157
-#: inc/view/Options.php:183
+#: inc/view/Options.php:155
+#: inc/view/Options.php:181
 msgid "Reset"
 msgstr ""
 
-#: inc/view/Options.php:171
+#: inc/view/Options.php:169
 msgid "Activate this option if you are using a page builder like Divi Page Builder, WPBakery Page Builder or Elementor."
 msgstr ""
 
-#: inc/view/Options.php:186
+#: inc/view/Options.php:184
 msgid "You can also reset an single folder in its folder details."
 msgstr ""
 

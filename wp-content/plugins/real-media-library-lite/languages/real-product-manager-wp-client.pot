@@ -37,15 +37,15 @@ msgstr ""
 msgid "You have not yet activated a license for this plugin on your website."
 msgstr ""
 
-#: license/License.php:318
+#: license/License.php:320
 msgid "The license has been automatically deactivated because your website is running on a new domain. Please activate the license again!"
 msgstr ""
 
-#: license/License.php:324
+#: license/License.php:326
 msgid "License key"
 msgstr ""
 
-#: license/License.php:389
+#: license/License.php:391
 msgid "No programmatic activation found for this plugin."
 msgstr ""
 
@@ -53,24 +53,24 @@ msgstr ""
 msgid "You have already activated a license for this plugin. Please deactivate it first!"
 msgstr ""
 
-#: license/PluginUpdateLicensePool.php:62
+#: license/PluginUpdateLicensePool.php:69
 msgid "You need to provide at least one license!"
 msgstr ""
 
-#: license/PluginUpdateLicensePool.php:85
+#: license/PluginUpdateLicensePool.php:92
 msgid "You must provide an email address and a name if you want to subscribe to the newsletter!"
 msgstr ""
 
-#: license/PluginUpdateLicensePool.php:127
+#: license/PluginUpdateLicensePool.php:134
 msgid "You must have at least one license of a site in use within your multisite."
 msgstr ""
 
 #. translators:
-#: license/PluginUpdateLicensePool.php:163
+#: license/PluginUpdateLicensePool.php:170
 msgid "The license server for checking the license cannot be reached. Please check if you are blocking access to %s e.g. by a firewall."
 msgstr ""
 
-#: rest/PluginUpdate.php:169
+#: rest/PluginUpdate.php:165
 msgid "Something went wrong. Please try again later!"
 msgstr ""
 
@@ -78,58 +78,58 @@ msgstr ""
 msgid "Dismiss"
 msgstr ""
 
-#: view/PluginUpdateView.php:126
+#: view/PluginUpdateView.php:115
 msgid "You have not yet entered the license key."
 msgstr ""
 
-#: view/PluginUpdateView.php:127
+#: view/PluginUpdateView.php:116
 msgid "Activate the license to receive automatic updates."
 msgstr ""
 
-#: view/PluginUpdateView.php:155
+#: view/PluginUpdateView.php:142
 msgid "License"
 msgstr ""
 
 #. translators:
-#: view/PluginUpdateView.php:189
+#: view/PluginUpdateView.php:172
 msgid "You have not yet activated a license for the %s plugin. Activate the licence to receive automatic updates."
 msgstr ""
 
 #. translators:
-#: view/PluginUpdateView.php:210
+#: view/PluginUpdateView.php:193
 msgid "Updates of %s are waiting for you when you activate your license. Activate your license in the settings now!"
 msgstr ""
 
 #. translators:
-#: view/PluginUpdateView.php:217
+#: view/PluginUpdateView.php:200
 msgid "Activate your %s to use all features with great support. Activate now!"
 msgstr ""
 
 #. translators:
-#: view/PluginUpdateView.php:221
+#: view/PluginUpdateView.php:204
 msgid "You have not yet activated your %s license. Activate your license now in the settings!"
 msgstr ""
 
 #. translators:
-#: view/PluginUpdateView.php:228
+#: view/PluginUpdateView.php:211
 msgid "You are not allowed to use %s according to our license terms unless you have purchased a license. Activate it in the settings or buy one now!"
 msgstr ""
 
 #. translators:
-#: view/PluginUpdateView.php:236
+#: view/PluginUpdateView.php:219
 msgid "Attention! Pirates distribute %s for free without a license. Activate your license in the settings to show that you are not a pirate!"
 msgstr ""
 
 #. translators:
-#: view/PluginUpdateView.php:244
+#: view/PluginUpdateView.php:227
 msgid "You are probably using an illegally purchased copy of %s without a license. Check your license now!"
 msgstr ""
 
 #. translators:
-#: view/PluginUpdateView.php:252
+#: view/PluginUpdateView.php:235
 msgid "You are probably using an illegal copy of %s. Purchase a license now or activate your license in the settings and continue using this software with a clear conscience!"
 msgstr ""
 
-#: view/PluginUpdateView.php:288
+#: view/PluginUpdateView.php:271
 msgid "Activate now"
 msgstr ""

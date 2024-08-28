@@ -27,6 +27,9 @@ var AmeRedirectorUi;
         },
         isUser() {
             return false;
+        },
+        hasOwnCap(_) {
+            return null;
         }
     };
     class Redirect {
@@ -81,6 +84,9 @@ var AmeRedirectorUi;
                         },
                         isUser() {
                             return false;
+                        },
+                        hasOwnCap(_) {
+                            return null;
                         }
                     };
                 }
@@ -351,6 +357,9 @@ var AmeRedirectorUi;
         }
         isUser() {
             return false;
+        }
+        hasOwnCap(_) {
+            return null;
         }
     }
     class MissingRolePlaceholder extends MissingActorPlaceholder {

@@ -3,6 +3,713 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.22.22 (2024-08-08)
+
+
+### Bug Fixes
+
+* some components are not rendered in WordPress < 6.2 (CU-86959qqq1)
+
+
+### Code Refactoring
+
+* remove no longer needed functions (CU-86959qqq1)
+
+
+<details><summary>Dependency updates @devowl-wp/utils 1.19.9</summary>
+
+
+**_Purpose of dependency:_** _Utility functionality for all your WordPress plugins._
+##### Bug Fixes
+
+* some components are not rendered in WordPress < 6.2 (CU-86959qqq1)
+* use ReactJSXRuntime for better WordPress 6.6 compatibility (CU-86959qqq1)</details>
+
+<details><summary>Development dependency update @devowl-wp/webpack-config 0.2.33</summary>
+
+
+**_Purpose of dependency:_** _Webpack config builder for multiple ecosystems like standalone React frontends, Antd, Preact and WordPress._
+##### Bug Fixes
+
+* some components are not rendered in WordPress < 6.2 (CU-86959qqq1)
+* use ReactJSXRuntime for better WordPress 6.6 compatibility (CU-86959qqq1)</details>
+
+
+
+
+
+## 4.22.21 (2024-08-02)
+
+
+### Bug Fixes
+
+* make latest update work with Divi page builder (CU-86959qqq1)
+
+
+
+
+
+
+
+## 4.22.20 (2024-08-01)
+
+
+### Code Refactoring
+
+* move react-aiot to @devowl-wp/react-folder-tree within monorepo (CU-awv3bv)
+* upgrade to React v18 (createRoot, unmountComponentAtNode, CU-awv3bv)
+
+
+### Maintenance
+
+* **deps :** update dependency php-stubs/wordpress-stubs to v6.6.0
+* minimum required version is WordPress 5.9 (CU-awv3bv)
+
+
+<details><summary>Dependency updates @devowl-wp/freemium 1.3.87</summary>
+
+
+**_Purpose of dependency:_** _Make your plugin to a freemium plugin with predefined Envato support_
+##### Maintenance
+
+* **deps :** update dependency php-stubs/wordpress-stubs to v6.6.0</details>
+
+<details><summary>Dependency updates @devowl-wp/react-folder-tree 0.1.1</summary>
+
+
+**_Purpose of dependency:_** _Feature-rich folder tree renderer with toolbar (formerly react-aiot)._
+##### Code Refactoring
+
+* move react-aiot to @devowl-wp/react-folder-tree within monorepo (CU-awv3bv)
+* upgrade to React v18 (createRoot, unmountComponentAtNode, CU-awv3bv)</details>
+
+<details><summary>Dependency updates @devowl-wp/real-product-manager-wp-client 1.19.24</summary>
+
+
+**_Purpose of dependency:_** _A WordPress client for Real Product Manager_
+##### Code Refactoring
+
+* upgrade to React v18 (createRoot, unmountComponentAtNode, CU-awv3bv)
+
+
+##### Maintenance
+
+* **deps :** update dependency php-stubs/wordpress-stubs to v6.6.0</details>
+
+<details><summary>Dependency updates @devowl-wp/real-utils 1.13.8</summary>
+
+
+**_Purpose of dependency:_** _Create cross-selling ads, about page, rating and newsletter input for WP Real plugins._
+##### Maintenance
+
+* **deps :** update dependency php-stubs/wordpress-stubs to v6.6.0</details>
+
+<details><summary>Dependency updates @devowl-wp/utils 1.19.8</summary>
+
+
+**_Purpose of dependency:_** _Utility functionality for all your WordPress plugins._
+##### Build System
+
+* generate cachebuster files in a real temporary file to avoid race conditions
+
+
+##### Code Refactoring
+
+* upgrade to React v18 (createRoot, unmountComponentAtNode, CU-awv3bv)
+
+
+##### Maintenance
+
+* **deps :** update dependency php-stubs/wordpress-stubs to v6.6.0</details>
+
+<details><summary>Development dependency update @devowl-wp/react-utils 0.1.6</summary>
+
+
+**_Purpose of dependency:_** _Provide various React utils, side effect free and tree shakeable._
+##### Code Refactoring
+
+* upgrade to React v18 (createRoot, unmountComponentAtNode, CU-awv3bv)</details>
+
+<details><summary>Development dependency update @devowl-wp/webpack-config 0.2.32</summary>
+
+
+**_Purpose of dependency:_** _Webpack config builder for multiple ecosystems like standalone React frontends, Antd, Preact and WordPress._
+##### Code Refactoring
+
+* move react-aiot to @devowl-wp/react-folder-tree within monorepo (CU-awv3bv)</details>
+
+
+
+
+
+## 4.22.19 (2024-07-17)
+
+
+### Bug Fixes
+
+* no longer send referer via URL parameter as this lead to issues with Strato servers (dashboard no longer loads, CU-86954236z)
+
+
+<details><summary>Dependency updates @devowl-wp/utils 1.19.7</summary>
+
+
+**_Purpose of dependency:_** _Utility functionality for all your WordPress plugins._
+##### Bug Fixes
+
+* no longer send referer via URL parameter as this lead to issues with Strato servers (dashboard no longer loads, CU-86954236z)</details>
+
+
+
+
+
+## 4.22.18 (2024-07-16)
+
+
+### Documentation
+
+* update README.md for WordPress 6.6 compatibility (CU-86951232r)
+
+
+<details><summary>Development dependency update @devowl-wp/api 0.5.24</summary>
+
+
+**_Purpose of dependency:_** _Shared typings for all Node.js backends and frontends._
+##### Maintenance
+
+* suppress logs from requests from nullers (CU-8694xa392)</details>
+
+
+
+
+
+## 4.22.17 (2024-06-20)
+
+
+### Bug Fixes
+
+* compatibility with latest ACF version and the media field (CU-8694uj14k)
+* cover image cannot be set with latest WordPress version as modal dialog does not get in background (CU-8694re5up)
+
+
+### Build System
+
+* remove babel-loader and babel toolchain and introduce SWC (CU-8694pt2j7)
+
+
+### Continuous Integration
+
+* introduce Renovate bot for dependency update automation (CU-8694qg0t9)
+
+
+### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** update composer dependencies (non-major)
+* **deps :** update dependency mpratt/embera to v2.0.40
+* **deps :** update npm (non-major)
+* **deps :** update npm all dependencies (non-major)
+* **deps :** update npm all dependencies inclusive some major updates (CU-8694qg0t9)
+* update renovate.json (CU-8694qg0t9)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)
+
+
+<details><summary>Dependency updates @devowl-wp/freemium 1.3.84</summary>
+
+
+**_Purpose of dependency:_** _Make your plugin to a freemium plugin with predefined Envato support_
+##### Build System
+
+* remove babel-loader and babel toolchain and introduce SWC (CU-8694pt2j7)
+
+
+##### Continuous Integration
+
+* introduce Renovate bot for dependency update automation (CU-8694qg0t9)
+
+
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** update composer dependencies (non-major)
+* **deps :** update dependency mpratt/embera to v2.0.40
+* **deps :** update npm (non-major)
+* **deps :** update npm all dependencies (non-major)
+* **deps :** update npm all dependencies inclusive some major updates (CU-8694qg0t9)
+* update renovate.json (CU-8694qg0t9)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Dependency updates @devowl-wp/real-product-manager-wp-client 1.19.21</summary>
+
+
+**_Purpose of dependency:_** _A WordPress client for Real Product Manager_
+##### Bug Fixes
+
+* do not deactivate the license when the hostname differs in letter case (CU-8694uw4y2)
+
+
+##### Build System
+
+* remove babel-loader and babel toolchain and introduce SWC (CU-8694pt2j7)
+
+
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** update composer dependencies (non-major)
+* **deps :** update dependency mpratt/embera to v2.0.40
+* **deps :** update npm (non-major)
+* **deps :** update npm all dependencies (non-major)
+* update renovate.json (CU-8694qg0t9)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Dependency updates @devowl-wp/real-utils 1.13.5</summary>
+
+
+**_Purpose of dependency:_** _Create cross-selling ads, about page, rating and newsletter input for WP Real plugins._
+##### Build System
+
+* remove babel-loader and babel toolchain and introduce SWC (CU-8694pt2j7)
+
+
+##### Continuous Integration
+
+* introduce Renovate bot for dependency update automation (CU-8694qg0t9)
+
+
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** update composer dependencies (non-major)
+* **deps :** update dependency mpratt/embera to v2.0.40
+* **deps :** update npm (non-major)
+* **deps :** update npm all dependencies (non-major)
+* update renovate.json (CU-8694qg0t9)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Dependency updates @devowl-wp/utils 1.19.5</summary>
+
+
+**_Purpose of dependency:_** _Utility functionality for all your WordPress plugins._
+##### Bug Fixes
+
+* remove notice about too many requests to devowl.io servers (CU-8694uj43d)
+
+
+##### Build System
+
+* remove babel-loader and babel toolchain and introduce SWC (CU-8694pt2j7)
+
+
+##### Continuous Integration
+
+* introduce Renovate bot for dependency update automation (CU-8694qg0t9)
+
+
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** update composer dependencies (non-major)
+* **deps :** update dependency mpratt/embera to v2.0.40
+* **deps :** update npm (non-major)
+* **deps :** update npm all dependencies (non-major)
+* **deps :** update npm all dependencies inclusive some major updates (CU-8694qg0t9)
+* update renovate.json (CU-8694qg0t9)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Development dependency update @devowl-wp/api 0.5.23</summary>
+
+
+**_Purpose of dependency:_** _Shared typings for all Node.js backends and frontends._
+##### Build System
+
+* remove babel-loader and babel toolchain and introduce SWC (CU-8694pt2j7)
+
+
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** update npm all dependencies (non-major)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Development dependency update @devowl-wp/composer-licenses 0.1.16</summary>
+
+
+**_Purpose of dependency:_** _Helper functionalities for your composer project to validate licenses and generate a disclaimer._
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** update composer dependencies (non-major)
+* update renovate.json (CU-8694qg0t9)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Development dependency update @devowl-wp/continuous-integration 0.6.4</summary>
+
+
+**_Purpose of dependency:_** _DevOps macros, job templates and jobs for Gitlab CI and @devowl-wp/node-gitlab-ci._
+##### Continuous Integration
+
+* introduce Renovate bot for dependency update automation (CU-8694qg0t9)
+
+
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** update npm all dependencies (non-major)
+* update renovate.json (CU-8694qg0t9)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Development dependency update @devowl-wp/continuous-localization 0.8.7</summary>
+
+
+**_Purpose of dependency:_** _Provide a CLI to push and pull localization files from different translation management systems._
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** update npm all dependencies (non-major)
+* **deps :** update npm all dependencies inclusive some major updates (CU-8694qg0t9)
+* update commander and adm-zip (CU-8694qg0t9)
+* update some major dependencies (CU-8694qg0t9)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Development dependency update @devowl-wp/eslint-config 0.2.8</summary>
+
+
+**_Purpose of dependency:_** _Provide eslint configuration for our complete monorepo._
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** update npm (non-major)
+* **deps :** update npm all dependencies (non-major)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Development dependency update @devowl-wp/monorepo-utils 0.2.4</summary>
+
+
+**_Purpose of dependency:_** _Predefined monorepo utilities and tasks._
+##### Continuous Integration
+
+* remove npm-update-checker CLI command as we use Renovate now (CU-8694qg0t9)
+
+
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** update npm all dependencies (non-major)
+* update commander and adm-zip (CU-8694qg0t9)
+* update some major dependencies (CU-8694qg0t9)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Development dependency update @devowl-wp/node-gitlab-ci 0.7.14</summary>
+
+
+**_Purpose of dependency:_** _Create dynamic GitLab CI pipelines in JavaScript or TypeScript for each project. Reuse and inherit instructions and avoid duplicate code!_
+##### Continuous Integration
+
+* introduce Renovate bot for dependency update automation (CU-8694qg0t9)
+
+
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** update npm all dependencies (non-major)
+* update commander and adm-zip (CU-8694qg0t9)
+* update some major dependencies (CU-8694qg0t9)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Development dependency update @devowl-wp/phpcs-config 0.1.15</summary>
+
+
+**_Purpose of dependency:_** _Predefined functionalities for PHPCS._
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** update composer dependencies (non-major)
+* update renovate.json (CU-8694qg0t9)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Development dependency update @devowl-wp/phpunit-config 0.1.14</summary>
+
+
+**_Purpose of dependency:_** _Predefined functionalities for PHPUnit._
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** update composer dependencies (non-major)
+* update renovate.json (CU-8694qg0t9)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Development dependency update @devowl-wp/react-utils 0.1.4</summary>
+
+
+**_Purpose of dependency:_** _Provide various React utils, side effect free and tree shakeable._
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** update npm all dependencies (non-major)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Development dependency update @devowl-wp/regexp-translation-extractor 0.2.29</summary>
+
+
+**_Purpose of dependency:_** _Provide a performant translation extractor based on regular expression._
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** update npm (non-major)
+* **deps :** update npm all dependencies (non-major)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+<details><summary>Development dependency update @devowl-wp/webpack-config 0.2.31</summary>
+
+
+**_Purpose of dependency:_** _Webpack config builder for multiple ecosystems like standalone React frontends, Antd, Preact and WordPress._
+##### Build System
+
+* remove babel-loader and babel toolchain and introduce SWC (CU-8694pt2j7)
+
+
+##### Maintenance
+
+* **deps :** pin dependencies
+* **deps :** pin dependencies
+* **deps :** update npm (non-major)
+* **deps :** update npm (non-major)
+* **deps :** update npm all dependencies (non-major)
+* upgrade prettier v3 together with eslint flat config and run on all files (fix, format, CU-8694qg0t9)</details>
+
+
+
+
+
+## 4.22.16 (2024-05-29) (not released)
+
+**Note:** This version of the package has not (yet) been released publicly. This happens if changes have been made in dependencies that do not affect this package (e.g. changes for the development of the package). The changes will be rolled out with the next official update.
+
+**Note:** This package (@devowl-wp/real-media-library) has been updated because a dependency, which is also shipped with this package, has changed.
+
+
+
+
+
+
+
+## 4.22.15 (2024-05-10)
+
+**Note:** This package (@devowl-wp/real-media-library) has been updated because a dependency, which is also shipped with this package, has changed.
+
+
+<details><summary>Dependency updates @devowl-wp/real-product-manager-wp-client 1.19.19</summary>
+
+
+**_Purpose of dependency:_** _A WordPress client for Real Product Manager_
+##### Bug Fixes
+
+* delete checkboxes for privacy policy and only print an information for this (CU-861mrzwar)</details>
+
+<details><summary>Dependency updates @devowl-wp/real-utils 1.13.3</summary>
+
+
+**_Purpose of dependency:_** _Create cross-selling ads, about page, rating and newsletter input for WP Real plugins._
+##### Bug Fixes
+
+* delete checkboxes for privacy policy and only print an information for this (CU-861mrzwar)</details>
+
+<details><summary>Dependency updates @devowl-wp/utils 1.19.3</summary>
+
+
+**_Purpose of dependency:_** _Utility functionality for all your WordPress plugins._
+##### Bug Fixes
+
+* do not show admin notice about REST API issues in update admin screen (CU-8694hc398)
+* too many requests to license.devowl.io announcements endpoint (CU-86939q6ce)</details>
+
+
+
+
+
+## 4.22.14 (2024-04-25) (not released)
+
+**Note:** This version of the package has not (yet) been released publicly. This happens if changes have been made in dependencies that do not affect this package (e.g. changes for the development of the package). The changes will be rolled out with the next official update.
+
+**Note:** This package (@devowl-wp/real-media-library) has been updated because a dependency, which is also shipped with this package, has changed.
+
+
+<details><summary>Development dependency update @devowl-wp/api 0.5.21</summary>
+
+
+**_Purpose of dependency:_** _Shared typings for all Node.js backends and frontends._
+##### Bug Fixes
+
+* introducing password login in rcb (CU-86936my3v)
+
+
+##### Refactoring
+
+* introduce user base interfaces (CU-86936my3v)</details>
+
+
+
+
+
+## 4.22.13 (2024-04-10) (not released)
+
+**Note:** This version of the package has not (yet) been released publicly. This happens if changes have been made in dependencies that do not affect this package (e.g. changes for the development of the package). The changes will be rolled out with the next official update.
+
+**Note:** This package (@devowl-wp/real-media-library) has been updated because a dependency, which is also shipped with this package, has changed.
+
+
+<details><summary>Dependency updates @devowl-wp/utils 1.19.1</summary>
+
+
+**_Purpose of dependency:_** _Utility functionality for all your WordPress plugins._
+##### Maintenance
+
+* update stubs (CU-86949561p)</details>
+
+
+
+
+
+## 4.22.12 (2024-04-09)
+
+
+### Bug Fixes
+
+* escape output for Gutenberg gallery
+
+
+<details><summary>Dependency updates @devowl-wp/real-product-manager-wp-client 1.19.16</summary>
+
+
+**_Purpose of dependency:_** _A WordPress client for Real Product Manager_
+##### Bug Fixes
+
+* deactivate license domain detection when running WordPress through WP CLI (CU-869482eaf)
+
+
+##### Build Process
+
+* remove minimal translations el fi and fix localization system (CU-861myr2cq)</details>
+
+<details><summary>Dependency updates @devowl-wp/real-utils 1.13.0</summary>
+
+
+**_Purpose of dependency:_** _Create cross-selling ads, about page, rating and newsletter input for WP Real plugins._
+##### Build Process
+
+* remove minimal translations el fi and fix localization system (CU-861myr2cq)
+
+
+##### Features
+
+* translations into Hungarian, Romanian, Greek, Finnish and Slovak (CU-863gr8e97)</details>
+
+<details><summary>Dependency updates @devowl-wp/utils 1.19.0</summary>
+
+
+**_Purpose of dependency:_** _Utility functionality for all your WordPress plugins._
+##### Bug Fixes
+
+* compatibility with Perfmatters DelayJS functionality and Code on page load scripts (CU-869465a82)
+* implement a mechanism detecting a defect Consent REST API and recommend knowledgebase articles (CU-8693zknc0)
+* use vigenere cipher for obfuscating the REST API URL (CU-8693zknc0)
+
+
+##### Build Process
+
+* remove minimal translations el fi and fix localization system (CU-861myr2cq)
+
+
+##### Features
+
+* translations into Hungarian, Romanian, Greek, Finnish and Slovak (CU-863gr8e97)</details>
+
+<details><summary>Development dependency update @devowl-wp/phpunit-config 0.1.13</summary>
+
+
+**_Purpose of dependency:_** _Predefined functionalities for PHPUnit._
+##### Bug Fixes
+
+* scanner finds Google Maps for MyListing theme when Mapbox instead of Google Maps is used (CU-86947zz6j)</details>
+
+
+
+
+
+## 4.22.11 (2024-03-22)
+
+
+### Bug Fixes
+
+* compatibility with BeTheme / BeBuilder (CU-861m7mmu0)
+* compatibility with WordPress 6.5 (CU-869434yv9)
+
+
+<details><summary>Dependency updates @devowl-wp/real-product-manager-wp-client 1.19.15</summary>
+
+
+**_Purpose of dependency:_** _A WordPress client for Real Product Manager_
+##### Bug Fixes
+
+* avoid race conditions when contacting our backend servers to avoid triggering rate limit notice (CU-86939q6ce)</details>
+
+<details><summary>Dependency updates @devowl-wp/utils 1.18.3</summary>
+
+
+**_Purpose of dependency:_** _Utility functionality for all your WordPress plugins._
+##### Bug Fixes
+
+* avoid race conditions when contacting our backend servers to avoid triggering rate limit notice (CU-86939q6ce)</details>
+
+
+
+
+
+## 4.22.10 (2024-03-13)
+
+
+### Bug Fixes
+
+* escape folder gallery shortcode attributes before output
+
+
+
+
+
+
+
+## 4.22.9 (2024-03-04) (not released)
+
+**Note:** This version of the package has not (yet) been released publicly. This happens if changes have been made in dependencies that do not affect this package (e.g. changes for the development of the package). The changes will be rolled out with the next official update.
+
+**Note:** This package (@devowl-wp/real-media-library) has been updated because a dependency, which is also shipped with this package, has changed.
+
+
+<details><summary>Development dependency update @devowl-wp/webpack-config 0.2.29</summary>
+
+
+**_Purpose of dependency:_** _Webpack config builder for multiple ecosystems like standalone React frontends, Antd, Preact and WordPress._
+##### Bug Fixes
+
+* do not index admin UI in search engines (CU-8693yzxhv)</details>
+
+
+
+
+
 ## 4.22.8 (2024-02-26)
 
 

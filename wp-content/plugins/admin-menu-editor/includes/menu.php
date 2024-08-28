@@ -1,7 +1,7 @@
 <?php
 abstract class ameMenu {
 	const format_name = 'Admin Menu Editor menu';
-	const format_version = '7.0';
+	const format_version = '7.1';
 
 	protected static $custom_loaders = array();
 
@@ -83,10 +83,14 @@ abstract class ameMenu {
 		$menu = self::add_format_header($menu);
 
 		if ( $is_normalized && !$always_normalize ) {
-			$menu['tree'] = $arr['tree'];
+			if ( isset($arr['tree']) ) {
+				$menu['tree'] = $arr['tree'];
+			}
 		} else {
-			foreach($arr['tree'] as $file => $item) {
-				$menu['tree'][$file] = ameMenuItem::normalize($item);
+			if ( isset($arr['tree']) ) {
+				foreach ($arr['tree'] as $file => $item) {
+					$menu['tree'][$file] = ameMenuItem::normalize($item);
+				}
 			}
 			$menu['format']['is_normalized'] = true;
 		}
@@ -266,6 +270,16 @@ abstract class ameMenu {
 			throw new RuntimeException($message);
 		}
 		return $result;
+	}
+
+	/**
+	 * Create a new, empty menu configuration.
+	 *
+	 * @return array
+	 */
+	public static function new_empty_config() {
+		$menu = array('tree' => array());
+		return self::add_format_header($menu);
 	}
 
   /**
@@ -498,8 +512,10 @@ abstract class ameMenu {
 			return $menu;
 		}
 
-		$common = $menu['format']['common'];
-		$menu['tree'] = self::decompress_list($menu['tree'], $common);
+		if ( !empty($menu['tree']) ) {
+			$common = $menu['format']['common'];
+			$menu['tree'] = self::decompress_list($menu['tree'], $common);
+		}
 
 		unset($menu['format']['compressed'], $menu['format']['common']);
 		return $menu;
@@ -536,7 +552,7 @@ abstract class ameMenu {
 	 * @param array|null $extra_params Optional. An array of additional parameters to pass to the callback.
 	 * @return array
 	 */
-	protected static function map_items($items, $callback, $extra_params = null) {
+	public static function map_items($items, $callback, $extra_params = null) {
 		if ( $extra_params === null ) {
 			$extra_params = array();
 		}
@@ -629,7 +645,9 @@ class ameModifiedIconDetector {
 
 	public static function detect($menu) {
 		$detector = new self();
-		ameMenu::for_each($menu['tree'], array($detector, 'checkItem'));
+		if ( !empty($menu['tree']) ) {
+			ameMenu::for_each($menu['tree'], array($detector, 'checkItem'));
+		}
 		return $detector->getResult();
 	}
 

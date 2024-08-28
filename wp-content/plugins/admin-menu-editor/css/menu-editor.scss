@@ -70,6 +70,10 @@ $mainContainerBorderColor: $amePostboxBorderColor; //Was #cdd5d5 before WP 5.3.
 	border-width: 1px;
 }
 
+.ws_invalid_item_drop_target {
+	outline: 2px solid red;
+}
+
 /*************************************************
                      Actor UI
  *************************************************/
@@ -1927,7 +1931,7 @@ $userSelectionPanelPadding: 10px;
 	margin-bottom: 0.5em;
 	border-radius: 3px;
 	position: relative;
-	padding-right: 20px;
+	padding-right: 22px;
 }
 
 .ws_hint_close {
@@ -2176,6 +2180,7 @@ $userSelectionPanelPadding: 10px;
 
 #ws_sidebar_pro_ad {
     min-width: 225px;
+	max-width: 300px;
 
 	margin-top: 5px;
 	margin-left: 3px;

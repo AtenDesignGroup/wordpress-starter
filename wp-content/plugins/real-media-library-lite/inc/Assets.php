@@ -75,26 +75,18 @@ class Assets
         $realUtils = RML_ROOT_SLUG . '-real-utils-helper';
         \array_walk($requires, 'wp_enqueue_script');
         // Your assets implementation here... See utils Assets for enqueue* methods
-        $useNonMinifiedSources = $this->useNonMinifiedSources();
-        // Use this variable if you need to differ between minified or non minified sources
         // Our utils package relies on jQuery, but this shouldn't be a problem as the most themes still use jQuery (might be replaced with https://github.com/github/fetch)
         // Enqueue external utils package
         $scriptDeps = $this->enqueueUtils();
-        $scriptDeps = \array_merge($scriptDeps, [$realUtils, 'i18n-react', 'react-aiot.vendor', 'react-aiot'], $requires);
+        $scriptDeps = \array_merge($scriptDeps, [$realUtils], $requires);
         // real-product-manager-wp-client (for licensing purposes)
         \array_unshift($scriptDeps, RpmWpClientCore::getInstance()->getAssets()->enqueue($this));
         // Enqueue plugin entry points
         \wp_enqueue_media(['post' => \get_query_var('post-id', null)]);
         \add_thickbox();
         \wp_enqueue_script('wp-api');
-        $this->enqueueLibraryScript('i18n-react', [[$useNonMinifiedSources, 'i18n-react/dist/i18n-react.umd.js'], 'i18n-react/dist/i18n-react.umd.min.js'], [Constants::ASSETS_HANDLE_REACT_DOM]);
-        $this->enqueueLibraryScript('mobx-state-tree', [[$useNonMinifiedSources, 'mobx-state-tree/dist/mobx-state-tree.umd.js'], 'mobx-state-tree/dist/mobx-state-tree.umd.min.js'], [Constants::ASSETS_HANDLE_MOBX]);
-        $this->enqueueLibraryScript('react-aiot.vendor', 'react-aiot/umd/react-aiot.vendor.umd.js', [Constants::ASSETS_HANDLE_REACT_DOM]);
-        $this->enqueueLibraryScript('react-aiot', 'react-aiot/umd/react-aiot.umd.js', ['react-aiot.vendor']);
-        $this->enqueueLibraryStyle('react-aiot.vendor', 'react-aiot/umd/react-aiot.vendor.umd.css');
-        $this->enqueueLibraryStyle('react-aiot', 'react-aiot/umd/react-aiot.umd.css', ['react-aiot.vendor']);
         $handle = $this->enqueueScript('rml', [[$this->isPro(), 'rml.pro.js'], 'rml.lite.js'], $scriptDeps);
-        $this->enqueueStyle('rml', 'rml.css', [$realUtils]);
+        $this->enqueueStyle('rml', 'rml.css');
         // Plugin icon font
         \wp_enqueue_style('rml-font', \plugins_url('public/others/icons/css/rml.css', RML_FILE), [], RML_VERSION);
         // Localize script with server-side variables (RML_SLUG_CAMELCASE can not be used in lite environment, use LEGACY rmlOpts)

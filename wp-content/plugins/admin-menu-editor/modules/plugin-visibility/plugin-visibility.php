@@ -164,6 +164,11 @@ class amePluginVisibility extends amePersistentModule {
 
 		if ( !isset($role) ) {
 			$role = get_role($roleId);
+			if ( !isset($role) ) {
+				//This should never happen, but a user reported that it did on their site.
+				$cache[$roleId] = false;
+				return false;
+			}
 		}
 
 		$result = false;

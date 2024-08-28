@@ -68,6 +68,9 @@ namespace AmeRedirectorUi {
 		},
 		isUser(): boolean {
 			return false;
+		},
+		hasOwnCap(_: string): boolean | null {
+			return null;
 		}
 	}
 
@@ -146,6 +149,9 @@ namespace AmeRedirectorUi {
 						},
 						isUser(): boolean {
 							return false;
+						},
+						hasOwnCap(_: string): boolean | null {
+							return null;
 						}
 					}
 				}
@@ -483,6 +489,10 @@ namespace AmeRedirectorUi {
 
 		isUser(): this is IAmeUser {
 			return false;
+		}
+
+		hasOwnCap(_: string): boolean | null {
+			return null;
 		}
 	}
 

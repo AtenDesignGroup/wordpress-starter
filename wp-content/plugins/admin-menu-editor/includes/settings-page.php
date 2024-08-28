@@ -520,6 +520,18 @@ $isProVersion = apply_filters('admin_menu_editor_is_pro', false);
 
 					<p>
 						<label>
+							<input type="checkbox" name="delete_orphan_actor_settings"
+								<?php checked($settings['delete_orphan_actor_settings']); ?>>
+							Automatically delete settings associated with missing roles and users
+						</label>
+						<br><span class="description">
+							Applies only to certain parts of the plugin. In Multisite, this option is disabled
+							by default because different sites can potentially have different roles.
+						</span>
+					</p>
+
+					<p>
+						<label>
 							<input type="checkbox" name="compress_custom_menu"
 								<?php checked($settings['compress_custom_menu']); ?>>
 							Compress menu configuration data that's stored in the database
