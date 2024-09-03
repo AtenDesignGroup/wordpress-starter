@@ -1,0 +1,78 @@
+// Import global settings
+@forward './global/00-base/colors';
+@forward './global/00-base/layouts';
+@forward './global/00-base/typography';
+
+// Broad element styling
+@forward './global/01-elements/buttons';
+@forward './global/01-elements/events';
+@forward './global/01-elements/gtranslate-widget';
+@forward './global/01-elements/images';
+@forward './global/01-elements/layout';
+@forward './global/01-elements/main-menu';
+@forward './global/01-elements/notification-bar';
+@forward './global/01-elements/pagination';
+@forward './global/01-elements/search-widget';
+@forward './global/01-elements/tables';
+@forward './global/01-elements/text';
+@forward './global/01-elements/utility-nav';
+
+// Individual components
+@forward './global/02-components/callout-link';
+@forward './global/02-components/footer';
+@forward './global/02-components/heading-block';
+@forward './global/02-components/news-archives';
+@forward './global/02-components/sidebar-menu';
+
+// Page templates
+@forward './global/03-layouts/layouts';
+
+@use './partials/partials' as *;
+
+.a11y-visible {
+  display: none;
+}
+
+body {
+  padding: 0 rem(16px) rem(16px);
+
+  .acf-block-preview {
+    margin-bottom: rem(28px);
+  }
+
+  .l-gutter {
+    margin-left: 0px !important;
+  }
+
+  // Accordion panels are always expanded inside the editor
+  .accordion-block .accordion-block-panel.collapsed {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+// Image block styles for editor
+.wp-block-image {
+  figcaption {
+    // Overriding WP default caption min-width in editor previews
+    min-width: 100% !important;
+  }
+
+  .components-resizable-box__container {
+    // Overriding WP default caption width in editor previews
+    width: 100% !important;
+  }
+}
+
+// ACF radio button styles
+.acf-radio-list {
+  input[type='radio'] {
+    width: auto;
+  }
+}
+
+.acf-true-false {
+  input[type='checkbox'] {
+    width: auto;
+  }
+}

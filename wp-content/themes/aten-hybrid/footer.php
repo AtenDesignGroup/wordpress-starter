@@ -17,22 +17,20 @@
 	</div><!-- #content -->
 </main><!-- #main -->
 
-    <?php get_template_part('legal-disclaimer'); ?>
-
 <footer id="colophon" class="site-footer" role="contentinfo">
 
 		<div class="site-info">
 			<div class="site-logo">
                 <figure class="footer-logo wp-block-image size-full">
                     <a href="/" class="footer-logo-link">
-						<img decoding="async" loading="lazy" src="/wp-content/themes/aten-hybrid/assets/images/logos/logo.svg" alt="Cost & Coverage Collective logo" class="mobile-only" />
-                        <img decoding="async" loading="lazy" src="/wp-content/themes/aten-hybrid/assets/images/logos/logo.svg" alt="Cost & Coverage Collective logo" class="tablet-up" />
+												<img decoding="async" loading="lazy" src="/wp-content/themes/aten-hybrid/assets/logo.svg" alt="Aten logo" class="mobile-only" />
+                        <!-- <img decoding="async" loading="lazy" src="/wp-content/themes/aten-hybrid/assets/logo.svg" alt="Aten logo" class="tablet-up" /> -->
                     </a>
                 </figure>
 			</div><!-- .site-logo -->
 
 			<?php if ( has_nav_menu( 'footer' ) ) : ?>
-                <nav aria-label="<?php esc_attr_e( 'footer', 'ccc' ); ?>" class="footer-navigation">
+                <nav aria-label="<?php esc_attr_e( 'footer', 'aten-hybrid' ); ?>" class="footer-navigation">
 					<?php
 					wp_nav_menu(
 						array(
@@ -46,15 +44,15 @@
                 </nav><!-- .footer-navigation -->
 			<?php endif; ?>
 
-            <div class="project-information-text">
-	            <?php get_template_part( 'template-parts/footer/footer-text' ); ?>
-            </div>
+			<div class="footer-text">
+				<?php get_template_part( 'template-parts/footer/footer-text' ); ?>
+			</div>
 
 			<div class="top-arrow-wrapper">
-				<a href="#ccc-site" id="back-to-top" class="back-to-top" aria-label="Scroll back to top">
+				<a href="#aten-hybrid" id="back-to-top" class="back-to-top" aria-label="Scroll back to top">
 					<icon>
-						<img src="/wp-content/themes/aten-hybrid/assets/icons/backtotop.svg" alt="arrow up icon" class="static-version">
-						<img src="/wp-content/themes/aten-hybrid/assets/icons/backtotop-hover.svg" alt="arrow up icon" class="hover-version">
+						<img src="/wp-content/themes/aten-hybrid/assets/icons/arrow_circle_up.svg" alt="arrow up icon" class="static-version">
+						<!-- <img src="/wp-content/themes/aten-hybrid/assets/icons/arrow_circle_up.svg" alt="arrow up icon" class="hover-version"> -->
 					</icon>
 				</a>
 			</div>

@@ -1,0 +1,103 @@
+@use '../../../libraries/partials/partials' as *;
+
+// Contact Info sidebar component styles
+.aten-hybrid-sidebar-contact-group {
+  @include bp-min(tablet) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  @include bp-min(sm-desktop) {
+    flex-wrap: nowrap;
+  }
+
+  @include bp-min(desktop) {
+    flex-wrap: wrap;
+  }
+}
+
+.aten-hybrid-contact-info {
+  margin-bottom: rem(20px);
+
+  @include bp-min(tablet) {
+    width: 48%;
+  }
+
+  @include bp-min(sm-desktop) {
+    width: 32%;
+  }
+
+  @include bp-min(desktop) {
+    width: 100%;
+    border-top: rem(2px) solid var(--gray-grey);
+  }
+
+  @include bp-min(lg-desktop) {
+    border: 0;
+    margin-top: 0;
+    margin-bottom: rem(2px);
+  }
+
+  h2.title {
+    @include type-scale(heading, h6);
+    // Explicitly setting font size as it does not change with screen size
+    font-size: rem(14px);
+    font-weight: var(--aten-fw-bold);
+    margin-top: rem(20px);
+
+    @include bp-min(tablet) {
+      margin-top: rem(40px);
+    }
+
+    @include bp-min(lg-desktop) {
+      margin-top: rem(28px);
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      @include type-scale(body, 16);
+      // Explicitly setting font size as it does not change with screen size
+      font-size: rem(16px);
+      margin-bottom: rem(16px);
+      text-indent: 0;
+      // Setting a minimum height equal to the icon size to avoid icon overlap
+      min-height: rem(34px);
+      display: flex;
+
+      .contact-icon {
+        @include font-material-icons;
+        font-size: rem(18px);
+        width: rem(34px);
+        height: rem(34px);
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        float: left;
+        margin-right: rem(16px);
+        flex-shrink: 0;
+
+        &.call {
+          background-color: var(--aten-orange-dark);
+        }
+
+        &.address {
+          background-color: var(--aten-green);
+        }
+
+        &.hours {
+          background-color: var(--aten-yellow);
+        }
+
+        &.email {
+          background-color: var(--aten-red);
+        }
+      }
+    }
+  }
+}

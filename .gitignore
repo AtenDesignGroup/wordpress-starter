@@ -43,6 +43,7 @@ wp-content/backups/
 /wp-content/index.php
 /wp-content/mu-plugins/
 /wp-content/themes/twenty*/
+!/wp-content/themes/twentytwentyone
 
 # Include your custom themes and plugins
 !/wp-content/themes/aten-fse

@@ -1,0 +1,41 @@
+{
+  "name": "event-location",
+  "title": "Event Location Block",
+  "active": true,
+  "description": "Custom Block to display a Location for an Event",
+  "category": "common",
+  "icon": "location",
+  "keywords": [
+    "Locations",
+    "Location",
+    "Location Block"
+  ],
+  "post_types": [
+    "tribe_event"
+  ],
+  "align_content": "top",
+  "mode": "edit",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "event-location-block.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/event_location.svg"
+      }
+    }
+  }
+}

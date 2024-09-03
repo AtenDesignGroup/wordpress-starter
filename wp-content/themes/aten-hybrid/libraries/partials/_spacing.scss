@@ -1,0 +1,276 @@
+//
+// Mixins - Spacing
+// Use these mixins to setup base spacing custom properties and utility classes.
+//
+// - 01 - Custom Properties
+// - 02 - Utitlity Classes
+//
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use './breakpoints' as bp;
+@use './base' as settings-base;
+
+// ------------------------------------
+// 01 - Custom Properties
+// The following mixins generate custom properties for spacing scales.
+// ------------------------------------
+
+/// Converts the map to a format that can be used to generate custom properties.
+/// grouped by breakpoint. This allows for more concise output in the final .css file.
+///
+/// @access private
+///
+/// @param {Map} $input-map - The size map
+///   $spacing-scale: (
+///     size1: (
+///       breakpoint1: pixelValue,
+///       breakpoint2: pixelValue,
+///       ...
+///     ),
+///     size2: ( ... ),
+///       ...
+///     ),
+///   );
+/// @return {Map} - The converted map
+///
+/// Example:
+/// $spacing-scale: (
+///   0: (
+///     mobile: 0,
+///   ),
+///   10: (
+///     mobile: 4,
+///     tablet: 8,
+///     sm-desktop: 10,
+///   ),
+/// );
+///
+/// $ouput: convert-spacing-map($input-map);
+///
+/// $output: (
+///   mobile: (
+///     0: (0, 0),
+///     10: (0.25, 4),
+///   ),
+///   tablet: (
+///     10: (0.5, 8),
+///   ),
+///   sm-desktop: (
+///     10: (0.625, 10),
+///   ),
+/// );
+///
+@function convert-spacing-map($input-map) {
+  $output-map: ();
+
+  @each $size, $breakpoints in $input-map {
+    @each $breakpoint, $value in $breakpoints {
+      $output-map: map.deep-merge(
+        $output-map,
+        (
+          $breakpoint: (
+            $size: (
+              math.div($value, 16),
+              $value,
+            ),
+          ),
+        )
+      );
+    }
+  }
+
+  @return $output-map;
+}
+
+/// This mixin generates a full range of :root definitions for each size, and breakpoint
+/// from a spacing scale.
+///
+/// The spacing scale should be in the format:
+/// $spacing-scale: (
+///   size1: (
+///     breakpoint1: pixelValue,
+///     breakpoint2: pixelValue,
+///     ...
+///   ),
+///   size2: ( ... ),
+///     ...
+///   ),
+/// );
+/// @access public
+///
+/// @param {Map} $map - The size map
+/// @param {String} $prefix - The prefix to use for the CSS custom properties
+///
+/// @example scss - Usage
+///   @include spacing-scale-custom-props($spacing-map);
+///   @include spacing-scale-custom-props($spacing-map, 'theme-name');
+@mixin spacing-scale-custom-props(
+  $scale,
+  $prefix: settings-base.$property-prefix
+) {
+  $map: convert-spacing-map($scale);
+  @if $prefix != '' {
+    $prefix: $prefix + '-';
+  }
+  $new-prefix: $prefix $prefix + '-';
+
+  :root {
+    @each $breakpoint, $sizes in $map {
+      @if ($breakpoint == 'mobile') {
+        // px values.
+        @each $size, $value in $sizes {
+          --#{$prefix}space-#{$size}: #{nth($value, 2)}px;
+        }
+
+        // rem values.
+        @each $size, $value in $sizes {
+          @if ($size != nth($value, 2)) {
+            --#{$prefix}space-rem-#{$size}: #{nth(
+                $value,
+                1
+              )}rem; /* #{nth($value, 2)}px */
+          }
+        }
+      } @else {
+        @include bp.bp-min($breakpoint) {
+          // px values.
+          @each $size, $value in $sizes {
+            --#{$prefix}space-#{$size}: #{nth($value, 2)}px;
+          }
+
+          // rem values.
+          @each $size, $value in $sizes {
+            @if ($size != nth($value, 2)) {
+              --#{$prefix}space-rem-#{$size}: #{nth(
+                  $value,
+                  1
+                )}rem; /* #{nth($value, 2)}px */
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// ------------------------------------
+// 02 - Utility Classes
+// The following mixins generate utility classes for padding, margin, and gap.
+// ------------------------------------
+
+/// This mixin generates a full range of gap utility classes for each size in
+/// the provided scale.
+///
+/// @access public
+///
+/// @param {Map} $scale - The spacing scale
+/// @param {String} $prefix - The prefix to use for the CSS custom properties
+///
+/// @example scss - Usage
+///  @include gap-utility-classes($spacing-map, 'theme-name');
+///
+@mixin gap-utility-classes($scale, $prefix: settings-base.$property-prefix) {
+  @if $prefix != '' {
+    $prefix: $prefix + '-';
+  }
+
+  $directions: (column, row);
+
+  @each $size, $value in $scale {
+    .u-gap-#{$size} {
+      gap: var(--#{$prefix}space-#{$size});
+    }
+  }
+
+  @each $direction in $directions {
+    @each $size, $value in $scale {
+      .u-#{$direction}-gap-#{$size} {
+        #{$direction}-gap: var(--#{$prefix}space-#{$size});
+      }
+    }
+  }
+}
+
+/// This mixin generates a full range of padding utility classes for each size in
+/// the provided scale.
+///
+/// @access public
+///
+/// @param {Map} $scale - The spacing scale
+/// @param {String} $prefix - The prefix to use for the CSS custom properties
+///
+/// @example scss - Usage
+/// @include padding-utility-classes($spacing-map, 'theme-name');
+///
+@mixin padding-utility-classes(
+  $scale,
+  $prefix: settings-base.$property-prefix
+) {
+  @if $prefix != '' {
+    $prefix: $prefix + '-';
+  }
+
+  $directions: (
+    top: 't',
+    right: 'r',
+    bottom: 'b',
+    left: 'l',
+  );
+
+  @each $size, $value in $scale {
+    .u-p-#{$size} {
+      padding: var(--#{$prefix}space-#{$size});
+    }
+  }
+
+  @each $direction, $dir_prefix in $directions {
+    @each $size, $value in $scale {
+      .u-p#{$dir_prefix}-#{$size} {
+        padding-#{$direction}: var(--#{$prefix}space-#{$size});
+      }
+    }
+  }
+}
+
+/// This mixin generates a full range of margin utility classes for each size in
+/// the provided scale.
+///
+/// @access public
+///
+/// @param {Map} $scale - The spacing scale
+/// @param {String} $prefix - The prefix to use for the CSS custom properties
+///
+/// @example scss - Usage
+/// @include margin-utility-classes($spacing-map, 'theme-name');
+///
+@mixin margin-utility-classes($scale, $prefix: settings-base.$property-prefix) {
+  @if $prefix != '' {
+    $prefix: $prefix + '-';
+  }
+
+  $directions: (
+    top: 't',
+    right: 'r',
+    bottom: 'b',
+    left: 'l',
+  );
+
+  @each $size, $value in $scale {
+    .u-m-#{$size} {
+      margin: var(--#{$prefix}space-#{$size});
+    }
+  }
+
+  @each $direction, $dir_prefix in $directions {
+    .u-m#{$dir_prefix}-auto {
+      margin-#{$direction}: auto;
+    }
+
+    @each $size, $value in $scale {
+      .u-m#{$dir_prefix}-#{$size} {
+        margin-#{$direction}: var(--#{$prefix}space-#{$size});
+      }
+    }
+  }
+}

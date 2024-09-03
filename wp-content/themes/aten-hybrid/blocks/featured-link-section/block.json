@@ -1,0 +1,45 @@
+{
+  "name": "featured_link_section",
+  "title": "Featured Link Section",
+  "active": true,
+  "description": "Custom block to display a featured link section containing up to two button links and up to six individual links in a list.",
+  "category": "common",
+  "icon": "align-pull-left",
+  "keywords": [
+    "CTA",
+    "link",
+    "callout",
+    "call-to-action"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "news",
+    "location"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "featured-link-section.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/featured_link_section.svg"
+      }
+    }
+  }
+}

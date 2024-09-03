@@ -1,12 +1,12 @@
 {
   "name": "acf/page-header",
-  "title": "Standard Page Header",
-  "description": "A custom block that adds a page header with an optional description. Resource and Message posts can have a resource download button and customized icon.",
+  "title": "Page Header",
+  "description": "A custom block that adds a page header with a subtitle",
   "category": "formatting",
-  "icon": "button",
+  "icon": "admin-comments",
   "keywords": ["subtitle", "header", "hero"],
   "supports": {
-    "multiple": false
+    "mode": false
   },
   "acf": {
     "mode": "edit",
@@ -17,7 +17,7 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/page_header.svg"
+        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/page_header.svg"
       }
     }
   }

@@ -1,0 +1,334 @@
+@use '../../partials/partials' as *;
+
+// Site footer styles
+footer {
+  margin-top: rem(40px);
+  position: relative;
+  overflow: hidden;
+
+  @include bp-min(tablet) {
+    margin-top: rem(60px);
+  }
+
+  @include bp-min(desktop) {
+    margin-top: rem(100px);
+  }
+
+  // Positioning to remove space at bottom when loading
+  .static-wave {
+    position: absolute;
+    top: 0px;
+  }
+
+  // Internal wrapper
+  .footer-wrapper {
+    position: relative;
+    z-index: 0;
+
+    @include bp-min(desktop) {
+      margin-left: rem(60px);
+      margin-right: rem(60px);
+    }
+
+    @include bp-min(lg-desktop) {
+      margin-left: rem(80px);
+      margin-right: rem(80px);
+    }
+
+    @include bp-min(wrapper) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  // Back to top button
+  .back-to-top {
+    align-items: center;
+    background: var(--sky-blue);
+    border-radius: rem(100px);
+    display: flex;
+    flex-direction: row;
+    height: rem(40px);
+    justify-content: center;
+    position: absolute;
+    right: rem(10px);
+    top: rem(10px);
+    width: rem(40px);
+    z-index: 2;
+
+    &:hover,
+    &:focus {
+      background: var(--aten-yellow);
+    }
+
+    icon {
+      height: rem(24px);
+      padding: rem(4px) rem(8px);
+      width: rem(24px);
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Upper menu section background color
+.footer-upper {
+  // @include pseudo-band(--gray);
+  background-color: var(--aten-gray);
+}
+
+.footer-upper-wrapper {
+  display: block;
+  padding-top: rem(28px);
+  width: 100%;
+
+  @include bp-min(tablet) {
+    display: flex;
+    flex-flow: row wrap;
+    padding-top: rem(60px);
+    padding-bottom: rem(60px);
+  }
+
+  @include bp-min(sm-desktop) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: rem(40px);
+  }
+
+  @include bp-min(desktop) {
+    grid-template-columns: minmax(240px, auto) minmax(auto, 260px) auto;
+    gap: rem(30px);
+    padding-top: rem(80px);
+    padding-bottom: rem(80px);
+  }
+
+  @include bp-min(lg-desktop) {
+    grid-template-columns: minmax(330px, 1fr) 280px minmax(600px, auto);
+    gap: rem(40px);
+  }
+}
+
+.footer-logo {
+  flex-grow: 1;
+
+  .footer-logo-link {
+    display: block;
+    max-width: rem(250px);
+    width: 100%;
+
+    @include bp-min(lg-desktop) {
+      max-width: rem(330px);
+    }
+  }
+
+  img {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  @include bp-min(tablet) {
+    flex: 1 1 50%;
+  }
+}
+
+.footer-upper-menu {
+  margin-top: rem(24px);
+  margin-bottom: rem(24px);
+
+  @include bp-min(tablet) {
+    flex: 1 1 50%;
+  }
+
+  @include bp-min(sm-desktop) {
+    margin: 0;
+  }
+
+  ul {
+    display: flex;
+    flex-flow: column;
+    min-width: rem(280px);
+    gap: rem(8px);
+    @include list--no-bullets;
+    li {
+      a {
+        @include type-scale(body, 18);
+        color: var(--aten-purple);
+        font-weight: var(--aten-fw-bold);
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: var(--aten-purple-dark);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.footer-locations {
+  border-top: 2px solid var(--gray);
+  display: flex;
+  flex-flow: column;
+  margin-top: rem(24px);
+  padding-top: rem(24px);
+  padding-bottom: rem(28px);
+  width: 100%;
+
+  h3 {
+    font-weight: var(--aten-fw-bold);
+  }
+  p {
+    margin-bottom: 0;
+    margin-top: rem(8px);
+    span {
+      display: inline-block;
+      margin-bottom: rem(8px);
+    }
+  }
+
+  // Account for all sections beyond first
+  div:not(:first-of-type) {
+    padding-top: rem(24px);
+  }
+
+  @include bp-min(tablet) {
+    flex-flow: row nowrap;
+    margin-bottom: rem(60px);
+    padding-top: rem(40px);
+    margin-top: rem(40px);
+
+    div {
+      flex: 1 1 50%;
+
+      &:not(:first-of-type) {
+        padding-top: 0;
+      }
+    }
+  }
+
+  @include bp-min(sm-desktop) {
+    border-top: none;
+    flex-flow: column;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+    width: fit-content;
+
+    div:not(:first-of-type) {
+      padding-top: rem(40px);
+    }
+  }
+
+  // Switch to grid layout
+  @include bp-min(desktop) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: rem(30px);
+
+    div:not(:first-of-type) {
+      padding-top: 0px;
+    }
+  }
+
+  @include bp-min(lg-desktop) {
+    grid-template-columns: rem(280px) rem(280px);
+    gap: rem(40px);
+  }
+}
+
+// Lower footer section
+.footer-lower {
+  // @include pseudo-band(--red);
+  background-color: var(--aten-red);
+  display: block;
+  justify-content: space-between;
+  padding: rem(32px) 0;
+  flex-flow: column;
+
+  @include bp-min(tablet) {
+    display: flex;
+    flex-flow: row;
+  }
+}
+
+// Footer social menu
+.footer-social ul {
+  display: flex;
+  flex-flow: row wrap;
+  gap: rem(32px);
+  @include list--no-bullets;
+
+  li.social-item {
+    a:hover,
+    a:focus {
+      border-bottom: rem(2px) solid var(--aten-yellow);
+      text-decoration: underline;
+      svg path {
+        fill: var(--aten-yellow);
+      }
+    }
+    svg path {
+      fill: var(--white);
+    }
+  }
+}
+
+//Footer utility menu
+.footer-lower-menu {
+  margin-top: rem(24px);
+
+  @include bp-min(tablet) {
+    margin-top: 0;
+  }
+
+  ul {
+    display: flex;
+    flex-flow: column;
+    gap: rem(8px);
+    @include list--no-bullets;
+
+    @include bp-min(tablet) {
+      flex-flow: row;
+      gap: rem(32px);
+    }
+
+    li {
+      a {
+        @include type-scale(body, 14);
+        color: var(--white);
+
+        @include bp-max(tablet) {
+          // keeping font size at 14px for mobile
+          font-size: rem(14px);
+        }
+      }
+    }
+  }
+}
+
+// On mobile dislay image, larger screens display animation
+.footer-accent {
+  position: relative;
+  min-height: rem(100px);
+
+  @include bp-max(tablet) {
+    min-height: 0px;
+  }
+
+  .wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
+  .wave + .wave {
+    z-index: 0;
+  }
+}
