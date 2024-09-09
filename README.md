@@ -75,7 +75,7 @@ Assign the Jira ticket to the QA team member, provide the link to the develop en
     4. Create a feature branch based on the Jira ticket name `git checkout -b project-code-###`
     5. Feature branches `feature/project-code-###` with a pull request will spin up a new multidev environment in Pantheon
     6. Commit changes to your feature branch `git add .` and `git commit -m "project-code-###: note about the change" and `git push`
-    7. Merge into staging branch for testing on Acquia `git checkout staging` and `git merge project-code-###`
+    7. Merge into staging branch for testing on Pantheon/WP Engine/Kinsta or other Hosting platform `git checkout staging` and `git merge project-code-###`
     8. After your changes are approved on staging, merge your feature branch into the main branch and deploy
         1. `git checkout main` and `git merge project-code-###` and `git push`
 2. Using a Release/Sprint Branch - Useful if working on a bunch of features
@@ -88,7 +88,7 @@ Assign the Jira ticket to the QA team member, provide the link to the develop en
         3. On the main branch `git checkout release-1`
         4. Create a feature branch of the release branch based on the Jira ticket name `git checkout -b project-code-###`
         5. Commit changes to your feature branch `git add .` and `git commit -m "project-code-###: note about the change" and `git push`
-        6. Merge into release branch for testing on Acquia `git checkout release-1` and `git merge project-code-###`
+        6. Merge into release branch for testing on Pantheon/WP Engine/Kinsta or other Hosting platform `git checkout release-1` and `git merge project-code-###`
         7. After your changes are approved on staging, merge your feature branch into the main branch and deploy
             1. `git checkout main` and `git merge project-code-###` and `git push`
     3. Deploying the release
@@ -99,7 +99,7 @@ Assign the Jira ticket to the QA team member, provide the link to the develop en
 
 
 ## Theme Information
-The wordpress-start comes with two themes, once a preferred theme is chosen the unused theme can be removed. 
+The wordpress-starter comes with two themes, once a preferred theme is chosen the unused theme can be removed. 
 
 ### Aten FSE Theme
 
