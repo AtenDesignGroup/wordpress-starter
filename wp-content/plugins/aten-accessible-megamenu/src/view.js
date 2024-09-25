@@ -3,31 +3,53 @@
  */
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Set up variables for use throughout the script.
-    const menuContainer = document.querySelector('.adg-a11y-megamenu-nav-container');
-    const mobileMenuToggle = document.createElement('button');
-    mobileMenuToggle.className = 'adg-a11y-mobile-menu-toggle';
-    mobileMenuToggle.setAttribute('aria-expanded', 'false');
-    mobileMenuToggle.innerHTML = '<span class="dashicons dashicons-no-alt" aria-hidden="true"></span><span class="dashicons dashicons-menu" aria-hidden="true"></span><span class="adg-a11y-mobile-menu-toggle-text">Menu</span>';
-    menuContainer.insertAdjacentElement('afterbegin', mobileMenuToggle);
+    const menus = document.querySelectorAll('.adg-a11y-megamenu-wrap');
 
-    // Adjusting to mobile menu on resize and initial load.
-    window.addEventListener("resize", toggleMobileMenuActivation);
-    toggleMobileMenuActivation();
+    const generateUniqueId = (length) => {
+        const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let id = '';
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            id += characters[randomIndex];
+        }
+        return id;
+    }
 
-    // Adding toggle event listeners to all buttons in the menu.
-    initializeMenuButtons();
+    window.addEventListener("resize", function(){
+        menus.forEach(function(menu) {
+            toggleMobileMenuActivation(menu);
+        });
+    });
+    
+    menus.forEach(function(menu) {
+        // Set up variables for use throughout the script.
+        const menuContainer = menu.querySelector('.adg-a11y-megamenu-nav-container');
+        const mobileMenuToggle = document.createElement('button');
 
-    // Building keyboard navigation for the menu.
-    initializeKeyboardNavigation();
+        // Building mobile menu toggle button.
+        mobileMenuToggle.setAttribute('id', 'adg-a11y-mobile-menu-toggle-' + generateUniqueId(6));        
+        mobileMenuToggle.className = 'adg-a11y-mobile-menu-toggle';
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.innerHTML = '<span class="dashicons dashicons-no-alt" aria-hidden="true"></span><span class="dashicons dashicons-menu" aria-hidden="true"></span><span class="adg-a11y-mobile-menu-toggle-text">Menu</span>';
+        menuContainer.insertAdjacentElement('afterbegin', mobileMenuToggle);
+
+        // Adjusting to mobile menu on initial load.
+        toggleMobileMenuActivation(menu);
+
+        // Adding toggle event listeners to all buttons in the menu.
+        initializeMenuButtons(menu);
+
+        // Building keyboard navigation for the menu.
+        initializeKeyboardNavigation(menu);
+    });
 });
 
 
 /**
  * Enables keyboard navigation for the megamenu.
  */
-function initializeKeyboardNavigation() {
-    const menuItems = document.querySelectorAll('.adg-a11y-megamenu .menu-item-type-custom a, .adg-a11y-megamenu .adg-a11y-megamenu-button, .adg-a11y-megamenu .menu-item, .adg-a11y-mobile-menu-toggle');
+function initializeKeyboardNavigation(menu) {
+    const menuItems = menu.querySelectorAll('.adg-a11y-megamenu .menu-item-type-custom a, .adg-a11y-megamenu .adg-a11y-megamenu-button, .adg-a11y-megamenu .menu-item, .adg-a11y-mobile-menu-toggle');
     menuItems.forEach(function (item) {
         processKeyboardInput(item, toggleMenu);
     });
@@ -37,8 +59,8 @@ function initializeKeyboardNavigation() {
  * Initializes the menu buttons and attaches a click event listener to each button.
  * When a button is clicked, it calls the provided toggleMenu function for that button's associated menu.
  */
-function initializeMenuButtons() {
-    const megamenuButtons = document.querySelectorAll('.adg-a11y-megamenu-button, .adg-a11y-mobile-menu-toggle');
+function initializeMenuButtons(menu) {
+    const megamenuButtons = menu.querySelectorAll('.adg-a11y-megamenu-button, .adg-a11y-mobile-menu-toggle');
     for (let i = 0; i < megamenuButtons.length; i++) {
         megamenuButtons[i].addEventListener("click", function () {
             toggleMenu(this);
@@ -50,6 +72,8 @@ function initializeMenuButtons() {
  * Attaches a keyboard event listener to the given item and handles keyboard interactions.
  *
  * @param {HTMLElement} item - The menu item to attach the event listener to.
+ * 
+ * TODO: Refactor this function to reduce nesting and improve readability.
  */
 function processKeyboardInput(item) {
     item.addEventListener('keydown', function (event) {
@@ -70,11 +94,13 @@ function processKeyboardInput(item) {
             // ESC key closes the current menu or submenu and focuses on the parent button.
             case "Escape":
                 let targetButton;
-                if (this.classList.contains('adg-a11y-megamenu-button')) {
+                if(this.classList.contains('adg-a11y-mobile-menu-toggle') && this.getAttribute('aria-expanded') == 'true') {
+                    targetButton = this;
+                } else if (this.classList.contains('adg-a11y-megamenu-button')) {
                     if (this.getAttribute('aria-expanded') == 'true') {
                         targetButton = this;
                     }
-                    if (this.closest('.submenu-expanded')) {
+                    else if (this.closest('.submenu-expanded')) {
                         targetButton = this.closest('.submenu-expanded').previousElementSibling;
                     } else {
                         targetButton = this.closest('.adg-a11y-mobile-menu-wrapper').querySelector('.adg-a11y-mobile-menu-toggle');
@@ -100,11 +126,9 @@ function processKeyboardInput(item) {
                         this.closest('.adg-a11y-megamenu').querySelector('li').querySelector('a, button').focus();
                     }
                 } else {
-                    let openMenuButtons = this.closest('.submenu-expanded').previousElementSibling.querySelectorAll('.adg-a11y-megamenu-button.submenu-open');
-                    if (openMenuButtons.length) {
-                        openMenuButtons.forEach(function (button) {
-                            toggleMenu(button);
-                        });
+                    let openMenuButton = this.closest('.submenu-expanded').previousElementSibling;
+                    if (openMenuButton) {
+                        toggleMenu(openMenuButton);
                     }
                     if (this.closest('.adg-a11y-menu-item-level-0').nextElementSibling) {
                         this.closest('.adg-a11y-menu-item-level-0').nextElementSibling.querySelector('a, button').focus();
@@ -126,11 +150,9 @@ function processKeyboardInput(item) {
                         this.closest('.adg-a11y-megamenu').lastElementChild.querySelector('a, button').focus();
                     }
                 } else {
-                    let openMenuButtons = this.closest('.submenu-expanded').previousElementSibling.querySelectorAll('.adg-a11y-megamenu-button.submenu-open');
-                    if (openMenuButtons.length) {
-                        openMenuButtons.forEach(function (button) {
-                            toggleMenu(button);
-                        });
+                    let openMenuButton = this.closest('.submenu-expanded').previousElementSibling;
+                    if (openMenuButton) {
+                        toggleMenu(openMenuButton);
                     }
                     if (this.closest('.adg-a11y-menu-item-level-0').previousElementSibling) {
                         this.closest('.adg-a11y-menu-item-level-0').previousElementSibling.querySelector('a, button').focus();
@@ -179,7 +201,7 @@ function processKeyboardInput(item) {
                     if (!prevListItem && this.closest('li').classList.contains('adg-a11y-menu-item-level-1')) {
                         toggleMenu(this.closest('.adg-a11y-menu-item-level-0').querySelector('a, button'));
                     }
-                } else if (!nextListItem && !event.shiftKey) {
+                } else if (!nextListItem && !event.shiftKey && !this.classList.contains('adg-a11y-megamenu-button')) {
                     // If tabbing past the last item of a submenu, close the submenu and move focus to the next main-level menu item.
                     toggleMenu(this.closest('.adg-a11y-menu-item-level-0').querySelector('a, button'));
                 }
@@ -200,11 +222,13 @@ function processKeyboardInput(item) {
             triggerButton.setAttribute('aria-expanded', 'false');
             triggerButton.querySelector('.dashicons-no-alt').classList.remove('active-icon');
             triggerButton.querySelector('.dashicons-menu').classList.add('active-icon');
+            document.body.classList.remove('adg-a11y-mobile-menu-open');
         } else {
             triggerButton.nextElementSibling.classList.add('menu-expanded');
             triggerButton.setAttribute('aria-expanded', 'true');
             triggerButton.querySelector('.dashicons-no-alt').classList.add('active-icon');
             triggerButton.querySelector('.dashicons-menu').classList.remove('active-icon');
+            document.body.classList.add('adg-a11y-mobile-menu-open');
         }
     } else {
         // Submenu toggle actions.
@@ -233,9 +257,10 @@ function processKeyboardInput(item) {
  * Toggles the activation of the mobile menu based on the window width.
  * Breakpoint is pulled from block settings as a data attribute.
  */
-function toggleMobileMenuActivation() {
-    const mobileBreakpoint = document.querySelector('.adg-a11y-megamenu-wrap').dataset.mobileBreakpoint;
-    const menuToggle = document.querySelector('.adg-a11y-mobile-menu-toggle');
+function toggleMobileMenuActivation(menu) {
+    const mobileBreakpoint = menu.dataset.mobileBreakpoint;
+    const menuToggle = menu.querySelector('.adg-a11y-mobile-menu-toggle');
+
     if (window.matchMedia("(max-width: " + mobileBreakpoint + "px)").matches) {
         menuToggle.classList.add("adg-a11y-mobile-menu-active");
         menuToggle.closest('nav').classList.add('adg-a11y-mobile-menu-wrapper');
