@@ -1,25 +1,30 @@
 # wordpress-starter
+
 This repository provides a starting point for FSE supported themes &amp; block plugins for WP sites.
 
 ## Login via CLI
+
 - Login locally through lando install [WP-CLI Login Command](https://github.com/aaemnnosttv/wp-cli-login-command)
 - Activate the plugin if not already active
 
 Login via this command
+
 ```
 lando wp login as [USERNAME]
 ```
 
 Login with terminus for sites on Pantheon
+
 ```
 terminus wp [SITE].[ENV] -- user create [USERNAME] [NAME]@atendesigngroup.com --role=administrator
 ```
 
-For sites on WPEngine/Kinsta you will need to SSH into the site as they also come with WP CLI installed on the server. 
+For sites on WPEngine/Kinsta you will need to SSH into the site as they also come with WP CLI installed on the server.
 
 # FAQ
 
 If you run into an issue with the homepage loading but no other pages add .htcaccess to the root of the project with these lines:
+
 ```
 # BEGIN WordPress
 
@@ -38,11 +43,10 @@ RewriteRule . /index.php [L]
 
 - Host: GitHub
 - Repo Name: wordpress-starter
-- Development URL: 
+- Development URL:
 - Repo URL: https://github.com/AtenDesignGroup/wordpress-starter
 - Default Branch: `main`
 - Owner: Aten
-
 
 # Local Development
 
@@ -54,7 +58,19 @@ Now, you'll need to start up the Lando instance:
 lando start
 ```
 
-Now, you'll need to import the development database to the local environment:
+This site is hosted on Pantheon which means we can pull the database directly into lando by running the command below, note that this also pulls files:
+
+```
+lando pull --code=none
+```
+
+To pull only the database and most recent file changes run this command:
+
+```
+lando pull --code=none rsync
+```
+
+If you want to import the database manually, you'll need to run:
 
 ```
 lando db-import localdatabasename.sql
@@ -69,37 +85,37 @@ If the tech lead finds issues while reviewing the pull request, a comment will b
 Assign the Jira ticket to the QA team member, provide the link to the develop environment, and include instructions on what should be tested. Also, please make sure to set up the environment with dummy data to make sure it's working for you prior to getting the QA team involved.
 
 1. Hotfix/Non-Release Deployments
-    1. Make sure your local environment does not have uncommitted changes
-    2. If your local database is very outdated (over a month), import a new one from production
-    3. On the main branch `git checkout main`
-    4. Create a feature branch based on the Jira ticket name `git checkout -b project-code-###`
-    5. Feature branches `feature/project-code-###` with a pull request will spin up a new multidev environment in Pantheon
-    6. Commit changes to your feature branch `git add .` and `git commit -m "project-code-###: note about the change" and `git push`
-    7. Merge into staging branch for testing on Pantheon/WP Engine/Kinsta or other Hosting platform `git checkout staging` and `git merge project-code-###`
-    8. After your changes are approved on staging, merge your feature branch into the main branch and deploy
-        1. `git checkout main` and `git merge project-code-###` and `git push`
+   1. Make sure your local environment does not have uncommitted changes
+   2. If your local database is very outdated (over a month), import a new one from production
+   3. On the main branch `git checkout main`
+   4. Create a feature branch based on the Jira ticket name `git checkout -b project-code-###`
+   5. Feature branches `feature/project-code-###` with a pull request will spin up a new multidev environment in Pantheon
+   6. Commit changes to your feature branch `git add .` and `git commit -m "project-code-###: note about the change" and `git push`
+   7. Merge into staging branch for testing on Pantheon/WP Engine/Kinsta or other Hosting platform `git checkout staging` and `git merge project-code-###`
+   8. After your changes are approved on staging, merge your feature branch into the main branch and deploy
+      1. `git checkout main` and `git merge project-code-###` and `git push`
 2. Using a Release/Sprint Branch - Useful if working on a bunch of features
-    1. Create the release branch
-        1. Do Once - `git checkout main` && `git checkout -b release-1`
-        2. Push the release branch for everyone to work from
-    2. Participating in the release
-        1. Make sure your local environment does not have uncommitted changes
-        2. If your local database is very outdated (over a month), import a new one from production
-        3. On the main branch `git checkout release-1`
-        4. Create a feature branch of the release branch based on the Jira ticket name `git checkout -b project-code-###`
-        5. Commit changes to your feature branch `git add .` and `git commit -m "project-code-###: note about the change" and `git push`
-        6. Merge into release branch for testing on Pantheon/WP Engine/Kinsta or other Hosting platform `git checkout release-1` and `git merge project-code-###`
-        7. After your changes are approved on staging, merge your feature branch into the main branch and deploy
-            1. `git checkout main` and `git merge project-code-###` and `git push`
-    3. Deploying the release
-        1. You may want to merge main into your release branch to catch any divergence since the branch was created
-        2. Merge your release branch into the staging branch to test the release
-        3. Once tested, merge the release branch into main
-    4. Caveats: If work has been started on the release branch but not finished, it will need to be manually removed
-
+   1. Create the release branch
+      1. Do Once - `git checkout main` && `git checkout -b release-1`
+      2. Push the release branch for everyone to work from
+   2. Participating in the release
+      1. Make sure your local environment does not have uncommitted changes
+      2. If your local database is very outdated (over a month), import a new one from production
+      3. On the main branch `git checkout release-1`
+      4. Create a feature branch of the release branch based on the Jira ticket name `git checkout -b project-code-###`
+      5. Commit changes to your feature branch `git add .` and `git commit -m "project-code-###: note about the change" and `git push`
+      6. Merge into release branch for testing on Pantheon/WP Engine/Kinsta or other Hosting platform `git checkout release-1` and `git merge project-code-###`
+      7. After your changes are approved on staging, merge your feature branch into the main branch and deploy
+         1. `git checkout main` and `git merge project-code-###` and `git push`
+   3. Deploying the release
+      1. You may want to merge main into your release branch to catch any divergence since the branch was created
+      2. Merge your release branch into the staging branch to test the release
+      3. Once tested, merge the release branch into main
+   4. Caveats: If work has been started on the release branch but not finished, it will need to be manually removed
 
 ## Theme Information
-The wordpress-starter comes with two themes, once a preferred theme is chosen the unused theme can be removed. 
+
+The wordpress-starter comes with two themes, once a preferred theme is chosen the unused theme can be removed.
 
 ### Aten FSE Theme
 
@@ -107,6 +123,7 @@ The wordpress-starter comes with two themes, once a preferred theme is chosen th
 - The theme utilizes the ACF plugin to handle custom fields and Custom Post Types for its unique content. There are several custom plugins that provide addtional templating support within the plugins folder.
 
 ### Aten Hybrid Theme
+
 - This theme is built on top of the WordPress core theme Twenty TwentyOne (WP Core theme) - https://wordpress.com/theme/twentytwentyone
-- The theme utilizes the ACF plugin to handle custom fields and Custom Post Types for its unique content. 
+- The theme utilizes the ACF plugin to handle custom fields and Custom Post Types for its unique content.
 - Uses the classic templating structure while maintaining a modern approach to theming in wordpress
