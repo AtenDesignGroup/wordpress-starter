@@ -12,6 +12,10 @@ services:
     xdebug: debug
     config:
       php: .vscode/php.ini
+    build_as_root:
+      - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+      - chmod +x wp-cli.phar
+      - mv wp-cli.phar /usr/local/bin/wp
   fed-tools:
     type: 'node:20'
 tooling:
