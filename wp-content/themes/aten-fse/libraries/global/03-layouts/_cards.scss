@@ -1,0 +1,29 @@
+@use '../../partials/partials' as *;
+//Inverted layouts are used to switch the order of the image and text in the card
+
+.card__horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--itd-space-24);
+
+  @include bp-min(tablet) {
+    flex-direction: row;
+  }
+
+  //Inverted layout
+  &--inverted {
+    @include bp-min(tablet) {
+      flex-direction: row-reverse;
+    }
+  }
+}
+
+.card__vertical {
+  display: flex;
+  flex-direction: column;
+
+  //Inverted layout
+  &--inverted {
+    flex-direction: column-reverse;
+  }
+}
