@@ -26,15 +26,15 @@ tooling:
   theme:setup:
     description: Install theme dependencies.
     cmd:
-      - fed-tools: cd /app/wp-content/themes/itd-theme && npm install
+      - fed-tools: cd /app/wp-content/themes/THEME_NAME && npm install
   theme:watch:
     description: Run the site theme build tool watcher.
     cmd:
-      - fed-tools: cd /app/wp-content/themes/itd-theme && npm run watch
+      - fed-tools: cd /app/wp-content/themes/THEME_NAME && npm run watch
   theme:build:
     description: Compile FED for site theme.
     cmd:
-      - fed-tools: cd /app/wp-content/themes/itd-theme && npm run build
+      - fed-tools: cd /app/wp-content/themes/THEME_NAME && npm run build
   xdebug-on:
     service: appserver
     description: Enable xdebug for Apache.
