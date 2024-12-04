@@ -19,6 +19,8 @@ services:
   fed-tools:
     type: 'node:20'
 tooling:
+  wp:
+    service: 'appserver'
   npm:
     service: fed-tools
   theme:setup:
