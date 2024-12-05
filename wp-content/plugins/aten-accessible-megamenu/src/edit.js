@@ -14,12 +14,21 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 
 /**
+ * React hook that is used to render the front-end php preview while in the back-end editor.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-server-side-render/
+ */
+import ServerSideRender from '@wordpress/server-side-render';
+import metadata from './block.json';
+
+/**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+import './style.scss';
 
 /**
  * Importing packages for editor display
@@ -108,7 +117,10 @@ export default function Edit({ attributes, setAttributes }) {
         )}
 
         {menu_id != 0 && menu_id != null && (
-          <h2>Preview or publish this page to view the {menu_name} block</h2>
+          <ServerSideRender
+            block={ metadata.name}
+            attributes={ attributes }
+          />
         )}
       </div>
     </>
