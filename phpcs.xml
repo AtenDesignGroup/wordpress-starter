@@ -13,5 +13,6 @@
   
     <!-- Exclude all file types except PHP -->
     <exclude-pattern>^(?!.*\.php$).*</exclude-pattern>
+    <!-- Exclude all files except aten custom projects -->
     <exclude-pattern>^(?!.*(\/(themes\/aten-*|plugins\/aten-accessible-megamenu|plugins\/custom-post-type-ui))($|\/)).*$</exclude-pattern>
 </ruleset>
