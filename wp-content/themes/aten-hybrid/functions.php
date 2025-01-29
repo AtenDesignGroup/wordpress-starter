@@ -276,6 +276,7 @@ function get_block_files() {
 		$block_name = pathinfo( $dir, PATHINFO_BASENAME );
 		$css_file   = "{$block_name}.css";
 		$js_file    = "{$block_name}.js";
+		$config_file = "{$block_name}.config.json";
 
 		// Setting block name.
 		$block = array( 'name' => $block_name );
@@ -291,6 +292,13 @@ function get_block_files() {
 			$block['js']['deps']      = array( 'jquery', 'utility-functions' );
 			$block['js']['ver']       = '1.0';
 			$block['js']['in_footer'] = true;
+		}
+
+		// If config file exists, add to the block array.
+		if ( file_exists( __DIR__ . "/blocks/{$block_name}/{$config_file}" ) ) {
+			$json_data       = file_get_contents( __DIR__ . "/blocks/{$block_name}/{$config_file}" );
+			$block_config    = json_decode( $json_data, true );
+			$block['config'] = $block_config;
 		}
 
 		// Add block to the block files array.
@@ -328,6 +336,15 @@ function register_acf_blocks() {
 				// If js exists attach it.
 				if ( isset( $block['js'] ) ) {
 					wp_register_script( $block['name'], get_stylesheet_directory_uri() . '/blocks/' . $block['js']['src'], $block['js']['deps'], $block['js']['ver'], true );
+				}
+
+				// If config exists register nested stylesheets.
+				if ( isset( $block['config'] ) && isset( $block['config']['nested_blocks'] ) && $block['config']['nested_blocks'] ) {
+					foreach ( $block['config']['nested_blocks'] as $nested_block ) {
+						if ( file_exists( get_stylesheet_directory_uri() . "/blocks/{$nested_block}/{$nested_block}.css" ) ) {
+							wp_register_style( $nested_block, get_stylesheet_directory_uri() . "/blocks/{$nested_block}/{$nested_block}.css" );
+						}
+					}
 				}
 			}
 		}
@@ -373,6 +390,12 @@ function aten_enqueue_block_assets_at_runtime( $content = '' ) {
 			// Enqueue JS.
 			if ( isset( $block['js'] ) ) {
 				wp_enqueue_script( $block['name'] );
+			}
+		}
+
+		if ( isset( $block['config'] ) && isset( $block['config']['nested_blocks'] ) && $block['config']['nested_blocks'] ) {
+			foreach ( $block['config']['nested_blocks'] as $nested_block ) {
+				wp_enqueue_style( $nested_block );
 			}
 		}
 	}
