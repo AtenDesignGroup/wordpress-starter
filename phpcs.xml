@@ -9,15 +9,13 @@
       <properties>
         <property name="blank_line_check" value="true"/>
       </properties>
-	  </rule>
+    </rule>
 
     <!-- <description>PHPCompatibility ruleset for my project.</description>
     <config name="testVersion" value="8.1-"/>
     <rule ref="PHPCompatibility"/> -->
 
-
-    <!-- Exclude all file types except PHP -->
-    <exclude-pattern>^(?!.*\.php$).*</exclude-pattern>
+    <arg name="extensions" value="php,js,css"/>
     <!-- Exclude all files except aten custom projects -->
     <exclude-pattern>^(?!.*(\/(themes\/aten-*|plugins\/aten-accessible-megamenu|plugins\/custom-post-type-ui))($|\/)).*$</exclude-pattern>
 </ruleset>
