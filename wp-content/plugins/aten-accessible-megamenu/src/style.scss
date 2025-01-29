@@ -15,24 +15,6 @@
     margin: 10px 5px;
     position: relative;
   }
-
-  .sub-menu {
-    display: none;
-    height: 0;
-    opacity: 0;
-
-    &.submenu-expanded {
-      display: block;
-      height: auto;
-      opacity: 1;
-      position: absolute;
-      top: 40px;
-      left: 15px;
-      width: auto;
-      min-width: 200px;
-      padding: 0;
-    }
-  }
 }
 
 nav.adg-a11y-megamenu-wrap {

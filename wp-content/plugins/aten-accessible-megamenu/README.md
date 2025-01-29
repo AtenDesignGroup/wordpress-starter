@@ -26,11 +26,18 @@ This plugin provides a custom WordPress Full-Site Editing block that generates a
 
 == Changelog ==
 
+= 0.1.1 =
+* Refactored code to allow for multiple megamenu instances on a single page
+* Updated edit.js to render a block preview in the editor
+* Bumped NVM from 18.15.0 to 20.11.0
+* Accessibility improvements for keyboard navigation
+
 = 0.1.0 =
 * Release
 
 == Roadmap ==
 
+- Refactor processKeyboardInput function to reduce nesting and improve readability
 - Display the selected menu and minimal styling in the back end editor
 - Animation options for menu transitions
 - Stylized basic theming for out of the box basic usage
