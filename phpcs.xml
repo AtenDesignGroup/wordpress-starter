@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress">
+
+    <file>./wp-content</file>
+
+    <description>WordPress project coding standards.</description>
+    <rule ref="WordPress"/>
+    <rule ref="WordPress.WhiteSpace.ControlStructureSpacing">
+      <properties>
+        <property name="blank_line_check" value="true"/>
+      </properties>
+	  </rule>
+  
+    <!-- Exclude all file types except PHP -->
+    <exclude-pattern>^(?!.*\.php$).*</exclude-pattern>
+    <exclude-pattern>^(?!.*(\/(themes\/aten-*|plugins\/aten-accessible-megamenu|plugins\/custom-post-type-ui))($|\/)).*$</exclude-pattern>
+</ruleset>
