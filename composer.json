@@ -39,6 +39,7 @@
     "grumphp": "vendor/bin/grumphp run",
     "grumphp:pre-commit": "vendor/bin/grumphp git:pre-commit",
     "phpcs" : "vendor/bin/phpcs --standard=phpcs.xml",
-    "phpcs:fix" : "vendor/bin/phpcbf --standard=phpcs.xml"
+    "phpcs:fix" : "vendor/bin/phpcbf --standard=phpcs.xml",
+    "phpcbf-staged": "vendor/bin/phpcbf --standard=phpcs.xml '--report=full' '-s' $(git diff --name-only --staged)"
   }
 }
