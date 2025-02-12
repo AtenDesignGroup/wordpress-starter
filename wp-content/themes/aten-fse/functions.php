@@ -990,3 +990,23 @@ if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
 endif;
 
 add_action( 'init', 'twentytwentyfour_pattern_categories' );
+
+/**
+ * Removing the 'sizes="auto"' tag from WP generated images.
+ * This is a fix to the bug introduced in WP Core 6.7 that causes images to distort without explicit width and height attributes.
+ */
+add_filter(
+	'wp_content_img_tag',
+	static function ( $image ) {
+			return str_replace( 'sizes="auto, ', 'sizes="', $image );
+	}
+);
+add_filter(
+	'wp_get_attachment_image_attributes',
+	static function ( $attr ) {
+		if ( isset( $attr['sizes'] ) ) {
+				$attr['sizes'] = preg_replace( '/^auto, /', '', $attr['sizes'] );
+		}
+			return $attr;
+	}
+);
