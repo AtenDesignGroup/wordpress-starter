@@ -297,7 +297,7 @@ exports.watch = () => {
     proxy: process.env.BS_PROXY || 'http://appserver',
     browser: process.env.BS_BROWSER || 'google chrome',
     socket: {
-      domain: 'https://bs.wordpress-starter.lndo.site', // The node proxy domain you defined in .lando.yaml. Must be https?
+      domain: 'https://bs.wordpress-starter.ddev.site', // The node proxy domain you defined in .ddev/config.yaml. Must be https?
       port: 80, // NOT the 3000 you might expect.
     },
     open: false,
