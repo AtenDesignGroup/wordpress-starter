@@ -80,11 +80,11 @@ lando db-import localdatabasename.sql
 
 This WordPress project integrates with GrumPHP code sniffer to lint PHP code. 
 
-You'll need to update the project code from Jira on a per-project basis within the `grumphp.yml` file at the project root:
+By default, commits require a project code. The default project code for this starter kit is `ADGWP`. You'll need to update the project code from Jira on a per-project basis within the `grumphp.yml` file at the project root:
 
 ```
 matchers:
-    Must contain job and issue number: /(JIRA-\d+|GitHub Actions Build)/
+    Must contain job and issue number: /(ADGWP-\d+|GitHub Actions Build)/
 ```
 
 By default, GrumPHP is configured to enforce WordPress best practice coding standards. Rules and standards can be changed on a per-project basis by editing the `phpcs.xml` file at the project root. 
