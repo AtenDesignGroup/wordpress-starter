@@ -1,2 +1,2 @@
-BS_PROXY='example.lndo.site'
+BS_PROXY='https://wordpress-starter.ddev.site'
 BS_BROWSER='google chrome'

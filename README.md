@@ -4,16 +4,19 @@ This repository provides a starting point for FSE supported themes &amp; block p
 
 ## Login via CLI
 
-- Login locally through lando install [WP-CLI Login Command](https://github.com/aaemnnosttv/wp-cli-login-command)
-- Activate the plugin if not already active
+Install the WP CLI Login Command package:
 
-Login via this command
-
-```
-lando wp login as [USERNAME]
+``` 
+ddev exec wp package install aaemnnosttv/wp-cli-login-command
 ```
 
-Login with terminus for sites on Pantheon
+Once the package is installed, login via this command:
+
+```
+ddev exec wp login as [USERNAME]
+```
+
+Login with terminus for sites on Pantheon:
 
 ```
 terminus wp [SITE].[ENV] -- user create [USERNAME] [NAME]@atendesigngroup.com --role=administrator
@@ -50,30 +53,68 @@ RewriteRule . /index.php [L]
 
 # Local Development
 
-This WordPress project was setup to support Lando out of the box. Developers can quickly get started setting up your local environment by following the instructions below. Please make sure you've installed [Lando](https://docs.lando.dev/basics/installation.html).
+This WordPress project was setup to support DDEV out of the box. Developers can quickly get started setting up your local environment by following the instructions below. Please make sure you've installed [DDEV](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/).
 
-Now, you'll need to start up the Lando instance:
-
-```
-lando start
-```
-
-This site is hosted on Pantheon which means we can pull the database directly into lando by running the command below, note that this also pulls files:
+Now, you'll need to start up the DDEV instance:
 
 ```
-lando pull --code=none
+ddev start
 ```
 
-To pull only the database and most recent file changes run this command:
+To manually import a database, run the command: 
 
 ```
-lando pull --code=none rsync
+ddev import-db --file=path-to-db.sql 
 ```
 
-If you want to import the database manually, you'll need to run:
+For projects hosted on Pantheon, we can set up an integration to pull the database directly into DDEV by following these steps:
+
+1. Create a new [Pantheon Machine Token](https://docs.pantheon.io/machine-tokens). You can create a new one for every project or reuse a DDEV specific one.
+2. Check in your home folder for a default DDEV config file. (`~/.ddev/global_config.yaml`). If it doesn’t exist, you can create the file with the following information. If it does exist, add your Terminus machine token:
 
 ```
-lando db-import localdatabasename.sql
+web_environment:
+    - TERMINUS_MACHINE_TOKEN=your_machine_token
+```
+
+3. Update the project name within `.ddev/providers/pantheon.yaml`:
+
+```
+environment_variables:
+    project: pantheon-site-name.dev
+```
+
+4. Replace the URLs in `.ddev/config.yaml` with the project's Pantheon URLs:
+
+```
+hooks:
+  post-import-db:
+    - exec: wp search-replace https://dev-your-site.pantheonsite.io https://your-site.ddev.site
+    - exec: wp search-replace https://test-your-site.pantheonsite.io https://your-site.ddev.site
+```
+
+5. Run the following command to restart DDEV with the updated configuration:
+
+```
+ddev restart
+```
+
+6. Run the following command to pull the database and files from Pantheon:
+
+```
+ddev pull pantheon
+```
+
+To pull only the database with no files, run this command: 
+
+```
+ddev pull pantheon --skip-files
+```
+
+To pull only the files with no database, run this command: 
+
+```
+ddev pull pantheon --skip-db
 ```
 
 ## Development Workflows

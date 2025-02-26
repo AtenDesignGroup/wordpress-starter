@@ -49,8 +49,8 @@ define('LOGGED_IN_SALT', 'put your unique phrase here');
 define('NONCE_SALT', 'put your unique phrase here');
 
 define('WP_ENV', 'development');
-define('WP_SITEURL', 'https://siteName.lndo.site/');
-define('WP_HOME', 'https://siteName.lndo.site/');
+define('WP_SITEURL', 'https://wordpress-starter.ddev.site');
+define('WP_HOME', 'https://wordpress-starter.ddev.site');
 
 // Offline Development
 // define('WP_SITEURL', 'siteName.local.host/');
