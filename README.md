@@ -76,6 +76,31 @@ If you want to import the database manually, you'll need to run:
 lando db-import localdatabasename.sql
 ```
 
+# Code Linting
+
+This WordPress project integrates with GrumPHP code sniffer to lint PHP code. 
+
+You'll need to update the project code from Jira on a per-project basis within the `grumphp.yml` file at the project root:
+
+```
+matchers:
+    Must contain job and issue number: /(JIRA-\d+|GitHub Actions Build)/
+```
+
+By default, GrumPHP is configured to enforce WordPress best practice coding standards. Rules and standards can be changed on a per-project basis by editing the `phpcs.xml` file at the project root. 
+
+Sniffing will automatically be performed pre-commit through git. To perform sniffing manually, run this command:
+
+```
+phpcs
+```
+
+To attempt auto-fixing of any errors found during sniffing, run this command:
+
+```
+composer phpcbf-staged
+```
+
 ## Development Workflows
 
 When adding new features to the project you'll need to create a feature branch, commonly this is the Jira ticket number (e.g. project-code-XXX). You'll commit all your code changes to this feature branch and push the branch to the code repository. Next you'll need to request a code review by opening a pull request on GitHub. After that, you need to assign the pull request to the tech lead responsible for overseeing the project. In case the deployment process on Pantheon fails, typically due to too many Multi-Dev environments being used, a comment will be added to the GitHub pull request notifying you of this error.
