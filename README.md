@@ -51,11 +51,36 @@ RewriteRule . /index.php [L]
 - Default Branch: `main`
 - Owner: Aten
 
+## Code Linting
+
+This WordPress project integrates with GrumPHP code sniffer to lint PHP code. 
+
+By default, commits require a project code. The default project code for this starter kit is `ADGWP`. You'll need to update the project code from Jira on a per-project basis within the `grumphp.yml` file at the project root:
+
+```
+matchers:
+    Must contain job and issue number: /(ADGWP-\d+|GitHub Actions Build)/
+```
+
+By default, GrumPHP is configured to enforce WordPress best practice coding standards. Rules and standards can be changed on a per-project basis by editing the `phpcs.xml` file at the project root. 
+
+Sniffing will automatically be performed pre-commit through git. To perform sniffing manually, run this command:
+
+```
+composer grumphp
+```
+
+If errors are found, GrumPHP will offer to automatically fix what it can. To manually attempt auto-fixing of any errors found during sniffing, run this command:
+
+```
+composer phpcbf-staged
+```
+
 # Local Development
 
-This WordPress project was setup to support DDEV out of the box. Developers can quickly get started setting up your local environment by following the instructions below. Please make sure you've installed [DDEV](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/).
+This WordPress project was setup to support DDEV out of the box. Developers can quickly get started setting up your local environment by following the instructions below. Please make sure you've [installed DDEV](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/).
 
-Now, you'll need to start up the DDEV instance:
+First, you'll need to start up the DDEV instance:
 
 ```
 ddev start
@@ -85,31 +110,6 @@ To pull only the files with no database, run:
 
 ```
 ddev pull pantheon --skip-db
-```
-
-# Code Linting
-
-This WordPress project integrates with GrumPHP code sniffer to lint PHP code. 
-
-By default, commits require a project code. The default project code for this starter kit is `ADGWP`. You'll need to update the project code from Jira on a per-project basis within the `grumphp.yml` file at the project root:
-
-```
-matchers:
-    Must contain job and issue number: /(ADGWP-\d+|GitHub Actions Build)/
-```
-
-By default, GrumPHP is configured to enforce WordPress best practice coding standards. Rules and standards can be changed on a per-project basis by editing the `phpcs.xml` file at the project root. 
-
-Sniffing will automatically be performed pre-commit through git. To perform sniffing manually, run this command:
-
-```
-composer grumphp
-```
-
-If errors are found, GrumPHP will offer to automatically fix what it can. To manually attempt auto-fixing of any errors found during sniffing, run this command:
-
-```
-composer phpcbf-staged
 ```
 
 ## Development Workflows
