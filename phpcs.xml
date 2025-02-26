@@ -13,7 +13,7 @@
       <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue"/>
       <exclude name="Squiz.Commenting.FileComment.MissingPackageTag"/>
     </rule>
-        <!-- rulse to ignore -->
+        <!-- rules to ignore -->
     
     <!-- <description>PHPCompatibility ruleset for my project.</description>
     <config name="testVersion" value="8.1-"/>

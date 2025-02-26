@@ -22,7 +22,7 @@ grumphp:
       max_body_width: 0
       max_subject_width: 0
       matchers:
-          Must contain job and issue number: /(JIRA-\d+|GitHub Actions Build)/
+          Must contain job and issue number: /(ADGWP-\d+|GitHub Actions Build)/
       case_insensitive: true
       multiline: true
       additional_modifiers: ''

@@ -92,10 +92,10 @@ By default, GrumPHP is configured to enforce WordPress best practice coding stan
 Sniffing will automatically be performed pre-commit through git. To perform sniffing manually, run this command:
 
 ```
-phpcs
+composer grumphp
 ```
 
-To attempt auto-fixing of any errors found during sniffing, run this command:
+If errors are found, GrumPHP will offer to automatically fix what it can. To manually attempt auto-fixing of any errors found during sniffing, run this command:
 
 ```
 composer phpcbf-staged
