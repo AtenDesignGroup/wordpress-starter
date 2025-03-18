@@ -4,16 +4,19 @@ This repository provides a starting point for FSE supported themes &amp; block p
 
 ## Login via CLI
 
-- Login locally through lando install [WP-CLI Login Command](https://github.com/aaemnnosttv/wp-cli-login-command)
-- Activate the plugin if not already active
+Install the WP CLI Login Command package:
 
-Login via this command
-
-```
-lando wp login as [USERNAME]
+``` 
+ddev exec wp package install aaemnnosttv/wp-cli-login-command
 ```
 
-Login with terminus for sites on Pantheon
+Once the package is installed, login via this command:
+
+```
+ddev exec wp login as [USERNAME]
+```
+
+Login with terminus for sites on Pantheon:
 
 ```
 terminus wp [SITE].[ENV] -- user create [USERNAME] [NAME]@atendesigngroup.com --role=administrator
@@ -48,32 +51,65 @@ RewriteRule . /index.php [L]
 - Default Branch: `main`
 - Owner: Aten
 
+## Code Linting
+
+This WordPress project integrates with GrumPHP code sniffer to lint PHP code. 
+
+By default, commits require a project code. The default project code for this starter kit is `ADGWP`. You'll need to update the project code from Jira on a per-project basis within the `grumphp.yml` file at the project root:
+
+```
+matchers:
+    Must contain job and issue number: /(ADGWP-\d+|GitHub Actions Build)/
+```
+
+By default, GrumPHP is configured to enforce WordPress best practice coding standards. Rules and standards can be changed on a per-project basis by editing the `phpcs.xml` file at the project root. 
+
+Sniffing will automatically be performed pre-commit through git. To perform sniffing manually, run this command:
+
+```
+composer grumphp
+```
+
+If errors are found, GrumPHP will offer to automatically fix what it can. To manually attempt auto-fixing of any errors found during sniffing, run this command:
+
+```
+composer phpcbf-staged
+```
+
 # Local Development
 
-This WordPress project was setup to support Lando out of the box. Developers can quickly get started setting up your local environment by following the instructions below. Please make sure you've installed [Lando](https://docs.lando.dev/basics/installation.html).
+This WordPress project was setup to support DDEV out of the box. Developers can quickly get started setting up your local environment by following the instructions below. Please make sure you've [installed DDEV](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/).
 
-Now, you'll need to start up the Lando instance:
-
-```
-lando start
-```
-
-This site is hosted on Pantheon which means we can pull the database directly into lando by running the command below, note that this also pulls files:
+First, you'll need to start up the DDEV instance:
 
 ```
-lando pull --code=none
+ddev start
 ```
 
-To pull only the database and most recent file changes run this command:
+To manually import a database, run the command: 
 
 ```
-lando pull --code=none rsync
+ddev import-db --file=path-to-db.sql 
 ```
 
-If you want to import the database manually, you'll need to run:
+For projects hosted on Pantheon, additional commands are available for pulling the database and files directly from Pantheon. For DDEV + Pantheon configuration instructions, refer to the [DDEV README](.ddev/README.md).
+
+To pull the database and files from Pantheon, run:
 
 ```
-lando db-import localdatabasename.sql
+ddev pull pantheon
+```
+
+To pull only the database with no files, run: 
+
+```
+ddev pull pantheon --skip-files
+```
+
+To pull only the files with no database, run: 
+
+```
+ddev pull pantheon --skip-db
 ```
 
 # Code Linting
