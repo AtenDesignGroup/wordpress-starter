@@ -22,8 +22,8 @@
  * Local configuration information.
  *
  * If you are working in a local/desktop development environment and want to
- * keep your config separate, we recommend using a 'wp-config-local.php' file,
- * which you should also make sure you .gitignore.
+ * keep your config separate, we recommend using a 'wp-config-local.php' file based on
+ * the 'wp-config-local-sample.php' file in this directory.
  */
 if ( file_exists( __DIR__ . '/wp-config-local.php' ) ) {
 	// IMPORTANT: ensure your local config does not include wp-settings.php.
