@@ -50,7 +50,7 @@ wp-content/backups/
 !/wp-content/plugins/
 
 # Remove vendor directory from git
-vendor/
+/vendor/
 
 # Avoid accidental modification of pantheon.upstream.yml in sites
 # created from this upstream
