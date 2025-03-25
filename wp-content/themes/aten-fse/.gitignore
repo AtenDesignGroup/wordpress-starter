@@ -199,8 +199,19 @@ fabric.properties
 ### Sass ###
 .sass-cache/
 *.css.map
-
 *.js.map
+
+### Ignore theme build files ###
+dist/
+blocks/*/*.css
+blocks/*/*.js
+blocks/*/*.js.map
+editor-style.css
+style.css
+
+### Exclude theme src files ###
+!blocks/*/src/*.js
+!blocks/*/src/*.scss
 
 # Webpack Analysis #
 build/webpack-analysis
