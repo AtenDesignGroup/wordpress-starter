@@ -5,13 +5,12 @@
 // - 01 - Typography
 // - 02 - Headings
 // - 03 - Body
-// - 04 - Google Material Symbols Icon Font
 //
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:math';
-@use '../utility/base' as settings-base;
-@use '../breakpoints/mixins' as bp;
+@use './breakpoints' as bp;
+@use './base' as settings-base;
 
 // ------------------------------------
 // 01 - Typography
@@ -29,7 +28,7 @@
   line-height: var(--#{$prefix}lh-#{$category}-#{$size});
 }
 
-@function convert-map($input-map) {
+@function convert-type-scale-map($input-map) {
   $output-map: ();
 
   @each $category, $sizes in $input-map {
@@ -96,7 +95,7 @@
   $scale,
   $prefix: settings-base.$property-prefix
 ) {
-  $map: convert-map($scale);
+  $map: convert-type-scale-map($scale);
   @if $prefix != '' {
     $prefix: $prefix + '-';
   }
@@ -156,7 +155,7 @@
 // ------------------------------------
 
 @mixin heading-base() {
-  font-weight: var(--aten-fw-bold);
+  font-weight: var(--prototype-fw-bold);
 }
 
 @mixin heading-01() {
@@ -194,15 +193,14 @@
 // ------------------------------------
 
 @mixin body-base() {
-  font-weight: var(--aten-fw-regular);
+  font-weight: var(--prototype-fw-regular);
 }
 
-// ------------------------------------
-// 04 - Google Material Symbols Icon Font
-// ------------------------------------
+
+// Google Material Symbols Icon Font
 @mixin font-material-icons {
   font-family: var(--font-family-icons);
-  font-weight: var(--aten-fw-regular);
+  font-weight: var(--font-weight-regular);
   text-decoration: none;
   text-transform: none;
   word-wrap: normal;
@@ -211,6 +209,6 @@
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-font-feature-settings: 'liga';
-  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: "liga";
+  font-feature-settings: "liga";
 }

@@ -29,34 +29,26 @@
 
 .btn--navy,
 .wp-block-button.is-style-no-bg-navy .wp-block-button__link {
+  background-color: var(--transparent);
   @include btn(var(--navy));
-  & {
-    background-color: var(--transparent);
-  }
 }
 
 .btn--black,
 .wp-block-button.is-style-no-bg-black .wp-block-button__link {
+  background-color: var(--transparent);
   @include btn(var(--black));
-  & {
-    background-color: var(--transparent);
-  }
 }
 
 .btn--green,
 .wp-block-button.is-style-no-bg-green .wp-block-button__link {
+  background-color: var(--transparent);
   @include btn(var(--green));
-  & {
-    background-color: var(--transparent);
-  }
 }
 
 .btn--duo-tone,
 .wp-block-button.is-style-no-bg-duo-tone .wp-block-button__link {
+  background-color: var(--transparent);
   @include btn(var(--duo-tone));
-  & {
-    background-color: var(--transparent);
-  }
 }
 
 .btn--white {
