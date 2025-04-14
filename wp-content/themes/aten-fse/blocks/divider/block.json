@@ -2,7 +2,7 @@
   "name": "divider",
   "title": "Divider",
   "active": true,
-  "description": "Custom content separator block for the Aten FSE theme with three display options: gold wave, gold line, or grey line (default).",
+  "description": "Custom content divider block for the Aten FSE theme with two display options: grey line (default) or spacer (no line).",
   "category": "common",
   "icon": "minus",
   "keywords": [
@@ -15,13 +15,13 @@
     "post",
     "page",
     "news",
-    "location"
+    "tribe_events"
   ],
   "mode": "edit",
   "align_content": "top",
   "acf": {
     "mode": "preview",
-    "renderTemplate": "separator.php"
+    "renderTemplate": "divider.php"
   },
   "supports": {
     "anchor": false,
@@ -38,8 +38,9 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/separator.svg"
+        "preview_image": "/wp-content/themes/aten-fse/assets/img/block-previews/divider.svg"
       }
     }
-  }
+  },
+  "editorStyle": "file:./divider.css"
 }
