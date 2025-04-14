@@ -2,7 +2,7 @@
 /**
  * Separator Block Template.
  *
- * @package sabcs
+ * @package aten-fse
  *
  * @param   array $block The block settings and attributes.
  * @param   string $content The block inner HTML (empty).

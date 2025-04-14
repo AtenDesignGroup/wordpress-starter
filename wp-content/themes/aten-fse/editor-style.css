@@ -3440,6 +3440,30 @@ h6.wp-block-heading:not(.is-style-heading-stylized) {
   }
 }
 
+.card__horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--itd-space-24);
+}
+@media (min-width: 768px) {
+  .card__horizontal {
+    flex-direction: row;
+  }
+}
+@media (min-width: 768px) {
+  .card__horizontal--inverted {
+    flex-direction: row-reverse;
+  }
+}
+
+.card__vertical {
+  display: flex;
+  flex-direction: column;
+}
+.card__vertical--inverted {
+  flex-direction: column-reverse;
+}
+
 .a11y-visible {
   display: none;
 }
