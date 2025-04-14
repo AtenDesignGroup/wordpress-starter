@@ -1,0 +1,46 @@
+{
+  "name": "divider",
+  "title": "Divider",
+  "active": true,
+  "description": "Custom content divider block for the sabcs theme with two display options: grey line (default) or spacer (no line).",
+  "category": "common",
+  "icon": "minus",
+  "keywords": [
+    "separator",
+    "break",
+    "horizontal rule",
+    "divider"
+  ],
+  "post_types": [
+    "post",
+    "page",
+    "news",
+    "tribe_events"
+  ],
+  "mode": "edit",
+  "align_content": "top",
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "divider.php"
+  },
+  "supports": {
+    "anchor": false,
+    "align": true,
+    "align_text": false,
+    "align_content": false,
+    "full_height": false,
+    "mode": true,
+    "multiple": true,
+    "example": [],
+    "jsx": false
+  },
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "preview_image": "/wp-content/themes/sabcs/assets/img/block-previews/divider.svg"
+      }
+    }
+  },
+  "editorStyle": "file:./divider.css"
+}

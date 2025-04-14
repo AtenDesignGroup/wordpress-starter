@@ -1,0 +1,56 @@
+@use '../../../libraries/partials/partials' as *;
+
+// Site separator styles
+.divider-component {
+  align-items: center;
+  border-color: transparent;
+  border-width: 0px;
+  display: flex;
+  // Overriding the float applied by WP Core when aligned
+  float: none !important;
+  height: 0px;
+
+  &.divider-height-4 {
+    height: rem(4px);
+  }
+
+  &.divider-height-12 {
+    height: rem(12px);
+  }
+
+  &.divider-height-32 {
+    height: rem(32px);
+  }
+
+  &.divider-height-60 {
+    height: rem(60px);
+  }
+
+  &,
+  &.black-line,
+  &.grey-line {
+    &,
+    hr {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  &.black-line,
+  &.grey-line {
+    hr {
+      border: 0;
+      border-radius: rem(2px);
+      height: rem(2px);
+      margin: 0;
+    }
+  }
+
+  &.black-line hr {
+    background-color: var(--sabcs-black);
+  }
+
+  &.grey-line hr {
+    background-color: var(--sabcs-gray-light);
+  }
+}
