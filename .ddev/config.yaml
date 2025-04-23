@@ -11,13 +11,14 @@ database:
     version: "10.11"
 use_dns_when_possible: true
 composer_version: "2"
-web_environment: []
+web_environment:
+  - THEME_PATH=/var/www/html/wp-content/themes/YOUR-THEME-NAME
 corepack_enable: false
 # Update these values based on project URLs for the Pantheon env.
 hooks:
   post-import-db:
-    - exec: wp search-replace https://dev-your-site.pantheonsite.io https://your-site.ddev.site
-    - exec: wp search-replace https://test-your-site.pantheonsite.io https://your-site.ddev.site
+    - exec: wp search-replace https://dev-wordpress-starter.pantheonsite.io https://wordpress-starter.ddev.site
+    - exec: wp search-replace https://test-wordpress-starter.pantheonsite.io https://wordpress-starter.ddev.site
 
 # Key features of DDEV's config.yaml:
 
