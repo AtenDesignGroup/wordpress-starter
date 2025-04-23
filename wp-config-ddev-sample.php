@@ -1,12 +1,12 @@
 <?php
 /**
- * #ddev-generated: Automatically generated WordPress settings file.
- * ddev manages this file and may delete or overwrite the file unless this comment is removed.
+ * This is a sample wp-config.php file for DDEV.
+ * DDEV manages their own wp-config-ddev.php file and will overwrite any changes made to that file.
  *
  * @package ddevapp
  */
 
-if ( getenv( 'IS_DDEV_PROJECT' ) == 'true' ) {
+if ( getenv( 'true' === 'IS_DDEV_PROJECT' ) ) {
 	/** The name of the database for WordPress */
 	defined( 'DB_NAME' ) || define( 'DB_NAME', 'db' );
 
