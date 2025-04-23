@@ -76,40 +76,71 @@ If errors are found, GrumPHP will offer to automatically fix what it can. To man
 composer phpcbf-staged
 ```
 
-# Local Development
+# Local Development DDEV
 
-This WordPress project was setup to support DDEV out of the box. Developers can quickly get started setting up your local environment by following the instructions below. Please make sure you've [installed DDEV](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/).
+This WordPress project was setup to support DDEV out of the box. Developers can quickly get started setting up your local environment by following the instructions below. Please make sure you've installed [DDEV](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/).
 
-First, you'll need to start up the DDEV instance:
+Now, you'll need to start up the DDEV instance:
 
 ```
 ddev start
 ```
 
-To manually import a database, run the command: 
-
-```
-ddev import-db --file=path-to-db.sql 
-```
-
-For projects hosted on Pantheon, additional commands are available for pulling the database and files directly from Pantheon. For DDEV + Pantheon configuration instructions, refer to the [DDEV README](.ddev/README.md).
-
-To pull the database and files from Pantheon, run:
+This site is hosted on Pantheon which means we can pull the database from the most recent backup directly into DDEV by running the command below, note that this also pulls files:
 
 ```
 ddev pull pantheon
 ```
 
-To pull only the database with no files, run: 
+To pull only the database, run this command:
 
 ```
 ddev pull pantheon --skip-files
 ```
 
-To pull only the files with no database, run: 
+To pull only the files, run this command:
 
 ```
 ddev pull pantheon --skip-db
+```
+
+By default, DDEV will pull from the `dev` environment of Pantheon. Use this command to pull the most recent backup from a different Pantheon environment, replacing `{ENV_CODE}` with the target environment code from Pantheon: 
+
+```
+ddev pull pantheon --environment project=wordpress-starter.{ENV_CODE}
+```
+
+If you want to import the database manually, you'll need to run:
+
+```
+ddev import-db --file=path-to-db.sql
+```
+
+# Local Development Lando
+This WordPress project was setup to support Lando out of the box. Developers can quickly get started setting up your local environment by following the instructions below. Please make sure you've installed [Lando](https://docs.lando.dev/basics/installation.html).
+
+Now, you'll need to start up the Lando instance:
+
+```
+lando start
+```
+
+This site is hosted on Pantheon which means we can pull the database directly into lando by running the command below, note that this also pulls files:
+
+```
+lando pull --code=none
+```
+
+To pull only the database and most recent file changes run this command:
+
+```
+lando pull --code=none rsync
+```
+
+If you want to import the database manually, you'll need to run:
+
+```
+lando db-import localdatabasename.sql
 ```
 
 ## Development Workflows
