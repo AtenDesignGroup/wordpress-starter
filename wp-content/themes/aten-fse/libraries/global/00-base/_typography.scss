@@ -17,7 +17,7 @@
 //  01 - Imports
 //------------------------------------
 
-@use '../../partials/typography/mixins' as mixins-typography;
+@use '../../partials/typography' as *;
 
 //------------------------------------
 //  02 - Families
@@ -154,7 +154,7 @@ $typographic-scale: (
 );
 
 @mixin typography-scale() {
-  @include mixins-typography.type-scale-custom-props($typographic-scale);
+  @include type-scale-custom-props($typographic-scale);
 }
 
 @include typography-scale();
@@ -187,7 +187,7 @@ $typographic-scale: (
 
 @mixin typography-body() {
   body {
-    @include mixins-typography.type-scale(body, base);
+    @include type-scale(body, base);
     color: var(--black);
     font-family: var(--aten-ff-base);
   }
@@ -224,27 +224,27 @@ $typographic-scale: (
   }
 
   h1 {
-    @include mixins-typography.heading-01();
+    @include heading-01();
   }
 
   h2 {
-    @include mixins-typography.heading-02();
+    @include heading-02();
   }
 
   h3 {
-    @include mixins-typography.heading-03();
+    @include heading-03();
   }
 
   h4 {
-    @include mixins-typography.heading-04();
+    @include heading-04();
   }
 
   h5 {
-    @include mixins-typography.heading-05();
+    @include heading-05();
   }
 
   h6 {
-    @include mixins-typography.heading-06();
+    @include heading-06();
   }
 }
 

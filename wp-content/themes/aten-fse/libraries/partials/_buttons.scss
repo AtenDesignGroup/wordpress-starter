@@ -1,6 +1,6 @@
-@use '../breakpoints/mixins' as bp;
-@use '../calculations/mixins' as calc;
-@use '../typography/mixins' as *;
+@use './breakpoints' as bp;
+@use './calculations' as calc;
+@use './typography' as *;
 
 // Large buttons with backgrounds
 // -----------------------------------

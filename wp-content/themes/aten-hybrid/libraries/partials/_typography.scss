@@ -34,8 +34,8 @@
   @each $category, $sizes in $input-map {
     @each $size, $breakpoints in $sizes {
       @each $breakpoint, $values in $breakpoints {
-        $font-size: math.div(nth($values, 1), 16);
-        $line-height: math.div(nth($values, 2), nth($values, 1));
+        $font-size: math.div(list.nth($values, 1), 16);
+        $line-height: math.div(list.nth($values, 2), list.nth($values, 1));
         $output-map: map.deep-merge(
           $output-map,
           (
@@ -44,7 +44,7 @@
                 $category: (
                   $size: (
                     $font-size,
-                    nth($values, 1),
+                    list.nth($values, 1),
                   ),
                 ),
               ),
@@ -52,7 +52,7 @@
                 $category: (
                   $size: (
                     $line-height,
-                    nth($values, 2),
+                    list.nth($values, 2),
                   ),
                 ),
               ),
@@ -107,20 +107,20 @@
         @each $category, $sizes in map.get($props, 'fs') {
           /* font-sizes: #{$category} */
           @each $size, $value in $sizes {
-            --#{$prefix}fs-#{$category}-#{$size}: #{nth(
+            --#{$prefix}fs-#{$category}-#{$size}: #{list.nth(
                 $value,
                 1
-              )}rem; /* #{nth($value, 2)}px */
+              )}rem; /* #{list.nth($value, 2)}px */
           }
         }
 
         @each $category, $sizes in map.get($props, 'lh') {
           /* line-heights: #{$category} */
           @each $size, $value in $sizes {
-            --#{$prefix}lh-#{$category}-#{$size}: #{nth(
+            --#{$prefix}lh-#{$category}-#{$size}: #{list.nth(
                 $value,
                 1
-              )}; /* #{nth($value, 2)}px */
+              )}; /* #{list.nth($value, 2)}px */
           }
         }
       } @else {
@@ -128,20 +128,20 @@
           @each $category, $sizes in map.get($props, 'fs') {
             /* font-sizes: #{$category} */
             @each $size, $value in $sizes {
-              --#{$prefix}fs-#{$category}-#{$size}: #{nth(
+              --#{$prefix}fs-#{$category}-#{$size}: #{list.nth(
                   $value,
                   1
-                )}rem; /* #{nth($value, 2)}px */
+                )}rem; /* #{list.nth($value, 2)}px */
             }
           }
 
           @each $category, $sizes in map.get($props, 'lh') {
             /* line-heights: #{$category} */
             @each $size, $value in $sizes {
-              --#{$prefix}lh-#{$category}-#{$size}: #{nth(
+              --#{$prefix}lh-#{$category}-#{$size}: #{list.nth(
                   $value,
                   1
-                )}; /* #{nth($value, 2)}px */
+                )}; /* #{list.nth($value, 2)}px */
             }
           }
         }

@@ -80,7 +80,7 @@ coverage
 build/Release
 
 # Dependency directories
-node_modules
+node_modules/
 jspm_packages
 
 # Optional npm cache directory
@@ -199,7 +199,6 @@ fabric.properties
 ### Sass ###
 .sass-cache/
 *.css.map
-*.js.map
 
 ### Ignore theme build files ###
 dist/
@@ -212,6 +211,7 @@ style.css
 ### Exclude theme src files ###
 !blocks/*/src/*.js
 !blocks/*/src/*.scss
+
 
 # Webpack Analysis #
 build/webpack-analysis

@@ -1,0 +1,147 @@
+//
+// Mixins - Layout
+// Use these mixins when needing to easily define layout styles, such as widths and grids.
+//
+// - 01 - Imports
+// - 02 - Full Width
+//
+
+//------------------------------------
+//  01 - Imports
+//------------------------------------
+
+@use './breakpoints' as breakpoints;
+@use './calculations' as calculations;
+
+//------------------------------------
+//  02 - Full Width
+//  When needing to make a nested element, within an already defined container, span outside and full width on a page,
+//  use this mixin.
+//  - @example = @include full-width();
+//------------------------------------
+
+@mixin full-width() {
+  margin-left: -50vw;
+  margin-right: -50vw;
+  left: 50%;
+  position: relative;
+  right: 50%;
+  width: 100vw;
+}
+
+//------------------------------------
+//  03 - Flex Grid
+//  When needing to make a list of elements into a flex grid, use this mixin along with defining amount of columns,
+//  the child selector for the list wrapper and gutter sizes.
+//  - @param $columns: Number of elements to display per row.
+//  - @param $selector: Selector(s) to use for child elements.
+//  - @param $column-gutter: Value of space between each item in a row
+//  - @param $bottom-gutter: Value of space under each item in a column.
+//  - @example = @include flex-grid(3, 'li', 40px, 40px);
+//------------------------------------
+
+@mixin flex-grid($columns, $selector, $column-gutter, $bottom-gutter) {
+  display: flex;
+  flex-flow: wrap row;
+  margin-left: calculations.calc(#{$column-gutter} / -2);
+  margin-right: calculations.calc(#{$column-gutter} / -2);
+
+  > #{$selector} {
+    $width: percent(1, #{$columns});
+    $gutter: calculations.calc(#{$column-gutter} / 2);
+
+    flex: 0 0 $width;
+    margin-top: $bottom-gutter;
+    max-width: $width;
+    padding: 0 $gutter;
+
+    // Account for margin top for all items not in the first row
+    @for $i from 1 through $columns {
+      &:nth-child(#{$i}) {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+//
+@mixin l-gutter {
+  // Mobile Screens
+  @include breakpoints.bp-min(mobile) {
+    margin-left: calculations.rem(15px);
+    margin-right: calculations.rem(15px);
+  }
+  // Tablet
+  @include breakpoints.bp-min(tablet) {
+    margin-left: calculations.rem(40px);
+    margin-right: calculations.rem(40px);
+  }
+  // Small & Large Desktop
+  @include breakpoints.bp-min(sm-desktop) {
+    margin-left: calculations.rem(60px);
+    margin-right: calculations.rem(60px);
+  }
+  @include breakpoints.bp-min(wrapper) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@mixin l-narrow {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: calculations.rem(986px);
+}
+
+@mixin l-full {
+  position: relative;
+  z-index: 1;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background: var(--white);
+    width: 100vw;
+    height: 100%;
+    z-index: -1;
+    top: 0;
+    left: calculations.rem(-15px);
+
+    @include breakpoints.bp-min(tablet) {
+      left: calculations.rem(-40px);
+    }
+
+    @include breakpoints.bp-min(sm-desktop) {
+      left: calculations.rem(-60px);
+    }
+
+    @include breakpoints.bp-min(lg-desktop) {
+      left: calculations.rem(-120px);
+    }
+
+    @include breakpoints.bp-min(wrapper) {
+      left: calc(0px - (100vw - calculations.rem(1620px)) / 2);
+    }
+  }
+}
+
+@mixin pseudo-band($color) {
+  position: relative;
+  &:before,
+  &:after {
+    background-color: var($color);
+    content: '';
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    z-index: -1;
+  }
+  &:before {
+    right: 0;
+  }
+  &:after {
+    left: 0;
+  }
+}

@@ -1,1 +1,0 @@
-jQuery(document).ready(function(e){e(".card-link").each(function(){var t,a,n;t=e(this),a=window.location.host,n=new URL(t.attr("href")).hostname,t="_blank"===t.attr("target"),n===a&&!0!=t||e(this).addClass("external-link")})});
