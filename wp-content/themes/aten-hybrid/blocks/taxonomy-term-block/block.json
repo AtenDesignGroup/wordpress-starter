@@ -22,7 +22,7 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/taxonomy_term_block.svg"
+        "preview_image": "/wp-content/themes/ccc/assets/images/block-previews/taxonomy_term_block.svg"
       }
     }
   }

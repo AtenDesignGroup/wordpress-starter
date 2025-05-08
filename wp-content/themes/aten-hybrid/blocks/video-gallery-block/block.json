@@ -39,7 +39,7 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/ccc/assets/images/block-previews/video-gallery.svg"
+        "preview_image": "/wp-content/themes/ccc/assets/images/block-previews/video-gallery.svg"
       }
     }
   }

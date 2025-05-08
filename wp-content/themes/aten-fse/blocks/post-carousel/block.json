@@ -40,7 +40,7 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/post_carousel.svg"
+        "preview_image": "/wp-content/themes/aten_fse/assets/img/block-previews/post_carousel.svg"
       }
     }
   }

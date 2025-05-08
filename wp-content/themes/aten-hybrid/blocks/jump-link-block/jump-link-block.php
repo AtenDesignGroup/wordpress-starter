@@ -11,7 +11,7 @@
  * @param   array $context The context provided to the block by the post or it's parent block.
  */
 if( isset( $block['data']['preview_image'] )  ) :    /* rendering in inserter preview  */
-    echo '<img src="'. $block['data']['preview_image'] .'" style="width:100%; height:auto;">';
+    echo '<img src="' . esc_url( get_site_url() . $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
 else :
 	// Support custom "anchor" values.
 	$anchor = '';
