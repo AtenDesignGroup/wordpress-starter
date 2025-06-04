@@ -3,9 +3,9 @@
 /* Callout styles */
 // Horizontal Style
 .callout-link-component {
-  width: 100%;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  width: 100%;
 
   @include bp-min(tablet) {
     flex-direction: row;
@@ -13,131 +13,56 @@
   }
 
   .callout-link-image {
-    width: 100%;
     flex-shrink: 0;
     position: relative;
+    width: 100%;
 
     img {
-      position: absolute;
       left: 50%;
+      height: auto;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      position: absolute;
       top: 50%;
       transform-origin: center;
       transform: translate(-50%, -50%);
-      min-width: 100%;
-      min-height: 100%;
       width: auto;
-      height: auto;
-      object-fit: cover;
-    }
-  }
-
-  &:hover,
-  &:focus {
-    h2 {
-      text-decoration: underline;
-    }
-
-    .callout-link-image {
-      img {
-        transform: translate(-50%, -50%) scale(1.1, 1.1);
-      }
     }
   }
 }
 
 // Vertical Style
 .callout-block {
-  h2 {
-    font-weight: var(--aten-fw-bold);
-    color: var(--black);
-    font-size: var(--font-size-18);
-  }
-
-  p {
-    @include type-scale(body, 18);
-    color: var(--black);
-    margin: rem(4px) 0 0;
-  }
-
-  a.button {
-    @include btn(var(--black));
-  }
-
-  .cloud {
-    background-color: var(--aten-blue-light);
-  }
-
-  .gold {
-    background-color: var(--aten-yellow-light);
-  }
-
-  .navy {
-    background-color: var(--aten-blue-dark);
-
-    p,
-    h2 {
-      color: var(--white);
-    }
-  }
-
   .large {
-    padding: rem(24px);
     border-radius: var(--default-border-radius);
+    padding: rem(24px);
 
     @include bp-min(tablet) {
-      padding: rem(40px) rem(40px) rem(20px);
-      border-radius: rem(4px) rem(4px) 0 0;
       background-size: 100%;
       background-repeat: no-repeat;
       background-position: bottom center;
+      border-radius: rem(4px) rem(4px) 0 0;
+      padding: rem(40px) rem(40px) rem(20px);
     }
 
     @include bp-min(sm-desktop) {
       padding: rem(60px) rem(60px) rem(32px);
     }
-
-    a.button {
-      @include btn-large(var(--white));
-
-      @include bp-min(tablet) {
-        margin-top: rem(20px);
-      }
-    }
-
-    p {
-      @include bp-min(tablet) {
-        margin-top: rem(20px);
-        font-size: var(--font-size-h3);
-      }
-    }
-
-    h2 {
-      @include bp-min(tablet) {
-        font-size: var(--font-size-h2);
-      }
-    }
   }
 
   .small {
-    padding: rem(24px);
     border-radius: var(--default-border-radius);
+    padding: rem(24px);
 
     @include bp-min(tablet) {
       padding: rem(32px);
-
-      h2 {
-        font-size: var(--font-size-h4);
-      }
     }
 
     @include bp-min(lg-desktop) {
-      max-width: 75%;
       margin-left: auto;
       margin-right: auto;
-    }
-
-    a.button {
-      @include btn(var(--black));
+      max-width: 75%;
     }
   }
 }
