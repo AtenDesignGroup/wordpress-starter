@@ -41,7 +41,9 @@ wp-content/backups/
 
 # Ignore default WordPress content except for your custom themes and plugins
 /wp-content/index.php
-/wp-content/mu-plugins/
+/wp-content/mu-plugins/*
+!/wp-content/mu-plugins/loader.php
+!/wp-content/mu-plugins/adg-content-types
 /wp-content/themes/twenty*/
 !/wp-content/themes/twentytwentyone
 
