@@ -5,13 +5,12 @@
 // - 01 - Typography
 // - 02 - Headings
 // - 03 - Body
-// - 04 - Google Material Symbols Icon Font
 //
 @use 'sass:list';
 @use 'sass:map';
 @use 'sass:math';
-@use '../utility/base' as settings-base;
-@use '../breakpoints/mixins' as bp;
+@use './breakpoints' as bp;
+@use './base' as settings-base;
 
 // ------------------------------------
 // 01 - Typography
@@ -29,14 +28,14 @@
   line-height: var(--#{$prefix}lh-#{$category}-#{$size});
 }
 
-@function convert-map($input-map) {
+@function convert-type-scale-map($input-map) {
   $output-map: ();
 
   @each $category, $sizes in $input-map {
     @each $size, $breakpoints in $sizes {
       @each $breakpoint, $values in $breakpoints {
-        $font-size: math.div(nth($values, 1), 16);
-        $line-height: math.div(nth($values, 2), nth($values, 1));
+        $font-size: math.div(list.nth($values, 1), 16);
+        $line-height: math.div(list.nth($values, 2), list.nth($values, 1));
         $output-map: map.deep-merge(
           $output-map,
           (
@@ -45,7 +44,7 @@
                 $category: (
                   $size: (
                     $font-size,
-                    nth($values, 1),
+                    list.nth($values, 1),
                   ),
                 ),
               ),
@@ -53,7 +52,7 @@
                 $category: (
                   $size: (
                     $line-height,
-                    nth($values, 2),
+                    list.nth($values, 2),
                   ),
                 ),
               ),
@@ -96,7 +95,7 @@
   $scale,
   $prefix: settings-base.$property-prefix
 ) {
-  $map: convert-map($scale);
+  $map: convert-type-scale-map($scale);
   @if $prefix != '' {
     $prefix: $prefix + '-';
   }
@@ -108,20 +107,20 @@
         @each $category, $sizes in map.get($props, 'fs') {
           /* font-sizes: #{$category} */
           @each $size, $value in $sizes {
-            --#{$prefix}fs-#{$category}-#{$size}: #{nth(
+            --#{$prefix}fs-#{$category}-#{$size}: #{list.nth(
                 $value,
                 1
-              )}rem; /* #{nth($value, 2)}px */
+              )}rem; /* #{list.nth($value, 2)}px */
           }
         }
 
         @each $category, $sizes in map.get($props, 'lh') {
           /* line-heights: #{$category} */
           @each $size, $value in $sizes {
-            --#{$prefix}lh-#{$category}-#{$size}: #{nth(
+            --#{$prefix}lh-#{$category}-#{$size}: #{list.nth(
                 $value,
                 1
-              )}; /* #{nth($value, 2)}px */
+              )}; /* #{list.nth($value, 2)}px */
           }
         }
       } @else {
@@ -129,20 +128,20 @@
           @each $category, $sizes in map.get($props, 'fs') {
             /* font-sizes: #{$category} */
             @each $size, $value in $sizes {
-              --#{$prefix}fs-#{$category}-#{$size}: #{nth(
+              --#{$prefix}fs-#{$category}-#{$size}: #{list.nth(
                   $value,
                   1
-                )}rem; /* #{nth($value, 2)}px */
+                )}rem; /* #{list.nth($value, 2)}px */
             }
           }
 
           @each $category, $sizes in map.get($props, 'lh') {
             /* line-heights: #{$category} */
             @each $size, $value in $sizes {
-              --#{$prefix}lh-#{$category}-#{$size}: #{nth(
+              --#{$prefix}lh-#{$category}-#{$size}: #{list.nth(
                   $value,
                   1
-                )}; /* #{nth($value, 2)}px */
+                )}; /* #{list.nth($value, 2)}px */
             }
           }
         }
@@ -156,7 +155,7 @@
 // ------------------------------------
 
 @mixin heading-base() {
-  font-weight: var(--aten-fw-bold);
+  font-weight: var(--prototype-fw-bold);
 }
 
 @mixin heading-01() {
@@ -194,15 +193,14 @@
 // ------------------------------------
 
 @mixin body-base() {
-  font-weight: var(--aten-fw-regular);
+  font-weight: var(--prototype-fw-regular);
 }
 
-// ------------------------------------
-// 04 - Google Material Symbols Icon Font
-// ------------------------------------
+
+// Google Material Symbols Icon Font
 @mixin font-material-icons {
   font-family: var(--font-family-icons);
-  font-weight: var(--aten-fw-regular);
+  font-weight: var(--font-weight-regular);
   text-decoration: none;
   text-transform: none;
   word-wrap: normal;
@@ -211,6 +209,6 @@
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-font-feature-settings: 'liga';
-  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: "liga";
+  font-feature-settings: "liga";
 }
