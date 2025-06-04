@@ -13,28 +13,18 @@
     }
   }
 
-  h2.h2-stylized {
-    @include type-scale(heading, h2);
-    font-weight: var(--aten-fw-bold);
-    color: var(--aten-purple);
-  }
-
-  p.subtitle {
-    @include type-scale(heading, h3);
-  }
-
   ul.link-grid-wrapper {
-    padding: rem(32px) 0;
-    margin: 0;
-    list-style-type: none;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-flow: wrap;
     gap: rem(4px);
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: rem(32px) 0;
 
     @include bp-min(tablet) {
-      padding: rem(48px) 0 rem(52px);
       gap: rem(30px);
+      padding: rem(48px) 0 rem(52px);
     }
 
     @include bp-min(sm-desktop) {
@@ -43,18 +33,18 @@
     }
 
     li {
+      align-items: flex-start;
       background-color: var(--aten-gray);
-      padding: rem(20px);
-      width: 100%;
       border-radius: var(--default-border-radius);
       display: flex;
-      align-items: flex-start;
+      padding: rem(20px);
+      width: 100%;
 
       @include bp-min(tablet) {
+        display: block;
         padding: rem(28px) rem(20px);
         // Setting width to include padding
         width: calc(47% - rem(40px));
-        display: block;
       }
 
       @include bp-min(sm-desktop) {
@@ -70,32 +60,12 @@
 
       .link-icon {
         @include font-material-icons;
-        font-weight: var(--aten-fw-regular);
-        font-size: rem(18px);
         margin-right: rem(12px);
         padding-top: rem(4px);
-        color: var(--aten-purple);
 
         @include bp-min(tablet) {
-          font-size: rem(24px);
           margin-right: 0;
           margin-bottom: rem(8px);
-        }
-      }
-
-      a.external-link {
-        &::after {
-          content: 'open_in_new';
-          @include font-material-icons;
-          font-size: rem(20px);
-          margin-right: 0;
-          padding-top: rem(4px);
-          color: var(--aten-green);
-          vertical-align: top;
-
-          @include bp-min(sm-desktop) {
-            font-size: rem(22px);
-          }
         }
       }
 
@@ -105,30 +75,6 @@
 
         @include bp-min(tablet) {
           text-align: center;
-        }
-
-        h3 {
-          color: var(--aten-purple);
-          font-weight: var(--aten-fw-bold);
-
-          @include bp-min(sm-desktop) {
-            @include type-scale(heading, h4);
-          }
-
-          a {
-            text-decoration: none;
-
-            &:hover,
-            &:focus,
-            &:active {
-              text-decoration: underline;
-            }
-          }
-        }
-
-        p {
-          @include type-scale(body, 16);
-          margin: 0;
         }
       }
     }
