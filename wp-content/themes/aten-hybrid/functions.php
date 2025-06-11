@@ -669,3 +669,16 @@ function aten_enable_classic_menu_widget_support() {
 	add_theme_support( 'widgets' );
 }
 add_action( 'after_setup_theme', 'aten_enable_classic_menu_widget_support' );
+
+/**
+ * Sets the media URL path to 'wp-content/uploads/{filename}'.
+ *
+ * This function disables year/month folders for uploads.
+ */
+add_filter(
+	'pre_option_uploads_use_yearmonth_folders',
+	function () {
+		return '0';
+	},
+	9999
+);
