@@ -35,7 +35,7 @@ echo "✅ Selected theme to copy: $SELECTED_THEME"
 
 read -p "✏️ Enter the new theme name (machine name, no spaces): " NEW_THEME_NAME
 
-# Basic validation for new theme name: no spaces, not empty
+# Basic validation for new theme name
 if [[ -z "$NEW_THEME_NAME" || "$NEW_THEME_NAME" =~ [^a-zA-Z0-9_-] ]]; then
     echo "❌ Invalid theme name. Use only letters, numbers, underscores, or hyphens."
     exit 1
@@ -51,17 +51,15 @@ fi
 # Copy the theme directory
 cp -R "$THEMES_DIR/$SELECTED_THEME" "$NEW_THEME_DIR"
 
-# Now update the copied theme’s style.css Theme Name and Text Domain
+# Update style.css metadata
 STYLE_CSS="$NEW_THEME_DIR/style.css"
 if [ -f "$STYLE_CSS" ]; then
-    # Update Theme Name line (replace or add)
     if grep -q "^Theme Name:" "$STYLE_CSS"; then
         sed -i.bak "s/^Theme Name:.*/Theme Name: $NEW_THEME_NAME/" "$STYLE_CSS"
     else
         echo "Theme Name: $NEW_THEME_NAME" >> "$STYLE_CSS"
     fi
 
-    # Update Text Domain line similarly
     if grep -q "^Text Domain:" "$STYLE_CSS"; then
         sed -i.bak "s/^Text Domain:.*/Text Domain: $NEW_THEME_NAME/" "$STYLE_CSS"
     else
@@ -71,5 +69,22 @@ if [ -f "$STYLE_CSS" ]; then
     rm "$STYLE_CSS.bak"
 fi
 
-echo "🎉 Theme copied to '$NEW_THEME_NAME' successfully!"
-echo "👉 You can now activate it in your WordPress admin."
+# Replace --aten with --new-theme-name in select files
+TARGET_FILES=(
+    "$NEW_THEME_DIR/libraries/global/00-base/_colors.scss"
+    "$NEW_THEME_DIR/libraries/global/00-base/_typography.scss"
+    "$NEW_THEME_DIR/editor-style.scss"
+)
+
+for FILE in "${TARGET_FILES[@]}"; do
+    if [ -f "$FILE" ]; then
+        sed -i.bak "s/--aten/--$NEW_THEME_NAME/g" "$FILE"
+        rm "$FILE.bak"
+        echo "🔧 Updated CSS vars in: $FILE"
+    else
+        echo "⚠️ File not found, skipping: $FILE"
+    fi
+done
+
+echo "🎉 Theme copied and customized to '$NEW_THEME_NAME' successfully!"
+echo "👉 You can now activate it in WordPress admin."
