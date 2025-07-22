@@ -2,7 +2,7 @@
 
 # Default values
 DEFAULT_WP_VERSION="latest"
-INSTALL_DIR=""
+INSTALL_DIR="."  # Install WordPress in project root
 DOWNLOAD_CORE=false
 
 # Parse command-line arguments
@@ -26,18 +26,23 @@ if [ "$DOWNLOAD_CORE" = true ]; then
         WP_URL="https://wordpress.org/wordpress-${WP_VERSION}.tar.gz"
     fi
 
-    # Ensure the install directory is clean
-    if [ -d "$INSTALL_DIR" ]; then
-        echo "Removing existing WordPress installation..."
-        rm -rf "$INSTALL_DIR"
+    # Warn user if files already exist
+    if [ -f "$INSTALL_DIR/wp-config.php" ]; then
+        echo "Warning: WordPress already appears to be installed in $INSTALL_DIR."
+        read -p "Do you want to remove the existing installation and continue? (y/n): " CONFIRM
+        if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
+            echo "Removing existing WordPress files..."
+            rm -rf "$INSTALL_DIR"/*
+        else
+            echo "Aborting."
+            exit 1
+        fi
     fi
-
-    # Create the directory
-    mkdir -p "$INSTALL_DIR"
 
     # Download and extract WordPress
     echo "Downloading WordPress version $WP_VERSION..."
-    curl -o wordpress.tar.gz -L $WP_URL
+    curl -o wordpress.tar.gz -L "$WP_URL"
+    mkdir -p "$INSTALL_DIR"
     tar -xzf wordpress.tar.gz --strip-components=1 -C "$INSTALL_DIR"
     rm wordpress.tar.gz
 
