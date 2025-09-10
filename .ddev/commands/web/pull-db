@@ -1,0 +1,183 @@
+#!/bin/bash
+
+## Description: Refresh Wordpress db from Pantheon.
+## Usage: pull-db
+## Example: "ddev pull-db"
+
+# Check if SSH key is authenticated
+if ! ssh-add -l >/dev/null 2>&1; then
+    echo "❌ SSH key not found in ssh-agent"
+    echo "Please run 'ddev auth ssh' first"
+    exit 1
+fi
+
+# Check if PANTHEON_SITE is set as an environment variable
+if [ -z "${PANTHEON_SITE}" ]; then
+    echo "❌ Please set PANTHEON_SITE in .ddev/config.yaml"
+    echo "Example:"
+    echo "web_environment:"
+    echo "  - PANTHEON_SITE=my-site-name"
+    exit 1
+fi
+
+# Check for Terminus token and authenticate
+if [ -z "${TERMINUS_MACHINE_TOKEN:-}" ]; then
+    echo "❌ Please set TERMINUS_MACHINE_TOKEN in ~/.ddev/global_config.yaml"
+    exit 1
+fi
+
+echo "🔑 Authenticating with Terminus..."
+terminus auth:login --machine-token="${TERMINUS_MACHINE_TOKEN}" || {
+    echo "❌ Terminus authentication failed. Check your TERMINUS_MACHINE_TOKEN"
+    exit 1
+}
+
+# Verify authentication by checking aliases
+terminus aliases 2>/dev/null || {
+    echo "❌ Failed to verify Terminus authentication"
+    exit 1
+}
+
+# Get list of environments
+echo "🔍 Available Pantheon Environments for $PANTHEON_SITE:"
+echo "--------------------------------"
+environments=$(terminus env:list "$PANTHEON_SITE" --format=list)
+
+# ...existing code...
+
+# Convert to array and number the options
+IFS=$'\n' read -r -d '' -a env_array <<< "$environments"
+for i in "${!env_array[@]}"; do
+    echo "[$((i+1))] ${env_array[$i]}"
+done
+
+# Prompt for selection
+echo "--------------------------------"
+echo "⚠️  WARNING: Continuing will overwrite local data."
+read -p "Choose environment number (or Ctrl+C to cancel): " selection
+
+# Validate input
+if ! [[ "$selection" =~ ^[0-9]+$ ]] || [ "$selection" -lt 1 ] || [ "$selection" -gt "${#env_array[@]}" ]; then
+    echo "❌ Invalid selection"
+    exit 1
+fi
+
+# Get selected environment
+selected_env=${env_array[$((selection-1))]}
+echo "✅ Selected environment: $selected_env"
+
+# Select refresh type
+echo "--------------------------------"
+echo "Select refresh type:"
+echo "[1] Database only"
+echo "[2] Database and files"
+read -p "Choose option (or Ctrl+C to cancel): " refresh_type
+
+if ! [[ "$refresh_type" =~ ^[1-2]$ ]]; then
+    echo "❌ Invalid refresh type selection"
+    exit 1
+fi
+
+# Create backup directory and refresh NFS
+ls .ddev >/dev/null # Refresh stale NFS if possible
+mkdir -p .ddev/.downloads
+
+# Change to downloads directory
+pushd .ddev/.downloads >/dev/null || {
+    echo "❌ Failed to change to downloads directory"
+    exit 1
+}
+
+echo "🔍 Checking latest backup information..."
+latest_backup=$(terminus backup:info "$PANTHEON_SITE.$selected_env" --element=db --field=file)
+echo "📅 Latest database backup: $latest_backup"
+
+if [ -n "$latest_backup" ]; then
+    echo "--------------------------------"
+    echo "Would you like to:"
+    echo "[1] Use existing backup"
+    echo "[2] Create new backup"
+    read -p "Choose option (or Ctrl+C to cancel): " backup_choice
+
+    if ! [[ "$backup_choice" =~ ^[1-2]$ ]]; then
+        echo "❌ Invalid selection"
+        exit 1
+    fi
+else
+    echo "⚠️ No existing backup found. Will create new backup."
+    backup_choice=2
+fi
+
+# Create new backups if selected or if no existing backup
+if [ "$backup_choice" -eq 2 ]; then
+    echo "📦 Creating new database backup..."
+    terminus backup:create "$PANTHEON_SITE.$selected_env" --element=db || {
+        echo "❌ Failed to create database backup"
+        popd >/dev/null
+        exit 1
+    }
+fi
+
+# Clean up existing backups if they exist
+[ -f db.sql.gz ] && rm db.sql.gz
+
+# Download backups
+echo "⬇️ Downloading database backup..."
+terminus backup:get "$PANTHEON_SITE.$selected_env" --element=db --to=db.sql.gz || {
+    echo "❌ Failed to download database backup"
+    popd >/dev/null
+    exit 1
+}
+
+# Rsync files if selected both database and files
+if [ "$refresh_type" -eq 2 ]; then
+    echo "⬇️ Syncing files from Pantheon..."
+    if ! terminus self:plugin:list | grep -q "terminus-rsync-plugin"; then
+        echo "📦 Installing terminus rsync plugin..."
+        terminus self:plugin:install terminus-rsync-plugin || {
+            echo "❌ Failed to install rsync plugin"
+            popd >/dev/null
+            exit 1
+    }
+    fi
+    terminus rsync "$PANTHEON_SITE.$selected_env:files/." /var/www/html/wp-content/uploads/ -- "-rlvzu --size-only" || {
+        rsync_status=$?
+        echo "❌ Failed to sync files (exit code: $rsync_status)"
+        echo "Try running 'terminus connection:info $PANTHEON_SITE.$selected_env' to verify SSH access"
+        popd >/dev/null
+        exit 1
+    }
+fi
+
+# Import database
+echo "📥 Importing database..."
+gunzip < db.sql.gz | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' \
+                        -e 's/SQL SECURITY DEFINER/SQL SECURITY INVOKER/' \
+                        -e 's/DEFINER=`[^`]*`@`[^`]*`//g' | wp db import - || {
+    echo "❌ Failed to import database"
+    popd >/dev/null
+    exit 1
+}
+
+# Get Pantheon domain
+echo "🔍 Getting Pantheon domain..."
+pantheon_domain=$(terminus env:info "$PANTHEON_SITE.$selected_env" --field=domain)
+if [ -z "$pantheon_domain" ]; then
+    echo "❌ Failed to get Pantheon domain"
+    popd >/dev/null
+    exit 1
+fi
+
+# Get DDEV domain
+ddev_domain="${DDEV_HOSTNAME}"
+
+# Replace Pantheon domain with DDEV domain
+echo "🔄 Updating domain references..."
+echo "Running: wp search-replace \"https://${pantheon_domain}\" \"https://${ddev_domain}\""
+wp search-replace "https://${pantheon_domain}" "https://${ddev_domain}" || {
+    echo "❌ Failed to update domain references"
+    popd >/dev/null
+    exit 1
+}
+
+echo "✨ Refresh complete!"

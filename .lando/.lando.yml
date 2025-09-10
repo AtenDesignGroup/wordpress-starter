@@ -1,7 +1,7 @@
 name: wordpress-starter
 recipe: wordpress
 config:
-  php: "8.2"
+  php: "8.3"
   # framework: 'wordpress'
   # id: SITE_ID
   # site: SITE_NAME

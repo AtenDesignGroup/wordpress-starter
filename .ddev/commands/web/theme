@@ -1,0 +1,78 @@
+#!/bin/bash
+## Description: Run npm inside the theme directory using the custom theme command.
+## Usage: theme [command] [flags] [args]
+## Example: "ddev theme install", "ddev theme watch", "ddev theme build"
+## Supported Commands:
+##   watch   - Run "npm run watch" in the theme directory.
+##   build   - Run "npm run build" in the theme directory.
+##   install - Run "npm install" in the theme directory.
+
+# Ensure THEME_PATH is set
+if [ -z "$THEME_PATH" ]; then
+  echo "Error: THEME_PATH environment variable is not set."
+  exit 1
+fi
+
+# Navigate to the theme directory
+cd "$THEME_PATH" || {
+  echo "Error: Could not navigate to the theme directory at $THEME_PATH."
+  exit 1
+}
+
+# Ensure npm is available
+if ! command -v npm &> /dev/null; then
+  echo "Error: npm is not installed or not available in the PATH."
+  exit 1
+fi
+
+# Display help message
+function display_help() {
+  echo "Usage: ddev theme [command] [flags] [args]"
+  echo ""
+  echo "Commands:"
+  echo "  watch   - Run 'npm run watch' in the theme directory."
+  echo "  build   - Run 'npm run build' in the theme directory."
+  echo "  install - Run 'npm install' in the theme directory."
+  echo "  help    - Display this help message."
+  echo ""
+  echo "Examples:"
+  echo "  ddev theme watch"
+  echo "  ddev theme build"
+  echo "  ddev theme install"
+}
+
+# Check for subcommands
+case "$1" in
+  watch)
+    # Run the watch command
+    npm run watch || {
+      echo "Error: Failed to run 'npm run watch'."
+      exit 1
+    }
+    ;;
+  build)
+    # Run the build command
+    npm run build || {
+      echo "Error: Failed to run 'npm run build'."
+      exit 1
+    }
+    ;;
+  install)
+    # Run the install command
+    npm install || {
+      echo "Error: Failed to run 'npm install'."
+      exit 1
+    }
+    ;;
+  help | "")
+    # Display the help message
+    display_help
+    ;;
+  *)
+    # Handle invalid subcommands or pass arguments to npm
+    npm "$@" || {
+      echo "Error: Failed to run 'npm $@'."
+      exit 1
+    }
+    ;;
+esac
