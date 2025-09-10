@@ -1,0 +1,316 @@
+{
+    "name": "@devowl-wp/utils",
+    "version": "1.19.9",
+    "private": true,
+    "description": "Utility functionality for all your WordPress plugins.",
+    "homepage": "https://devowl.io",
+    "license": "GPL-3.0-or-later",
+    "author": "devowl",
+    "sideEffects": [
+        "**/*.{css,scss,less}",
+        "./src/public/ts/*.tsx"
+    ],
+    "main": "lib/index.tsx",
+    "files": [
+        "dist",
+        "dev",
+        "languages/frontend"
+    ],
+    "scripts": {
+        "bootstrap": "while ! composer install --prefer-dist; do rm -rf vendor; done;",
+        "build": "dowl --silent task package/build",
+        "build:js:development": "dowl --silent task webpack/dev",
+        "build:js:production": "dowl --silent task webpack/prod",
+        "dev": "dowl --silent task dev",
+        "disclaimer:composer": "dowl --silent task @devowl-wp/composer-licenses:disclaimer",
+        "i18n:generate:backend": "dowl continuous-localization-ts sync --project backend",
+        "i18n:generate:frontend": "dowl continuous-localization-ts sync --project frontend",
+        "lint:eslint": "dowl --silent task @devowl-wp/eslint-config",
+        "lint:phpcs": "dowl --silent task @devowl-wp/phpcs-config",
+        "task": "task --taskfile ./tasks/Taskfile.yml",
+        "test:jest": "dowl --silent task jest",
+        "test:jest:coverage": "dowl --silent task jest/coverage",
+        "test:phpunit": "dowl --silent task @devowl-wp/phpunit-config",
+        "test:phpunit:coverage": "dowl --silent task @devowl-wp/phpunit-config:coverage",
+        "wp": "$(which wp)$(test $CI && echo ' --allow-root')",
+        "wp:weak": "php -n -dextension=phar.so -dextension=json.so -dextension=mbstring.so -dextension=tokenizer.so -dmemory_limit=-1 $(which wp)$(test $CI && echo ' --allow-root')"
+    },
+    "browserslist": [
+        "defaults",
+        "not IE 11"
+    ],
+    "dependencies": {
+        "@devowl-wp/api": "workspace:*",
+        "@wordpress/i18n": "5.1.0",
+        "core-js": "3.37.1",
+        "deepmerge": "4.3.1",
+        "immer": "10.1.1",
+        "interpolate-components": "1.1.1",
+        "jquery": "3.7.1",
+        "js-cookie": "3.0.5",
+        "json-form-data": "1.7.2",
+        "mobx": "4.15.7",
+        "querystringify": "2.2.0",
+        "react": "18.3.1",
+        "react-dom": "18.3.1"
+    },
+    "devDependencies": {
+        "@devowl-wp/composer-licenses": "workspace:*",
+        "@devowl-wp/continuous-integration": "workspace:*",
+        "@devowl-wp/continuous-localization": "workspace:*",
+        "@devowl-wp/eslint-config": "workspace:*",
+        "@devowl-wp/monorepo-utils": "workspace:*",
+        "@devowl-wp/node-gitlab-ci": "workspace:*",
+        "@devowl-wp/npm-licenses": "workspace:*",
+        "@devowl-wp/phpcs-config": "workspace:*",
+        "@devowl-wp/phpunit-config": "workspace:*",
+        "@devowl-wp/ts-config": "workspace:*",
+        "@devowl-wp/webpack-config": "workspace:*",
+        "@swc/jest": "0.2.36",
+        "@types/jest": "29.5.12",
+        "@types/jquery": "3.5.30",
+        "@types/json-form-data": "1.7.5",
+        "@types/querystringify": "2.0.2",
+        "@types/react": "18.3.3",
+        "@types/react-dom": "18.3.0",
+        "apidoc": "1.2.0",
+        "identity-obj-proxy": "3.0.0",
+        "jest": "29.7.0",
+        "jest-environment-jsdom": "29.7.0",
+        "jest-junit": "16.0.0",
+        "jsdoc": "3.6.11",
+        "php-parser": "3.1.5",
+        "ts-node": "10.9.2",
+        "tslib": "2.6.3",
+        "typedoc": "0.25.13",
+        "typescript": "5.4.5",
+        "webpack": "5.92.0",
+        "webpack-cli": "5.1.4",
+        "wp-hookdoc": "0.2.0"
+    },
+    "engines": {
+        "node": ">=14.15.0"
+    },
+    "continuous-localization": {
+        "locales": {
+            "de_AT": false,
+            "de_DE": "de@informal",
+            "de_DE_formal": "de@formal",
+            "de_CH": false,
+            "de_CH_informal": false,
+            "nb_NO": "nb_NO",
+            "ru_RU": "ru@formal",
+            "uk": "uk",
+            "fr_FR": "fr@formal",
+            "fr_BE": false,
+            "fr_CA": false,
+            "it_IT": "it@formal",
+            "pl_PL": "pl@formal",
+            "nl_NL": "nl@informal",
+            "nl_NL_formal": "nl@formal",
+            "nl_BE": false,
+            "es_AR": false,
+            "es_ES": "es@formal",
+            "es_CO": false,
+            "es_EC": false,
+            "es_CR": false,
+            "es_DO": false,
+            "es_PE": false,
+            "es_UY": false,
+            "es_CL": false,
+            "es_PR": false,
+            "es_MX": false,
+            "es_GT": false,
+            "es_VE": false,
+            "da_DK": "da",
+            "sv_SE": "sv",
+            "cs_CZ": "cs",
+            "pt_PT": "pt@formal",
+            "pt_BR": false,
+            "hu_HU": "hu",
+            "ro_RO": "ro",
+            "el": "el",
+            "fi": "fi",
+            "sk_SK": "sk"
+        },
+        "thresholds": {
+            "de@informal": 100,
+            "de@formal": 100,
+            "fr@formal": 100,
+            "it@formal": 100,
+            "pl@formal": 100,
+            "nl@informal": 100,
+            "nl@formal": 100,
+            "es@formal": 100,
+            "da": 100,
+            "sv": 100,
+            "nb_NO": 100,
+            "cs": 100,
+            "pt@formal": 100,
+            "hu_HU": 100,
+            "ro_RO": 100,
+            "el": 100,
+            "fi": 100,
+            "sk_SK": 100
+        },
+        "machineTranslation": {
+            "fr@formal": [
+                "deepl"
+            ],
+            "it@formal": [
+                "deepl"
+            ],
+            "pl@formal": [
+                "deepl"
+            ],
+            "nl@informal": [
+                "deepl"
+            ],
+            "nl@formal": [
+                "deepl"
+            ],
+            "es@formal": [
+                "deepl"
+            ],
+            "da": [
+                "deepl"
+            ],
+            "sv": [
+                "deepl"
+            ],
+            "nb_NO": [
+                "deepl"
+            ],
+            "cs": [
+                "deepl"
+            ],
+            "pt@formal": [
+                "deepl"
+            ],
+            "hu": [
+                "deepl"
+            ],
+            "ro": [
+                "deepl"
+            ],
+            "el": [
+                "deepl"
+            ],
+            "fi": [
+                "deepl"
+            ],
+            "sk": [
+                "deepl"
+            ]
+        },
+        "copyFiles": {
+            "de@informal.(po)$": [
+                "de_AT.$1",
+                "de_CH_informal.$1"
+            ],
+            "de@formal.(po)$": [
+                "de_CH.$1"
+            ],
+            "uk_UA.(po)$": [
+                "uk.$1"
+            ],
+            "es_ES.(po)$": [
+                "es_AR.$1",
+                "es_CO.$1",
+                "es_EC.$1",
+                "es_CR.$1",
+                "es_DO.$1",
+                "es_PE.$1",
+                "es_UY.$1",
+                "es_CL.$1",
+                "es_PR.$1",
+                "es_MX.$1",
+                "es_GT.$1",
+                "es_VE.$1"
+            ],
+            "fr_FR.(po)$": [
+                "fr_CA.$1",
+                "fr_BE.$1"
+            ],
+            "nl_NL.(po)$": [
+                "nl_BE.$1"
+            ],
+            "pt_PT.(po)$": [
+                "pt_BR.$1"
+            ],
+            "el_GR.(po)$": [
+                "el.$1"
+            ],
+            "fi_FI.(po)$": [
+                "fi.$1"
+            ]
+        },
+        "projects": {
+            "backend": {
+                "name": "@devowl-wp/utils (Backend, PHP)",
+                "system": "weblate",
+                "weblate": {
+                    "componentSettings": {
+                        "check_flags": "php-format",
+                        "enforced_checks": [
+                            "php_format"
+                        ]
+                    }
+                },
+                "sourceFolder": "src",
+                "languageFolder": "languages/backend",
+                "extractCmd": "dowl run --silent wp:weak i18n make-pot src/ languages/backend/utils.pot --headers='{\"POT-Creation-Date\":\"n/a\",\"Project-Id-Version\":\"n/a\"}' --ignore-domain"
+            },
+            "frontend": {
+                "name": "@devowl-wp/utils (Frontend, JavaScript)",
+                "system": "weblate",
+                "weblate": {
+                    "componentSettings": {
+                        "check_flags": "php-format",
+                        "enforced_checks": [
+                            "php_format",
+                            "automatic_interpolate_components"
+                        ]
+                    }
+                },
+                "sourceFolder": "lib",
+                "languageFolder": "languages/frontend",
+                "extractCmd": "dowl run --silent wp:weak i18n make-pot lib languages/frontend/utils.pot --skip-js --headers='{\"POT-Creation-Date\":\"n/a\",\"Project-Id-Version\":\"n/a\"}' --ignore-domain --merge=$(find $(test \"$NODE_ENV\" = \"production\" && echo \"dist\" || echo \"dev\") -maxdepth 1 -name '*.pot' -type f | tr '\\n' ',' | sed 's/,$//')",
+                "afterPullCmd": "rm -rf languages/frontend/json && dowl run --silent wp i18n make-json languages/frontend languages/frontend/json --no-purge"
+            }
+        }
+    },
+    "license-check": {
+        "spdx": [],
+        "packages": [
+            "ignore-packages-here@1.0.0"
+        ]
+    },
+    "phpunit-coverage-threshold": 30,
+    "swc": {
+        "jsc": {
+            "loose": true,
+            "parser": {
+                "syntax": "typescript",
+                "tsx": true,
+                "decorators": true,
+                "dynamicImport": true
+            },
+            "transform": {
+                "react": {
+                    "runtime": "automatic"
+                },
+                "decoratorMetadata": true,
+                "decoratorVersion": "2021-12"
+            },
+            "externalHelpers": true
+        },
+        "module": {
+            "type": "es6"
+        },
+        "env": {
+            "coreJs": 3
+        },
+        "sourceMaps": true
+    }
+}

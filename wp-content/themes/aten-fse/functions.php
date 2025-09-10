@@ -1,14 +1,16 @@
 <?php
-
 /**
- * @file
- * Aten Full Site Editor functions and definitions.
+ * Theme Functions and Definitions
  *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ * This file contains the main functions and definitions for the Aten Full Site Editor theme.
  *
  * @package WordPress
- * @subpackage Aten FSE
- * @since Twenty Twenty Four 1.0
+ * @subpackage Aten_FSE
+ * @since 1.0.0
+ */
+
+/**
+ * Functions and definitions for the Aten Full Site Editor theme.
  */
 
 require_once __DIR__ . '/includes/footer-elements.php';
@@ -164,7 +166,9 @@ function aten_fse_enqueue_styles() {
 }
 
 /**
+ * Enqueues custom styles for the WordPress admin area.
  *
+ * @return void
  */
 function admin_style() {
 	wp_enqueue_style( 'admin-styles', get_stylesheet_directory_uri() . '/admin-styles.css' );
@@ -173,7 +177,13 @@ function admin_style() {
 add_action( 'admin_enqueue_scripts', 'admin_style' );
 
 /**
+ * Register custom menus for Aten FSE theme.
  *
+ * This function registers three custom menus: 'primary', 'main-nav', and
+ * 'footer'. These menus can be used in the theme to create navigation
+ * menus in different locations.
+ *
+ * @return void
  */
 function aten_fse_menus_init() {
 	register_nav_menus(
@@ -187,15 +197,15 @@ function aten_fse_menus_init() {
 
 add_action( 'after_setup_theme', 'aten_fse_menus_init' );
 
+
 /**
- * Pretty Printing.
+ * Prints a debug logger in the browser for the given object.
  *
- * @since 1.0.0
- * @author Chris Bratlien
- * @param mixed  $obj
- * @param string $label
+ * This function creates a debug logger in the browser to display the provided
+ * object and an optional label. The logger is styled and appended to the DOM.
  *
- * @return null
+ * @param mixed  $obj   The object to debug.
+ * @param string $label An optional label for the debug output.
  */
 function ea_pp( $obj, $label = '' ) {
 	$data = json_encode( print_r( $obj, true ) );
@@ -218,7 +228,7 @@ function ea_pp( $obj, $label = '' ) {
 	</style>
 	<script type="text/javascript">
 	var doStuff = function() {
-		var obj = <?php echo $data; ?>;
+		var obj = <?php echo wp_json_encode( $data ); ?>;
 		var logger = document.getElementById('bsdLogger');
 		if (!logger) {
 		logger = document.createElement('div');
@@ -229,7 +239,7 @@ function ea_pp( $obj, $label = '' ) {
 		var pre = document.createElement('pre');
 		var h2 = document.createElement('h2');
 		pre.innerHTML = obj;
-		h2.innerHTML = '<?php echo addslashes( $label ); ?>';
+		h2.innerHTML = '<?php echo esc_js( $label ); ?>';
 		logger.appendChild(h2);
 		logger.appendChild(pre);
 	};
@@ -277,10 +287,10 @@ function get_block_files() {
 	$block_files = array();
 
 	foreach ( $dirs as $dir ) {
-		$block_name = pathinfo( $dir, PATHINFO_BASENAME );
-		$css_file   = "{$block_name}.css";
-		$js_file    = "{$block_name}.js";
-    $config_file = "{$block_name}.config.json";
+		$block_name  = pathinfo( $dir, PATHINFO_BASENAME );
+		$css_file    = "{$block_name}.css";
+		$js_file     = "{$block_name}.js";
+		$config_file = "{$block_name}.config.json";
 
 		// Setting block name.
 		$block = array( 'name' => $block_name );
@@ -342,7 +352,7 @@ function register_acf_blocks() {
 					wp_register_script( $block['name'], get_stylesheet_directory_uri() . '/blocks/' . $block['js']['src'], $block['js']['deps'], $block['js']['ver'], true );
 				}
 
-        // If config exists register nested stylesheets.
+				// If config exists register nested stylesheets.
 				if ( isset( $block['config'] ) && isset( $block['config']['nested_blocks'] ) && $block['config']['nested_blocks'] ) {
 					foreach ( $block['config']['nested_blocks'] as $nested_block ) {
 						if ( file_exists( get_stylesheet_directory_uri() . "/blocks/{$nested_block}/{$nested_block}.css" ) ) {
@@ -455,6 +465,12 @@ function aten_fse_blacklist_blocks( $allowed_blocks ) {
 add_image_size( 'callout-link', 400, 400 );
 
 /**
+ * Enqueues Splide.js CSS and JavaScript.
+ *
+ * This function enqueues the Splide.js CSS and JavaScript files for use in
+ * the theme. The CSS file is loaded from the vendor directory, and the
+ * JavaScript file is loaded with jQuery as a dependency.
+ *
  * @return void
  */
 function enqueue_splide_scripts() {
@@ -541,7 +557,7 @@ add_action( 'wp_enqueue_scripts', 'enqueue_custom_scripts' );
 add_filter(
 	'render_block',
 	function ( $block_content, $block ) {
-		if ( $block['blockName'] === 'core/heading' ) {
+		if ( 'core/heading' === $block['blockName'] ) {
 			$block_content = str_replace( '<h1', '<h2', $block_content );
 			$block_content = str_replace( '</h1', '</h2', $block_content );
 		}
@@ -588,10 +604,17 @@ function adding_icon_font_to_block_editor() {
 add_action( 'enqueue_block_assets', 'adding_icon_font_to_block_editor' );
 
 /**
- * Validates the phone number field in the contact info ACF group as a numeric value.
+ * Validating the phone number field to ensure it only contains numbers.
+ *
+ * @param bool   $valid  The current validation status.
+ * @param string $value  The value of the field.
+ * @param array  $field  The field settings.
+ * @param string $input  The input name.
+ *
+ * @return bool|string
  */
 function validate_text_as_number( $valid, $value, $field, $input ) {
-	if ( $valid !== true ) {
+	if ( true !== $valid ) {
 		return $valid;
 	}
 	if ( preg_match( '/[^0-9]/', $value ) ) {
@@ -604,11 +627,19 @@ add_filter( 'acf/validate_value/name=phone_number', 'validate_text_as_number', 2
 
 /**
  * Adjusting the path for the ACF Icon Selector to use the Material Font Icons inside of /assets/icons/acf-icons.
+ *
+ * @param string $path_suffix The path suffix.
+ *
+ * @return string The modified path suffix.
  */
 add_filter( 'acf_icon_path_suffix', 'acf_icon_path_suffix' );
 
 /**
+ * Adjusting the path for the ACF Icon Selector to use the Material Font Icons inside of /assets/icons/acf-icons.
  *
+ * @param string $path_suffix The path suffix.
+ *
+ * @return string The modified path suffix.
  */
 function acf_icon_path_suffix( $path_suffix ) {
 	return 'assets/icons/acf-icons/';
@@ -617,7 +648,11 @@ function acf_icon_path_suffix( $path_suffix ) {
 add_filter( 'acf_icon_path', 'acf_icon_path' );
 
 /**
+ * Adjusting the path for the ACF Icon Selector to use the Material Font Icons inside of /assets/icons/acf-icons.
  *
+ * @param string $path_suffix The path suffix.
+ *
+ * @return string The modified path suffix.
  */
 function acf_icon_path( $path_suffix ) {
 	return plugin_dir_path( __FILE__ );
@@ -626,7 +661,11 @@ function acf_icon_path( $path_suffix ) {
 add_filter( 'acf_icon_url', 'acf_icon_url' );
 
 /**
+ * Adjusting the path for the ACF Icon Selector to use the Material Font Icons inside of /assets/icons/acf-icons.
  *
+ * @param string $path_suffix The path suffix.
+ *
+ * @return string The modified path suffix.
  */
 function acf_icon_url( $path_suffix ) {
 	return plugin_dir_url( __FILE__ );
@@ -640,7 +679,7 @@ function display_aten_fse_site_logo() {
 	ob_start();
 	?>
 	<div class="site-logo">
-	<a href="<?php echo get_home_url(); ?>" title="Homepage"><img src="<?php echo $logo_path; ?>" title="Home" alt="Aten Logo" /></a>
+	<a href="<?php echo esc_url( get_home_url() ); ?>" title="Homepage"><img src="<?php echo esc_url( $logo_path ); ?>" title="Home" alt="Aten Logo" /></a>
 	</div>
 	<?php
 	return ob_get_clean();
@@ -654,7 +693,12 @@ add_shortcode( 'aten_fse_site_logo', 'display_aten_fse_site_logo' );
 add_filter( 'wp_nav_menu_objects', 'my_wp_nav_menu_objects', 10, 2 );
 
 /**
+ * Adding icons to the menu items and modifying classes based on ACF fields.
  *
+ * @param array  $items The menu items.
+ * @param object $args The menu arguments.
+ *
+ * @return array The modified menu items.
  */
 function my_wp_nav_menu_objects( $items, $args ) {
 	if ( class_exists( 'ACF' ) ) {
@@ -694,7 +738,12 @@ function my_wp_nav_menu_objects( $items, $args ) {
 }
 
 /**
- * Set a default featured image for News posts.
+ * Setting a default featured image for the news post type.
+ *
+ * @param int     $post_id The ID of the post being saved.
+ * @param WP_Post $post The post object.
+ *
+ * @return int The post ID.
  */
 function set_default_featured_image( $post_id, $post ) {
 	// Check post type and see if the post has a featured image.
@@ -715,7 +764,12 @@ add_action( 'save_post', 'set_default_featured_image', 10, 2 );
  */
 
 /**
- * Customizing the query used to render the block on the front-end.
+ * Filters the pre-rendered block content for the custom news query loop.
+ *
+ * @param string $pre_render   The pre-rendered block content.
+ * @param array  $parsed_block The parsed block data.
+ *
+ * @return string The filtered pre-rendered block content.
  */
 function custom_news_query_loop_pre_render( $pre_render, $parsed_block ) {
 	// Verify that this only runs on our extended version of the query lop.
@@ -741,13 +795,17 @@ function custom_news_query_loop_pre_render( $pre_render, $parsed_block ) {
 add_filter( 'pre_render_block', 'custom_news_query_loop_pre_render', 10, 2 );
 
 /**
- * Customizing the query used to render the block on the back-end editor.
+ * Customizing the query used to render the block on the back-end.
+ *
+ * @param array $args The query arguments.
+ * @param array $request The request object.
+ * @return array The modified query arguments.
  */
 function customizing_news_query_block( $args, $request ) {
 	// Checking for date filter so this doesn't run on every news query sitewide.
-	$dateFilter = $request['filterByDate'];
+	$date_filter = $request['filterByDate'];
 	// If our flag var is present, the query is being run by our custom query loop block.
-	if ( $dateFilter ) {
+	if ( $date_filter ) {
 		// Update the query for the back end view.
 		$args['meta_key'] = 'publication_date';
 		$args['orderby']  = 'meta_value';
@@ -760,7 +818,10 @@ function customizing_news_query_block( $args, $request ) {
 add_filter( 'rest_news_query', 'customizing_news_query_block', 10, 2 );
 
 /**
- * Rewriting Search slug to use /search/ base.
+ * Customizing the search results URL to use /search/ base.
+ *
+ * @param array $rewrite The rewrite rules.
+ * @return array The modified rewrite rules.
  */
 function aten_fse_custom_search_rules( $rewrite ) {
 	global $wp_rewrite;
@@ -774,14 +835,16 @@ function aten_fse_custom_search_rules( $rewrite ) {
 add_filter( 'search_rewrite_rules', 'aten_fse_custom_search_rules', 10, 1 );
 
 /**
+ * Redirecting search results to /search/ base.
  *
+ * @return void
  */
 function aten_fse_search_template_redirect() {
 	global $wp_rewrite;
 	// Check that there is a search term.
 	if ( is_search() && isset( $_GET['s'] ) ) {
 		// Append search term to the /search/ base URL.
-		$s         = sanitize_text_field( $_GET['s'] );
+		$s         = sanitize_text_field( wp_unslash( $_GET['s'] ) );
 		$location  = '/';
 		$location .= trailingslashit( $wp_rewrite->search_base );
 		$location .= ( ! empty( $s ) ) ? user_trailingslashit( urlencode( $s ) ) : urlencode( $s );
@@ -815,7 +878,7 @@ function display_search_details() {
 	ob_start();
 	// Don't show anything if no search term exists.
 	if ( $search_term && ( $wp_query->found_posts > 0 ) ) {
-		echo '<h2 class="search-results-count"><em>' . $result_text . ' </em><strong>' . $search_term . '</strong></h2>';
+		echo '<h2 class="search-results-count"><em>' . esc_html( $result_text ) . ' </em><strong>' . esc_html( $search_term ) . '</strong></h2>';
 	}
 	return ob_get_clean();
 }
@@ -823,7 +886,10 @@ function display_search_details() {
 add_shortcode( 'search_details', 'display_search_details' );
 
 /**
- * Adding the page slug to the body class for targeting global elements at the template-level.
+ * Adds the page slug to the body class for targeting global elements at the template level.
+ *
+ * @param array $classes An array of body class names.
+ * @return array The modified array of body class names.
  */
 function add_slug_body_class( $classes ) {
 	global $post;
@@ -836,7 +902,10 @@ function add_slug_body_class( $classes ) {
 add_filter( 'body_class', 'add_slug_body_class' );
 
 /**
- * Trimming excerpts to the nearest full sentence, limit 3 sentences.
+ * Adjusts the excerpt length.
+ *
+ * @param int $length The current excerpt length.
+ * @return int The adjusted excerpt length.
  */
 function adjust_excerpt_length( $length ) {
 	if ( is_admin() ) {
@@ -849,7 +918,10 @@ function adjust_excerpt_length( $length ) {
 add_filter( 'excerpt_length', 'adjust_excerpt_length', 999 );
 
 /**
+ * Removing the "Read More" ellipses from the excerpt.
  *
+ * @param string $more The default "Read More" text.
+ * @return string An empty string to remove the ellipses.
  */
 function remove_read_more_ellipses( $more ) {
 	return '';
@@ -858,7 +930,10 @@ function remove_read_more_ellipses( $more ) {
 add_filter( 'excerpt_more', 'remove_read_more_ellipses' );
 
 /**
+ * Trimming the excerpt to the nearest full sentence.
  *
+ * @param string $excerpt The excerpt to trim.
+ * @return string The trimmed excerpt.
  */
 function trim_excerpt_to_full_sentence( $excerpt ) {
 	$sentence_punctuation = array( '.', '!', '?', '...' );
@@ -869,7 +944,7 @@ function trim_excerpt_to_full_sentence( $excerpt ) {
 		$lowest_sentence_end[ $i ] = 200;
 		foreach ( $sentence_punctuation as $end_punctuation ) {
 			$sentence_end = strpos( $excerpt_chunk, $end_punctuation );
-			if ( $sentence_end !== false && $sentence_end < $lowest_sentence_end[ $i ] ) {
+			if ( false !== $sentence_end && $sentence_end < $lowest_sentence_end[ $i ] ) {
 				$lowest_sentence_end[ $i ] = $sentence_end + strlen( $end_punctuation );
 			}
 			$sentence_end = false;
@@ -886,6 +961,8 @@ add_filter( 'get_the_excerpt', 'trim_excerpt_to_full_sentence' );
 
 /**
  * Removing unnecessary options from the Easy Notification Bar customizer.
+ *
+ * @param WP_Customize_Manager $wp_customize The customizer manager object.
  */
 function removing_unnecessary_notification_bar_options( $wp_customize ) {
 	$wp_customize->remove_control( 'easy_nb_background_color' );
@@ -935,8 +1012,14 @@ add_action( 'admin_head', 'changing_icon_bg_in_admin' );
 // Disabling access to author archive pages.
 add_action( 'template_redirect', 'disable_direct_access_to_author_page' );
 
+
 /**
+ * Disables direct access to author archive pages.
  *
+ * This function prevents users from accessing author archive pages by
+ * setting them as a 404 and redirecting to the homepage.
+ *
+ * @return void
  */
 function disable_direct_access_to_author_page() {
 	global $wp_query;
@@ -946,7 +1029,7 @@ function disable_direct_access_to_author_page() {
 		$wp_query->set_404();
 		status_header( 404 );
 		// Redirect to homepage.
-		wp_redirect( get_option( 'home' ) );
+		wp_safe_redirect( get_option( 'home' ) );
 	}
 }
 
@@ -956,7 +1039,10 @@ function disable_direct_access_to_author_page() {
 add_filter( 'gform_form_args', 'no_ajax_on_all_forms', 10, 1 );
 
 /**
+ * Disables AJAX for all Gravity Forms.
  *
+ * @param array $args The form arguments.
+ * @return array Modified form arguments with AJAX disabled.
  */
 function no_ajax_on_all_forms( $args ) {
 	$args['ajax'] = false;
@@ -1009,4 +1095,31 @@ add_filter(
 		}
 			return $attr;
 	}
+);
+
+/**
+ * Enables support for classic menus and widgets.
+ *
+ * This function adds theme support for traditional WordPress menus and widgets,
+ * allowing users to manage navigation menus and widgets through the Appearance menu.
+ *
+ * @return void
+ */
+function aten_enable_classic_menu_widget_support() {
+	add_theme_support( 'menus' );
+	add_theme_support( 'widgets' );
+}
+add_action( 'after_setup_theme', 'aten_enable_classic_menu_widget_support' );
+
+/**
+ * Sets the media URL path to 'wp-content/uploads/{filename}'.
+ *
+ * This function disables year/month folders for uploads.
+ */
+add_filter(
+	'pre_option_uploads_use_yearmonth_folders',
+	function () {
+		return '0';
+	},
+	9999
 );

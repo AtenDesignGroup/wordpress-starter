@@ -70,6 +70,12 @@ const paths = {
   },
 };
 
+// Silence deprecation warnings from JS API
+// More info: https://sass-lang.com/d/legacy-js-api
+const sassOpts = {
+  silenceDeprecations: ['legacy-js-api'],
+};
+
 /*------------------------------------*\
   03 - Filename Conversion
   In order for Webpack to compile multiple entry points, we will need to dynamically update the
@@ -140,7 +146,7 @@ function baseStylesWatch() {
   })
     .pipe(sourcemaps.init())
     .pipe(dependents())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass(sassOpts).on('error', sass.logError))
     .pipe(postcss())
     .pipe(concat('style.css'))
     .pipe(dest(paths.base.styles.dest, { sourcemaps: true }))
@@ -152,7 +158,7 @@ function baseStylesBuild() {
   cleanStyles();
 
   return src(paths.base.styles.src)
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass(sassOpts).on('error', sass.logError))
     .pipe(postcss())
     .pipe(concat('style.css'))
     .pipe(dest(paths.base.styles.dest));
@@ -203,7 +209,7 @@ function blockStylesWatch() {
   })
     .pipe(sourcemaps.init())
     .pipe(dependents())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass(sassOpts).on('error', sass.logError))
     .pipe(postcss())
     .pipe(
       rename(function (file) {
@@ -218,7 +224,7 @@ function blockStylesWatch() {
 function blockStylesBuild() {
   return src(paths.blocks.styles.src)
     .pipe(named(renameBlockScripts))
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass(sassOpts).on('error', sass.logError))
     .pipe(postcss())
     .pipe(
       rename(function (file) {
@@ -271,7 +277,7 @@ function editor() {
 
   // Compile styles
   return src(paths.editor.src)
-    .pipe(sass())
+    .pipe(sass(sassOpts))
     .on('error', sass.logError)
     .pipe(concat('editor-style.css'))
     .pipe(dest('.'))

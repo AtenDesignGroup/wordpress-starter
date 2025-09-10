@@ -13,8 +13,8 @@
     .wp-block-video {
       &,
       video {
-        width: auto;
         max-width: 100%;
+        width: auto;
       }
     }
 
@@ -28,9 +28,9 @@
   }
 
   .accordion-block-panel.collapsed {
+    border-width: 0;
     height: 0;
     padding: 0;
     overflow: hidden;
-    border-width: 0;
   }
 }

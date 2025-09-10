@@ -5,16 +5,8 @@
   "description": "Custom block to display a title, text, an optional image and link. Callout blocks can be laid out vertically or horizontally.",
   "category": "common",
   "icon": "embed-generic",
-  "keywords": [
-    "CTA",
-    "callout",
-    "link",
-    "call-to-action"
-  ],
-  "post_types": [
-    "post",
-    "page"
-  ],
+  "keywords": ["CTA", "callout", "link", "call-to-action"],
+  "post_types": ["post", "page"],
   "mode": "edit",
   "align_content": "top",
   "acf": {
@@ -36,9 +28,8 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/callout.svg"
+        "preview_image": "/wp-content/themes/aten_fse/assets/img/block-previews/callout.svg"
       }
     }
   }
-
 }

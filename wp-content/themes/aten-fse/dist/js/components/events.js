@@ -1,1 +1,0 @@
-jQuery(document).ready(function(e){e("dt.tribe-event-tags-label").text("").append('<span class="event-icon" aria-hidden="true">sell</span><span class="a11y-visible">Event Tags </span>')});

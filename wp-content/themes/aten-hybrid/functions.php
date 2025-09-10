@@ -273,9 +273,9 @@ function get_block_files() {
 	$block_files = array();
 
 	foreach ( $dirs as $dir ) {
-		$block_name = pathinfo( $dir, PATHINFO_BASENAME );
-		$css_file   = "{$block_name}.css";
-		$js_file    = "{$block_name}.js";
+		$block_name  = pathinfo( $dir, PATHINFO_BASENAME );
+		$css_file    = "{$block_name}.css";
+		$js_file     = "{$block_name}.js";
 		$config_file = "{$block_name}.config.json";
 
 		// Setting block name.
@@ -654,4 +654,31 @@ add_filter(
 		}
 			return $attr;
 	}
+);
+
+/**
+ * Enables support for classic menus and widgets.
+ *
+ * This function adds theme support for traditional WordPress menus and widgets,
+ * allowing users to manage navigation menus and widgets through the Appearance menu.
+ *
+ * @return void
+ */
+function aten_enable_classic_menu_widget_support() {
+	add_theme_support( 'menus' );
+	add_theme_support( 'widgets' );
+}
+add_action( 'after_setup_theme', 'aten_enable_classic_menu_widget_support' );
+
+/**
+ * Sets the media URL path to 'wp-content/uploads/{filename}'.
+ *
+ * This function disables year/month folders for uploads.
+ */
+add_filter(
+	'pre_option_uploads_use_yearmonth_folders',
+	function () {
+		return '0';
+	},
+	9999
 );
