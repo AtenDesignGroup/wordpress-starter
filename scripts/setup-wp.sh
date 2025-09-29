@@ -11,3 +11,6 @@ bash scripts/install-wp.sh --download
 bash scripts/manage-themes.sh
 
 echo "WordPress install complete!"
+
+# Step 3: Generate Custom Post Types
+bash scripts/manage-cpts.sh
