@@ -88,3 +88,44 @@ done
 
 echo "🎉 Theme copied and customized to '$NEW_THEME_NAME' successfully!"
 echo "👉 You can now activate it in WordPress admin."
+
+
+#loop through blocks and replace aten with new theme name
+#pass directory of blocks and theming directory
+#run npm install
+#run npm run build
+#remove node modules.
+# Define block and theming directories
+BLOCKS_DIR="$NEW_THEME_DIR/blocks"
+THEMING_DIR="$NEW_THEME_DIR/libraries"
+
+# Replace "aten", "aten_fse", or "aten_hybrid" with new theme name
+if [ -d "$BLOCKS_DIR" ]; then
+    echo "🔄 Updating block references (aten, aten_fse, aten_hybrid → $NEW_THEME_NAME)..."
+    find "$BLOCKS_DIR" "$THEMING_DIR" -type f -exec sed -i.bak -E \
+        "s/aten(_fse|_hybrid)?/$NEW_THEME_NAME/g" {} +
+    find "$BLOCKS_DIR" "$THEMING_DIR" -type f -name "*.bak" -delete
+    echo "✅ Block references updated."
+else
+    echo "⚠️ No blocks directory found at $BLOCKS_DIR, skipping replacement."
+fi
+
+
+# Run npm commands if package.json exists
+if [ -f "$NEW_THEME_DIR/package.json" ]; then
+    echo "📦 Installing npm dependencies..."
+    (cd "$NEW_THEME_DIR" && npm install)
+
+    echo "⚙️ Running npm build..."
+    (cd "$NEW_THEME_DIR" && npm run build)
+
+    echo "🧹 Cleaning up node_modules..."
+    rm -rf "$NEW_THEME_DIR/node_modules"
+
+    echo "✅ npm build complete."
+else
+    echo "⚠️ No package.json found in $NEW_THEME_DIR, skipping npm build."
+fi
+
+echo "🎉 Theme copied and customized to '$NEW_THEME_NAME' successfully!"
+echo "👉 You can now activate it in WordPress admin."
