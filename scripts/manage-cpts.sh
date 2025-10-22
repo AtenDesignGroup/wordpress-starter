@@ -71,6 +71,16 @@ if command -v wp >/dev/null 2>&1; then
     echo "⚡ Activating plugin via WP-CLI..."
     wp plugin activate wordpress-starter-custom-posttypes --path="$INSTALL_DIR"
     echo "✅ Plugin activated"
+    echo -e "\033[1;32m"
+    echo "███╗   ██╗██╗ ██████╗███████╗"
+    echo "████╗  ██║██║██╔════╝██╔════╝"
+    echo "██╔██╗ ██║██║██║     █████╗  "
+    echo "██║╚██╗██║██║██║     ██╔══╝  "
+    echo "██║ ╚████║██║╚██████╗███████╗"
+    echo "╚═╝  ╚═══╝╚═╝ ╚═════╝╚══════╝"
+    echo -e "\033[0m"
+
 else
     echo "⚠️ WP-CLI not found. Activate the plugin manually in WP Admin."
 fi
+
