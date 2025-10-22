@@ -26,6 +26,7 @@
 
 // Page templates
 @forward './global/03-layouts/layouts';
+@forward './global/03-layouts/cards';
 
 @use './partials/partials' as *;
 

@@ -1,7 +1,6 @@
 @use '../../../libraries/partials/partials' as *;
 
 .pullquote-block.pullquote-component {
-
   .pullquote-text {
     blockquote {
       display: block;
@@ -9,13 +8,7 @@
     }
 
     .pullquote-citation {
-      margin-block-start: 1em;
-
-      cite {
-        @include type-scale(body, 18);
-        font-weight: var(--aten-fw-bold);
-        font-style: normal;
-      }
+      margin-block-start: 1rem;
     }
   }
 

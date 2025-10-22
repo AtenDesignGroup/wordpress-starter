@@ -3,21 +3,12 @@
 // Page header with subtitle styles
 .page-header-component {
   position: relative;
-  z-index: 2;
   overflow: hidden;
+  z-index: 2;
 
   .page-header-block {
     .header-content {
       position: relative;
-    }
-
-    h1 {
-      font-weight: var(--aten-fw-bold);
-    }
-
-    p {
-      color: var(--aten-gray-dark);
-      font-size: var(--font-size-h3);
     }
 
     &.header-with-image {
@@ -28,22 +19,17 @@
         // The important here is necessary to override the dynamic WP featured image background from the header component
         background-image: none !important;
       }
-
-      h1,
-      p {
-        color: var(--white);
-      }
     }
   }
 
   .mobile-image {
-    width: 100%;
-    min-height: rem(220px);
-    position: relative;
-    overflow-y: hidden;
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: center;
+    min-height: rem(220px);
+    overflow-y: hidden;
+    position: relative;
+    width: 100%;
 
     @include bp-min(sm-desktop) {
       display: none;

@@ -27,7 +27,10 @@ if ( ! class_exists( 'ADG_A11y_Nav_Walker' ) ) {
 		 * @see https://developer.wordpress.org/reference/classes/walker_nav_menu/start_el/
 		 */
 		public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
-			$output .= "<li class='" . implode( ' ', $item->classes ) . " adg-a11y-menu-item-level-" . $depth . "'>";
+			$icon      = get_field( 'menu_item_icon', $item );
+			$icon_html = ( $icon ) ? '<icon class="adg-menu-icon" aria-hidden="true">' . file_get_contents( get_stylesheet_directory_uri() . '/assets/icons/' . $icon . '.svg' ) . '</icon>' : '';
+
+			$output .= "<li class='" . implode( ' ', $item->classes ) . ' adg-a11y-menu-item-level-' . $depth . "'>";
 			if ( ! ( in_array( 'menu-item-has-children', $item->classes, true ) ) ) {
 				if ( ( in_array( 'current-menu-item', $item->classes, true ) ) ) {
 					$output .= '<a href="' . $item->url . '" aria-current="page">';
@@ -37,10 +40,21 @@ if ( ! class_exists( 'ADG_A11y_Nav_Walker' ) ) {
 			} else {
 				$output .= '<button class="adg-a11y-megamenu-button" aria-haspopup="true" aria-expanded="false">';
 			}
-			$output .= $item->title;
 			if ( ! ( in_array( 'menu-item-has-children', $item->classes, true ) ) ) {
-				$output .= '</a>';
+				if ( ! ( in_array( 'with-icon', $item->classes, true ) ) ) {
+					$white_space_wrap_point = strrpos( $item->title, ' ' );
+					$wrapped_title          = substr_replace( $item->title, ' <span class="white-space-nowrap">', $white_space_wrap_point, 0 );
+					$output                .= $wrapped_title;
+					$output                .= $icon_html;
+					$output                .= '</span></a>';
+				} else {
+					$output .= $item->title;
+					$output .= $icon_html;
+					$output .= '</a>';
+				}
 			} else {
+				$output .= $item->title;
+				$output .= $icon_html;
 				$output .= '</button>';
 			}
 		}

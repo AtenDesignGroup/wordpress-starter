@@ -36,7 +36,7 @@
     "attributes": {
       "mode": "preview",
       "data": {
-        "preview_image": "../wp-content/themes/aten_fse/assets/img/block-previews/column_block.svg"
+        "preview_image": "/wp-content/themes/aten_fse/assets/img/block-previews/column_block.svg"
       }
     }
   }

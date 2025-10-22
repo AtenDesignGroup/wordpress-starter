@@ -27,10 +27,6 @@
         flex-direction: row-reverse;
       }
     }
-
-    h2 {
-      @include type-scale(heading, h2);
-    }
   }
 
   .title-pane {
@@ -47,12 +43,6 @@
 
         @include bp-min(sm-desktop) {
           flex-wrap: wrap;
-        }
-
-        a {
-          &::after {
-            vertical-align: top;
-          }
         }
       }
     }
@@ -93,10 +83,6 @@
       position: relative;
       z-index: 2;
     }
-
-    h2 {
-      color: var(--white);
-    }
   }
 
   .link-pane {
@@ -115,18 +101,6 @@
     @include bp-min(lg-desktop) {
       width: 38%;
     }
-
-    .mobile-title {
-      h2 {
-        color: var(--black);
-      }
-    }
-
-    .button-link-wrapper {
-      a.btn--black {
-        padding: 0;
-      }
-    }
   }
 
   .listed-links {
@@ -137,7 +111,7 @@
     }
 
     @include bp-min(sm-desktop) {
-      flex-direction: column;
+      flex-flow: column;
     }
 
     li {
@@ -154,18 +128,6 @@
         &:first-child {
           margin-top: 0;
         }
-      }
-    }
-
-    a {
-      @include type-scale(heading, h4);
-      color: var(--black);
-      text-decoration: none;
-
-      &:hover,
-      &:focus,
-      &:active {
-        text-decoration: underline;
       }
     }
   }

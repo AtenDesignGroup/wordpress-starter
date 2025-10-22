@@ -1,0 +1,28 @@
+grumphp:
+  testsuites:
+    git_commit_msg:
+      tasks:
+        - git_commit_message
+
+    git_pre_commit:
+      tasks: 
+        - phpcs
+
+  tasks:
+    # Refer to phpcs.xml 
+    phpcs: 
+    # https://github.com/phpro/grumphp/blob/v2.x/doc/tasks/git_commit_message.md
+    git_commit_message:
+      allow_empty_message: false
+      enforce_capitalized_subject: true
+      enforce_no_subject_punctuations: false
+      enforce_no_subject_trailing_period: true
+      enforce_single_lined_subject: true
+      type_scope_conventions: []
+      max_body_width: 0
+      max_subject_width: 0
+      matchers:
+          Must contain job and issue number: /(ADGWP-\d+|GitHub Actions Build)/
+      case_insensitive: true
+      multiline: true
+      additional_modifiers: ''

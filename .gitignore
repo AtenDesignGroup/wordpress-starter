@@ -1,6 +1,7 @@
 # WordPress #
 ############
-# wp-config-local.php
+wp-config-local.php
+wp-config-ddev.php
 wp-cli.local.yml
 wp-content/uploads
 wp-content/blogs.dir/
@@ -41,7 +42,9 @@ wp-content/backups/
 
 # Ignore default WordPress content except for your custom themes and plugins
 /wp-content/index.php
-/wp-content/mu-plugins/
+/wp-content/mu-plugins/*
+!/wp-content/mu-plugins/loader.php
+!/wp-content/mu-plugins/adg-content-types
 /wp-content/themes/twenty*/
 !/wp-content/themes/twentytwentyone
 
@@ -50,7 +53,7 @@ wp-content/backups/
 !/wp-content/plugins/
 
 # Remove vendor directory from git
-vendor/
+/vendor/
 
 # Avoid accidental modification of pantheon.upstream.yml in sites
 # created from this upstream
