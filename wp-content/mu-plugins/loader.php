@@ -15,7 +15,7 @@ if ( defined( 'WP_INSTALLING' ) && WP_INSTALLING ) {
 
 // Add mu-plugins here.
 $pantheon_mu_plugins = array(
-	'sabcs-content-types/sabcs-content-types-mu.php',
+	'adg-content-types/adg-content-types-mu.php',
 );
 
 foreach ( $pantheon_mu_plugins as $file ) {
