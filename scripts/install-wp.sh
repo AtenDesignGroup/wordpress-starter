@@ -28,16 +28,43 @@ if [ "$DOWNLOAD_CORE" = true ]; then
 
     # Warn user if files already exist
     if [ -f "$INSTALL_DIR/wp-config.php" ]; then
-        echo "Warning: WordPress already appears to be installed in $INSTALL_DIR."
-        read -p "Do you want to remove the existing installation and continue? (y/n): " CONFIRM
+        echo "⚠️  Warning: WordPress configuration detected in $INSTALL_DIR."
+        echo "This usually means a StarterKit or existing install is present."
+        read -p "Do you want to refresh WordPress core files and continue? (y/n): " CONFIRM
+
         if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
-            echo "Removing existing WordPress files..."
-            rm -rf "$INSTALL_DIR"/*
+            echo ""
+            echo "🧹 Removing existing WordPress core files but keeping StarterKit and wp-config.php..."
+            echo "👉 Note: Your StarterKit configuration and custom files will remain untouched."
+            echo ""
+
+            # Remove only WordPress core folders and top-level PHP files (but NOT wp-config.php)
+            rm -rf "$INSTALL_DIR/wp-admin" \
+                   "$INSTALL_DIR/wp-includes" \
+                   "$INSTALL_DIR/wp-content/index.php" \
+                   "$INSTALL_DIR/license.txt" \
+                   "$INSTALL_DIR/readme.html" \
+                   "$INSTALL_DIR/wp-activate.php" \
+                   "$INSTALL_DIR/wp-blog-header.php" \
+                   "$INSTALL_DIR/wp-comments-post.php" \
+                   "$INSTALL_DIR/wp-config-sample.php" \
+                   "$INSTALL_DIR/wp-cron.php" \
+                   "$INSTALL_DIR/wp-links-opml.php" \
+                   "$INSTALL_DIR/wp-load.php" \
+                   "$INSTALL_DIR/wp-login.php" \
+                   "$INSTALL_DIR/wp-mail.php" \
+                   "$INSTALL_DIR/wp-settings.php" \
+                   "$INSTALL_DIR/wp-signup.php" \
+                   "$INSTALL_DIR/wp-trackback.php" \
+                   "$INSTALL_DIR/xmlrpc.php"
+
+            echo "✅ Core files removed. Proceeding with fresh WordPress core installation..."
         else
-            echo "Aborting."
+            echo "Aborting setup."
             exit 1
         fi
     fi
+
 
     # Download and extract WordPress
     echo "Downloading WordPress version $WP_VERSION..."
