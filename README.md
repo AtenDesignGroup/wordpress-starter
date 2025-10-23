@@ -237,4 +237,4 @@ The wordpress-starter comes with two themes, once a preferred theme is chosen th
   - The generator will run through NPM install to get all the dependencies for the new theme.
   - Finally the generator will finish set up (NICE!)
   - You will be able to access your new wordpress site at `https://wordpress-starter.ddev.site`
-  - 
+  
