@@ -219,3 +219,22 @@ The wordpress-starter comes with two themes, once a preferred theme is chosen th
 - This theme is built on top of the WordPress core theme Twenty TwentyOne (WP Core theme) - https://wordpress.com/theme/twentytwentyone
 - The theme utilizes the ACF plugin to handle custom fields and Custom Post Types for its unique content.
 - Uses the classic templating structure while maintaining a modern approach to theming in wordpress
+
+## Wordpress Generator
+
+- This project uses the Aten Wordpress Starterkit generator to scaffold new themes and plugins, including downloading Wordpress Core.
+- One you have ran `ddev start` you can run the generator with `ddev wp-init` command.
+- This will guide you through the installation of Wordpres Core and setting up your custom theme based off of one of our starterkit themes. 
+- Command Setup:
+  - `ddev wp-init` - Runs the generator
+  - First the generator will ask you if you want to get the latest version of Wordpress Core which is the default option. You can click `enter` or select a specific version. (default is recommended)
+  - The system will ask if you want to refresh your Wordpress Core files and continue (select `yes`).
+  - The generator will remove existing core directories and files and download the latest version of Wordpress Core.
+  - Next you will be prompted to select a custom theme you'd like to copy into your new theme. 
+  - Select either `5 for Aten FSE Theme` or `4 for Aten Hybrid Theme`.
+  - You will be prompted to enter a machine name for your new theme. This will be the display name within the Wordpress admin.
+  - The generator will run through the process of copying the theme files and setting up your new theme.
+  - The generator will run through NPM install to get all the dependencies for the new theme.
+  - Finally the generator will finish set up (NICE!)
+  - You will be able to access your new wordpress site at `https://wordpress-starter.ddev.site`
+  

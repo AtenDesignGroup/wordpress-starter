@@ -26,36 +26,36 @@
  * the 'wp-config-local-sample.php' file in this directory.
  */
 if ( file_exists( __DIR__ . '/wp-config-local.php' ) ) {
-	// IMPORTANT: ensure your local config does not include wp-settings.php.
-	require_once __DIR__ . '/wp-config-local.php';
+  // IMPORTANT: ensure your local config does not include wp-settings.php.
+  require_once __DIR__ . '/wp-config-local.php';
 } elseif ( file_exists( __DIR__ . '/wp-config-ddev.php' ) && getenv( 'IS_DDEV_PROJECT' ) === 'true' ) {
-	// IMPORTANT: ensure your local config does not include wp-settings.php.
-	$ddev_settings = __DIR__ . '/wp-config-ddev.php';
-	if ( is_readable( $ddev_settings ) && ! defined( 'DB_USER' ) ) {
-		require_once $ddev_settings;
-	}
+  // IMPORTANT: ensure your local config does not include wp-settings.php.
+  $ddev_settings = __DIR__ . '/wp-config-ddev.php';
+  if ( is_readable( $ddev_settings ) && ! defined( 'DB_USER' ) ) {
+    require_once $ddev_settings;
+  }
 
-	/**
-	 * This block will be executed if you are NOT running on Pantheon and have NO
-	 * wp-config-local.php. Insert alternate config here if necessary.
-	 *
-	 * If you are only running on Pantheon, you can ignore this block.
-	 */
+  /**
+   * This block will be executed if you are NOT running on Pantheon and have NO
+   * wp-config-local.php. Insert alternate config here if necessary.
+   *
+   * If you are only running on Pantheon, you can ignore this block.
+   */
 } else {
-	define( 'DB_NAME', 'database_name' );
-	define( 'DB_USER', 'database_username' );
-	define( 'DB_PASSWORD', 'database_password' );
-	define( 'DB_HOST', 'database_host' );
-	define( 'DB_CHARSET', 'utf8' );
-	define( 'DB_COLLATE', '' );
-	define( 'AUTH_KEY', 'put your unique phrase here' );
-	define( 'SECURE_AUTH_KEY', 'put your unique phrase here' );
-	define( 'LOGGED_IN_KEY', 'put your unique phrase here' );
-	define( 'NONCE_KEY', 'put your unique phrase here' );
-	define( 'AUTH_SALT', 'put your unique phrase here' );
-	define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
-	define( 'LOGGED_IN_SALT', 'put your unique phrase here' );
-	define( 'NONCE_SALT', 'put your unique phrase here' );
+  define( 'DB_NAME', 'database_name' );
+  define( 'DB_USER', 'database_username' );
+  define( 'DB_PASSWORD', 'database_password' );
+  define( 'DB_HOST', 'database_host' );
+  define( 'DB_CHARSET', 'utf8' );
+  define( 'DB_COLLATE', '' );
+  define( 'AUTH_KEY', 'put your unique phrase here' );
+  define( 'SECURE_AUTH_KEY', 'put your unique phrase here' );
+  define( 'LOGGED_IN_KEY', 'put your unique phrase here' );
+  define( 'NONCE_KEY', 'put your unique phrase here' );
+  define( 'AUTH_SALT', 'put your unique phrase here' );
+  define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
+  define( 'LOGGED_IN_SALT', 'put your unique phrase here' );
+  define( 'NONCE_SALT', 'put your unique phrase here' );
 }
 /**#@-*/
 
@@ -78,7 +78,7 @@ $table_prefix = 'wp_';
  * "true" in dev, but false in test and live.
  */
 if ( ! defined( 'WP_DEBUG' ) ) {
-	define( 'WP_DEBUG', false );
+  define( 'WP_DEBUG', false );
 }
 
 /* Add any custom values between this line and the "stop editing" line. */
@@ -89,7 +89,7 @@ if ( ! defined( 'WP_DEBUG' ) ) {
 
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
+  define( 'ABSPATH', __DIR__ . '/' );
 }
 
 /** Sets up WordPress vars and included files. */
