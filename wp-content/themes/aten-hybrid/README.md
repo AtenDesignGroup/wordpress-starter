@@ -50,3 +50,74 @@ All iconography throughout the site utilizes the [Google Material Symbols librar
 ### Form Accessibility
 
 This site utilizes Gravity Forms for all form management. When adding or editing forms within Gravity Forms, conditional fields should be separated onto a separate page using the Gravity Forms pagination tool. This keeps Gravity Forms from performing unannounced AJAX changes that harm the accessibility of the form. For more information about keeping Gravity Forms accessible, reach out to the QA team member for this project.
+
+## Theme Architecture
+
+### Typographic Scale System
+
+The theme implements a comprehensive typographic scale system that generates responsive font sizes and line heights using CSS custom properties. The system is defined in `libraries/global/00-base/_typography.scss` and provides:
+
+- **Responsive Typography**: Font sizes and line heights that automatically adjust across breakpoints (mobile, tablet, sm-desktop, desktop)
+- **Categorized Scales**: Organized into groups like `heading`, `body`, and `label` for semantic organization
+- **CSS Custom Properties**: All typography values are exposed as CSS variables (e.g., `--aten-fs-body-18`, `--aten-lh-heading-h1`)
+- **Mixin Support**: Use the `type-scale()` mixin to apply responsive typography in any SCSS file
+
+Example usage:
+
+```scss
+@use '../../../libraries/partials/partials' as *;
+
+.my-element {
+  @include type-scale(body, 18);
+}
+```
+
+### Global Base Files
+
+The theme uses a centralized configuration approach with global base files located in `libraries/global/00-base/`:
+
+- **`_typography.scss`**: Defines font families, typographic scale, font weights, and default text styling
+- **`_colors.scss`**: Centralized color definitions and theme color palette
+- **`_layouts.scss`**: Base layout configurations and spacing systems
+
+These base files are imported into `libraries/main.scss` and establish foundational values that cascade throughout the entire theme. All custom properties use the `--aten-` prefix (defined in `libraries/partials/_base.scss`) to prevent naming conflicts.
+
+### Custom Block Structure
+
+Custom blocks in the theme follow a standardized structure with dedicated organization:
+
+#### Required Files
+
+Each block must include:
+
+- **`block.json`**: WordPress block configuration file defining the block's metadata, supports, and settings
+- **`[block-name].config.json`**: Custom configuration file for nested blocks and additional settings
+- **`[block-name].php`**: PHP template file for block rendering
+
+#### Dedicated `src/` Folder
+
+Each block supports a dedicated `src/` folder for block-specific assets:
+
+- **SCSS files**: Block-specific styles (e.g., `src/callout.scss`)
+- **JavaScript files**: Block-specific functionality and interactions
+- These files are compiled into the block's root directory during the build process
+
+Example block structure:
+
+```
+blocks/
+  callout/
+    block.json              # WordPress block definition
+    callout.config.json     # Custom block configuration
+    callout.php             # PHP template
+    callout.css             # Compiled styles (generated)
+    src/
+      callout.scss          # Source SCSS file
+      callout.js            # Source JavaScript file (if needed)
+```
+
+All block SCSS files can import the theme's partials system to access mixins, breakpoints, and other utilities:
+
+```scss
+@use '../../../libraries/partials/partials' as *;
+```
