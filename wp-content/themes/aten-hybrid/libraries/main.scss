@@ -15,14 +15,15 @@ Tags: one-column, accessibility-ready, custom-colors, custom-menu, custom-logo, 
 // Import global settings
 @forward './global/00-base/colors';
 @forward './global/00-base/layouts';
+@forward './global/00-base/spacing';
 @forward './global/00-base/typography';
 
 // Broad element styling
 @forward './global/01-elements/buttons';
 @forward './global/01-elements/events';
+@forward './global/01-elements/forms';
 @forward './global/01-elements/gtranslate-widget';
 @forward './global/01-elements/images';
-@forward './global/01-elements/layout';
 @forward './global/01-elements/main-menu';
 @forward './global/01-elements/notification-bar';
 @forward './global/01-elements/pagination';
@@ -32,11 +33,8 @@ Tags: one-column, accessibility-ready, custom-colors, custom-menu, custom-logo, 
 @forward './global/01-elements/utility-nav';
 
 // Individual components
-@forward './global/02-components/callout-link';
 @forward './global/02-components/footer';
 @forward './global/02-components/heading-block';
-@forward './global/02-components/news-archives';
-@forward './global/02-components/sidebar-menu';
 
 // Page templates
 @forward './global/03-layouts/layouts';
@@ -62,4 +60,14 @@ Tags: one-column, accessibility-ready, custom-colors, custom-menu, custom-logo, 
   position: absolute;
   white-space: nowrap;
   width: 1px;
+
+  &:focus-visible {
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    white-space: normal;
+    width: auto;
+  }
 }
