@@ -1,6 +1,6 @@
 @use '../../../libraries/partials/partials' as *;
 
-// Rotating Banner 
+// Rotating Banner
 .post-carousel-block {
   background-color: var(--aten-blue-light);
 
@@ -18,10 +18,6 @@
     button.splide__arrow {
       position: static;
       transform: none;
-    }
-
-    .post-carousel-slide-content {
-      @include l-gutter;
     }
   }
 

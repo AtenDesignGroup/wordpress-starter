@@ -50,7 +50,7 @@ else :
 								$description = get_sub_field( 'description' );
 								?>
 								<li class="splide__slide post-carousel-slide">
-									<div class="post-carousel-slide-content">
+									<div class="post-carousel-slide-content l-gutter">
 										<?php
 										if ( $image ) :
 											?>

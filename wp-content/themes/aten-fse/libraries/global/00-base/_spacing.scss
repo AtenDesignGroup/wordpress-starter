@@ -1,0 +1,136 @@
+//
+// Settings - Spacing
+//
+// - 01 - Imports
+// - 02 - Spacing Scale
+// - 03 - Custom Properties
+// - 04 - Utility Classes
+
+//------------------------------------
+//  01 - Imports
+//------------------------------------
+
+@use '../../partials/calculations' as functions-calculations;
+@use '../../partials/breakpoints' as mixins-breakpoints;
+@use '../../partials/spacing' as mixins-spacing;
+
+//------------------------------------
+//  02 - Spacing Scale
+//  The scale is organized into groups of CSS length values.
+//  Each key represents the target `px` value at the largest
+//  breakpoint. Within each, a target `px` values are set per breakpoint.
+//
+//  The example below shows a `0` value which will be set to 0 and not adjust based on breakpoints.
+//  The `10` value will be default to 4px and will scale up to 8px at the tablet breakpoint and 10px on desktop.
+//  Example:
+//  0: (
+//    mobile: 0,
+//  ),
+//  10: (
+//    mobile: 4,
+//    tablet: 8,
+//    sm-desktop: 10,
+//  ),
+//  20: (
+//    mobile: 8,
+//    tablet: 12,
+//    sm-desktop: 16,
+//    desktop: 20,
+//  ),
+//  36: (
+//    mobile: 12,
+//    tablet: 18,
+//    sm-desktop: 24,
+//    desktop: 36,
+//  ),
+//
+//  Note: The breakpoints listed here must correspond with breakpoints defined in
+//  `libraries/partials/breakpoints.scss`.
+//
+//  $spacing-scale: (
+//    size1: (
+//      breakpoint1: pixelValue,
+//      breakpoint2: pixelValue,
+//      ...
+//    ),
+//    size2: ( ... ),
+//      ...
+//    ),
+//  );
+//
+//------------------------------------
+
+/* prettier-ignore */
+$spacing-scale: (
+  0: (
+    mobile: 0,
+  ),
+  8: (
+    mobile: 4,
+    tablet: 8,
+  ),
+  10: (
+    mobile: 4,
+    tablet: 8,
+    desktop: 10,
+  ),
+  24: (
+    mobile: 12,
+    tablet: 24,
+  ),
+  40: (
+    mobile: 20,
+    tablet: 28,
+    sm-desktop: 40,
+  ),
+  60: (
+    mobile: 20,
+    tablet: 32,
+    sm-desktop: 40,
+    desktop: 60,
+  ),
+  96: (
+    mobile: 30,
+    tablet: 48,
+    sm-desktop: 60,
+    desktop: 96,
+  ),
+  120: (
+    mobile: 40,
+    tablet: 60,
+    sm-desktop: 80,
+    desktop: 120,
+  )
+);
+
+//------------------------------------
+//  02 - Custom Properties
+//  Generate custom properties for each value in the spacing scale
+//  across each breakpoint.
+//
+//  Example output:
+//
+//  :root {
+//    --itd-space-0: 0px;
+//    --itd-space-8: 4px;
+//    --itd-space-20: 8px;
+//    ...
+//    --itd-space-rem-10: 0.25rem;
+//    --itd-space-rem-20: 0.5rem;
+//  }
+//  @media (min-width: 768px) {
+//    :root {
+//      --itd-space-8: 8px;
+//      --itd-space-20: 12px;
+//      ...
+//      --itd-space-rem-8: 0.5rem;
+//      --itd-space-rem-20: 0.75rem;
+//    }
+//  }
+//  ...
+//------------------------------------
+@mixin spacing-scale() {
+  @include mixins-spacing.spacing-scale-custom-props($spacing-scale);
+}
+
+@include spacing-scale();
