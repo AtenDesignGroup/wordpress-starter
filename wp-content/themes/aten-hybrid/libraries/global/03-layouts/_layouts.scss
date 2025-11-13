@@ -67,31 +67,31 @@
 //  Constrained
 //------------------------------------
 
-[class*='l-constrained'] {
+[class*='l-container'] {
   margin-left: auto;
   margin-right: auto;
   max-width: var(--aten-width-xlarge);
   width: 100%;
 }
 
-[class*='l-constrained'] [class*='l-constrained'] {
+[class*='l-container'] [class*='l-container'] {
   margin-left: 0;
   margin-right: 0;
 }
 
-.l-constrained {
+.l-container {
   max-width: var(--aten-width-xlarge);
 }
 
-.l-constrained__width--narrow {
+.l-container__width--narrow {
   max-width: var(--aten-width-medium);
 }
 
-.l-constrained__width--wide {
+.l-container__width--wide {
   max-width: var(--aten-width-xxlarge);
 }
 
-.l-constrained__width--full {
+.l-container__width--full {
   width: 100%;
 }
 
