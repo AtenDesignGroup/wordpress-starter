@@ -90,13 +90,4 @@ body {
     cursor: not-allowed;
     pointer-events: none;
   }
-
-  // Adding a border to the columns block
-  .block-core-columns.wp-block-column {
-    border: rem(2px) solid var(--itd-storm-blue);
-  }
-}
-
-#tinymce p {
-  color: black !important;
 }
