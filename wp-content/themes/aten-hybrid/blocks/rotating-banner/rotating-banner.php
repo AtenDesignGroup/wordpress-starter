@@ -50,7 +50,7 @@ else :
                             $description = get_sub_field('description');
                             ?>
                                 <li class="splide__slide rotating-banner-slide">
-                                    <div class="rotating-banner-slide-content">
+                                    <div class="rotating-banner-slide-content l-gutter">
                                         <?php
                                         if ($image) :
                                           ?>

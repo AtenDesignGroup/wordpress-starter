@@ -1,14 +1,15 @@
 // Import global settings
 @forward './global/00-base/colors';
 @forward './global/00-base/layouts';
+@forward './global/00-base/spacing';
 @forward './global/00-base/typography';
 
 // Broad element styling
 @forward './global/01-elements/buttons';
 @forward './global/01-elements/events';
+@forward './global/01-elements/forms';
 @forward './global/01-elements/gtranslate-widget';
 @forward './global/01-elements/images';
-@forward './global/01-elements/layout';
 @forward './global/01-elements/main-menu';
 @forward './global/01-elements/notification-bar';
 @forward './global/01-elements/pagination';
@@ -18,11 +19,8 @@
 @forward './global/01-elements/utility-nav';
 
 // Individual components
-@forward './global/02-components/callout-link';
 @forward './global/02-components/footer';
 @forward './global/02-components/heading-block';
-@forward './global/02-components/news-archives';
-@forward './global/02-components/sidebar-menu';
 
 // Page templates
 @forward './global/03-layouts/layouts';
@@ -75,5 +73,21 @@ body {
 .acf-true-false {
   input[type='checkbox'] {
     width: auto;
+  }
+}
+
+// Ensure repeater rows are full width
+.acf-repeater.-row .acf-table {
+  max-width: 100%;
+}
+
+.editor-styles-wrapper {
+  // Adding a bumper to the bottom of the editor for easier content entry
+  padding-bottom: rem(120px);
+
+  // Prevent opening Button links in the editor
+  .button-block-wrapper a {
+    cursor: not-allowed;
+    pointer-events: none;
   }
 }
