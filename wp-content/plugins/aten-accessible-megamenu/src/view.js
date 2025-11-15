@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
         mobileMenuToggle.setAttribute('id', `adg-a11y-mobile-menu-toggle-${generateUniqueId(6)}`);
         mobileMenuToggle.className = 'adg-a11y-mobile-menu-toggle';
         mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.setAttribute('aria-haspopup', 'menu');
+        mobileMenuToggle.setAttribute('aria-label', 'Main navigiation menu');
         mobileMenuToggle.innerHTML = '<span class="dashicons dashicons-no-alt" aria-hidden="true"></span><span class="dashicons dashicons-menu" aria-hidden="true"></span><span class="adg-a11y-mobile-menu-toggle-text">Menu</span>';
         menuContainer.insertAdjacentElement('afterbegin', mobileMenuToggle);
 
@@ -92,114 +94,126 @@ const handleEscape = (event) => {
     }
     targetButton.focus();
 }
-
 /**
  * Handles the right arrow key press to navigate the menu.
- * @param {*} event 
+ * @param {Event} event 
+ * @param {HTMLElement} element 
+ * @param {HTMLElement} nextListItem 
  */
-const arrowRight = (event) => {
+const arrowRight = (event, element, nextListItem) => {
     event.preventDefault();
-    if (this.classList.contains('adg-a11y-megamenu-button') && (this.getAttribute('aria-expanded') == 'true')) {
-        toggleMenu(this);
+    if (element.classList.contains('adg-a11y-megamenu-button') && (element.getAttribute('aria-expanded') == 'true')) {
+        toggleMenu(element);
     }
-    if (!this.closest('.submenu-expanded')) {
+    if (!element.closest('.submenu-expanded')) {
         if (nextListItem) {
             nextListItem.querySelector('a, button').focus();
         } else {
-            this.closest('.adg-a11y-megamenu').querySelector('li').querySelector('a, button').focus();
+            element.closest('.adg-a11y-megamenu').querySelector('li').querySelector('a, button').focus();
         }
     } else {
-        let openMenuButton = this.closest('.submenu-expanded').previousElementSibling;
+        let openMenuButton = element.closest('.submenu-expanded').previousElementSibling;
         if (openMenuButton) {
             toggleMenu(openMenuButton);
         }
-        if (this.closest('.adg-a11y-menu-item-level-0').nextElementSibling) {
-            this.closest('.adg-a11y-menu-item-level-0').nextElementSibling.querySelector('a, button').focus();
+        if (element.closest('.adg-a11y-menu-item-level-0').nextElementSibling) {
+            element.closest('.adg-a11y-menu-item-level-0').nextElementSibling.querySelector('a, button').focus();
         } else {
-            this.closest('.adg-a11y-megamenu').querySelector('li').querySelector('a, button').focus();
+            element.closest('.adg-a11y-megamenu').querySelector('li').querySelector('a, button').focus();
         }
     }
 }
 
 /**
  * Handles the left arrow key press to navigate the menu.
- * @param {*} event 
+ * @param {Event} event 
+ * @param {HTMLElement} element 
+ * @param {HTMLElement} prevListItem 
  */
-
-const arrowLeft = (event) => {
+const arrowLeft = (event, element, prevListItem) => {
     event.preventDefault();
-    if (this.classList.contains('adg-a11y-megamenu-button') && (this.getAttribute('aria-expanded') == 'true')) {
-        toggleMenu(this);
+    if (element.classList.contains('adg-a11y-megamenu-button') && (element.getAttribute('aria-expanded') == 'true')) {
+        toggleMenu(element);
     }
-    if (!this.closest('.submenu-expanded')) {
+    if (!element.closest('.submenu-expanded')) {
         if (prevListItem) {
             prevListItem.querySelector('a, button').focus();
         } else {
-            this.closest('.adg-a11y-megamenu').lastElementChild.querySelector('a, button').focus();
+            element.closest('.adg-a11y-megamenu').lastElementChild.querySelector('a, button').focus();
         }
     } else {
-        let openMenuButton = this.closest('.submenu-expanded').previousElementSibling;
+        let openMenuButton = element.closest('.submenu-expanded').previousElementSibling;
         if (openMenuButton) {
             toggleMenu(openMenuButton);
         }
-        if (this.closest('.adg-a11y-menu-item-level-0').previousElementSibling) {
-            this.closest('.adg-a11y-menu-item-level-0').previousElementSibling.querySelector('a, button').focus();
+        if (element.closest('.adg-a11y-menu-item-level-0').previousElementSibling) {
+            element.closest('.adg-a11y-menu-item-level-0').previousElementSibling.querySelector('a, button').focus();
         } else {
-            this.closest('.adg-a11y-megamenu').lastElementChild.querySelector('a, button').focus();
+            element.closest('.adg-a11y-megamenu').lastElementChild.querySelector('a, button').focus();
         }
     }
 }
 
 /**
  * Handles the up arrow key press to navigate the menu.
- * @param {*} event 
+ * @param {Event} event 
+ * @param {HTMLElement} element 
+ * @param {HTMLElement} prevListItem 
  */
-
-const arrowUp = (event) => {
+const arrowUp = (event, element, prevListItem) => {
     event.preventDefault();
-    if (this.closest('.submenu-expanded') && prevListItem) {
+    if (element.closest('.submenu-expanded') && prevListItem) {
         prevListItem.querySelector('a, button').focus();
     } else {
-        this.closest('.submenu-expanded').lastElementChild.querySelector('a, button').focus();
+        element.closest('.submenu-expanded').lastElementChild.querySelector('a, button').focus();
     }
 }
 
 /**
  * Handles the down arrow key press to navigate the menu.
+ * @param {Event} event 
+ * @param {HTMLElement} element 
+ * @param {HTMLElement} nextListItem 
  */
-
-const arrowDown = (event) => {
+const arrowDown = (event, element, nextListItem) => {
     event.preventDefault();
     // If the current item is the mobile menu toggle button, open the menu and focus on the first item.
-    if (this.classList.contains('adg-a11y-mobile-menu-toggle')) {
-        if (this.getAttribute('aria-expanded') == 'false') {
-            toggleMenu(this);
+    if (element.classList.contains('adg-a11y-mobile-menu-toggle')) {
+        if (element.getAttribute('aria-expanded') == 'false') {
+            toggleMenu(element);
         }
-        this.nextElementSibling.querySelector('li').querySelector('a, button').focus();
-    } else if (this.classList.contains('adg-a11y-megamenu-button')) {
+        element.nextElementSibling.querySelector('li').querySelector('a, button').focus();
+    } else if (element.classList.contains('adg-a11y-megamenu-button')) {
         // If the current item is a submenu toggle button, open the menu and focus on the first item.
-        if (this.getAttribute('aria-expanded') == 'false') {
-            toggleMenu(this);
+        if (element.getAttribute('aria-expanded') == 'false') {
+            toggleMenu(element);
         }
-        this.nextElementSibling.querySelector('li').querySelector('a, button').focus();
+        element.nextElementSibling.querySelector('li').querySelector('a, button').focus();
     } else {
-        if (this.closest('.submenu-expanded') && nextListItem) {
+        if (element.closest('.submenu-expanded') && nextListItem) {
             nextListItem.querySelector('a, button').focus();
         } else {
-            this.closest('.submenu-expanded').querySelector('li:first-child').querySelector('a, button').focus();
+            element.closest('.submenu-expanded').querySelector('li:first-child').querySelector('a, button').focus();
         }
     }
 }
 
-const tab = (event) => {
+/**
+ * Handles the tab key press to navigate the menu.
+ * @param {Event} event 
+ * @param {HTMLElement} element 
+ * @param {HTMLElement} nextListItem 
+ * @param {HTMLElement} prevListItem 
+ */
+const tab = (event, element, nextListItem, prevListItem) => {
     // If reverse-tabbing out of a submenu, close the submenu and move focus to the parent menu item.
     if (event.shiftKey) {
-        if (!prevListItem && this.closest('li').classList.contains('adg-a11y-menu-item-level-1')) {
-            toggleMenu(this.closest('.adg-a11y-menu-item-level-0').querySelector('a, button'));
+        if (!prevListItem && element.closest('li').classList.contains('adg-a11y-menu-item-level-1')) {
+            toggleMenu(element.closest('.adg-a11y-menu-item-level-0').querySelector('a, button'));
         }
-    } else if (!nextListItem && !event.shiftKey && !this.classList.contains('adg-a11y-megamenu-button')) {
+    } else if (!nextListItem && !event.shiftKey && !element.classList.contains('adg-a11y-megamenu-button')) {
         // If tabbing past the last item of a submenu, close the submenu and move focus to the next main-level menu item.
-        toggleMenu(this.closest('.adg-a11y-menu-item-level-0').querySelector('a, button'));
+        toggleMenu(element.closest('.adg-a11y-menu-item-level-0').querySelector('a, button'));
     }
 }
 
@@ -232,24 +246,24 @@ const processKeyboardInput = (item) => {
                 break;
             // Right arrow key moves focus to the next menu item, looping back to the first item if at the end.
             case "ArrowRight":
-                arrowRight(event);
+                arrowRight(event, this, nextListItem);
                 break;
             // Left arrow key moves focus to the previous menu item, looping back to the last item if at the beginning.
             case "ArrowLeft":
-                arrowLeft(event);
+                arrowLeft(event, this, prevListItem);
                 break;
             // Up arrow key moves focus to the previous menu item if in a submenu, looping back to the last item if at the beginning.
             case "ArrowUp":
-                arrowUp(event);
+                arrowUp(event, this, prevListItem);
                 break;
             // Down arrow key opens submenus and mobile menus, focusing on the first menu item. 
             // If in a submenu, down arrow key moves focus to the next menu item, looping back to the first item if at the end.
             case "ArrowDown":
-                arrowDown(event);
+                arrowDown(event, this, nextListItem);
                 break;
             // Tab key closes the currently open submenu and moves focus to the next menu item.
             case "Tab":
-                tab(event);
+                tab(event, this, nextListItem, prevListItem);
                 break;
         }
     });
